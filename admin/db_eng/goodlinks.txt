@@ -1,0 +1,13 @@
+<div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
+<font color=#f2f2f2 style="font-size:13pt;"><font style="font-size: 14px"><!--a--><b><a href='index.php?page=help'>Help</a></b></font></font>
+</div><div class="content" align=left><!--How to buy--><!--a0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=how_to_buy'>How to buy</a></span><br></div>
+</div>
+<div class=clear></div><div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
+<font color=#f2f2f2 style="font-size:13pt;"><font style="font-size: 14px"><!--b--><b><a href='index.php?page=anounses'>Anounses</a></b></font></font>
+</div><div class="content" align=left><!--New version--><!--b0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=new_version'>New version</a></span><br></div>
+</div>
+<div class=clear></div><div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
+<font color=#f2f2f2 style="font-size:13pt;"><font style="font-size: 14px"><!--d--><b><a href='index.php?page=information'>Information</a></b></font></font>
+</div><div class="content" align=left><!--Wholesale Info--><!--d0004--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=wholesale_info'>Wholesale Info</a></span><br><!--Payment and Delivery Info--><!--d0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=payment_and_delivery_info'>Payment and Delivery Info</a></span><br><!--Contacts--><!--d0003--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=contacts'>Contacts</a></span><br><!--About our Store--><!--d0002--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=about_our_store'>About our Store</a></span><br></div>
+</div>
+<div class=clear></div>

@@ -1,0 +1,43 @@
+<table width=100% border=0 cellpadding=0 cellspacing=0 style="-moz-border-radius: 10px; background: #c9cbcd; border: 1px solid #c9cbcd; width:100%; padding: 5px 5px;"><tr><td align=center width=3% ><font color=#075fad>A</font></td><td align=center width=3%><font color=#075fad>B</font></td><td align=center width=3%><font color=#075fad>C</font></td><td align=center width=3%><font color=#075fad>D</font></td><td align=center width=3%><font color=#075fad>E</font></td><td align=center width=3%><font color=#075fad>F</font></td><td align=center width=3%><font color=#075fad>G</font></td><td align=center width=3%><font color=#075fad>H</font></td><td align=center width=3%><font color=#075fad>I</font></td><td align=center width=3%><font color=#075fad>J</font></td><td align=center width=3%><font color=#075fad>K</font></td><td align=center width=3%><font color=#075fad>L</font></td><td align=center width=3%><font color=#075fad>M</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_7b8b965ad4bca0e41ab51de7b31363a1" onclick="javascript:js_7b8b965ad4bca0e41ab51de7b31363a1()" width=3%><b><font color=#222222>N</font></b></td></font></td><td align=center width=3%><font color=#075fad>O</font></td><td align=center width=3%><font color=#075fad>P</font></td><td align=center width=3%><font color=#075fad>Q</font></td><td align=center width=3%><font color=#075fad>R</font></td><td align=center width=3%><font color=#075fad>S</font></td><td align=center width=3%><font color=#075fad>T</font></td><td align=center width=3%><font color=#075fad>U</font></td><td align=center width=3%><font color=#075fad>V</font></td><td align=center width=3%><font color=#075fad>W</font></td><td align=center width=3%><font color=#075fad>X</font></td><td align=center width=3%><font color=#075fad>Y</font></td><td align=center width=3%><font color=#075fad>Z</font></td><td align=center width=3%><font color=#075fad></td></tr><tr><td></font></td><td align=center width=3%><font color=#075fad>0</font></td><td align=center width=3%><font color=#075fad>1</font></td><td align=center width=3%><font color=#075fad>2</font></td><td align=center width=3%><font color=#075fad>3</font></td><td align=center width=3%><font color=#075fad>4</font></td><td align=center width=3%><font color=#075fad>5</font></td><td align=center width=3%><font color=#075fad>6</font></td><td align=center width=3%><font color=#075fad>7</font></td><td align=center width=3%><font color=#075fad>8</font></td><td align=center width=3%><font color=#075fad>9</font></td><td align=center width=3%><font color=#075fad></font></td></tr></table><table width=100% border=0><tr><td align=left><a href="http://localhost/index.php?page=r">Article</a></td><td align=right><small><a href=#all_articles onclick="javascript:jsall()"><nobr><span id=viewjsall>Hide file</span></nobr></a></small></td></tr></table>
+<script language=javascript>
+function jsall () {
+if (document.getElementById('viewjsall').innerHTML=='View ALL'){
+document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.visibility = 'visible';
+document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.display = 'inline';
+//document.getElementById('divd_7b8b965ad4bca0e41ab51de7b31363a1').style.backgroundColor = '#075fad';
+
+document.getElementById('viewjsall').innerHTML='Hide file';
+} else {
+document.getElementById('divd_7b8b965ad4bca0e41ab51de7b31363a1').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.display = 'none';
+document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.visibility = 'hidden';
+
+document.getElementById('viewjsall').innerHTML='View ALL';
+}
+}
+function jsallcl() {
+document.getElementById('divd_7b8b965ad4bca0e41ab51de7b31363a1').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.display = 'none';
+document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.visibility = 'hidden';
+
+}
+</script>
+<br><br><script language=javascript>
+function js_7b8b965ad4bca0e41ab51de7b31363a1() {
+jsallcl()
+document.getElementById('divd_7b8b965ad4bca0e41ab51de7b31363a1').style.backgroundColor = '#075fad';
+document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.visibility = 'visible';
+document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.display = 'inline';
+
+document.getElementById('viewjsall').innerHTML='View ALL';
+}
+</script>
+<div id="div_7b8b965ad4bca0e41ab51de7b31363a1"><a name="8d9c307cb7f3c4a32822a51922d1ceaa"></a><br><font size=3>N</font><br><br><!-- New version --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=new_version&z=n';"><a href="index.php?page=new_version&z=n" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">New version</a><br><i></i></div><br><!--end-->
+<br></div>
+<script language=javascript>
+//start
+//document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.visibility = 'visible';
+//document.getElementById('div_7b8b965ad4bca0e41ab51de7b31363a1').style.display = 'inline';
+//document.getElementById('divd_7b8b965ad4bca0e41ab51de7b31363a1').style.backgroundColor = '#075fad';
+
+</script>

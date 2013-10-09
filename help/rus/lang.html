@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1251">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.0  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGEDBY" CONTENT="Павел Бандалетов">
+	<META NAME="CHANGED" CONTENT="20090817;13391900">
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New"><FONT COLOR="#cc3300">$valut=&quot;RUR&quot;;</FONT>
+//Валюта по умолчанию (RUR, USD, EUR, CAD и другие официальные
+аббревиатуры)</FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New"><BR><FONT COLOR="#cc3300">$okr=10;</FONT>
+//округление валюты по умолчанию - напр. до десятков</FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New"><BR><FONT COLOR="#cc3300">$kurs=33.7;</FONT>
+//Курс валюты по умолчанию (цена в карточке товара будет умножена на
+эту величину)</FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New"><BR><FONT COLOR="#cc3300">$optkurs=1;
+</FONT>//Оптовый курс: Оптовый курс валюты - это тот курс по которому
+Вы получаете товар - десятки разделяются точкой, например 28.5</FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New"><BR>//Валюты
+их обменные курсы<BR><FONT COLOR="#cc3300">$currencies=Array
+(<BR>'RUR'=&gt;33.7,<BR>'EUR'=&gt;(33.7/45),<BR>);</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New">//Округление
+для разных валют<BR><FONT COLOR="#cc3300">$currencies_round=Array
+(<BR>'RUR'=&gt;10,<BR>'EUR'=&gt;0.5,<BR>);</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New"><BR>//Символы
+валют </FONT>
+</P>
+<P STYLE="margin-bottom: 0cm"><FONT COLOR="#cc3300"><FONT FACE="Courier New">$currencies_sign=Array
+(<BR>'RUR'=&gt;&quot; руб.&quot;,<BR>'EUR'=&gt;&quot; Euro&quot;,<BR>);</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New"><BR>//Названия
+валют<BR><FONT COLOR="#cc3300">$currencies_name=Array
+(<BR>'RUR'=&gt;&quot;Рубли&quot;,<BR>'EUR'=&gt;&quot;Евро&quot;,<BR>);</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New"><BR>//При
+заказе менее этой суммы - прибавляется стоимость
+доставки<BR><FONT COLOR="#cc3300">$currencies_zakaz_menee=Array
+(<BR>'RUR'=&gt;3000,<BR>'EUR'=&gt;65,<BR>);</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Courier New"><BR>//Прибавка
+к заказу, при цене меньше указанной выше для каждой
+валюты<BR></FONT><FONT COLOR="#cc3300"><FONT FACE="Courier New">$currencies_zakaz_dostav=Array
+(<BR>'RUR'=&gt;250,<BR>'EUR'=&gt;6,<BR>);</FONT></FONT><BR><BR><FONT COLOR="#000000">Также
+в языковом шаблоне можно сразу же указать:</FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">&nbsp;</FONT></P>
+<P STYLE="margin-bottom: 0cm"><STRONG><FONT COLOR="#000000">Директория
+магазина относительно корневой директории </FONT></STRONG>
+</P>
+<P STYLE="margin-bottom: 0cm"><FONT COLOR="#cc3300"><FONT FACE="Courier New">$shopdir=&quot;&quot;;</FONT></FONT><FONT COLOR="#000000">
+</FONT><FONT COLOR="#000000"><FONT FACE="Courier New">//Укажите в
+какой папке относительно корневой директории находится скрипт
+интрнет-магазина. Если index.php магазина находится сразу в корневой
+папке http://www.вашсайт.ru/ - пусть это значение останется пустым.
+Если вы закачали скрипт в папку http://www.вашсайт.ru/shop - то
+укажите значение </FONT></FONT><FONT COLOR="#cc3300"><FONT FACE="Courier New">$shopdir=&quot;/shop&quot;;</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">&nbsp;</FONT></P>
+<P STYLE="margin-bottom: 0cm"><STRONG><FONT COLOR="#000000">Требуемые
+языки</FONT></STRONG></P>
+<P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT COLOR="#cc3300"><FONT FACE="Courier New">$langs&nbsp;
+=&nbsp;&nbsp; Array(<BR>&quot;Русский&quot; =&gt; &quot;rus&quot;,<BR>&quot;English&quot;
+=&gt; &quot;eng&quot;<BR>);</FONT></FONT> </FONT>
+</P>
+<P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">&nbsp;</FONT></P>
+<P STYLE="margin-bottom: 0cm"><STRONG><FONT COLOR="#000000">Складские
+параметры</FONT></STRONG><BR><FONT FACE="Courier New">//Stock
+information<BR></FONT><FONT COLOR="#cc3300"><FONT FACE="Courier New">$stock0=20;</FONT></FONT><FONT FACE="Courier New">
+//very many<BR></FONT><FONT COLOR="#cc3300"><FONT FACE="Courier New">$stock1=10;</FONT></FONT><FONT FACE="Courier New">
+//many<BR></FONT><FONT COLOR="#cc3300"><FONT FACE="Courier New">$stock2=5;</FONT></FONT><FONT FACE="Courier New">
+//average<BR></FONT><FONT COLOR="#cc3300"><FONT FACE="Courier New">$stock3=3;</FONT></FONT><FONT FACE="Courier New">
+//little<BR></FONT><FONT COLOR="#cc3300"><FONT FACE="Courier New">$stock4=1;</FONT></FONT><FONT FACE="Courier New">
+//only one<BR></FONT><FONT COLOR="#cc3300"><FONT FACE="Courier New">$stock5=0;</FONT></FONT><FONT FACE="Courier New">
+//out of stock</FONT><BR><BR>
+</P>
+</BODY>
+</HTML>

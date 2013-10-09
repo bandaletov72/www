@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<rss version="2.0">
+   <channel>
+      <title>Apparel/Women Shirts</title>
+      <link>http://192.168.1.27/index.php?catid=apparel_women_shirts_</link>
+      <description>Apparel/Women Shirts</description>
+      <language>ru-ru</language>
+      <webMaster>xxx@yyy.ru</webMaster>
+      <copyright>http://192.168.1.27</copyright>
+      <pubDate>Wed, 03 Apr 2013 21:30:44 GMT.</pubDate>
+      <lastBuildDate>Wed, 03 Apr 2013 21:30:44 GMT</lastBuildDate>
+      <image>
+         <title>Apparel/Women Shirts</title>
+         <url>http://192.168.1.27/logo.png</url>
+         <link>http://192.168.1.27/index.php?catid=apparel_women_shirts_</link>
+      </image>
+
+      <item>
+         <title>Women T-Shirt (Christmas Tree) - 1200 руб.</title>
+         <link>http://192.168.1.27/index.php?item_id=women_t_shirt__christmas_tree-tsh1</link>
+         <description>&lt;img src=&quot;http://192.168.1.27/photos/tn_a7d947f885c9dd9e78440cc58e53dddf.jpg&quot; alt=&quot;Women T-Shirt (Christmas Tree)&quot; align=left hspace=10 vspace=10 border=0&gt;Women T-shirt with Color Christmas Tree on it. Made in USA.&lt;br&gt;&lt;br&gt;Please choose size. Big sizes has cheaper price.&lt;br&gt;&lt;br&gt;&lt;br&gt;Available sizes&lt;br&gt;#XS 0 &lt;br&gt;#S 0 &lt;br&gt;#M -0 &lt;br&gt;#L 0 &lt;br&gt;#XL 5 &lt;br&gt;#XXL 10 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;small&gt;&lt;b&gt;NOTE:&lt;/b&gt; If you dont know your size &lt;a href=index.php?page=s0002&gt;please see this tables to determine your size&lt;/a&gt;&lt;/small&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Available colors&lt;br&gt;#Rose 0 &lt;img src=photos/rose.png&gt;&lt;br&gt;#Black 0 &lt;img src=photos/bw.png&gt;&lt;br&gt;#Dark Blue 0 &lt;img src=photos/dblue.png&gt;&lt;br&gt;#Brown 0 &lt;img src=photos/brown.png&gt;&lt;br&gt;#Cyan 5 &lt;img src=photos/cyan.png&gt;&lt;br&gt;#Blue 10 &lt;img src=photos/blue.png&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;p&gt;&lt;a href=&quot;http://192.168.1.27/index.php?item_id=women_t_shirt__christmas_tree-tsh1&quot;&gt;Читать дальше&lt;/a&gt;&lt;/p&gt;</description>
+         <pubDate>Wed, 03 Apr 2013 21:30:44 GMT</pubDate>
+      </item>
+
+   </channel>
+</rss>

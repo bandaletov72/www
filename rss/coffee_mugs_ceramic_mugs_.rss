@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<rss version="2.0">
+   <channel>
+      <title>Coffee Mugs/Ceramic Mugs</title>
+      <link>http://192.168.1.27/index.php?catid=coffee_mugs_ceramic_mugs_</link>
+      <description>Coffee Mugs/Ceramic Mugs</description>
+      <language>ru-ru</language>
+      <webMaster>xxx@yyy.ru</webMaster>
+      <copyright>http://192.168.1.27</copyright>
+      <pubDate>Wed, 03 Apr 2013 21:30:44 GMT.</pubDate>
+      <lastBuildDate>Wed, 03 Apr 2013 21:30:44 GMT</lastBuildDate>
+      <image>
+         <title>Coffee Mugs/Ceramic Mugs</title>
+         <url>http://192.168.1.27/logo.png</url>
+         <link>http://192.168.1.27/index.php?catid=coffee_mugs_ceramic_mugs_</link>
+      </image>
+
+      <item>
+         <title>Aztec soup mug - 60 руб.</title>
+         <link>http://192.168.1.27/index.php?item_id=aztec_soup_mug-asm1</link>
+         <description>&lt;img src=&quot;http://192.168.1.27/photos/tn_ae836123728410011c68d6c8395d453b.jpg&quot; alt=&quot;Aztec soup mug&quot; align=left hspace=10 vspace=10 border=0&gt;Product Material 	Stoneware
+&lt;br&gt;&lt;p&gt;&lt;a href=&quot;http://192.168.1.27/index.php?item_id=aztec_soup_mug-asm1&quot;&gt;Читать дальше&lt;/a&gt;&lt;/p&gt;</description>
+         <pubDate>Wed, 03 Apr 2013 21:30:44 GMT</pubDate>
+      </item>
+
+      <item>
+         <title>Ceramic mug - 30 руб.</title>
+         <link>http://192.168.1.27/index.php?item_id=ceramic_mug-gw32r5</link>
+         <description>&lt;img src=&quot;http://192.168.1.27/photos/tn_99ac81c7066c87952dc40cffd041131f.jpg&quot; alt=&quot;Ceramic mug&quot; align=left hspace=10 vspace=10 border=0&gt;Product Material Ceramic
+&lt;br&gt;&lt;p&gt;&lt;a href=&quot;http://192.168.1.27/index.php?item_id=ceramic_mug-gw32r5&quot;&gt;Читать дальше&lt;/a&gt;&lt;/p&gt;</description>
+         <pubDate>Wed, 03 Apr 2013 21:30:44 GMT</pubDate>
+      </item>
+
+   </channel>
+</rss>

@@ -12,17 +12,20 @@ See LICENSE.TXT for more information.
 
 AUTOMATIC INSTALL
 --------------------------------------------------------------------------
-Installer you can found on http://24ok.ru/index.php?page=download&flag=eng or here in GitHub (INSTALLER directory)
+Installer you can found on http://24ok.ru/index.php?page=download&flag=eng or on GitHub:
+
+https://github.com/bandaletov72/www/tree/master/INSTALLER
 
 Download installer on your desktop and unzip it.
 
-You can found this files:
+You can need this files:
 
 -shop.zip
 
 -install.php
 
 -license.txt
+
 
 Upload above files from installer archive to www directory of your web server and enter in browser http://YOUR_SITE/install.php
 

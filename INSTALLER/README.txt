@@ -12,11 +12,13 @@ See LICENSE.TXT for more information.
 
 AUTOMATIC INSTALL
 --------------------------------------------------------------------------
-Installer you can found on http://24ok.ru/index.php?page=download&flag=eng
+Installer you can found on http://24ok.ru/index.php?page=download&flag=eng or on GitHub:
+
+https://github.com/bandaletov72/www/tree/master/INSTALLER
 
 Download installer on your desktop and unzip it.
 
-You can found this files:
+You need this files:
 
 -shop.zip
 

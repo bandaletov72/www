@@ -1,0 +1,28 @@
+Red Square|#ffffff|#efffff|#AB0808|#8F0707|#ba535d|#0f0f0f|#ebdfdf|#ffffff|#ffffff|#0f0f0f|#a92337|
+SportShop|#ffffff|#E0E7F0|#C80000|#0F436C|#708BAF|#0f0f0f|#ebebeb|#0F436C|#708BAF|#ffffff|#E0E7F0|
+GreenGrey|#ffffff|#efefef|#9DB610|#6f6f6f|#7f7f7f|#0f0f0f|#ebebeb|#dfdfdf|#efefef|#3f3f3f|#cfcfcf|
+Modernist|#f3f3ff|#dfdfe4|#ff9900|#4f4f67|#7f7f91|#1f1f3d|#dfdfe4|#ffffff|#ffffff|#4f4f67|#9f9fb1|
+Ballance|#E7EEF4|#ffffff|#9DB610|#595959|#003366|#0f0f0f|#C8D6E1|#ffffff|#ffffff|#003366|#B5D1EC|
+Olive|#ffffff|#dff1df|#9DB610|#536e32|#7f917f|#0f0f0f|#afc1af|#ffffff|#ffffff|#0f0f0f|#7f917f|
+Violet Crystal|#ffffff|#def5cc|#87a936|#2f2f83|#6f6fab|#0f0f0f|#ebebec|#fffffd|#fffffe|#1f1f1f|#afafec|
+Orangina|#ffffff|#FFFFCC|#9DB610|#e04e01|#ff9900|#0f0f0f|#ebebeb|#ffffff|#ffffff|#0f0f0f|#ff9900|
+Girly Rose|#ffffff|#f4fcd6|#d76987|#fe318c|#bf0e6a|#0f0f0f|#e5dfdf|#fe318c|#f780b7|#ffffff|#ea799c|
+Standart|#ffffff|#D9E9FF|#9DB610|#003366|#55aaee|#0f0f0f|#d7d7d7|#003366|#55aaef|#ebebeb|#55aaef|
+XP-Style|#ffffff|#e5ead7|#47AB47|#2662DF|#0D8DEA|#0f0f0f|#ebebeb|#2662DF|#0D8DEA|#ffffff|#0D8DEA|
+Alumize|#bfbfbf|#e5e5e5|#818986|#737373|#3f3f3f|#0f0f0f|#9f9f9f|#bfbfbf|#bfbfbf|#0f0f0f|#838383|
+Lader|#ffffff|#f7f7f7|#6384B1|#6384B1|#215998|#0f0f0f|#cfcfdf|#ffffff|#ffffff|#0f0f0f|#8EA9CF|
+Hunter|#cfd385|#fbfbef|#757451|#5d6d46|#414611|#0f0f0f|#abae73|#5d6d46|#7e934c|#cfd385|#7e934c|
+BW|#ffffff|#efffff|#7b8086|#3d3d3d|#7b8086|#000000|#d3d3d3|#ffffff|#ffffff|#7b8086|#f8b831|
+Fashion|#1f1f1f|#0f0f0f|#adadad|#a3a3a3|#adadad|#ffffff|#4b4b4b|#1f1f1f|#1f1f1f|#ffffff|#C12026|
+UltraCrystal|#cfe7e7|#afc7c7|#3f7373|#4f6767|#4f6767|#0f0f0f|#afc7c7|#cfe7e7|#cfe7e7|#0f0f0f|#afc7c7|
+GreenKids|#ffffff|#f3ffef|#3f6b02|#0f2f0f|#3f6b02|#000000|#daf9cc|#a1de38|#d1fd68|#3f6b02|#a1de38|
+AquaGreen|#ffffff|#e5f8fd|#0381aa|#054e66|#0381aa|#000000|#c7eef9|#a1de38|#d1fd68|#1f5b1f|#a1de38|
+20-jazzok|#ffffff|#e5e5e5|#444444|#444444|#444444|#000000|#dddddd|#ffffff|#ffffff|#444444|#999999|
+21-Studio|#000000|#000000|#888F97|#888F97|#888F97|#ffffff|#101D26|#101D26|#101D26|#ffffff|#172A38|
+22-Текущая '0'|#ffffff|#e5f8fd|#0381aa|#054e66|#0381aa|#000000|#c7eef9|#ffffff|#ffffff|#000000|#a1de38|
+23-Текущая '0'|#000000|#000000|#888F97|#888F97|#888F97|#ffffff|#101D26|#101D26|#101D26|#ffffff|#172A38|
+24-NEBIE|#ffffff|#efefef|#3d3d3d|#819E4A|#3d3d3d|#000000|#dddddd|#ffffff|#ffffff|#000000|#5b5b5b|
+25-Текущая '0'|#ffffff|#efefef|#5b5b5b|#3d3d3d|#5b5b5b|#000000|#c9c9c9|#ffffff|#ffffff|#000000|#5b5b5b|
+26-DEF|#f2f2f2|#f2f2f2|#075fad|#075fad|#075fad|#1f1f1f|#dddddd|#f2f2f2|#f2f2f2|#1f1f1f|#1677c2|
+memorial|#3f3f3f|#666666|#ff6600|#bfbfbf|#6f6f6f|#ffffff|#3f3f3f|#cfcfcf|#cfcfcf|#ffffff|#ff6600|
+DEF|#f2f2f2|#666666|#ef6e12|#075fad|#075fad|#222222|#c9cbcd|#f2f2f2|#f2f2f2|#1f1f1f|#1677c2|

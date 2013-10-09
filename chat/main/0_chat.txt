@@ -1,0 +1,15 @@
+admin|||1336480785|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336480791|rus|||||hello!|
+admin|||1336480794|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336481191|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336481197|rus|||||hello|
+admin|||1336481199|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336481530|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336481765|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336481847|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336481852|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336481859|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336481865|rus|||||ghfghgfh g hgh gfhgh|
+admin|||1336481869|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336481879|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336483757|rus|||||<font color=#468847>вошел в чат</font>|

@@ -1,0 +1,36 @@
+admin|||1336480749|rus|||||HELLO!|
+admin|||1336480765|rus|||||mY FRIEND!|
+admin|||1336480770|rus|||||EXIT|
+admin|||1336480773|rus|||||exit|
+admin|||1336481170|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336481188|rus|||||hello!|
+admin|||1336481215|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336481217|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336481223|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336481224|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336481229|rus|||||hello!|
+admin|||1336481773|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336481774|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336481783|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336481785|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336481875|rus|||||gfhgfhg gfh gfh gfh g|
+admin|||1336481878|rus|||||h gfh gfh gfh gh gh|
+admin|||1336482362|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336482409|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336483756|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336515150|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336515153|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336515157|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336515159|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336515160|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336515161|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336515163|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336515164|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336515165|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336515285|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336515287|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336515307|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336515308|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1336515316|rus|||||<font color=#b94a48>покинул чат</font>|
+admin|||1336515318|rus|||||<font color=#468847>вошел в чат</font>|
+admin|||1368999786|rus|||||<font color=#468847>вошел в чат</font>|

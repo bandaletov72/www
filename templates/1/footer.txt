@@ -1,0 +1,33 @@
+<?php
+$footer="";
+$footer_name="";
+if ($sape_id!="") {
+
+if (is_dir("./$sape_id")) {
+
+if ($sape_id!="") {
+if (!defined('_SAPE_USER')){
+define('_SAPE_USER', "$sape_id");
+}
+require_once("./".$sape_id."/sape.php");
+$saped = new SAPE_client();
+if ($usetheme==1) {
+$sapec=0;
+$sape="";
+$sapec = ExtractString($themecontent, "[sape]", "[/sape]");
+$sapec2 = ExtractString($themecontent, "[sapeblock]", "[/sapeblock]");
+$themecontent=str_replace("[sape]".$sapec."[/sape]",$saped->return_links(),$themecontent);
+$themecontent=str_replace("[sapeblock]".$sapec2."[/sapeblock]",$saped->return_block_links(),$themecontent);
+} else {
+$footer.= $saped->return_links()."".$saped->return_block_links()."<br><br>";
+}
+}
+}
+}
+$version=Array();
+$version=file("./version.txt");
+####### PLEASE DON`T CUT AUTHORS! ############
+if ($icquin!="") {$icq= "<a href=\"http://www.icq.com/whitepages/cmd.php?uin=$icquin&action=message\"><img src=\"http://status.icq.com/online.gif?icq=$icquin&img=27&rnd=".time()."\" border=0></a> <a href=\"http://www.icq.com/whitepages/cmd.php?uin=$icquin&action=message\"><font color=$nc5>ICQ $icquin</font></a><br><br>";}
+
+$footer.="<div class=pull-left align=left><b>©".date("Y",time())." - $shop_name.</b> $lang[1566]<br>$icq"."$lang[73]: <b>".strip_tags($telef)."</b></div><div class=pull-right align=right><img src=logo_mini.png border=0 title=\"".$version[0]." ".@$version[1]." ".@$version[2]." / ".@$version[3]." / Max: ".@$version[4]." items\"></div><div class=clearfix></div><div class=hr></div><div class=pull-left><small><a href=license.php>$lang[995]</a> <img src=$image_path/a.gif> <a href=privacy.php>$lang[996]</a> <img src=$image_path/a.gif> <a href=sitemap.php?speek=$speek>$lang[1612]</a></small></div><div class=pull-right><small>Powered by: <b>".trim($version[0])." ".trim(@$version[1])." ".trim(@$version[2])."</b> $demv</small></div><div class=clearfix></div>";
+?>

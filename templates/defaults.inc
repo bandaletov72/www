@@ -1,0 +1,46 @@
+<?php
+$c_default1=Array(
+"RUR"=>" руб.",
+"USD"=>" \$",
+"EUR"=>" &#8364;",
+"GBP"=>" &#163;",
+"CZK"=>" K&#268; ",
+"JPY"=>" &#164;",
+"BRS"=>" R\$",
+"UAH"=>" грн",
+"BYR"=>" бел.руб.",
+"KZT"=>" тенге",
+"CHF"=>" CHF",
+);
+$c_default2=Array(
+"RUR"=>"RUR",
+"USD"=>"USD",
+"EUR"=>"EURO",
+"GBP"=>"GB Pound",
+"CZK"=>"&#268eska Koruna",
+"JPY"=>"JPY",
+"BRS"=>"Brazil Real",
+"UAH"=>"UAH",
+"BYR"=>"BYR",
+"KZT"=>"KZT",
+"CHF"=>"CHF",
+);
+$lpacks  =   Array(
+"Русский" => "rus",
+"English" => "eng",
+"Deutsch" => "ger",
+"Brazil Portugu&#234;s"=>"bra",
+"Українська мова" => "uam",
+"Latvie&#353;u" => "lat",
+"&#268;esk" => "ces",
+"Fran&#231;ais" => "fra",
+"Portugu&#234;s"=>"por",
+"Italiano" => "ita",
+"Suomi" => "fin",
+"En Espa&#241;ol" => "spa",
+"&#26085;&#26412;&#35486;"=>"jap",
+"Simplify Chinese"=>"sch",
+"Korean"=>"kor",
+"Thai"=>"tha",
+);
+?>

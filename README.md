@@ -12,7 +12,7 @@ See LICENSE.TXT for more information.
 
 AUTOMATIC INSTALL
 --------------------------------------------------------------------------
-Installer you can found on http://24ok.ru/index.php?page=download&flag=eng
+Installer you can found on http://24ok.ru/index.php?page=download&flag=eng or here in GitHub (INSTALLER directory)
 
 Download installer on your desktop and unzip it.
 
@@ -28,9 +28,11 @@ Upload above files from installer archive to www directory of your web server an
 
 MANUAL INSTALL
 --------------------------------------------------------------------------
-Download archive by pressing "Download ZIP" button at the right of GitHub page.
+Download Installer Archive from INSTALLER folder onto your desktop.
 
-Unzip and upload all files to www directory of your web server and enter in browser http://YOUR_SITE/index.php
+Unzip it and unzip internal archive shop.zip
+
+upload all files to www directory of your web server and enter in browser http://YOUR_SITE/index.php
 
 DEFAULT ADMINISTRATOR
 --------------------------------------------------------------------------

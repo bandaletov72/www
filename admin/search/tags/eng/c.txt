@@ -1,0 +1,1 @@
+<font style="font-size: 25pt"><a href="http://localhost/index.php?flag=eng&query=news">news</a></font> &nbsp; 

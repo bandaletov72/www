@@ -1,0 +1,1 @@
+<font style="font-size: 25pt"><a href="http://localhost/index.php?flag=uam&query=wiki">wiki</a></font> &nbsp; <font style="font-size: 17pt"><a href="http://localhost/index.php?flag=uam&query=%E8%ED%E4%E5%EA%F1">индекс</a></font> &nbsp; 

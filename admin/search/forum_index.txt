@@ -1,0 +1,3 @@
+index.php?action=forum&fr=2&act=show&nr=1#mes0 > Welcome / Message 0 / admin > 2012.02.21 > 17 bytes > lets create topic welcome  Welcome > 
+index.php?action=forum&fr=2&act=show&nr=1#mes1 > Welcome / Message 1 / admin > 2012.02.21 > 3 bytes > welcome  Welcome > 
+index.php?action=forum&fr=1&act=show&nr=1#mes0 > Test / Message 0 / admin > 2012.02.21 > 14 bytes > test  Test > 

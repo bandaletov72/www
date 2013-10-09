@@ -1,0 +1,16 @@
+Two plus two minus one=3
+Capital of Russian Federation=moscow
+Next day after friday=saturday
+Next season after winter=spring
+H2O=water
+Water formula=h2o
+First letter of latin alphabet=A
+First Name of Famous Microsoft corporation founder=bill
+Capital of USA=washington
+Capital of Great Britain=london
+Last letter of latin alphabet=z
+Seven plus seven minus two=12
+"Island of Freedom" near USA South-East coast=cuba
+First Name of Legendary Pop King=michael
+Famous service of video sharing on the internet=youtube
+Search engine number one in USA=google

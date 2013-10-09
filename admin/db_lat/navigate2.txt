@@ -1,0 +1,27 @@
+<li class="dropdown noactive"><a class="dropdown-toggle" data-toggle="dropdown" href='index.php?page=help'>Help<b class="caret"></b></a><!--a-->
+<ul class="dropdown-menu" style="text-align:left;">
+    <li class="nowrap lnk"><!--a--><a href='index.php?page=help'><i class="icon-chevron-down icon-white pull-right"></i>Help</a></li>
+
+     <!--How to buy--><!--a0001--><li tabindex="-1" class="nowrap"><a href='index.php?page=how_to_buy'>How to buy</a></li>
+
+   </ul></li>
+
+<li class="dropdown noactive"><a class="dropdown-toggle" data-toggle="dropdown" href='index.php?page=anounses'>Anounses<b class="caret"></b></a><!--b-->
+<ul class="dropdown-menu" style="text-align:left;">
+    <li class="nowrap lnk"><!--b--><a href='index.php?page=anounses'><i class="icon-chevron-down icon-white pull-right"></i>Anounses</a></li>
+
+     <!--New version--><!--b0001--><li tabindex="-1" class="nowrap"><a href='index.php?page=new_version'>New version</a></li>
+
+   </ul></li>
+
+<li class="dropdown noactive"><a class="dropdown-toggle" data-toggle="dropdown" href='index.php?page=information'>Information<b class="caret"></b></a><!--d-->
+<ul class="dropdown-menu" style="text-align:left;">
+    <li class="nowrap lnk"><!--d--><a href='index.php?page=information'><i class="icon-chevron-down icon-white pull-right"></i>Information</a></li>
+
+     <!--Wholesale Info--><!--d0004--><li tabindex="-1" class="nowrap"><a href='index.php?page=wholesale_info'>Wholesale Info</a></li>
+<!--Payment and Delivery Info--><!--d0001--><li tabindex="-1" class="nowrap"><a href='index.php?page=payment_and_delivery_info'>Payment and Delivery Info</a></li>
+<!--Contacts--><!--d0003--><li tabindex="-1" class="nowrap"><a href='index.php?page=contacts'>Contacts</a></li>
+<!--About our Store--><!--d0002--><li tabindex="-1" class="nowrap"><a href='index.php?page=about_our_store'>About our Store</a></li>
+
+   </ul></li>
+

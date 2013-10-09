@@ -1,0 +1,44 @@
+<div>==Соглашение==</div>
+<div>Прежде чем Вы нажмете кнопку "<strong>Отправить заказ</strong>" Вы должны согласиться со следующими Условиями:</div>
+<div>&nbsp;</div>
+<div>
+<div><font face="Verdana" size="2">Курьерская служба не имеет к магазину - никакого отношения,
+поэтому Вы должны принять Условия, связанные с доставкой товара
+курьерской службы:</font></div>
+<div><font face="Verdana" size="2">&nbsp;</font></div>
+<div>
+<table style="border-collapse: collapse;" width="100%" cellspacing="0" cellpadding="5" bordercolor="#b94a48" border="1" bgcolor="#ffffcc"><tbody><tr><td width="100%" valign="top">
+<div>
+<div><font face="Verdana" size="2" color="#000000">При заказе товаров на сумму свыше <strong>3000 руб.</strong> стоимость курьерской доставки (<strong>250 руб</strong>)
+оплачивается за Вас магазином, и в случае отказа от товара надлежащего
+качества Вам следует расчитаться с курьерской службой за ее работу.</font></div>
+<div><font face="Verdana" size="2" color="#000000">&nbsp;</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">В случае отказа от покупки в момент получения, вам
+необходимо будет оплатить стоимость доставки <strong>250 руб. </strong>(на основании п.3 ст. 497
+ГК РФ).</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">&nbsp;</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">В
+случае отказа от покупки надлежащего качества после отъезда курьера, в
+случае, если доставка для Вас первый раз была - бесплатной, -&nbsp; Вам
+необходимо оплатить 2 выезда курьера - <strong>500</strong> руб.</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">&nbsp;</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">В случае обмена товара надлежащего качества на другой товар (повторный выезд курьера) - Вам необходимо оплатить </font><font face="Verdana" size="2" color="#000000" class="h"><strong>250
+рублей</strong> за каждую холостую ходку.</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">&nbsp;</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">В
+случае частичного отказа от покупки, вам необходимо будет оплатить <strong>250
+рублей</strong> за каждую габаритную вещь - визитку, сумку, портфель,&nbsp; и т.п.</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">&nbsp;</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">Ожидание курьером Вас, как клиента, <strong>свыше 10 минут</strong> оплачивается из расчета <strong>250 </strong>руб. за каждые <strong>10</strong> мин. опоздания. </font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">&nbsp;</font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">Все расчеты с курьером и осмотр товара должны быть осуществлены в срок не более <strong>15 мин</strong>., в противном случае задержка курьера оплачивается из расчета <strong>250</strong> руб за <strong>каждые</strong> <strong>10 минут</strong> с момента Вашей встречи с курьером. </font></div>
+<div><font face="Verdana" size="2" color="#000000" class="h">&nbsp;</font></div><font face="Verdana" size="2" color="#000000" class="h">Каждый холостой выезд курьера оплачивается из расчета <strong>250</strong> руб за одну ходку.</font>
+<div><font face="Verdana" color="#000000" class="h">&nbsp;</font></div>
+<div><font face="Verdana" size="1" color="#000000"><strong><span class="h">Магазин оставляет за собой право не обслуживать клиентов, создающих излишнюю нагрузку на операторов и курьеров.</span></strong></font></div>
+<div><font face="Verdana" size="1" color="#000000"><strong><span class="h">&nbsp;</span></strong></font></div><font face="Verdana" size="1" color="#000000"><strong><span class="h">Курьерская служба доставки оставляет за собой
+право перед непосредственной передачей в руки клиента товара -
+требовать оплату доставки и оплату за предоставление вариантов выбора</span></strong></font> </div></td></tr></tbody></table></div></div>
+<div><span class="h">&nbsp;</span></div>
+<div><span class="h">Если Вы НЕ согласны&nbsp; </span>с этими Условиями - магазин обрабатывать Вашу заявку не будет.</div>
+<div>Если Вы СОГЛАСНЫ с этими условиями - поставьте отметьте поле формы Я СОГЛАСЕН. <br>
+</div>

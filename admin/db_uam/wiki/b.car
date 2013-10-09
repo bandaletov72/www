@@ -1,0 +1,40 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+$(".mouseWheel .jCarouselLite").jCarouselLite({
+mouseWheel: true,
+    btnNext: ".next",
+    btnPrev: ".prev",
+    visible: 3,
+    scroll: 1,
+    start: 0,
+//    vertical: true,
+    circular: true
+});
+
+});
+
+</script>
+
+
+<center>
+<div id="jCarouselLiteDemo" style="width:100%">
+<div class="carousel mouseWheel" style="width:100%">
+<table border="0" cellpadding=0 cellspacing=0 width=100%><tr><td align="center">
+
+<a class="prev">&nbsp;</a><br><br><br>
+</td><td align="center" width=100%>
+<div class="jCarouselLite" style="width:100%">
+    <ul>
+    <li><!-- Lorem ipsum dolor. --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=lorem_ipsum_dolor&z=l&jstart=1';"><a href="index.php?page=lorem_ipsum_dolor&z=l&jstart=1" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Lorem ipsum dolor.</a><br><i></small></i></div><br></li>
+
+    </ul>
+  </div>
+</td><td align="center">
+<a class="next">&nbsp;</a><br><br><br>
+
+</td></tr>
+</table>
+</div>
+</div>
+</center>

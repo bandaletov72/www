@@ -1,0 +1,48 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+$(".mouseWheel .jCarouselLite").jCarouselLite({
+mouseWheel: true,
+    btnNext: ".next",
+    btnPrev: ".prev",
+    visible: 3,
+    scroll: 1,
+    start: 0,
+//    vertical: true,
+    circular: true
+});
+
+});
+
+</script>
+
+
+<center>
+<div id="jCarouselLiteDemo" style="width:100%">
+<div class="carousel mouseWheel" style="width:100%">
+<table border="0" cellpadding=0 cellspacing=0 width=100%><tr><td align="center">
+
+<a class="prev">&nbsp;</a><br><br><br>
+</td><td align="center" width=100%>
+<div class="jCarouselLite" style="width:100%">
+    <ul>
+    <li><!--  екс "“ри желани€".|кекс| столичный кекс --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=keks_quot_tri_jelaniyaquot_&z=%EA&jstart=1';"><a href=index.php?page=keks_quot_tri_jelaniyaquot_&z=%EA&jstart=1><img border=0  src="catimg/535_0143_8801_ns.jpg"></a>Ы<a href="index.php?page=keks_quot_tri_jelaniyaquot_&z=%EA&jstart=1" style="border-bottom: #b94a48 1px dashed; text-decoration:none;"> екс "“ри желани€".</a><i><small><br><br></small></i><div style="clear: both"></div></div><br></li>
+<li>
+<!-- ћаффины с €блоками и корицей под ванильным соусом| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=maffinyi_s_yablokami_i_koritzey_pod_vanilnyim_sousom&z=%EC&jstart=2';"><a href=index.php?page=maffinyi_s_yablokami_i_koritzey_pod_vanilnyim_sousom&z=%EC&jstart=2><img border=0  src="catimg/735_0146_7887_ns.jpg"></a>Ы<a href="index.php?page=maffinyi_s_yablokami_i_koritzey_pod_vanilnyim_sousom&z=%EC&jstart=2" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">ћаффины с €блоками и корицей под ванильным соусом</a><i><small><br><br>—остав:   тесто: 200 г сливочного масла или маргарина, 200 г сахара, 2 ч.л. ванильного сахара, 3 €йца, 250 мл сметаны или кефира, 400 г €блок, 2 ч.л. корицы, 2 ч.л. разрыхлител€, 300-350 г муки   соус: 300 мл молока, 3 желтка, 150 г сахара, 2 ч.л. ванильного сахара, 2 ст.л. крахмала </small></i><div style="clear: both"></div></div><br></li>
+<li>
+<!-- Ўарлотка из €блок| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=sharlotka_iz_yablok&z=%F8&jstart=3';"><a href=index.php?page=sharlotka_iz_yablok&z=%F8&jstart=3><img border=0  src=catimg/401_0130_66_ns.jpg border=0></a>Ы<a href="index.php?page=sharlotka_iz_yablok&z=%F8&jstart=3" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Ўарлотка из €блок</a><i><small><br><br>—остав: 200 г сахара, 5 €иц, 200 г муки, 500 г €блок </small></i><div style="clear: both"></div></div><br></li>
+<li>
+<!-- яблочный пирог| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=yablochnyiy_pirog&z=%FF&jstart=4';"><a href=index.php?page=yablochnyiy_pirog&z=%FF&jstart=4><img border=0  src="catimg/60_013_8530_ns.jpg"></a>Ы<a href="index.php?page=yablochnyiy_pirog&z=%FF&jstart=4" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">яблочный пирог</a><i><small><br><br>—остав: 1 кг €блок, 200 г сахара, 200 г сливочного масла или маргарина, 5 €иц, 2 ч.л. разрыхлител€, 600-700 г муки    рем: 500 г сметаны, 200 г сахара </small></i><div style="clear: both"></div></div><br></li>
+<li>
+<!-- яблочный пирог с кедровыми орешками| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=yablochnyiy_pirog_s_kedrovyimi_oreshkami&z=%FF&jstart=5';"><a href=index.php?page=yablochnyiy_pirog_s_kedrovyimi_oreshkami&z=%FF&jstart=5><img border=0  src=catimg/538_0178_7083_ns.jpg border=0></a>Ы<a href="index.php?page=yablochnyiy_pirog_s_kedrovyimi_oreshkami&z=%FF&jstart=5" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">яблочный пирог с кедровыми орешками</a><i><small><br><br>—остав:   тесто: 100 г сливочного масла или маргарина, 150 г сахара, 2 €йца, 2 ч.л. разрыхлител€, 300-350 г муки   крем: 2 €йца, 100 г сахара, 200 г сметаны 15-20%, 2 ст.л. муки   также: 600 г €блок, 50 г кедровых орехов </small></i><div style="clear: both"></div></div><br></li>
+
+    </ul>
+  </div>
+</td><td align="center">
+<a class="next">&nbsp;</a><br><br><br>
+
+</td></tr>
+</table>
+</div>
+</div>
+</center>

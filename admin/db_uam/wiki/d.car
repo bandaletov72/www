@@ -1,0 +1,46 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+$(".mouseWheel .jCarouselLite").jCarouselLite({
+mouseWheel: true,
+    btnNext: ".next",
+    btnPrev: ".prev",
+    visible: 3,
+    scroll: 1,
+    start: 0,
+//    vertical: true,
+    circular: true
+});
+
+});
+
+</script>
+
+
+<center>
+<div id="jCarouselLiteDemo" style="width:100%">
+<div class="carousel mouseWheel" style="width:100%">
+<table border="0" cellpadding=0 cellspacing=0 width=100%><tr><td align="center">
+
+<a class="prev">&nbsp;</a><br><br><br>
+</td><td align="center" width=100%>
+<div class="jCarouselLite" style="width:100%">
+    <ul>
+    <li><!-- Контакты --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=kontaktyi&z=%EA&jstart=1';"><a href="index.php?page=kontaktyi&z=%EA&jstart=1" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Контакты</a><br><i></small></i></div><br></li>
+<li>
+<!-- О нас --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=o_nas&z=%EE&jstart=2';"><a href="index.php?page=o_nas&z=%EE&jstart=2" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">О нас</a><br><i></small></i></div><br></li>
+<li>
+<!-- Оплата и доставка --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=oplata_i_dostavka&z=%EE&jstart=3';"><a href="index.php?page=oplata_i_dostavka&z=%EE&jstart=3" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Оплата и доставка</a><br><i></small></i></div><br></li>
+<li>
+<!-- Оптовым покупателям --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=optovyim_pokupatelyam&z=%EE&jstart=4';"><a href="index.php?page=optovyim_pokupatelyam&z=%EE&jstart=4" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Оптовым покупателям</a><br><i></small></i></div><br></li>
+
+    </ul>
+  </div>
+</td><td align="center">
+<a class="next">&nbsp;</a><br><br><br>
+
+</td></tr>
+</table>
+</div>
+</div>
+</center>

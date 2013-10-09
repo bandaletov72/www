@@ -1,0 +1,11 @@
+<script language=javascript>
+function dv(arg) {
+if (document.getElementById('hdiv_'+arg).style.display=='none') {
+document.getElementById('hdiv_'+arg).style.display='inline';
+document.getElementById('himg_'+arg).className='icon-chevron-down icon-white';
+} else {
+document.getElementById('hdiv_'+arg).style.display='none';
+document.getElementById('himg_'+arg).className='icon-chevron-right icon-white';
+}
+}
+</script><div class=lcat1 style="border-bottom: 1px #c9cbcd dotted; padding-top:10px; padding-bottom:10px;" onclick="dv('1');"><div class=pull-left><b>Brand</b></div><div class=pull-right><i id="himg_1" class="icon-chevron-right icon-white"></i></div><div class=clearfix></div></div><div style="display: none;" id="hdiv_1"><div class=brand onclick="location.href='index.php?b=1&query=anvil';"><a href="index.php?b=1&query=anvil">Anvil</a></div><div class=brand onclick="location.href='index.php?b=1&query=izod';"><a href="index.php?b=1&query=izod">Izod</a></div></div><div class=lcat1 style="border-bottom: 1px #c9cbcd dotted; padding-top:10px; padding-bottom:10px;" onclick="dv('2');"><div class=pull-left><b>Search</b></div><div class=pull-right><i id="himg_2" class="icon-chevron-right icon-white"></i></div><div class=clearfix></div></div><div style="display: none;" id="hdiv_2"><div class=brand onclick="location.href='index.php?b=2&query=women';"><a href="index.php?b=2&query=women">For Women</a></div></div>

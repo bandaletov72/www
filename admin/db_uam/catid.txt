@@ -1,0 +1,16 @@
+apparel|Apparel||<img src=catimg/apparel.jpg border=0>||10|#ffa208|
+coffee_mugs|Coffee Mugs||<img src=catimg/coffeemug.jpg border=0>||20|#4f6a00|
+glassware|Glassware||<img src=catimg/glassware.jpg border=0>||30|#4396ec|
+sport_bottles|Sport bottles||<img src=catimg/sportsbottles.jpg border=0>||40|#8AACD1|
+sport_bottles_aluminum_|Sport bottles|Aluminum|||||
+sport_bottles_acrylic_tumbler_|Sport bottles|Acrylic Tumbler|||||
+glassware_wine_glasses_|Glassware|Wine glasses|<img src=catimg/wineveryhigh.jpg border=0>||||
+glassware_whisky_glasses_|Glassware|Whisky Glasses|<img src=catimg/whiskeyveryhigh.jpg border=0>||||
+glassware_other_glasses_|Glassware|Other glasses|<img src=catimg/frostedveryhigh.jpg border=0>||||
+glassware_martini_glasses_|Glassware|Martini Glasses|<img src=catimg/martiniveryhigh.jpg border=0>||||
+glassware_margarita_glasses_|Glassware|Margarita Glasses|<img src=catimg/margaritaveryhigh.jpg border=0>||||
+glassware_beer_mugs_|Glassware|Beer Mugs|<img src=catimg/beermugs.jpg border=0>||||
+coffee_mugs_stainless_mugs_|Coffee Mugs|Stainless Mugs|||||
+coffee_mugs_ceramic_mugs_|Coffee Mugs|Ceramic Mugs|||||
+apparel_women_shirts_|Apparel|Women Shirts|<img src=catimg/cat-izod-women-pique-sport-shirt-13z063.jpg border=0>||||
+apparel_women_clothes_|Apparel|Women Clothes|<img src=catimg/cat-izod-pique-sportshirt-13z059.jpg border=0>||||

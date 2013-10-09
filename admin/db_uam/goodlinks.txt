@@ -1,0 +1,13 @@
+<div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
+<font color=#f2f2f2 style="font-size:13pt;"><font style="font-size: 14px"><!--a--><b><a href='index.php?page=pomosch'>Помощь</a></b></font></font>
+</div><div class="content" align=left><!--Lorem--><!--a0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=lorem'>Lorem</a></span><br></div>
+</div>
+<div class=clear></div><div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
+<font color=#f2f2f2 style="font-size:13pt;"><font style="font-size: 14px"><!--b--><b><a href='index.php?page=anonsyi'>Анонсы</a></b></font></font>
+</div><div class="content" align=left><!--Lorem ipsum dolor.--><!--b0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=lorem_ipsum_dolor'>Lorem ipsum dolor.</a></span><br></div>
+</div>
+<div class=clear></div><div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
+<font color=#f2f2f2 style="font-size:13pt;"><font style="font-size: 14px"><!--d--><b><a href='index.php?page=informatziya'>Информация</a></b></font></font>
+</div><div class="content" align=left><!--Оптовым покупателям--><!--d0004--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=optovyim_pokupatelyam'>Оптовым покупателям</a></span><br><!--Оплата и доставка--><!--d0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=oplata_i_dostavka'>Оплата и доставка</a></span><br><!--О нас--><!--d0002--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=o_nas'>О нас</a></span><br><!--Контакты--><!--d0003--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=kontaktyi'>Контакты</a></span><br></div>
+</div>
+<div class=clear></div>

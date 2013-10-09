@@ -1,0 +1,19 @@
+<div>==Банеры на главную==Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+<div><strong><br>
+Test poll: </strong><br>
+</div>
+<div>[poll type=2]</div>
+<div>Your favorite womens name? Please vote!</div>
+<div>Alexa</div>
+<div>Barbara</div>
+<div>Celesta</div>
+<div>Donna <br>
+</div>
+<div>Emma</div>
+<div>Fiona</div>
+<div>Gina</div>
+<div>Helena</div>
+<div>Irena</div>
+<div>Jenna <br>
+</div>
+<div>[/poll]</div>

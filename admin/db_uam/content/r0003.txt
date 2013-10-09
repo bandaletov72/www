@@ -1,0 +1,12 @@
+<div>==<img width="100" height="70" src="uploads/loremmini.gif" alt="" title="">Lorem ipsum== <br>
+</div>
+<div><em><img style="margin: 0px 10px 10px 0px;" width="503" height="350" align="left" src="uploads/lorem.gif" alt="" title="">From Wikipedia, the free encyclopedia</em><br>
+<br>
+Using<strong> lorem ipsum</strong> to focus attention on graphic elements in a webpage design proposal<br>
+<br>
+In publishing and graphic design, lorem ipsum is placeholder text (filler text) commonly used to demonstrate the graphic elements of a document or visual presentation, such as font, typography, and layout. The lorem ipsum text is typically a section of a Latin text by Cicero with words altered, added and removed that make it nonsensical in meaning and not proper Latin. A close English translation of the words lorem ipsum might be "pain itself" (dolorem = pain, grief, misery, suffering; ipsum = itself).<br>
+<br>
+Even though "lorem ipsum" may arouse curiosity because of its resemblance to classical Latin, it is not intended to have meaning. Where text is comprehensible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design elements and page layout in order to direct the focus to the publication style and not the meaning of the text.In spite of its basis in Latin, use of lorem ipsum is often referred to as greeking, from the phrase "it's all Greek to me" which indicates that this is not meant to be readable text.<br>
+<br>
+<br>
+</div>

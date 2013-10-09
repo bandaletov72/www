@@ -1,0 +1,6 @@
+==Энциклопедия mini-Wiki==<strong>Статьи от А до Я.</strong> <br>
+
+<div>Пожалуйста, выберите рубрику:</div>
+<div>
+[wiki_all_articles]</div>
+<div>[wiki_slide]</div>

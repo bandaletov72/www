@@ -1,0 +1,49 @@
+
+<script language=javascript>
+function expl(arg) {}
+</script>
+<style>
+    div.Offscreen     { display:none }
+    span.Offscreen    { display:none }
+</style><div id=Out0><h4 onclick="checker('apparel');" id=c_apparel class=lcat1 style="border-bottom: 1px #ffa208 dotted;"><span style="float: right;" id="apparel"><i id="imgapparel" class="icon-chevron-right icon-white"></i></span><a href="index.php?catid=apparel">Apparel</a></h4>
+
+<div id=Outappareldetails style="display:None;"><!-- apparel --><!-- 000010 -->
+<div class=lcat1><div style="float:right;"><span id="dd_apparel_women_clothes_"></span></div>&nbsp;<a href="index.php?catid=apparel_women_clothes_">Women Clothes</a><sup>5</sup></div>
+<div class=lcat1><div style="float:right;"><span id="dd_apparel_women_shirts_"></span></div>&nbsp;<a href="index.php?catid=apparel_women_shirts_">Women Shirts</a></div>
+</div></div>
+<div id=Out2><h4 onclick="checker('coffee_mugs');" id=c_coffee_mugs class=lcat1 style="border-bottom: 1px #4f6a00 dotted;"><span style="float: right;" id="coffee_mugs"><i id="imgcoffee_mugs" class="icon-chevron-right icon-white"></i></span><a href="index.php?catid=coffee_mugs">Coffee Mugs</a></h4>
+
+<div id=Outcoffee_mugsdetails style="display:None;"><!-- coffee_mugs --><!-- 000020 -->
+<div class=lcat1><div style="float:right;"><span id="dd_coffee_mugs_ceramic_mugs_"></span></div>&nbsp;<a href="index.php?catid=coffee_mugs_ceramic_mugs_">Ceramic Mugs</a><sup>2</sup></div>
+<div class=lcat1><div style="float:right;"><span id="dd_coffee_mugs_stainless_mugs_"></span></div>&nbsp;<a href="index.php?catid=coffee_mugs_stainless_mugs_">Stainless Mugs</a></div>
+</div></div>
+<div id=Out4><h4 onclick="checker('glassware');" id=c_glassware class=lcat1 style="border-bottom: 1px #4396ec dotted;"><span style="float: right;" id="glassware"><i id="imgglassware" class="icon-chevron-right icon-white"></i></span><a href="index.php?catid=glassware">Glassware</a></h4>
+
+<div id=Outglasswaredetails style="display:None;"><!-- glassware --><!-- 000030 -->
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_beer_mugs_"></span></div>&nbsp;<a href="index.php?catid=glassware_beer_mugs_">Beer Mugs</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_margarita_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_margarita_glasses_">Margarita Glasses</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_martini_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_martini_glasses_">Martini Glasses</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_other_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_other_glasses_">Other glasses</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_whisky_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_whisky_glasses_">Whisky Glasses</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_wine_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_wine_glasses_">Wine glasses</a></div>
+</div></div>
+<div id=Out6><h4 onclick="checker('sport_bottles');" id=c_sport_bottles class=lcat1 style="border-bottom: 1px #8AACD1 dotted;"><span style="float: right;" id="sport_bottles"><i id="imgsport_bottles" class="icon-chevron-right icon-white"></i></span><a href="index.php?catid=sport_bottles">Sport bottles</a></h4>
+
+<div id=Outsport_bottlesdetails style="display:None;"><!-- sport_bottles --><!-- 000040 -->
+<div class=lcat1><div style="float:right;"><span id="dd_sport_bottles_acrylic_tumbler_"></span></div>&nbsp;<a href="index.php?catid=sport_bottles_acrylic_tumbler_">Acrylic Tumbler</a><sup>3</sup></div>
+<div class=lcat1><div style="float:right;"><span id="dd_sport_bottles_aluminum_"></span></div>&nbsp;<a href="index.php?catid=sport_bottles_aluminum_">Aluminum</a></div>
+</div></div>
+<script language="javascript">
+function checker(arg) {
+if (document.getElementById('Out'+arg+'details').style.display == 'none') {
+document.getElementById('Out'+arg+'details').style.display='inline';
+document.getElementById('img'+arg).className='icon-chevron-down icon-white';
+} else {
+document.getElementById('Out'+arg+'details').style.display='none';
+document.getElementById('img'+arg).className='icon-chevron-right icon-white';
+}
+}
+
+</script>
+
+

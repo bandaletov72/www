@@ -1,0 +1,3 @@
+<P>==Category stickies==</P>
+<P>See number of sticky in categories list ex. 'index.php?catid=dirname_'</P>
+Sticker must have name like 'x_dirname_'

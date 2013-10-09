@@ -1,0 +1,24 @@
+<h4 style="font-size: 10pt; margin: 0;" class=lcat1 onclick="location.href='index.php?catid=apparel';"><img src="images/pix.gif" border=0 width=8 height=8 style="background-color: #ffa208">&nbsp;<a href="index.php?catid=apparel" style="color:#ffa208">Apparel</a></h4><!-- 000010 -->
+<div class=lcat1><div style="float:right;"><span id="dd_apparel_women_clothes_"></span></div>&nbsp;<a href="index.php?catid=apparel_women_clothes_">Women Clothes</a><sup>5</sup></div>
+<div class=lcat1><div style="float:right;"><span id="dd_apparel_women_shirts_"></span></div>&nbsp;<a href="index.php?catid=apparel_women_shirts_">Women Shirts</a></div>
+<br>
+<h4 style="font-size: 10pt; margin: 0;" class=lcat1 onclick="location.href='index.php?catid=coffee_mugs';"><img src="images/pix.gif" border=0 width=8 height=8 style="background-color: #4f6a00">&nbsp;<a href="index.php?catid=coffee_mugs" style="color:#4f6a00">Coffee Mugs</a></h4><!-- 000020 -->
+<div class=lcat1><div style="float:right;"><span id="dd_coffee_mugs_ceramic_mugs_"></span></div>&nbsp;<a href="index.php?catid=coffee_mugs_ceramic_mugs_">Ceramic Mugs</a><sup>2</sup></div>
+<div class=lcat1><div style="float:right;"><span id="dd_coffee_mugs_stainless_mugs_"></span></div>&nbsp;<a href="index.php?catid=coffee_mugs_stainless_mugs_">Stainless Mugs</a></div>
+<br>
+<h4 style="font-size: 10pt; margin: 0;" class=lcat1 onclick="location.href='index.php?catid=glassware';"><img src="images/pix.gif" border=0 width=8 height=8 style="background-color: #4396ec">&nbsp;<a href="index.php?catid=glassware" style="color:#4396ec">Glassware</a></h4><!-- 000030 -->
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_beer_mugs_"></span></div>&nbsp;<a href="index.php?catid=glassware_beer_mugs_">Beer Mugs</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_margarita_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_margarita_glasses_">Margarita Glasses</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_martini_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_martini_glasses_">Martini Glasses</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_other_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_other_glasses_">Other glasses</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_whisky_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_whisky_glasses_">Whisky Glasses</a></div>
+<div class=lcat1><div style="float:right;"><span id="dd_glassware_wine_glasses_"></span></div>&nbsp;<a href="index.php?catid=glassware_wine_glasses_">Wine glasses</a></div>
+<br>
+<h4 style="font-size: 10pt; margin: 0;" class=lcat1 onclick="location.href='index.php?catid=sport_bottles';"><img src="images/pix.gif" border=0 width=8 height=8 style="background-color: #8AACD1">&nbsp;<a href="index.php?catid=sport_bottles" style="color:#8AACD1">Sport bottles</a></h4><!-- 000040 -->
+<div class=lcat1><div style="float:right;"><span id="dd_sport_bottles_acrylic_tumbler_"></span></div>&nbsp;<a href="index.php?catid=sport_bottles_acrylic_tumbler_">Acrylic Tumbler</a><sup>3</sup></div>
+<div class=lcat1><div style="float:right;"><span id="dd_sport_bottles_aluminum_"></span></div>&nbsp;<a href="index.php?catid=sport_bottles_aluminum_">Aluminum</a></div>
+<br>
+
+<script language=javascript>
+function expl(arg) {}
+</script>

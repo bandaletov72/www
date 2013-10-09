@@ -4,11 +4,26 @@ Based on text files (recomended) or MySQL DataBase
 
 Website | E-commerce | Forum | Chat | Blog | Craigslist | etc.
 --------------------------------------------------------------------------
+
 Hello! My name is Pavel A. Bandaletov
 
 I am glad to introduce you my freeware all-in-one product licensed by GNU/GPL3 License.
 
 See LICENSE.TXT for more information.
+
+
+MINIMAL REQUIREMENTS
+--------------------------------------------------------------------------
+Unix/Windows hosting aprox 50Mb-100Mb free space (Apache, IIS, Nginx)
+
+PHP 5.2
+
+file_get_contents - enable
+
+curl functions - enable
+
+MySQL - optional
+
 
 AUTOMATIC INSTALL
 --------------------------------------------------------------------------
@@ -28,6 +43,7 @@ You need this files:
 
 Upload above files from installer archive to www directory of your web server and enter in browser http://YOUR_SITE/install.php
 
+
 MANUAL INSTALL
 --------------------------------------------------------------------------
 
@@ -44,9 +60,11 @@ Default login: admin
 
 Default password: pass
 
+
 WARNING!
 --------------------------------------------------------------------------
 Please change default login and password to prevent unauthorized access!
+
 
 REGISTER NEW ADMINISTRATOR
 --------------------------------------------------------------------------
@@ -58,9 +76,11 @@ REGISTER NEW ADMINISTRATOR
 
 Also you can delete VIP user.
 
+
 ADMIN DIRECTORY ACCESS CONTROL
 --------------------------------------------------------------------------
 You need to protect /admin directory of CMS by using ADM panel
+
 
 DONATE
 --------------------------------------------------------------------------

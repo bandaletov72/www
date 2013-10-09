@@ -10,6 +10,18 @@ I am glad to introduce you my freeware all-in-one product licensed by GNU/GPL3 L
 
 See LICENSE.TXT for more information.
 
+MINIMAL REQUIREMENTS
+--------------------------------------------------------------------------
+Unix/Windows hosting aprox 50Mb-100Mb free space (Apache, IIS, Nginx)
+
+PHP 5.2
+
+file_get_contents - enable
+
+curl functions - enable
+
+MySQL - optional
+
 AUTOMATIC INSTALL
 --------------------------------------------------------------------------
 Installer you can found on http://24ok.ru/index.php?page=download&flag=eng or on GitHub:

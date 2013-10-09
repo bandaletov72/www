@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "http://favorit-el.ru Admin"
+AuthUserFile /home/chekutov/favorit-el.ru/docs/admin/.htpasswd
+require valid-user

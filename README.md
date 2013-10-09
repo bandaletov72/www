@@ -4,11 +4,13 @@ Based on text files (recomended) or MySQL DataBase
 
 Website | E-commerce | Forum | Chat | Blog | Craigslist | etc.
 --------------------------------------------------------------------------
+
 Hello! My name is Pavel A. Bandaletov
 
 I am glad to introduce you my freeware all-in-one product licensed by GNU/GPL3 License.
 
 See LICENSE.TXT for more information.
+
 
 MINIMAL REQUIREMENTS
 --------------------------------------------------------------------------
@@ -22,15 +24,16 @@ curl functions - enable
 
 MySQL - optional
 
+
 AUTOMATIC INSTALL
 --------------------------------------------------------------------------
-Installer you can found on http://24ok.ru/index.php?page=download&flag=eng or on GitHub:
+Installer you can found on http://24ok.ru/index.php?page=download&flag=eng or Dropbox:
 
-https://github.com/bandaletov72/www/tree/master/INSTALLER
+https://www.dropbox.com/s/wg8cj34bealorsc/eurowebcart_installer_7_plus.zip
 
 Download installer on your desktop and unzip it.
 
-You can need this files:
+You need this files:
 
 -shop.zip
 
@@ -38,16 +41,18 @@ You can need this files:
 
 -license.txt
 
-
 Upload above files from installer archive to www directory of your web server and enter in browser http://YOUR_SITE/install.php
+
 
 MANUAL INSTALL
 --------------------------------------------------------------------------
-Download Installer Archive from INSTALLER folder onto your desktop.
+
+Download Installer Archive from onto your desktop.
 
 Unzip it and unzip internal archive shop.zip
 
-upload all files to www directory of your web server and enter in browser http://YOUR_SITE/index.php
+Upload all files to www directory of your web server and enter in browser http://YOUR_SITE/index.php
+
 
 DEFAULT ADMINISTRATOR
 --------------------------------------------------------------------------
@@ -55,9 +60,11 @@ Default login: admin
 
 Default password: pass
 
+
 WARNING!
 --------------------------------------------------------------------------
 Please change default login and password to prevent unauthorized access!
+
 
 REGISTER NEW ADMINISTRATOR
 --------------------------------------------------------------------------
@@ -69,9 +76,11 @@ REGISTER NEW ADMINISTRATOR
 
 Also you can delete VIP user.
 
+
 ADMIN DIRECTORY ACCESS CONTROL
 --------------------------------------------------------------------------
 You need to protect /admin directory of CMS by using ADM panel
+
 
 DONATE
 --------------------------------------------------------------------------
@@ -83,3 +92,5 @@ I will use your investment in further development.
 Enjoy!
 
 P.S. Please do not delete "Powered by Eurowebcart 7+" at the bottom
+
+http://www.24ok.ru

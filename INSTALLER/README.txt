@@ -27,9 +27,9 @@ MySQL - optional
 
 AUTOMATIC INSTALL
 --------------------------------------------------------------------------
-Installer you can found on http://24ok.ru/index.php?page=download&flag=eng or on GitHub:
+Installer you can found on http://24ok.ru/index.php?page=download&flag=eng or Dropbox:
 
-https://github.com/bandaletov72/www/tree/master/INSTALLER
+https://www.dropbox.com/s/wg8cj34bealorsc/eurowebcart_installer_7_plus.zip
 
 Download installer on your desktop and unzip it.
 
@@ -47,7 +47,7 @@ Upload above files from installer archive to www directory of your web server an
 MANUAL INSTALL
 --------------------------------------------------------------------------
 
-Download Installer Archive from INSTALLER folder onto your desktop.
+Download Installer Archive from onto your desktop.
 
 Unzip it and unzip internal archive shop.zip
 

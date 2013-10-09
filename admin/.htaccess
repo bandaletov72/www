@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "http://localhost Admin"
+AuthUserFile Y:/home/localhost/www/admin/.htpasswd
+require valid-user

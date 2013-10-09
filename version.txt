@@ -1,0 +1,5 @@
+EuroWebCart
+7+
+, Jquery 1.8.2, TinyMCE 4+, Twitter Bootstrap 2+, FancyBox, Sticky Mojo
+9.10.2013
+UNLIM

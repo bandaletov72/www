@@ -29,7 +29,12 @@ Upload above files from installer archive to www directory of your web server an
 MANUAL INSTALL
 --------------------------------------------------------------------------
 
-Unzip and upload all files from installer ZIP-file to www directory of your web server and enter in browser http://YOUR_SITE/index.php
+Download Installer Archive from INSTALLER folder onto your desktop.
+
+Unzip it and unzip internal archive shop.zip
+
+Upload all files to www directory of your web server and enter in browser http://YOUR_SITE/index.php
+
 
 DEFAULT ADMINISTRATOR
 --------------------------------------------------------------------------

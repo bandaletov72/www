@@ -1,0 +1,1 @@
+<div align=center><br><font size=1>Powered by: <b><a href=http://www.eurowebcart.com>EuroWebcart</a></b><br></font></div>

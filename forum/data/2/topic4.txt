@@ -1,0 +1,4 @@
+Test poll
+1319357750
+admin
+[poll]<br>Are you like it ?<br>YES<br>NO<br>[/poll]

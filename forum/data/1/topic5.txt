@@ -1,0 +1,4 @@
+Test poll2
+1319362289
+admin
+Lets poll together  :d <br>[poll]<br>Who are you?<br>Worker<br>Student<br>Pupil<br>Other<br>[/poll]<br>It was very important for us

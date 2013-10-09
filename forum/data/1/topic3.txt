@@ -1,0 +1,19 @@
+Test hilighting PHP code
+1314895530
+admin
+<code>&lt;?php<br>// Get a file into an array<br>$lines = file('index.php');<br><br>// Loop through our array, show HTML source as HTML source; and line numbers too.<br>echo('&lt;table border=0 cellpadding=0 cellspacing=0&gt;');<br>foreach ($lines as $line_num =&gt; $line) {<br>    echo('&lt;tr&gt;');<br>    echo('&lt;td bgcolor = "#cccccc"&gt;');<br>    echo('&lt;code&gt;' . ($line_num + 1) . '&lt;/code&gt;');<br>    echo('&lt;/td&gt;');<br>    echo('&lt;td&gt;');         <br>    highlight_string($line);<br>    echo('&lt;/td&gt;');<br>    echo('&lt;/tr&gt;');<br>}<br><br>?&gt;</code>
+1315996610
+admin
+[code]fj regjoreijgori jg[/code]<br>[code] rger g erg re[/code]<br>[code] ger[/code]<br>[code]g reg reg erg[/code]
+1315998029
+admin
+[img]http://www.24ok.ru/logo.png[/img]<br>[a href='http://www.24ok.ru'][/a]<br>[b]Bold text[/b]<br>[i]Italic[/i]<br>[u]Underline[/u]<br>[sup]Superscript[/sup]
+1315998710
+admin
+[a href='window.alert()']Link[/a]
+1315998828
+admin
+[a href='www.24ok.ru']24OK SITE[/a]<br>[a href='mailto:dpz@bk.ru']dpz@bk.ru[/a]<br>[a href='ftp://192.168.1.1']ftp://192.168.1.1[/a]<br>[a href='http://www.24ok.ru']www.24ok.ru[/a]
+1329444152
+admin|1|admin|admin|
+ferfrefr

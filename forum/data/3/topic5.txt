@@ -1,0 +1,7 @@
+Test poll2
+1319362289
+admin
+Lets poll together  :d <br>[poll]<br>Who are you?<br>Worker<br>Student<br>Pupil<br>Other<br>[/poll]<br>It was very important for us
+1319362419
+admin
+Ok lets doing another voting<br>[poll]<br>How old are you?<br>0-10<br>11-16<br>17-21<br>21-35<br>36-45<br>46-...<br>[/poll]

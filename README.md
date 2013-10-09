@@ -88,6 +88,10 @@ You may donate some money if you will enjoy Eurowebcart.
 
 I will use your investment in further development.
 
+For donate please click here:
+
+https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LKYH5TTV7UTD6
+
 
 Enjoy!
 

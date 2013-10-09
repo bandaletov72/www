@@ -1,0 +1,9 @@
+<div>==Москва==</div>
+<div>[poll type=4]</div>
+<div>Как вы оцениваете Москву?</div>
+<div>Хорошо</div>
+<div>Плохо</div>
+<div>Затрудняюсь ответить <br>
+</div>
+<div>[/poll] <br>
+</div>

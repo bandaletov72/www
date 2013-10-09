@@ -1,0 +1,12 @@
+<div align="justify">==Помощь==[wiki_list]</div>
+<div align="justify">Test poll: <br>
+</div>
+<div align="justify">[poll]</div>
+<div align="justify">Test question?</div>
+<div align="justify">Answer 1</div>
+<div align="justify">Answer 2</div>
+<div align="justify">Answer3</div>
+<div align="justify">Answer4 <br>
+</div>
+<div align="justify">[/poll] <br>
+</div>

@@ -1,0 +1,29 @@
+<li class="dropdown noactive"><a class="dropdown-toggle" data-toggle="dropdown" href='index.php?page=pomosch'>Помощь<b class="caret"></b></a><!--a-->
+<ul class="dropdown-menu" style="text-align:left;">
+    <li class="nowrap lnk"><!--a--><a href='index.php?page=pomosch'><i class="icon-chevron-down icon-white pull-right"></i>Помощь</a></li>
+
+     <!--Lorem--><!--a0001--><li tabindex="-1" class="nowrap"><a href='index.php?page=lorem'>Lorem</a></li>
+
+   </ul></li>
+
+<li class="dropdown noactive"><a class="dropdown-toggle" data-toggle="dropdown" href='index.php?page=anonsyi'>Анонсы<b class="caret"></b></a><!--b-->
+<ul class="dropdown-menu" style="text-align:left;">
+    <li class="nowrap lnk"><!--b--><a href='index.php?page=anonsyi'><i class="icon-chevron-down icon-white pull-right"></i>Анонсы</a></li>
+
+     <!--Lorem ipsum dolortth--><!--b0001--><li tabindex="-1" class="nowrap"><a href='index.php?page=lorem_ipsum_dolortth'>Lorem ipsum dolortth</a></li>
+
+   </ul></li>
+
+<li class="dropdown noactive"><a class="dropdown-toggle" data-toggle="dropdown" href='index.php?page=informatziya'>Информация<b class="caret"></b></a><!--d-->
+<ul class="dropdown-menu" style="text-align:left;">
+    <li class="nowrap lnk"><!--d--><a href='index.php?page=informatziya'><i class="icon-chevron-down icon-white pull-right"></i>Информация</a></li>
+
+     <!--Оптовым покупателям--><!--d0004--><li tabindex="-1" class="nowrap"><a href='index.php?page=optovyim_pokupatelyam'>Оптовым покупателям</a></li>
+<!--Оплата и доставка--><!--d0001--><li tabindex="-1" class="nowrap"><a href='index.php?page=oplata_i_dostavka'>Оплата и доставка</a></li>
+<!--О нас--><!--d0002--><li tabindex="-1" class="nowrap"><a href='index.php?page=o_nas'>О нас</a></li>
+<!--Контакты--><!--d0003--><li tabindex="-1" class="nowrap"><a href='index.php?page=kontaktyi'>Контакты</a></li>
+
+   </ul></li>
+
+<li class="noactive"><a href='index.php?page=wiki'>Wiki</a></font></li><!--p-->
+

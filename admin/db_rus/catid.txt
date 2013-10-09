@@ -1,0 +1,16 @@
+apparel|Apparel||||10|#ffa208|
+coffee_mugs|Coffee Mugs||||20|#4f6a00|
+glassware|Glassware||||30|#4396ec|
+sport_bottles_aluminum_|Sport bottles|Aluminum|||||
+sport_bottles_acrylic_tumbler_|Sport bottles|Acrylic Tumbler|||||
+sport_bottles|Sport bottles|||||#8AACD1|
+glassware_wine_glasses_|Glassware|Wine glasses|||||
+glassware_whisky_glasses_|Glassware|Whisky Glasses|||||
+glassware_other_glasses_|Glassware|Other glasses|||||
+glassware_martini_glasses_|Glassware|Martini Glasses|||||
+glassware_margarita_glasses_|Glassware|Margarita Glasses|||||
+glassware_beer_mugs_|Glassware|Beer Mugs|||||
+coffee_mugs_stainless_mugs_|Coffee Mugs|Stainless Mugs|||||
+coffee_mugs_ceramic_mugs_|Coffee Mugs|Ceramic Mugs|||||
+apparel_women_shirts_|Apparel|Women Shirts|||||
+apparel_women_clothes_|Apparel|Women Clothes|||||

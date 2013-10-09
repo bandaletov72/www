@@ -1,0 +1,108 @@
+<table width=100% border=0 cellpadding=0 cellspacing=0 style="-moz-border-radius: 10px; background: #c9cbcd; border: 1px solid #c9cbcd; width:100%; padding: 5px 5px;"><tr><td align=center width=3% ><font color=#075fad>А</font></td><td align=center width=3%><font color=#075fad>Б</font></td><td align=center width=3%><font color=#075fad>В</font></td><td align=center width=3%><font color=#075fad>Г</font></td><td align=center width=3%><font color=#075fad>Д</font></td><td align=center width=3%><font color=#075fad>Е</font></td><td align=center width=3%><font color=#075fad>Ё</font></td><td align=center width=3%><font color=#075fad>Ж</font></td><td align=center width=3%><font color=#075fad>З</font></td><td align=center width=3%><font color=#075fad>И</font></td><td align=center width=3%><font color=#075fad>Й</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_86277f690350a08d08055cbdda225e0a" onclick="javascript:js_86277f690350a08d08055cbdda225e0a()" width=3%><b><font color=#222222>К</font></b></td></font></td><td align=center width=3%><font color=#075fad>Л</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_167b86f21df376c96f10a0615b14200b" onclick="javascript:js_167b86f21df376c96f10a0615b14200b()" width=3%><b><font color=#222222>М</font></b></td></font></td><td align=center width=3%><font color=#075fad>Н</font></td><td align=center width=3%><font color=#075fad>О</font></td><td align=center width=3%><font color=#075fad>П</font></td><td align=center width=3%><font color=#075fad>Р</font></td><td align=center width=3%><font color=#075fad>С</font></td><td align=center width=3%><font color=#075fad>Т</font></td><td align=center width=3%><font color=#075fad>У</font></td><td align=center width=3%><font color=#075fad>Ф</font></td><td align=center width=3%><font color=#075fad>Х</font></td><td align=center width=3%><font color=#075fad>Ц</font></td><td align=center width=3%><font color=#075fad>Ч</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_31741635b41d535098241fea03c1e47f" onclick="javascript:js_31741635b41d535098241fea03c1e47f()" width=3%><b><font color=#222222>Ш</font></b></td></font></td><td align=center width=3%><font color=#075fad>Щ</font></td><td align=center width=3%><font color=#075fad>Ь</font></td><td align=center width=3%><font color=#075fad>Э</font></td><td align=center width=3%><font color=#075fad>Ю</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_00594fd4f42ba43fc1ca0427a0576295" onclick="javascript:js_00594fd4f42ba43fc1ca0427a0576295()" width=3%><b><font color=#222222>Я</font></b></td></font></td><td align=center width=3%><font color=#075fad></td></tr><tr><td></font></td><td align=center width=3%><font color=#075fad>A</font></td><td align=center width=3%><font color=#075fad>B</font></td><td align=center width=3%><font color=#075fad>C</font></td><td align=center width=3%><font color=#075fad>D</font></td><td align=center width=3%><font color=#075fad>E</font></td><td align=center width=3%><font color=#075fad>F</font></td><td align=center width=3%><font color=#075fad>G</font></td><td align=center width=3%><font color=#075fad>H</font></td><td align=center width=3%><font color=#075fad>I</font></td><td align=center width=3%><font color=#075fad>J</font></td><td align=center width=3%><font color=#075fad>K</font></td><td align=center width=3%><font color=#075fad>L</font></td><td align=center width=3%><font color=#075fad>M</font></td><td align=center width=3%><font color=#075fad>N</font></td><td align=center width=3%><font color=#075fad>O</font></td><td align=center width=3%><font color=#075fad>P</font></td><td align=center width=3%><font color=#075fad>Q</font></td><td align=center width=3%><font color=#075fad>R</font></td><td align=center width=3%><font color=#075fad>S</font></td><td align=center width=3%><font color=#075fad>T</font></td><td align=center width=3%><font color=#075fad>U</font></td><td align=center width=3%><font color=#075fad>V</font></td><td align=center width=3%><font color=#075fad>W</font></td><td align=center width=3%><font color=#075fad>X</font></td><td align=center width=3%><font color=#075fad>Y</font></td><td align=center width=3%><font color=#075fad>Z</font></td><td align=center width=3%><font color=#075fad>0</font></td><td align=center width=3%><font color=#075fad>1</font></td><td align=center width=3%><font color=#075fad>2</font></td><td align=center width=3%><font color=#075fad>3</font></td><td align=center width=3%><font color=#075fad>4</font></td><td align=center width=3%><font color=#075fad></font></td></tr></table><table width=100% border=0><tr><td align=left><a href="http://localhost/index.php?page=r">Словарь</a></td><td align=right><small><a href=#all_articles onclick="javascript:jsall()"><nobr><span id=viewjsall>Скрыть</span></nobr></a></small></td></tr></table>
+<script language=javascript>
+function jsall () {
+if (document.getElementById('viewjsall').innerHTML=='Показать ВСЕ'){
+document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'visible';
+document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'inline';
+//document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#075fad';
+document.getElementById('div_167b86f21df376c96f10a0615b14200b').style.visibility = 'visible';
+document.getElementById('div_167b86f21df376c96f10a0615b14200b').style.display = 'inline';
+//document.getElementById('divd_167b86f21df376c96f10a0615b14200b').style.backgroundColor = '#075fad';
+document.getElementById('div_31741635b41d535098241fea03c1e47f').style.visibility = 'visible';
+document.getElementById('div_31741635b41d535098241fea03c1e47f').style.display = 'inline';
+//document.getElementById('divd_31741635b41d535098241fea03c1e47f').style.backgroundColor = '#075fad';
+document.getElementById('div_00594fd4f42ba43fc1ca0427a0576295').style.visibility = 'visible';
+document.getElementById('div_00594fd4f42ba43fc1ca0427a0576295').style.display = 'inline';
+//document.getElementById('divd_00594fd4f42ba43fc1ca0427a0576295').style.backgroundColor = '#075fad';
+
+document.getElementById('viewjsall').innerHTML='Скрыть';
+} else {
+document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'none';
+document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'hidden';
+document.getElementById('divd_167b86f21df376c96f10a0615b14200b').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_167b86f21df376c96f10a0615b14200b').style.display = 'none';
+document.getElementById('div_167b86f21df376c96f10a0615b14200b').style.visibility = 'hidden';
+document.getElementById('divd_31741635b41d535098241fea03c1e47f').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_31741635b41d535098241fea03c1e47f').style.display = 'none';
+document.getElementById('div_31741635b41d535098241fea03c1e47f').style.visibility = 'hidden';
+document.getElementById('divd_00594fd4f42ba43fc1ca0427a0576295').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_00594fd4f42ba43fc1ca0427a0576295').style.display = 'none';
+document.getElementById('div_00594fd4f42ba43fc1ca0427a0576295').style.visibility = 'hidden';
+
+document.getElementById('viewjsall').innerHTML='Показать ВСЕ';
+}
+}
+function jsallcl() {
+document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'none';
+document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'hidden';
+document.getElementById('divd_167b86f21df376c96f10a0615b14200b').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_167b86f21df376c96f10a0615b14200b').style.display = 'none';
+document.getElementById('div_167b86f21df376c96f10a0615b14200b').style.visibility = 'hidden';
+document.getElementById('divd_31741635b41d535098241fea03c1e47f').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_31741635b41d535098241fea03c1e47f').style.display = 'none';
+document.getElementById('div_31741635b41d535098241fea03c1e47f').style.visibility = 'hidden';
+document.getElementById('divd_00594fd4f42ba43fc1ca0427a0576295').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_00594fd4f42ba43fc1ca0427a0576295').style.display = 'none';
+document.getElementById('div_00594fd4f42ba43fc1ca0427a0576295').style.visibility = 'hidden';
+
+}
+</script>
+<br><br><script language=javascript>
+function js_86277f690350a08d08055cbdda225e0a() {
+jsallcl()
+document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#075fad';
+document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'visible';
+document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'inline';
+
+document.getElementById('viewjsall').innerHTML='Показать ВСЕ';
+}
+</script>
+<div id="div_86277f690350a08d08055cbdda225e0a"><a name="ceb1e7db7df6a7005fb5b80ba6e370fe"></a><br><font size=3>К</font><br><br><!-- Кекс "Три желания".|кекс| столичный кекс --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=keks_quot_tri_jelaniyaquot_&z=%EA';"><a href=index.php?page=keks_quot_tri_jelaniyaquot_&z=%EA><img border=0 hspace=10 align=left src="catimg/535_0143_8801_ns.jpg"></a>›<a href="index.php?page=keks_quot_tri_jelaniyaquot_&z=%EA" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Кекс "Три желания".</a><br><br><i></i><div style="clear: both"></div></div><br><!--end-->
+<br></div>
+<script language=javascript>
+function js_167b86f21df376c96f10a0615b14200b() {
+jsallcl()
+document.getElementById('divd_167b86f21df376c96f10a0615b14200b').style.backgroundColor = '#075fad';
+document.getElementById('div_167b86f21df376c96f10a0615b14200b').style.visibility = 'visible';
+document.getElementById('div_167b86f21df376c96f10a0615b14200b').style.display = 'inline';
+
+document.getElementById('viewjsall').innerHTML='Показать ВСЕ';
+}
+</script>
+<div id="div_167b86f21df376c96f10a0615b14200b"><a name="a2e970f170961ce879190d64982c94ec"></a><br><font size=3>М</font><br><br><!-- Маффины с яблоками и корицей под ванильным соусом| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=maffinyi_s_yablokami_i_koritzey_pod_vanilnyim_sousom&z=%EC';"><a href=index.php?page=maffinyi_s_yablokami_i_koritzey_pod_vanilnyim_sousom&z=%EC><img border=0 hspace=10 align=left src="catimg/735_0146_7887_ns.jpg"></a>›<a href="index.php?page=maffinyi_s_yablokami_i_koritzey_pod_vanilnyim_sousom&z=%EC" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Маффины с яблоками и корицей под ванильным соусом</a><br><br><i>Состав:   тесто: 200 г сливочного масла или маргарина, 200 г сахара, 2 ч.л. ванильного сахара, 3 яйца, 250 мл сметаны или кефира, 400 г яблок, 2 ч.л. корицы, 2 ч.л. разрыхлителя, 300-350 г муки   соус: 300 мл молока, 3 желтка, 150 г сахара, 2 ч.л. ванильного сахара, 2 ст.л. крахмала </i><div style="clear: both"></div></div><br><!--end-->
+<!-- Москва --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=moskva&z=%EC';"><a href="index.php?page=moskva&z=%EC" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Москва</a><br><i></i></div><br><!--end-->
+<br></div>
+<script language=javascript>
+function js_31741635b41d535098241fea03c1e47f() {
+jsallcl()
+document.getElementById('divd_31741635b41d535098241fea03c1e47f').style.backgroundColor = '#075fad';
+document.getElementById('div_31741635b41d535098241fea03c1e47f').style.visibility = 'visible';
+document.getElementById('div_31741635b41d535098241fea03c1e47f').style.display = 'inline';
+
+document.getElementById('viewjsall').innerHTML='Показать ВСЕ';
+}
+</script>
+<div id="div_31741635b41d535098241fea03c1e47f"><a name="0c78aef83f66abc1fa1e8477f296d394"></a><br><font size=3>Ш</font><br><br><!-- Шарлотка из яблок| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=sharlotka_iz_yablok&z=%F8';"><a href=index.php?page=sharlotka_iz_yablok&z=%F8><img border=0 hspace=10 align=left src=catimg/401_0130_66_ns.jpg border=0></a>›<a href="index.php?page=sharlotka_iz_yablok&z=%F8" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Шарлотка из яблок</a><br><br><i>Состав: 200 г сахара, 5 яиц, 200 г муки, 500 г яблок </i><div style="clear: both"></div></div><br><!--end-->
+<br></div>
+<script language=javascript>
+function js_00594fd4f42ba43fc1ca0427a0576295() {
+jsallcl()
+document.getElementById('divd_00594fd4f42ba43fc1ca0427a0576295').style.backgroundColor = '#075fad';
+document.getElementById('div_00594fd4f42ba43fc1ca0427a0576295').style.visibility = 'visible';
+document.getElementById('div_00594fd4f42ba43fc1ca0427a0576295').style.display = 'inline';
+
+document.getElementById('viewjsall').innerHTML='Показать ВСЕ';
+}
+</script>
+<div id="div_00594fd4f42ba43fc1ca0427a0576295"><a name="a26785922b3516fe627bab9726c66e43"></a><br><font size=3>Я</font><br><br><!-- Яблочный пирог| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=yablochnyiy_pirog&z=%FF';"><a href=index.php?page=yablochnyiy_pirog&z=%FF><img border=0 hspace=10 align=left src="catimg/60_013_8530_ns.jpg"></a>›<a href="index.php?page=yablochnyiy_pirog&z=%FF" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Яблочный пирог</a><br><br><i>Состав: 1 кг яблок, 200 г сахара, 200 г сливочного масла или маргарина, 5 яиц, 2 ч.л. разрыхлителя, 600-700 г муки   Крем: 500 г сметаны, 200 г сахара </i><div style="clear: both"></div></div><br><!--end-->
+<!-- Яблочный пирог с кедровыми орешками| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=yablochnyiy_pirog_s_kedrovyimi_oreshkami&z=%FF';"><a href=index.php?page=yablochnyiy_pirog_s_kedrovyimi_oreshkami&z=%FF><img border=0 hspace=10 align=left src=catimg/538_0178_7083_ns.jpg border=0></a>›<a href="index.php?page=yablochnyiy_pirog_s_kedrovyimi_oreshkami&z=%FF" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Яблочный пирог с кедровыми орешками</a><br><br><i>Состав:   тесто: 100 г сливочного масла или маргарина, 150 г сахара, 2 яйца, 2 ч.л. разрыхлителя, 300-350 г муки   крем: 2 яйца, 100 г сахара, 200 г сметаны 15-20%, 2 ст.л. муки   также: 600 г яблок, 50 г кедровых орехов </i><div style="clear: both"></div></div><br><!--end-->
+<br></div>
+<script language=javascript>
+//start
+//document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'visible';
+//document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'inline';
+//document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#075fad';
+
+</script>

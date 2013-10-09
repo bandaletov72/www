@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Disallow: /index.php?
+Allow: /index.php?catid=
+Allow: /index.php?unifid=
+Allow: /index.php?item_id=
+Allow: /index.php?page=
+Disallow: /admin/
+Disallow: /index.php?zapros=
+Disallow: /index.php?logout=
+Disallow: /index.php?register=
+Disallow: /index.php?login=
+Disallow: /yml.php
+Disallow: /mgxml.php
+Disallow: /cesxml.php
+Disallow: /gxml.php
+Allow: /index.php?action=gal
+Allow: /index.php?action=vacancy
+Allow: /index.php?action=blog
+Allow: /index.php?action=classifieds
+Allow: /index.php?action=forum
+
+# you may allow or disallow search results
+Allow: /index.php?query=
+# Disallow: /index.php?query=
+

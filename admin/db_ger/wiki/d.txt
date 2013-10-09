@@ -1,0 +1,106 @@
+<table width=100% border=0 cellpadding=0 cellspacing=0 style="-moz-border-radius: 10px; background: #c9cbcd; border: 1px solid #c9cbcd; width:100%; padding: 5px 5px;"><tr><td align=center width=3% ><font color=#075fad><td style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_0cc175b9c0f1b6a831c399e269772661" onclick="javascript:js_0cc175b9c0f1b6a831c399e269772661()" width=3%><b><font color=#222222>A</font></b></td></font></td><td align=center width=3%><font color=#075fad>B</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_4a8a08f09d37b73795649038408b5f33" onclick="javascript:js_4a8a08f09d37b73795649038408b5f33()" width=3%><b><font color=#222222>C</font></b></td></font></td><td align=center width=3%><font color=#075fad>D</font></td><td align=center width=3%><font color=#075fad>E</font></td><td align=center width=3%><font color=#075fad>F</font></td><td align=center width=3%><font color=#075fad>G</font></td><td align=center width=3%><font color=#075fad>H</font></td><td align=center width=3%><font color=#075fad>I</font></td><td align=center width=3%><font color=#075fad>J</font></td><td align=center width=3%><font color=#075fad>K</font></td><td align=center width=3%><font color=#075fad>L</font></td><td align=center width=3%><font color=#075fad>M</font></td><td align=center width=3%><font color=#075fad>N</font></td><td align=center width=3%><font color=#075fad>O</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_83878c91171338902e0fe0fb97a8c47a" onclick="javascript:js_83878c91171338902e0fe0fb97a8c47a()" width=3%><b><font color=#222222>P</font></b></td></font></td><td align=center width=3%><font color=#075fad>Q</font></td><td align=center width=3%><font color=#075fad>R</font></td><td align=center width=3%><font color=#075fad>S</font></td><td align=center width=3%><font color=#075fad>T</font></td><td align=center width=3%><font color=#075fad>U</font></td><td align=center width=3%><font color=#075fad>V</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_f1290186a5d0b1ceab27f4e77c0c5d68" onclick="javascript:js_f1290186a5d0b1ceab27f4e77c0c5d68()" width=3%><b><font color=#222222>W</font></b></td></font></td><td align=center width=3%><font color=#075fad>X</font></td><td align=center width=3%><font color=#075fad>Y</font></td><td align=center width=3%><font color=#075fad>Z</font></td><td align=center width=3%><font color=#075fad></td></tr><tr><td></font></td><td align=center width=3%><font color=#075fad>0</font></td><td align=center width=3%><font color=#075fad>1</font></td><td align=center width=3%><font color=#075fad>2</font></td><td align=center width=3%><font color=#075fad>3</font></td><td align=center width=3%><font color=#075fad>4</font></td><td align=center width=3%><font color=#075fad>5</font></td><td align=center width=3%><font color=#075fad>6</font></td><td align=center width=3%><font color=#075fad>7</font></td><td align=center width=3%><font color=#075fad>8</font></td><td align=center width=3%><font color=#075fad>9</font></td><td align=center width=3%><font color=#075fad></font></td></tr></table><table width=100% border=0><tr><td align=left><a href="http://localhost/index.php?page=r">Article</a></td><td align=right><small><a href=#all_articles onclick="javascript:jsall()"><nobr><span id=viewjsall>Datei verstecken</span></nobr></a></small></td></tr></table>
+<script language=javascript>
+function jsall () {
+if (document.getElementById('viewjsall').innerHTML=='Alles zeigen'){
+document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.visibility = 'visible';
+document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.display = 'inline';
+//document.getElementById('divd_0cc175b9c0f1b6a831c399e269772661').style.backgroundColor = '#075fad';
+document.getElementById('div_4a8a08f09d37b73795649038408b5f33').style.visibility = 'visible';
+document.getElementById('div_4a8a08f09d37b73795649038408b5f33').style.display = 'inline';
+//document.getElementById('divd_4a8a08f09d37b73795649038408b5f33').style.backgroundColor = '#075fad';
+document.getElementById('div_83878c91171338902e0fe0fb97a8c47a').style.visibility = 'visible';
+document.getElementById('div_83878c91171338902e0fe0fb97a8c47a').style.display = 'inline';
+//document.getElementById('divd_83878c91171338902e0fe0fb97a8c47a').style.backgroundColor = '#075fad';
+document.getElementById('div_f1290186a5d0b1ceab27f4e77c0c5d68').style.visibility = 'visible';
+document.getElementById('div_f1290186a5d0b1ceab27f4e77c0c5d68').style.display = 'inline';
+//document.getElementById('divd_f1290186a5d0b1ceab27f4e77c0c5d68').style.backgroundColor = '#075fad';
+
+document.getElementById('viewjsall').innerHTML='Datei verstecken';
+} else {
+document.getElementById('divd_0cc175b9c0f1b6a831c399e269772661').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.display = 'none';
+document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.visibility = 'hidden';
+document.getElementById('divd_4a8a08f09d37b73795649038408b5f33').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_4a8a08f09d37b73795649038408b5f33').style.display = 'none';
+document.getElementById('div_4a8a08f09d37b73795649038408b5f33').style.visibility = 'hidden';
+document.getElementById('divd_83878c91171338902e0fe0fb97a8c47a').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_83878c91171338902e0fe0fb97a8c47a').style.display = 'none';
+document.getElementById('div_83878c91171338902e0fe0fb97a8c47a').style.visibility = 'hidden';
+document.getElementById('divd_f1290186a5d0b1ceab27f4e77c0c5d68').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_f1290186a5d0b1ceab27f4e77c0c5d68').style.display = 'none';
+document.getElementById('div_f1290186a5d0b1ceab27f4e77c0c5d68').style.visibility = 'hidden';
+
+document.getElementById('viewjsall').innerHTML='Alles zeigen';
+}
+}
+function jsallcl() {
+document.getElementById('divd_0cc175b9c0f1b6a831c399e269772661').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.display = 'none';
+document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.visibility = 'hidden';
+document.getElementById('divd_4a8a08f09d37b73795649038408b5f33').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_4a8a08f09d37b73795649038408b5f33').style.display = 'none';
+document.getElementById('div_4a8a08f09d37b73795649038408b5f33').style.visibility = 'hidden';
+document.getElementById('divd_83878c91171338902e0fe0fb97a8c47a').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_83878c91171338902e0fe0fb97a8c47a').style.display = 'none';
+document.getElementById('div_83878c91171338902e0fe0fb97a8c47a').style.visibility = 'hidden';
+document.getElementById('divd_f1290186a5d0b1ceab27f4e77c0c5d68').style.backgroundColor = '#b5b7b8';
+document.getElementById('div_f1290186a5d0b1ceab27f4e77c0c5d68').style.display = 'none';
+document.getElementById('div_f1290186a5d0b1ceab27f4e77c0c5d68').style.visibility = 'hidden';
+
+}
+</script>
+<br><br><script language=javascript>
+function js_0cc175b9c0f1b6a831c399e269772661() {
+jsallcl()
+document.getElementById('divd_0cc175b9c0f1b6a831c399e269772661').style.backgroundColor = '#075fad';
+document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.visibility = 'visible';
+document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.display = 'inline';
+
+document.getElementById('viewjsall').innerHTML='Alles zeigen';
+}
+</script>
+<div id="div_0cc175b9c0f1b6a831c399e269772661"><a name="7fc56270e7a70fa81a5935b72eacbe29"></a><br><font size=3>A</font><br><br><!-- About our Store --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=about_our_store&z=a';"><a href="index.php?page=about_our_store&z=a" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">About our Store</a><br><i></i></div><br><!--end-->
+<br></div>
+<script language=javascript>
+function js_4a8a08f09d37b73795649038408b5f33() {
+jsallcl()
+document.getElementById('divd_4a8a08f09d37b73795649038408b5f33').style.backgroundColor = '#075fad';
+document.getElementById('div_4a8a08f09d37b73795649038408b5f33').style.visibility = 'visible';
+document.getElementById('div_4a8a08f09d37b73795649038408b5f33').style.display = 'inline';
+
+document.getElementById('viewjsall').innerHTML='Alles zeigen';
+}
+</script>
+<div id="div_4a8a08f09d37b73795649038408b5f33"><a name="0d61f8370cad1d412f80b84d143e1257"></a><br><font size=3>C</font><br><br><!-- Contacts --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=contacts&z=c';"><a href="index.php?page=contacts&z=c" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Contacts</a><br><i></i></div><br><!--end-->
+<br></div>
+<script language=javascript>
+function js_83878c91171338902e0fe0fb97a8c47a() {
+jsallcl()
+document.getElementById('divd_83878c91171338902e0fe0fb97a8c47a').style.backgroundColor = '#075fad';
+document.getElementById('div_83878c91171338902e0fe0fb97a8c47a').style.visibility = 'visible';
+document.getElementById('div_83878c91171338902e0fe0fb97a8c47a').style.display = 'inline';
+
+document.getElementById('viewjsall').innerHTML='Alles zeigen';
+}
+</script>
+<div id="div_83878c91171338902e0fe0fb97a8c47a"><a name="44c29edb103a2872f519ad0c9a0fdaaa"></a><br><font size=3>P</font><br><br><!-- Payment and Delivery Info| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=payment_and_delivery_info&z=p';"><a href=index.php?page=payment_and_delivery_info&z=p><img border=0 hspace=10 align=left src="catimg/tunes.png"></a>›<a href="index.php?page=payment_and_delivery_info&z=p" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Payment and Delivery Info</a><br><br><i>You may add some information, ex. comments, before user click on page link</i><div style="clear: both"></div></div><br><!--end-->
+<br></div>
+<script language=javascript>
+function js_f1290186a5d0b1ceab27f4e77c0c5d68() {
+jsallcl()
+document.getElementById('divd_f1290186a5d0b1ceab27f4e77c0c5d68').style.backgroundColor = '#075fad';
+document.getElementById('div_f1290186a5d0b1ceab27f4e77c0c5d68').style.visibility = 'visible';
+document.getElementById('div_f1290186a5d0b1ceab27f4e77c0c5d68').style.display = 'inline';
+
+document.getElementById('viewjsall').innerHTML='Alles zeigen';
+}
+</script>
+<div id="div_f1290186a5d0b1ceab27f4e77c0c5d68"><a name="61e9c06ea9a85a5088a499df6458d276"></a><br><font size=3>W</font><br><br><!-- Wholesale Info --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=wholesale_info&z=w';"><a href="index.php?page=wholesale_info&z=w" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Wholesale Info</a><br><i></i></div><br><!--end-->
+<br></div>
+<script language=javascript>
+//start
+//document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.visibility = 'visible';
+//document.getElementById('div_0cc175b9c0f1b6a831c399e269772661').style.display = 'inline';
+//document.getElementById('divd_0cc175b9c0f1b6a831c399e269772661').style.backgroundColor = '#075fad';
+
+</script>

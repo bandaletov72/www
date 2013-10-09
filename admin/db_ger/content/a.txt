@@ -1,0 +1,8 @@
+==Help==
+<strong>We are glad to see you again!</strong>
+<div align="justify"><strong>&nbsp;</strong></div>
+<div align="justify"><strong></strong>Thank you, that you have registered in the system. Now you have the following functions:</div>
+<ul>
+<li>Tracking the status of your orders</li>
+<li>The possibility of additional discounts on next orders</li>
+<li>There is no need to re-fill your registration data, the system will save your data. </li></ul>

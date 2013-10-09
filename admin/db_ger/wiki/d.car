@@ -1,0 +1,46 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+$(".mouseWheel .jCarouselLite").jCarouselLite({
+mouseWheel: true,
+    btnNext: ".next",
+    btnPrev: ".prev",
+    visible: 3,
+    scroll: 1,
+    start: 0,
+//    vertical: true,
+    circular: true
+});
+
+});
+
+</script>
+
+
+<center>
+<div id="jCarouselLiteDemo" style="width:100%">
+<div class="carousel mouseWheel" style="width:100%">
+<table border="0" cellpadding=0 cellspacing=0 width=100%><tr><td align="center">
+
+<a class="prev">&nbsp;</a><br><br><br>
+</td><td align="center" width=100%>
+<div class="jCarouselLite" style="width:100%">
+    <ul>
+    <li><!-- About our Store --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=about_our_store&z=a&jstart=1';"><a href="index.php?page=about_our_store&z=a&jstart=1" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">About our Store</a><br><i></small></i></div><br></li>
+<li>
+<!-- Contacts --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=contacts&z=c&jstart=2';"><a href="index.php?page=contacts&z=c&jstart=2" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Contacts</a><br><i></small></i></div><br></li>
+<li>
+<!-- Payment and Delivery Info| --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=payment_and_delivery_info&z=p&jstart=3';"><a href=index.php?page=payment_and_delivery_info&z=p&jstart=3><img border=0  src="catimg/tunes.png"></a>›<a href="index.php?page=payment_and_delivery_info&z=p&jstart=3" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Payment and Delivery Info</a><i><small><br><br>You may add some information, ex. comments, before user click on page link</small></i><div style="clear: both"></div></div><br></li>
+<li>
+<!-- Wholesale Info --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; width:86%; height:172px; padding: 10px 10px 10px 10px; overflow:hidden; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=wholesale_info&z=w&jstart=4';"><a href="index.php?page=wholesale_info&z=w&jstart=4" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Wholesale Info</a><br><i></small></i></div><br></li>
+
+    </ul>
+  </div>
+</td><td align="center">
+<a class="next">&nbsp;</a><br><br><br>
+
+</td></tr>
+</table>
+</div>
+</div>
+</center>

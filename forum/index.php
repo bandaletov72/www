@@ -485,7 +485,7 @@ $fpopn=@fopen($file,"r");
 $popn=doubleval(trim(@fread($fpopn,@filesize($file))));
 
 @fclose($fpopn);
-if (!isset($online_users[@$lp[1]])) {$onlinestatus="<i class=icon-user title=Offline></i> "; } else {$onlinestatus="<i class=icon-ok title=Online></i> ";}
+if (!isset($online_users[@$lp[1]])) {$onlinestatus=""; } else {$onlinestatus="<font color=#57ae57><i class=icon-ok title=Online></i></font>&nbsp;";}
 $validmoder=0;
 $idx=$out[1];
 if (@$valid=="1") {
@@ -497,9 +497,9 @@ if ($details[7]=="ADMIN"){$validmoder=1;}
 if ($details[7]=="MODER"){$validmoder=1;}
 }
 if ($validmoder==1) {
-$forum_list.="<tr class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><font size=3><b><a href=index.php?action=forum&fr=".$out[1]."&act=list>".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=center>".$topn." / ".$popn."</td><td align=left><span>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</span></td><td align=left onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" style=\"white-space:nowrap;\"><a href=index.php?action=userinfo&usernik=".rawurlencode(@$lp[1]).">$onlinestatus<b>".@$lp[1]."</b></a></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><span><a href=index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3].">".@$lp[2]."</a></span></td><td align=left><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=".$out[1]."&act=list';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td></tr>";
+$forum_list.="<tr class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><font size=3><b><a href=index.php?action=forum&fr=".$out[1]."&act=list>".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=center>".$topn." / ".$popn."</td><td align=left><span class=muted><small>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</small></span></td><td align=left onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" style=\"white-space:nowrap;\"><a href=index.php?action=userinfo&usernik=".rawurlencode(@$lp[1]).">$onlinestatus".@$lp[1]."</a></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><span><a href=index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3].">".@$lp[2]."</a></span></td><td align=left><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=".$out[1]."&act=list';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td></tr>";
 } else {
-$forum_list.="<tr onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td align=left class=pcont><font size=3><b><a href=index.php?action=forum&fr=".$out[1]."&act=list>".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td align=center>".$topn." / ".$popn."</td><td align=left><span>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</span></td><td align=left style=\"white-space:nowrap;\"><a href=index.php?action=userinfo&usernik=".rawurlencode(@$lp[1]).">$onlinestatus<b>".@$lp[1]."</b></a></td><td align=left colspan=2><span class=lnk><a href=index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3].">".@$lp[2]."</a></span></td></tr>";
+$forum_list.="<tr onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td align=left class=pcont><font size=3><b><a href=index.php?action=forum&fr=".$out[1]."&act=list>".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td align=center>".$topn." / ".$popn."</td><td align=left><span class=muted><small>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</small></span></td><td align=left style=\"white-space:nowrap;\"><a href=index.php?action=userinfo&usernik=".rawurlencode(@$lp[1]).">$onlinestatus".@$lp[1]."</a></td><td align=left colspan=2><span class=lnk><a href=index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3].">".@$lp[2]."</a></span></td></tr>";
 }
 }
         }
@@ -628,7 +628,7 @@ $cti="";
                         $list[$n][5] = "";
                         $list[$n][7] = "";
                         $idx=trim("$fr"."/topic".$file);
-                        if (isset($stikytreads[$idx])) { $list[$n][0]=time()+$n; $list[$n][5] = "<i class=\"icon-map-marker\" title=\"".$lang[1491]."\"></i>"; $list[$n][7] = " ";}
+                        if (isset($stikytreads[$idx])) { $list[$n][0]=time()+$n; $list[$n][5] = "<font color=$nc3><i class=\"icon-map-marker icon-large\" title=\"".$lang[1491]."\"></i></font>&nbsp;"; $list[$n][7] = " ";}
                         $list[$n][1] = str_replace("\n","",$nickname);
                         $list[$n][2] = str_replace("\n","",$description);
                         $list[$n][3] = str_replace("\n","",$file);
@@ -760,13 +760,13 @@ $co=""; $cti="";
 
                  $forum_list.= "        <tr".$list[$i][7]." class=searchitem".$onkl2.">\n";
                  $forum_list.= "        <td width=50% align=left".$onkl." class=pcont>".$list[$i][5]."
-<i class=\"$co\" title=\"$cti\"></i><a href=?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."> ".$list[$i][2]."</a>$ffpagee</td>\n";
-if (!isset($online_users[$list[$i][1]])) {$onlinestatus="<i class=icon-user title=Offline></i> "; } else {$onlinestatus="<i class=icon-ok title=Online></i> ";}
+<font color=$nc3><i class=\"$co\" title=\"$cti\"></i></font><a href=?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."> ".$list[$i][2]."</a>$ffpagee</td>\n";
+if (!isset($online_users[$list[$i][1]])) {$onlinestatus=""; } else {$onlinestatus="<font color=#57ae57><i class=icon-ok title=Online></i></font>&nbsp;";}
 
-                $forum_list.="        <td  onclick=\"location.href='".$htpath."/index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."';\"align=center><a href=index.php?action=userinfo&usernik=".rawurlencode($list[$i][1]).">$onlinestatus<b>".$list[$i][1]."</b></a></td>\n";
+                $forum_list.="        <td  onclick=\"location.href='".$htpath."/index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."';\"align=center><a href=index.php?action=userinfo&usernik=".rawurlencode($list[$i][1]).">$onlinestatus".$list[$i][1]."</a></td>\n";
                  $modbutton="<td align=right><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=$fr&act=show&nr=".$list[$i][3]."';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td>";
-if ($tname!="") { $ttname="<b>".$tname."</b> <i class=\"icon-share-alt\"></i><br>"; } else {$ttname=""; }
- $forum_list.= "        <td align=center onclick=\"location.href='".$htpath."/index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."';\">".$list[$i][4]."</td><td align=center><img src=$image_path/pix.gif width=100 height=1 border=0><br><span>".$ttname.date("d.m.Y", $list[$i][6])." ".date("H:i", $list[$i][6])."</span></td>$modbutton</tr>\n\n";
+if ($tname!="") { $ttname=$tname."<br>"; } else {$ttname=""; }
+ $forum_list.= "        <td align=center onclick=\"location.href='".$htpath."/index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."';\">".$list[$i][4]."</td><td align=center><img src=$image_path/pix.gif width=100 height=1 border=0><br><span>".$ttname."<small class=muted>".date("d.m.Y", $list[$i][6])." ".date("H:i", $list[$i][6])."</small></span></td>$modbutton</tr>\n\n";
 
 
  } else {
@@ -775,11 +775,11 @@ if ($tname!="") { $ttname="<b>".$tname."</b> <i class=\"icon-share-alt\"></i><br
                  $forum_list.= "        <tr".$list[$i][7]." class=searchitem".$onkl2. $onkl.">\n";
                  $forum_list.= "        <td width=50% align=left class=pcont>".$list[$i][5]."
 <i class=\"$co\" title=\"$cti\"></i> <a href=?action=forum&fr=$fr&act=show&nr=".$list[$i][3].">".$list[$i][2]."</a>$ffpagee</td>\n";
-if (!isset($online_users[$list[$i][1]])) {$onlinestatus="<i class=icon-user title=Offline></i> "; } else {$onlinestatus="<i class=icon-ok title=Online></i> ";}
+if (!isset($online_users[$list[$i][1]])) {$onlinestatus=""; } else {$onlinestatus="<font color=#57ae57><i class=icon-ok title=Online></i></font>&nbsp;";}
 
                 $forum_list.="        <td align=center><a href=index.php?action=userinfo&usernik=".rawurlencode($list[$i][1]).">$onlinestatus<b>".$list[$i][1]."</b></a></td>\n";
-if ($tname!="") { $ttname="<b>".$tname."</b> <i class=\"icon-share-alt\"></i><br>"; } else {$ttname=""; }
-                               $forum_list.= "        <td align=center>".$list[$i][4]."</td><td align=center colspan=2><img src=$image_path/pix.gif width=100 height=1 border=0><br><span>".$ttname.date("d.m.Y", $list[$i][6])." ".date("H:i", $list[$i][6])."</span></td></tr>\n\n";
+if ($tname!="") { $ttname=$tname."<br>"; } else {$ttname=""; }
+                               $forum_list.= "        <td align=center>".$list[$i][4]."</td><td align=center colspan=2><img src=$image_path/pix.gif width=100 height=1 border=0><br><span>".$ttname."<small class=muted>".date("d.m.Y", $list[$i][6])." ".date("H:i", $list[$i][6])."</small></span></td></tr>\n\n";
 
 
  }
@@ -1011,6 +1011,7 @@ $(document).ready(function(){
     global $nc3;
     global $nc4;
     global $nc5;
+	global $nc6;
     global $_COOKIE;
     global $artrnd;
     global $speek;
@@ -1149,21 +1150,21 @@ $unums="<br><font color=#999999>[$unum]</font>";
 $login=$topic[$i][1];
 if ($unum<=1) {$unums=""; }
 if(doubleval($userdetails[1])!=0) {
-if ($unum>=1) {$unums="<div title=\"".$lang[1001].": $unum\"><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></div><br>$lang[1063]";
+if ($unum>=1) {$unums="<div title=\"".$lang[1001].": $unum\"><font color=$nc6><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></font></div><br>$lang[1063]";
 if ($valid=="1") {
 $senduser="<br><a href=\"#Send Private Message\" onClick=\"javascript:window.open('chat.php?ch=main&privat=".rawurlencode($login)."&speek=$speek','".md5($login."chat")."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"$lang[1075]\" border=0 align=absmiddle></a> &nbsp; <a href=\"$htpath/index.php?query=forum&f_user=".rawurlencode($login)."&onlyforum=1\"><img src=\"$image_path/sf.png\" border=0 title=\"$lang[1089]\" align=absmiddle></a>";
 }
 }
-if ($unum>=$lang[1064]) {$unums="<div title=\"".$lang[1001].": $unum\"><i class=icon-star></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></div>$lang[1065]";}
-if ($unum>=$lang[1066]) {$unums="<div title=\"".$lang[1001].": $unum\"><i class=icon-star></i><i class=icon-star></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></div>$lang[1067]";}
-if ($unum>=$lang[1068]) {$unums="<div title=\"".$lang[1001].": $unum\"><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></div>$lang[1069]";}
-if ($unum>=$lang[1070]) {$unums="<div title=\"".$lang[1001].": $unum\"><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=\"icon-star-empty icon-white\"></i></div>$lang[1071]";}
-if ($unum>=$lang[1072]) {$unums="<div title=\"".$lang[1001].": $unum\"><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i></div>$lang[1073]";}
-if (!isset($online_users[@$userdetails[2]])) {$onlinestatus=""; } else {$onlinestatus="<i class=icon-ok title=Online></i> ";}
+if ($unum>=$lang[1064]) {$unums="<div title=\"".$lang[1001].": $unum\"><font color=#f9a42c><i class=icon-star></font></i><font color=$nc6><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></font></div>$lang[1065]";}
+if ($unum>=$lang[1066]) {$unums="<div title=\"".$lang[1001].": $unum\"><font color=#f9a42c><i class=icon-star></i><i class=icon-star></i></font><font color=$nc6><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></font></div>$lang[1067]";}
+if ($unum>=$lang[1068]) {$unums="<div title=\"".$lang[1001].": $unum\"><font color=#f9a42c><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i></font><font color=$nc6><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></font></div>$lang[1069]";}
+if ($unum>=$lang[1070]) {$unums="<div title=\"".$lang[1001].": $unum\"><font color=#f9a42c><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i></font><font color=$nc6><i class=\"icon-star-empty icon-white\"></i></font></div>$lang[1071]";}
+if ($unum>=$lang[1072]) {$unums="<div title=\"".$lang[1001].": $unum\"><font color=#f9a42c><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i></font></div>$lang[1073]";}
+if (!isset($online_users[@$userdetails[2]])) {$onlinestatus=""; } else {$onlinestatus="<font color=#57ae57><i class=icon-ok title=Online></i></font>&nbsp;";}
 
  if (count($f_adm)>0) {
  if (isset($f_adm[trim($userdetails[2])])) {
- $unums="<div title=\"".$lang[1001].": $unum\"><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i></div><font color=#b94a48>$lang[1074]</font>";
+ $unums="<div title=\"".$lang[1001].": $unum\"><font color=$nc3><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i><i class=icon-star></i></font></div><font color=#b94a48>$lang[1074]</font>";
  }
  } } else { $unums=$lang[193]; }
 
@@ -1272,12 +1273,12 @@ if ($login==$details[1]){$senduser="";}
 if ($me=="") {
         $forum_list.="<td valign=top width=10% align=middle><a name=\"me$i\"></a><img src=$image_path/pix.gif width=128 height=1 border=0>$ava_image<b class=lnk>$onlinestatus<a href=#null onClick=\"click_bb('textarea','quote','".$topic[$i][1]."');\" title=\"$lang[1039]\">".$topic[$i][1]." <i class=\"icon-share-alt\"></i></a></b><br><span>$unums</span>$senduser</td>\n";
         $unums="";
-        $forum_list.= "<td colspan=\"2\" valign=top align=left class=pcont>$editbut<div align=right><span><b>$lang[371]:</b> ".date("d.m.Y", $topic[$i][0])." <b>".date("H:i", $topic[$i][0])."</b></span></div>\n<div id=\"tx".$nr."_".$i."\">".$topic[$i][2]."</div>\n\n<div align=right><span class=lnk><a href=\"$htpath/index.php?action=forum&fr=$fr&act=show&nr=$nr&me=".$i."\" title=\"$lang[106]\">$lang[85] #".$fr."-".$nr."-".$i."</a> <a href=\"#top\"><i class=\"icon-chevron-up\" title=\"$lang[1076]\"></i></a></span></div></td></tr>\n\n";
+        $forum_list.= "<td colspan=\"2\" valign=top align=left class=pcont>$editbut<div align=right><span class=muted><small>".date("d.m.Y", $topic[$i][0])." <b>".date("H:i", $topic[$i][0])."</b></small></span></div>\n<div id=\"tx".$nr."_".$i."\">".$topic[$i][2]."</div>\n\n<div align=right><span class=lnk><a href=\"$htpath/index.php?action=forum&fr=$fr&act=show&nr=$nr&me=".$i."\" title=\"$lang[106]\">$lang[85] #".$fr."-".$nr."-".$i."</a> <a href=\"#top\"><i class=\"icon-chevron-up\" title=\"$lang[1076]\"></i></a></span></div></td></tr>\n\n";
 } else {
 if ($me==$i) {
         $forum_list.="<td valign=top width=10% align=middle class=pcont><a name=\"me$i\"></a><img src=$image_path/pix.gif width=128 height=1 border=0>$ava_image<b class=lnk>$onlinestatus<a href=#null onClick=\"click_bb('textarea','quote','".$topic[$i][1]."');\" title=\"$lang[1039]\">".$topic[$i][1]." <i class=\"icon-share-alt\"></i></a></b><br><span>$unums</span>$senduser</td>\n";
         $unums="";
-        $forum_list.= "<td colspan=\"2\" valign=top align=left class=pcont>$editbut<div align=right><span><b>$lang[371]:</b> ".date("d.m.Y", $topic[$i][0])." <b>".date("H:i", $topic[$i][0])."</b></span></div>\n<div id=\"tx".$nr."_".$i."\">".$topic[$i][2]."</div>\n\n</td></tr>\n\n";
+        $forum_list.= "<td colspan=\"2\" valign=top align=left class=pcont>$editbut<div align=right><span class=muted><small>".date("d.m.Y", $topic[$i][0])." <b>".date("H:i", $topic[$i][0])."</b></small></span></div>\n<div id=\"tx".$nr."_".$i."\">".$topic[$i][2]."</div>\n\n</td></tr>\n\n";
 }
 }
     }
@@ -2045,7 +2046,7 @@ function submit_f_".translit($sesk)."(e)
 }
 
 </script><form name=\"f_".translit($sesk)."\" method=POST action=\"".request_url()."\"><b>$lang[85]:</b><table border=0 width=100%><tr><td width=97% align=left><input type=hidden name=\"sysmessage_send\" value=1><input type=hidden name=\"sysmessage_user\" value=\"$sesk\"><input type=text name=\"sysmessage\" value=\"\" size=20 style=\"width:90%\" onkeyup=\"submit_f_".translit($sesk)."(event);\"></td><td align=left><input class=btn type=submit value=\"OK\"></td></tr></table></form><br>\n"; }}
-if (!isset($online_users[$sesk])) {$onlinestatus="<i class=icon-user title=\"$u_time\"></i> "; } else {$onlinestatus="<i class=icon-ok title=\"$u_time\"></i> ";}
+if (!isset($online_users[$sesk])) {$onlinestatus="<i class=icon-user title=\"$u_time\"></i> "; } else {$onlinestatus="<font color=#57ae57><i class=icon-ok title=\"$u_time\"></i></font>&nbsp;";}
 
 $forum_list.="$onlinestatus<a href=\"$u_url\" target=\"_blank\">$sesk</a>&nbsp;&nbsp;&nbsp;\t$sysmes";
 }

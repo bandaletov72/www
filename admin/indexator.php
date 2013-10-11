@@ -1622,7 +1622,7 @@ $bottom_links.="<div class='pull-left mr hvr' align=left style=\"text-align: lef
 $bottom_links.="<div class='pull-left mr' style=\"margin-bottom:20px; width:".$bottom_links_subs_size.";\">"."</div>";
 }
 
-$bottom_links.="<div class='pull-left mr hvr' align=left style=\"text-align: left; margin-bottom:20px; width:".$bottom_links_subs_size.";\"><font style=\"font-size: ".($main_font_size+1)."pt;\"><b><a href=\"index.php?action=sendmail\">$lang[54]</a></b></font><div class=hr2></div></div><div class=\"pull-left mr\"><font size=5>$telef</font><br>$zak_po<br><br><div class=nohvr><a href=\"index.php?action=sendmail\" class='btn btn-warning'><i class=icon-envelope></i> $lang[1567]</a></div></div>";
+$bottom_links.="<div class='pull-left mr hvr' align=left style=\"text-align: left; margin-bottom:20px; width:".$bottom_links_subs_size.";\"><font style=\"font-size: ".($main_font_size+1)."pt;\"><b><a href=\"index.php?action=sendmail\">$lang[54]</a></b></font><div class=hr2></div></div><div class=\"pull-left mr\"><font size=5 color=$nc9>$telef</font><br><font color=$nc9>$zak_po</font><br><br><div class=nohvr><a href=\"index.php?action=sendmail\" class='btn btn-warning'><i class=icon-envelope></i> $lang[1567]</a></div></div>";
 //echo "$linkcontent<br><br>$linkcontent3"; exit;
 
 //exit;

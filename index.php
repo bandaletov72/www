@@ -1297,8 +1297,12 @@ if ($leftmenu==1) { if ($affix==1) { echo "<td valign=\"top\" align=\"left\" sty
       </div>
       <div class=\"sidebar_inner\">";
         } else {
+		if (($page!="") &&($view_left_menu_page==0)&&($view_left_menu_page==0)&&($view_itemsmenu_page==0))
+		{
+		}else {
         echo "<td valign=\"top\" align=\"left\" style=\"width:".$style['left_width']."\"><img src=\"images/pix.gif\" width=\"".$style['right_width']."\" height=\"1\" border=0>";
         }
+		}
       }
    }
 }
@@ -1467,7 +1471,7 @@ if (($incart_menu==0)&&($unifid!="")&&($catid=="")) { } else {
 if ($leftmenu==1) {
 if ($view_office==1) {
 if ($links_to_bottom==0) {
-top("", "<i class=icon-time></i> <font color=\"".lighter($nc6,-60)."\">$wtime</font>", "100%",  $nc0, $nc0, 5,0,"[wtime]");
+top("", "<i class=icon-time></i> <font color=\"".$nc5."\">$wtime</font>", "100%",  $nc0, $nc0, 5,0,"[wtime]");
 }
 }
 }
@@ -2597,8 +2601,9 @@ echo "</td></tr></table>";
 }
 
 if ($bottom_links!="") {
-topwo("", "<table width=100%><tr><td><img src=$image_path/pix.gif border=0></td><td style=\"width:$shwid; padding:20px\"><i class=icon-time></i> <font color=\"".lighter($nc6,-60)."\">$wtime</font></td><td><img src=$image_path/pix.gif border=0></td></tr></table>", "100%", $nc0, $nc0, 4,1,"[footer]");
-
+if ($view_office==1) {
+topwo("", "<table width=100%><tr><td><img src=$image_path/pix.gif border=0></td><td style=\"width:$shwid; padding:20px\"><i class=icon-time></i> <font color=\"".$nc5."\">$wtime</font></td><td><img src=$image_path/pix.gif border=0></td></tr></table>", "100%", $nc0, $nc0, 4,1,"[footer]");
+}
 topwo("", "<table width=100%><tr class=bottom_links><td><img src=$image_path/pix.gif border=0></td><td class=bottom_links style=\"width:$shwid; padding:20px 0px 20px 0px;\">$bottom_worktime$bottom_links$time_to_work<div class=clearfix></div></td><td><img src=$image_path/pix.gif border=0></td></tr></table>", "100%", $nc0, $nc0, 4,1,"[footer]");
 
 }

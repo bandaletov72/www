@@ -670,14 +670,14 @@ color: #555555;
 box-shadow: 0 1px 5px rgba(0,0,0,0.29), inset 0 0 7px $nc0;
 margin: 10px 0px 10px 0px;
 }
-.footer {background-color: #000000; color: $nc0; padding:20px; }
-.footer a:link {COLOR: $nc6; TEXT-DECORATION: none}
-.footer a:visited {COLOR:$nc6; TEXT-DECORATION: none}
-.footer a:hover {COLOR: $nc6; TEXT-DECORATION: underline}
-.footer a:active {COLOR: $nc6; TEXT-DECORATION: underline}
-.bottom_links { background-color: ".lighter($nc6,-60)."; background-image: url(grad.php?h=20&w=1&e=".str_replace("#", "", lighter($nc6,-60))."&s=".str_replace("#", "", lighter($nc6,-65))."&d=crystal); background-repeat:repeat-x; color: $nc0; }
-.hvr a:link {COLOR: $nc0; TEXT-DECORATION: none}
-.hvr a:visited {COLOR:$nc0; TEXT-DECORATION: none}
+.footer {background-color: $nc5; color: $nc0; padding:20px; }
+.footer a:link {COLOR: $nc0; TEXT-DECORATION: none}
+.footer a:visited {COLOR:$nc0; TEXT-DECORATION: none}
+.footer a:hover {COLOR: $nc0; TEXT-DECORATION: underline}
+.footer a:active {COLOR: $nc0; TEXT-DECORATION: underline}
+.bottom_links { background-color: ".$nc1."; background-image: url(grad.php?h=20&w=1&e=".str_replace("#", "", $nc1)."&s=".str_replace("#", "", lighter($nc1,-5))."&d=crystal); background-repeat:repeat-x; color: $nc0; }
+.hvr a:link {COLOR: $nc9; TEXT-DECORATION: none}
+.hvr a:visited {COLOR:$nc9; TEXT-DECORATION: none}
 .hvr a:hover {COLOR: $nc2; TEXT-DECORATION: underline; background-color: ".$nc5.";}
 .hvr a:active {COLOR: $nc2; TEXT-DECORATION: underline}
 
@@ -792,15 +792,15 @@ padding-left: 2%;
 }
 
 .hr {
-background-color: #111111;
-border-bottom: 1px solid #222222;
+background-color: ".lighter($nc1,-10).";
+border-bottom: 1px solid ".lighter($nc1,10).";
 height: 2px;
 margin: 10px 0;
 width: 100%;
 }
 .hr2 {
-background-color: ".lighter($nc6,-65).";
-border-bottom: 1px solid ".lighter($nc6,-50).";
+background-color: ".lighter($nc1,-10).";
+border-bottom: 1px solid ".lighter($nc1,10).";
 height: 2px;
 margin: 10px 0;
 width: 100%;

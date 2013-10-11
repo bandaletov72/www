@@ -498,7 +498,11 @@ document.getElementById('iftab".$jsmd."').style.visibility = \"hidden\";
 $hiddir=0;
 if ((substr($fileopen,0,5)=="users")||(substr($fileopen,0,11)=="attachments")||(substr($fileopen,0,7)=="avatars")) {
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
+if ("$valid"=="1") {
 $hiddir=0;
+} else {
+$hiddir=1;
+}
 } else {
 $hiddir=1;
 }

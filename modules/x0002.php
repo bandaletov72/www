@@ -11,6 +11,7 @@ $page_title=$output[1];
 $page_title = $lang[221];
 }
 fclose ($pageopen);
+$page_content=str_replace("==".$page_title."==", "",$page_content);
 if ($auto_mark_wiki==1){
 $page_content=wikify($page_content);
 }

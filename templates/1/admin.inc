@@ -36,16 +36,16 @@ if ($smod=="shop") {$admin_url.="<li><a href=\"index.php?action=view_cmenu\">
 ".$lang[129]."</a></li--><li><a href=\"index.php?action=doubles\">
 ".$lang[130]."</a></li><li><a href=\"index.php?action=topindex\">
 ".$lang[131]."</a></li><li><a href=\"index.php?action=dircolors\">
-".$lang[521]."</a></li>
-<li><a href=\"index.php?action=template&nt=robots\">
+".$lang[521]."</a></li><li><a href=\"#kvit\" onClick=\"javascript:window.open('admin/currency_parser.php?speek=$speek','frc','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=520,height=560,left=10,top=10')\">
+".$lang[1144]."</a></li>";
+}
+$admin_url.="<li><a href=\"index.php?action=template&nt=robots\">
 ".$lang['edits']." robots.txt</a></li>
 <li><a href=\"index.php?action=template&nt=htaccess\">
 ".$lang['edits']." .htaccess</a></li>
-<li><a href=\"#kvit\" onClick=\"javascript:window.open('admin/currency_parser.php?speek=$speek','frc','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=520,height=560,left=10,top=10')\">
-".$lang[1144]."</a></li>
 <li><a href=\"index.php?action=template&nt=widgetlist\">
 Widgets</a></li>";
-}
+
 $admin_url.="<br><br><b>
 ".$lang[1011].":</b> <br>
 <li><a href=\"#OP-CHAT\" onclick=\"javascript:window.open('op_chat.php?speek=$speek','opchatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\">

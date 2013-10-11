@@ -195,7 +195,7 @@ $css.="
 <script type=\"text/javascript\" src=\"$htpath/js/jquery.mousewheel.min.js\"></script>
 <script type=\"text/javascript\" src=\"$htpath/fancybox/jquery.fancybox-1.3.4.pack.js\"></script>
 <link rel=\"stylesheet\" type=\"text/css\" href=\"$htpath/fancybox/jquery.fancybox-1.3.4.css\" media=\"screen\" />
-<link href=\"$htpath/css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\" />
+<link href=\"$htpath/css/bootstrap".$bootstrap_theme.".css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\" />
 <link href=\"$htpath/css/prettify.css\" rel=\"stylesheet\"><link type=\"text/css\" href=\"$htpath/css/jquery.scrollbar.css\" rel=\"stylesheet\" media=\"all\" /> ";
 if (@$action=="blog") { $css.="<script type=\"text/javascript\" src=\"https://apis.google.com/js/plusone.js\"></script>"; }
 

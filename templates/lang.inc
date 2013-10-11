@@ -173,4 +173,6 @@ $hache_salt="UIlzrBOtyu2vbXCVPA890qwNTK34567hjkERLZdfeFGpasnmQ01WgSDxcHJYioM"; /
 $fbmeta="";
 $affix=0;
 $affix_ofset=100;
+$bootstrap_theme=""; //leave blank for light theme or for dark design may use -night
+//$bootstrap_theme="-night"; //for dark designs only
 ?>

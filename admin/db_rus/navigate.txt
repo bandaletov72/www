@@ -1,5 +1,6 @@
 <!--0--><a href='http://localhost'><i class='icon-home icon-white' title="Главная"></i></a>
 <!--a--><a href='index.php?page=pomosch'><b><font color="#ffffff" class=f1>Помощь</font></b></a>
 <!--b--><a href='index.php?page=anonsyi'><b><font color="#ffffff" class=f1>Анонсы</font></b></a>
-<!--d--><a href='index.php?page=informatziya'><b><font color="#ffffff" class=f1>Информация</font></b></a>
+<!--d--><a href='index.php?action=sendmail'><b><font color="#ffffff" class=f1>Информация</font></b></a>
+<!--e--><a href='index.php?action=sendmail'><b><font color="#ffffff" class=f1>11.10.2013</font></b></a>
 <!--p--><a href='index.php?page=wiki'><b><font color="#ffffff" class=f1>Wiki</font></b></a>

@@ -1446,11 +1446,16 @@ unset ($key,$val);
 $zz=1;
 while (list($key,$val)=@each($mlinkcontent)) {
 if ($zz<=$mmax_subs) {
-$t=explode("index.php?page=", $val);
+$t=explode("a href=", $val);
 
-$link=strtoken($t[1], "'>");
+$link=strtoken(str_replace("'","", str_replace("\"","",$t[1])), ">");
 $linkcontent.="$val";
-$nlinkcontent.="<div class=brand onclick=\"location.href='index.php?page=".$link."&bb=".$linkey."';\">".str_replace("?page=$link","?page=$link&speek=$speek&bb=".$linkey,$val)."</div>";
+if (preg_match("/\?/i",$link)) {
+$nlinkcontent.="<div class=brand onclick=\"location.href='".$link."&speek=$speek&bb=".$linkey."';\">".str_replace("$link","$link&speek=$speek&bb=".$linkey,$val)."</div>";
+} else {
+$nlinkcontent.="<div class=brand onclick=\"location.href='".$link."';\">".$val."</div>";
+
+}
 }
 $linkcontent3.="$val";
 $zz++;
@@ -1463,19 +1468,21 @@ $rtit=ExtractString ($titlink,"'>", "</a>");
 if (strlen($rtit)>25) { $titsiz=(intval($title_font_size)-2); } else { $titsiz=intval($title_font_size); }
 if ($linkey<$goodlinks_subs_qty) {
 $goodlinks.=topw1 (str_replace("<br>","","<font style=\"font-size: ".$titsiz."px\">".str_replace("</font><br>","", $titlink)."</font>"), str_replace("<a ", "<span class=lnk><a ", str_replace("</a>", "</a></span>",$linkcontent.$linkcontent1)),"100%", $nc3, strtolower($style ['bg_material']), 4,0,"",true);
-$t=explode("index.php?page=", $titlink);
+$t=explode("a href=", $titlink);
+$link=strtoken(str_replace("'","", str_replace("\"","",$t[1])), ">");
 
-$link=strtoken($t[1], "'>");
 if ($nlinkcontent!="") {
 //titul
-$titlink=str_replace("page=".$link,"bb=".$linkey."&page=".$link, $titlink);
+if (preg_match("/\?/i",$link)) {
+$titlink=str_replace("$link","$link&speek=$speek&bb=".$linkey, $titlink);
+}
 $normalinks.="<div class=\"lcat1\" style=\"border-bottom: 1px $nc6 dotted; padding-top:10px; padding-bottom:10px;\" onclick=\"nl('".$linkey."');\"><div class=pull-left>".str_replace("<br>","","".str_replace("</font><br>","", $titlink)."")."</div><div class=\"pull-right\"><i id=\"i_".$linkey."\" class=\"icon-chevron-right icon-white\"></i></div><div class=clearfix></div></div>";
 //content
 $normalinks.="<div style=\"display: none;\" id=\"d_".$linkey."\">".$nlinkcontent."</div>";
 } else {
 //titul
 
-$normalinks.="<div class=\"lcat1\" style=\"border-bottom: 1px $nc6 dotted; padding-top:10px; padding-bottom:10px;\" onclick=\"location.href='index.php?page=".$link."';\"><div class=pull-left>".str_replace("<br>","","".str_replace("</font><br>","", $titlink)."")."</div><div class=\"pull-right\"><i id=\"i_".$linkey."\" class=\"icon-chevron-right icon-white\"></i></div><div class=clearfix></div></div>";
+$normalinks.="<div class=\"lcat1\" style=\"border-bottom: 1px $nc6 dotted; padding-top:10px; padding-bottom:10px;\" onclick=\"location.href='".$link."';\"><div class=pull-left>".str_replace("<br>","","".str_replace("</font><br>","", $titlink)."")."</div><div class=\"pull-right\"><i id=\"i_".$linkey."\" class=\"icon-chevron-right icon-white\"></i></div><div class=clearfix></div></div>";
 
 }
 }

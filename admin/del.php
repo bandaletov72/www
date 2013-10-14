@@ -34,16 +34,13 @@ $speek=$language;
 }
 }
 
-
 require ("../templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nls);  require ("../templates/$template/$speek/config.inc");
 require ("../templates/$template/css.inc");
 require ("../modules/translit.php");
 echo "<meta http-equiv='Content-Type' content='text/html; charset=$codepage'><title>".$lang[439]."</title>
-
-
-<head>";
+";
 echo $css;
-echo "</head>
+echo "
 
 <SCRIPT language='JavaScript1.1'>
 <!--
@@ -54,8 +51,8 @@ self.close();
 
 }
 //-->
-</SCRIPT>
-<BODY bgcolor=$nc0 link=$nc2 text=$nc5>";
+</SCRIPT></head>
+<BODY onload=\"javascript:self.focus()\">";
 if ((!@$id) || (@$id==0)): $id=="0"; endif;
 if ((!@$id) || (@$id=="")): $id==0; endif;
 if ((!@$del) || (@$del=="")): $del="no"; endif;
@@ -65,12 +62,11 @@ if ((!@$nazv) || (@$nazv=="")): $nazv=""; endif;
 
 if ($del=="yes") {
 settype ($id, "integer");
-$st="";
 $fcontents = file(".$base_file");
 $out=explode("|",$fcontents [$id]);
 $catid=translit($out[1]." ".$out[2]." ");
-$out[0]=$id;
-$st=implode("|",$out);
+$catid=translit($out[1]);
+if (trim($fcontents [$id])=="") { echo "<div class=\"mr ml\" align=center><br><h1>$lang[202]</h1><br><br><div align=center><input type='button' class=\"btn btn-large btn-primary\" value='".$lang[428]."' name='no' onclick='javascript:rc()'></div></div>"; exit; }
 $fcontents [$id] = "\n";
 
 $html = implode ("", $fcontents);
@@ -81,17 +77,37 @@ exit;
 }
 flock ($file, LOCK_EX); fputs ($file, "$html");flock ($file, LOCK_UN);
 fclose ($file);
-unset ($fcontents, $html, $file);
+unset ($fcontents, $html, $file, $out);
 
 if ($admin_speedup==1) {
 $fcontents = file(".$base_loc/items/$catid.txt");
 while(list($key,$val)=each($fcontents)) {
-if ($val==$st) {
+$out=explode("|", $val);
+if ($out[0]==$id) {
+unset($fcontents[$key]);
+}
+unset($out);
+}
+$html = implode ("", $fcontents);
+if (trim($html)=="") {
+unset( $fcontents);
+unlink (".$base_loc/items/$catid.txt");
+$fcontents = file(".$base_loc/catid.txt");
+$foundd=0;
+$founds=0;
+while (list ($key,$val)=each ($fcontents)) {
+
+$out=explode("|",$val);
+if ((trim($line)!="")&&(trim($line)!="\n")&&(trim($out[0])!="")){
+if (($out[0]==$catid)||($out[0]==$catid2)) {
 unset($fcontents[$key]);
 }
 }
-
-$html = implode ("", $fcontents);
+}
+$fp = fopen (".$base_loc/catid.txt", "w");
+fputs ($fp, implode("",$fcontents));
+fclose($fp);
+} else {
 $file = fopen (".$base_loc/items/$catid.txt", "w");
 if (!$file) {
 echo "<p>".$lang[44]." <b>.$base_loc/items/$catid.txt</b> ".$lang[45]."\n";
@@ -102,12 +118,12 @@ fclose ($file);
 unset ($fcontents, $html, $file);
 
 
-
 }
-echo "<font face=verdana><center><small><b>".$lang[437]." ID=$id</b><br>
+}
+echo "<div class=\"mr ml\"><br><b>".$lang[437]." ID=$id</b><br>
 <br>$nazv
-<br><br><b>".$lang[438]."</b></small><br><br>
-<p><input type='button' value='".$lang[428]."' name='no' onclick='javascript:rc()'></p></font>";
+<br><br><b>".$lang[438]."</b><br><br>
+<div align=center><input type='button' class=\"btn btn-large btn-primary\" value='".$lang[428]."' name='no' onclick='javascript:rc()'></div></div>";
 exit;
 }
 
@@ -144,21 +160,21 @@ if ($sc>0)  {
 $foto1=str_replace("<img ","<img id=smallimg ", str_replace("src='photos","src='$htpath/photos", $foto1));
 
 echo "<tr>
-<td align='left' valign='top'><small>$foto1</small></td>
-    <td align='left' valign='top'><font face=verdana><center><small>".$lang[439]."</small>
+<td align='left' valign='top'>$foto1</td>
+    <td align='left' valign='top'><font face=verdana><center><div class=\"alert alert-error\">".$lang[439]."</div>
     <table border=0 cellpadding='3'>
   <tr>
-    <td width='50%' align=center valign=top><form method='POST' target='_self' action='del.php?speek=".$speek."&id=$id&del=yes&nazv=$nazv'><input type='hidden' value=\"$speek\" name=\"speek\"> <input class='btn btn-primary' type='submit' value='".$lang['yes']."' name='yes'></td>
-    <td width='50%' valign=top align=center><input class=btn type='button' value='".$lang['no']."' name='no' onclick='javascript:self.close()'></form></td></tr>
+    <td width='50%' align=center valign=top><form method='POST' target='_self' action='del.php?speek=".$speek."&id=$id&del=yes&nazv=$nazv'><input type='hidden' value=\"$speek\" name=\"speek\"> <input class='btn btn-primary btn-large' type='submit' value='".$lang['yes']."' name='yes'></td>
+    <td width='50%' valign=top align=center><input class=\"btn btn-large\" type='button' value='".$lang['no']."' name='no' onclick='javascript:self.close()'></form></td></tr>
 
-  <tr><td colspan=2 align=center><div align=center><form method='POST' target='_self' action='del_archive.php?id=$id&del=yes'><input type='hidden' value=\"$speek\" name=\"speek\"> <input class='btn btn-warning' type='submit' value='".$lang[418]."' name='yes'></small></form></div></td></tr>
+  <tr><td colspan=2 align=center><div align=center><form method='POST' target='_self' action='del_archive.php?id=$id&del=yes'><input type='hidden' value=\"$speek\" name=\"speek\"> <input class='btn btn-warning btn-large' type='submit' value='".$lang[418]."' name='yes'></small></form></div></td></tr>
 </table>
-<small><div align=center><b>$nazv</b><br></div></small></font></td>
+<div align=center><b>$nazv</b><br></div></font></td>
     </tr>
     </table>";
 
 } else {
-echo "<div align=center><font face=verdana>".$lang[434]."<br><br><input class='btn btn-primary' type='button' value='OK' name='no' onclick='javascript:self.close()'></font></div>";
+echo "<div align=center><font face=verdana>".$lang[434]."<br><br><input class='btn btn-primary btn-large' type='button' value='OK' name='no' onclick='javascript:self.close()'></font></div>";
 }
 
 

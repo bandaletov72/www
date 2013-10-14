@@ -31,12 +31,12 @@ $speek=$language;
 }
 
 require ("../templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nls);  require ("../templates/$template/$speek/config.inc");
-echo "
-<!DOCTYPE html><html>
+require ("../templates/$template/css.inc");
+require ("../modules/translit.php");
+echo "<!DOCTYPE html><html>
 <head>
-<meta http-equiv=\"Content-Type\" content=\"text/html; charset=$codepage\"><title>DEL</title>
-<style fprolloverstyle>A:hover {color: #FF0000}
-</style>
+<meta http-equiv=\"Content-Type\" content=\"text/html; charset=$codepage\"><title>ARCHIVE</title>
+$css
 <SCRIPT language=\"JavaScript1.1\">
 <!--
 
@@ -48,7 +48,7 @@ function rc() {
 //-->
 </SCRIPT>
 </head>
-<BODY onload=\"javascript:self.focus()\" bgcolor='#FFFFFF' text='#000000' link='#000000' vlink=\"#333333\" alink=\"#FF0000\">
+<BODY onload=\"javascript:self.focus()\"><br><div class=\"mr ml\">
 
 ";
 if ((!@$id) || (@$id==0)): $id=="0"; endif;
@@ -63,23 +63,68 @@ settype ($id, "integer");
 $st=0;
 $fcontents = file(".$base_file");
 $tot_gd=count($fcontents);
-if ($tot_gd<=1) {echo "Последний товар не буду удалять!!!"; exit;}
 $line=@$fcontents[$id];
 if (($line!="")&&($line!="\n")) {
 $out=explode("|",$line);
+$catid=translit($out[1]." ".$out[2]." ");
 $out[4]="0";
 $out[1]=$lang[418];
-
+$catid2=translit($out[1]);
 $fcontents[$id]=implode("|",$out);
 
 $html = implode ("", $fcontents);
 $file = fopen (".$base_file", "w");flock ($file, LOCK_EX);
 if (!$file) {
-echo "<p> Не могу открыть файл <b>.$base_file</b> для записи.\n";
+echo "<p> Error writing to file <b>.$base_file</b>\n";
 exit;
 }
 fputs ($file, "$html");flock ($file, LOCK_UN);
 fclose ($file);
+
+unset ($fcontents, $html, $file, $out);
+
+if ($admin_speedup==1) {
+$fcontents = file(".$base_loc/items/$catid.txt");
+while(list($key,$val)=each($fcontents)) {
+$out=explode("|", $val);
+if ($out[0]==$id) {
+unset($fcontents[$key]);
+}
+unset($out);
+}
+$html = implode ("", $fcontents);
+if (trim($html)=="") {
+unset( $fcontents);
+unlink (".$base_loc/items/$catid.txt");
+$fcontents = file(".$base_loc/catid.txt");
+$foundd=0;
+$founds=0;
+while (list ($key,$val)=each ($fcontents)) {
+
+$out=explode("|",$val);
+if ((trim($line)!="")&&(trim($line)!="\n")&&(trim($out[0])!="")){
+if (($out[0]==$catid)||($out[0]==$catid2)) {
+unset($fcontents[$key]);
+}
+}
+}
+$fp = fopen (".$base_loc/catid.txt", "w");
+fputs ($fp, implode("",$fcontents));
+fclose($fp);
+} else {
+$file = fopen (".$base_loc/items/$catid.txt", "w");
+if (!$file) {
+echo "<p>".$lang[44]." <b>.$base_loc/items/$catid.txt</b> ".$lang[45]."\n";
+exit;
+}
+flock ($file, LOCK_EX); fputs ($file, "$html");flock ($file, LOCK_UN);
+fclose ($file);
+unset ($fcontents, $html, $file);
+
+
+}
+}
+
 echo "<div align=center><font face=verdana>Товар перенесен в ".$lang[418].".<br><br><input type='button' value='OK' name='no' onclick='javascript:self.close()'></font></div>";
 } else {
 echo "<div align=center><font face=verdana>Товар с данным id не найден.<br><br><input type='button' value='OK' name='no' onclick='javascript:self.close()'></font></div>";
@@ -89,6 +134,7 @@ echo "<div align=center><font face=verdana>Товар с данным id не найден.<br><br><
 
 ?>
 <!--end-->
+</div>
 </body>
 </html>
 

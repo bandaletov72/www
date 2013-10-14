@@ -358,9 +358,13 @@ $s=0;
 
 
 if (("$catid"!="0")&&($catid!="")&&($catid!="_")) {
+
 if (!file_exists("$base_loc/items/$catid.txt")) {
 $file="$base_file";
-} else {$file="$base_loc/items/$catid.txt";}
+
+} else {
+$file="$base_loc/items/$catid.txt";
+}
 } else {
 $file="$base_file";
 }
@@ -381,7 +385,6 @@ if ($admin_speedup==1) {
 	$rating=@file("./admin/comments/$catid.rate");
 	$file="$base_loc/items/$catid.txt";
 	}
-
 } else {
 
 $rating=@file("./admin/comments/$catid.rate");

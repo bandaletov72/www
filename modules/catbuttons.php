@@ -235,7 +235,9 @@ if ($foundcat==0) { if ($catid!="0") {
 if (($action!="interface_off")&&($action!="interface_on")) {
 if ($query=="") {
 if ($action!="cat") {
-$viewpage_title = $lang[1102]."/3";
+$viewpage_title = $lang[1102];
+$tit=$lang[1102];
+$mod="admin";
 header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 $error="<div style=\"margin:20px;\"><img src=$image_path/error404.png border=0 align=left hspace=10 title=\"ERROR 404\"><b>".$lang[1103]."</b><br><br>".$lang[1104]. " <b><a href=$htpath/index.php>". $shop_name."</a></b><META HTTP-EQUIV=\"REFRESH\" CONTENT=\"5;URL=$htpath/index.php\"><div class=clearfix></div></div>";
 $catid="";
@@ -252,7 +254,7 @@ while (list ($lk, $lv) = each ($subcat)) {
 if ($use_top_submenu==1) {
 $catbut=str_replace("[".$lk."]", $lv, $catbut);
 $overbut=str_replace("[".$lk."]", "<ul class=\"dropdown-menu\" style=\"align:left;\" align=left>".$lv."</ul>", $overbut);
-} else { 
+} else {
 $catbut=str_replace("[".$lk."]", "", $catbut);
 $overbut=str_replace("[".$lk."]", "<ul class=\"dropdown-menu\" style=\"align:left;\" align=left>".$lv."</ul>", $overbut);
 

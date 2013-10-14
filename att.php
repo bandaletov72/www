@@ -339,18 +339,26 @@ buyit($op, $user, $sum, $init_currency,$file,$basename);
     exit;
 }
 header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+$mod="admin";
+$tit=$lang[1102];
 echo "<br><img src=$image_path/error404.png border=0 align=left hspace=10 title=\"OOPS!\"><b>".$lang[1563]."<br><br></b><a href=$htpath/index.php>". $shop_name."</a>";
 
 } else {
 header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+$mod="admin";
+$tit=$lang[1102];
 echo "<br><img src=$image_path/error404.png border=0 align=left hspace=10 title=\"OOPS!\"><b>".$lang[1562]."<br><br></b><a href=$htpath/index.php>". $shop_name."</a>";
 }
 } else {
 header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+$mod="admin";
+$tit=$lang[1102];
 echo "<br><img src=$image_path/error404.png border=0 align=left hspace=10 title=\"OOPS!\"><b>".$lang[1575].":".date("d.m.Y H:i:s")."<br><br></b><a href=$htpath/index.php>". $shop_name."</a>";
 }
 } else {
 header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+$mod="admin";
+$tit=$lang[1102];
 echo "<br><img src=$image_path/error404.png border=0 align=left hspace=10 title=\"OOPS!\"><b>".$lang[1579]."<br><br></b><a href=$htpath/index.php>". $shop_name."</a>";
 }
 ?>

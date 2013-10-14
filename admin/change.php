@@ -34,12 +34,10 @@ $speek=$language;
 require ("../templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nls);  require ("../templates/$template/$speek/config.inc");
 require ("../templates/$template/css.inc");
 require ("../modules/translit.php");
-echo "
-<!DOCTYPE html><html>
+echo "<!DOCTYPE html><html>
 <head>
 <meta http-equiv=\"Content-Type\" content=\"text/html; charset=$codepage\"><title>EDIT</title>
-<style fprolloverstyle>A:hover {color: #FF0000}
-</style>
+$css
 <SCRIPT language=\"JavaScript1.1\">
 <!--
 
@@ -51,7 +49,7 @@ function rc() {
 //-->
 </SCRIPT>
 </head>
-<BODY onload=\"javascript:self.focus()\" bgcolor='#FFFFFF' text='#000000' link='#000000' vlink=\"#333333\" alink=\"#FF0000\">
+<BODY onload=\"javascript:self.focus()\"><br><div class=\"mr ml\">
 ";
 if (!isset($_POST['id'])) { $id=0; } else {$id=$_POST['id'];}
 if (isset($_POST['cc'])) { $cc=$_POST['cc'];}
@@ -78,8 +76,8 @@ $$a = trim($$a);
 $$a = stripslashes($$a);
 
 }
-echo "<small><b>ID=$id</b><br>
-<br>$nazv<br><br><hr><br>
+echo "<b>ID=$id</b><br>
+<br>$nazv<br><br>
 ";
 settype ($id, "integer");
 $st=0;
@@ -90,6 +88,7 @@ $tnomer = $out[0];
 @$tdir=@$out[1];
 @$tsubdir=@$out[2];
 $catid=translit("$tdir $tsubdir ");
+$catid2=translit("$tdir");
 @$tnazv=@$out[3];
 @$tprice=@$out[4];
 @$topt=@$out[5];
@@ -112,9 +111,11 @@ $tcc=@$out[$ncc];
 $custom_cart.="$lcc|";
 }
 }
-echo "<center>OK<br>";
+
 $stroket = "$item_type|$dir|$subdir|$nazv|$price|$opt|$ext_id|$description|$kwords|$foto1|$foto2|$vitrin|$onsale".@$cur."|$brand_name|$ext_lnk|$full_descr|$kolvo|".@$custom_cart."\n";
+$stroket2 = $_POST['id']."|$dir|$subdir|$nazv|$price|$opt|$ext_id|$description|$kwords|$foto1|$foto2|$vitrin|$onsale".@$cur."|$brand_name|$ext_lnk|$full_descr|$kolvo|".@$custom_cart."\n";
 $fcontents [$id]=$stroket;
+echo "<pre>LOG:<br>".$lang['edits']." DB - <b>".$lang[209]."</b><br>";
 $html = implode ("", $fcontents);
 $file = fopen (".$base_file", "w");
 if (!$file) {
@@ -125,17 +126,25 @@ flock ($file, LOCK_EX); fputs ($file, "$html");flock ($file, LOCK_UN);
 fclose ($file);
 unset ($fcontents,$html,$file);
 if ($admin_speedup==1) {
+echo "Admin speedup - <font color=green>".$lang['yes']."</font><br>";
+if ($catid==translit("$dir $subdir ")) {
+//no change dir and subdir
+echo "$lang[835]: $lang[430] ($lang[431]) - ".$lang['no']."<br>";
 $fcontents = file(".$base_loc/items/$catid.txt");
 while (list ($key,$val)=each ($fcontents)) {
 
 $out=explode("|",$val);
 if ((trim($line)!="")&&(trim($line)!="\n")&&(trim($out[0])!="")){
 if ($out[0]==$id) {
-$fcontents[$key]=$out[0].$stroket;
+echo $lang['edits']." SubDB - <b>".$lang[209]."</b><br>";
+$fcontents[$key]=$stroket2;
 
 }
 }
 }
+if (trim($html)=="") {
+unlink (".$base_loc/items/$catid.txt");
+} else {
 $html = implode ("", $fcontents);
 $file = fopen (".$base_loc/items/$catid.txt", "w");
 if (!$file) {
@@ -144,9 +153,90 @@ exit;
 }
 flock ($file, LOCK_EX); fputs ($file, "$html");flock ($file, LOCK_UN);
 fclose ($file);
+}
+} else {
+//change dir or subdir
+//echo "Category or SubCategory changed - ".$lang['yes']."<br>";
+//delete stroke from items db
+echo $lang['del']." - <b>".$lang[209]."</b><br>";
+$fcontents = file(".$base_loc/items/$catid.txt");
+while (list ($key,$val)=each ($fcontents)) {
+
+$out=explode("|",$val);
+if ((trim($line)!="")&&(trim($line)!="\n")&&(trim($out[0])!="")){
+if ($out[0]==$id) {
+$fcontents[$key]="";
 
 }
-echo "<p><input type=\"button\" value=\"".$lang[428]."\" name=\"no\" onclick=\"javascript:rc()\"></p>";
+}
+}
+$html = implode ("", $fcontents);
+if (trim($html)=="") {
+unlink (".$base_loc/items/$catid.txt");
+$fcontents = file(".$base_loc/catid.txt");
+$foundd=0;
+$founds=0;
+while (list ($key,$val)=each ($fcontents)) {
+
+$out=explode("|",$val);
+if ((trim($line)!="")&&(trim($line)!="\n")&&(trim($out[0])!="")){
+if (($out[0]==$catid)||($out[0]==$catid2)) {
+unset($fcontents[$key]);
+}
+}
+}
+$fp = fopen (".$base_loc/catid.txt", "w");
+fputs ($fp, implode("",$fcontents));
+fclose($fp);
+} else {
+$file = fopen (".$base_loc/items/$catid.txt", "w");
+if (!$file) {
+echo "<div><font color=red>File is write protect: <b>.$base_loc/items/$catid.txt</b></font></div>\n";
+exit;
+}
+flock ($file, LOCK_EX); fputs ($file, "$html");flock ($file, LOCK_UN);
+fclose ($file);
+}
+unset ($fcontents);
+//add stoke to new db
+echo $lang['add']." - <b>".$lang[209]."</b><br>";
+$file=".$base_loc/items/".translit("$dir $subdir ").".txt";
+$fp=fopen($file,"a");
+fputs($fp, $stroket2);
+fclose($fp);
+unset ($fcontents,$html,$file);
+//add to catid.txt
+$fcontents = file(".$base_loc/catid.txt");
+$foundd=0;
+$founds=0;
+while (list ($key,$val)=each ($fcontents)) {
+
+$out=explode("|",$val);
+if ((trim($line)!="")&&(trim($line)!="\n")&&(trim($out[0])!="")){
+if ($out[0]==translit("$dir $subdir ")) {
+$founds=1;
+}
+if ($out[0]==translit("$dir")) {
+$foundd=1;
+}
+}
+}
+$file=".$base_loc/catid.txt";
+$fp=fopen($file,"a");
+if ($foundd==0) {
+echo $lang['add'].": $lang[430] - <b>".$lang[209]."</b><br>";
+fputs($fp, translit("$dir")."|$dir||||||||\n");
+}
+echo $lang['add'].": $lang[431] - <b>".$lang[209]."</b><br>";
+if ($founds==0) {
+fputs($fp, translit("$dir $subdir ")."|$dir|$subdir|||||||\n");
+}
+fclose($fp);
+if (($founds==0)||($foundd==0)) { echo "<b><font color=blue>$lang[658]</font></b><br>"; }
+}
+}
+
+echo "<b>".$lang[704]."</b></pre><div align=center><button type=\"button\" class=\"btn btn-large btn-primary\" name=\"no\" onclick=\"javascript:rc()\">".$lang[428]."</button></div></div>";
 ?><!--end-->
 </body>
 </html>

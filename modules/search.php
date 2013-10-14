@@ -1384,6 +1384,8 @@ $total-=1;
 if ($s==0){ if ($tfind!=0) { $pp=""; $stat=""; $search_results_list="";} else {
 if ($notfound==1) {
 $viewpage_title = $lang[1102];
+$mod="admin";
+$tit=$lang[1102];
 header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 $gb.="<div style=\"margin:20px;\"><img src=$image_path/error404.png border=0 align=left hspace=10 title=\"ERROR 404\"><b>".$lang[1103]."</b><br><br>".$lang[1104]. " <b><a href=$htpath/index.php>". $shop_name."</a></b><META HTTP-EQUIV=\"REFRESH\" CONTENT=\"5;URL=$htpath/index.php\"><div class=clearfix></div></div>";
 $catid="";

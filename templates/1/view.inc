@@ -36,7 +36,7 @@ $buybut_url="javascript:document.spis\$s.submit()";
 $optilist="\".str_replace(\"[id]\",\"\$s\",str_replace(\"[pr]\",\"\$price\",\$optionselect)).\"";
 if (!isset($buy_button_action)) {$buy_button_action=0;} if (!preg_match("/^[0-9]+$/",$buy_button_action)) { $buy_button_action=0;}
 if (!isset($view_list_dsk)) {$view_list_dsk=1;} if (!preg_match("/^[0-9]+$/",$view_list_dsk)) { $view_list_dsk=1;}
-if ($view_list_dsk!=1) {$descriptionss="";}
+if ($view_list_dsk==0) {$descriptionss="";}
 if (!isset($view_list_price)) {$view_list_price=1;} if (!preg_match("/^[0-9]+$/",$view_list_price)) { $view_list_price=1;}
 if (!isset($view_list_qty)) {$view_list_qty=1;} if (!preg_match("/^[0-9]+$/",$view_list_qty)) { $view_list_qty=1;}
 $valutss=$currencies_sign[$_SESSION["user_currency"]];
@@ -1093,7 +1093,7 @@ if (@\$out[12]==\"\"): \$mduni=\"NO\"; endif;
 <input type=\\\"hidden\\\" name=\\\"view\\\" value=\\\"\$view\\\">
 <input type=\\\"hidden\\\" name=\\\"action\\\" value=\\\"\$path_to_buy\\\">
 <a name=\\\"spis\$s\\\"></a><div class=pull-right align=center>\$sales\".\"[sklad]</div>\$llid\".\"[foto1]</a>\$big
-<b class=cat1>\$llid\" . wordwrap(\$nazv, 40, \"<br>\") . \"</a></b> \$novina\$voterate<div align=left><small>\$lang[419]: \$ext_id</small><hr><div>\$description<br><div style=\\\"margin-top: 5px; margin-bottom: 10px;\\\">\$ddescription</div></div><small>\$minupak\$minsht</small></div>
+<b class=cat1>\$llid\" . wordwrap(\$nazv, 40, \"<br>\") . \"</a></b> \$novina\$voterate<div align=left><small>\$lang[419]: \$ext_id</small><hr><div>$descriptionss<br><div style=\\\"margin-top: 5px; margin-bottom: 10px;\\\">\$ddescription</div></div><small>\$minupak\$minsht</small></div>
 \$freedelivery \$admin_functions\";
 \$callback=\"\";
 if (\$view_callback==1) { \$callback=\"<a class=\\\"btn btn-warning\\\" style=\\\"white-space:nowrap;\\\" href=#callback onClick=javascript:window.open('\$htpath/callback.php?speek=\".$speek.\"&unifid=\".md5(@\$out[3].\" ID:\".@\$out[6]).\"','frcall','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=770,height=530,left=10,top=10')><i class=\\\"icon-envelope icon-white\\\"></i><font color=black> \$lang[768]</font></a>\";}
@@ -1133,7 +1133,7 @@ if (@\$out[12]==\"\"): \$mduni=\"NO\"; endif;
 <tr>
 <td valign=middle align=center>
 <a name=\\\"spis\$s\\\"></a><div class=pull-right align=center>\$sales\".\"[sklad]</div>\$llid\".\"[foto1]</a>\$big
-<b class=cat1>\$llid\" . wordwrap(\$nazv, 40, \"<br>\") . \"</a></b> \$novina\$voterate<div align=left><small>\$lang[419]: \$ext_id</small><hr><div>\$description<br><div style=\\\"margin-top: 5px; margin-bottom: 10px;\\\">\$ddescription</div></div><small>\$minupak\$minsht</small></div>
+<b class=cat1>\$llid\" . wordwrap(\$nazv, 40, \"<br>\") . \"</a></b> \$novina\$voterate<div align=left><small>\$lang[419]: \$ext_id</small><hr><div>$descriptionss<br><div style=\\\"margin-top: 5px; margin-bottom: 10px;\\\">\$ddescription</div></div><small>\$minupak\$minsht</small></div>
 \$freedelivery \$admin_functions\";
 \$callback=\"\";
 if (\$view_callback==1) { \$callback=\"<a class=\\\"btn btn-warning\\\" style=\\\"white-space:nowrap;\\\" href=#callback onClick=javascript:window.open('\$htpath/callback.php?speek=\".$speek.\"&unifid=\".md5(@\$out[3].\" ID:\".@\$out[6]).\"','frcall','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=770,height=530,left=10,top=10')><i class=\\\"icon-envelope icon-white\\\"></i><font color=black> \$lang[768]</font></a>\";}
@@ -1281,7 +1281,7 @@ if (@\$out[12]==\"\"): \$mduni=\"NO\"; endif;
 <input type=\\\"hidden\\\" name=\\\"unifid\\\" value=\\\"\".md5(@\$out[3].\" ID:\".@\$out[6]).\"\\\">
 <input type=\\\"hidden\\\" name=\\\"old_action\\\" value=\\\"viewcart\\\"><div align=left><font size=3 color=$nc2><b>$lang[735]!</b></font></div>
 <a name=\\\"spis\$s\\\"></a>\$llid\$fotos</a>
-<br><br><b>\$llid<font color=\$nc5 size=3>\" . wordwrap(\$nazv, 40, \"<br>\") . \"</font></a></b> \$novina\$voterate<br><div align=left><small>\$lang[419]: \$ext_id<br>\$description<div align=center><br>\$ddescription</div><br></small></div>
+<br><br><b>\$llid<font color=\$nc5 size=3>\" . wordwrap(\$nazv, 40, \"<br>\") . \"</font></a></b> \$novina\$voterate<br><div align=left><small>\$lang[419]: \$ext_id<br>$descriptionss<div align=center><br>\$ddescription</div><br></small></div>
 </small>
 \";
 if (\$view_goodsprice==1){

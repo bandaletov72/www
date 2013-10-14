@@ -65,6 +65,7 @@ $brand=str_replace("  ", " ", str_replace("|", " ", trim (trim (trim ($brand))))
 $art=str_replace("  ", " ", str_replace("|", " ", trim (trim (trim ($art)))));
 $price=str_replace(",", ".", str_replace("  ", " ", str_replace("|", " ", trim (trim (trim ($price))))));
 $indexm=translit(@$r." ".@$sub." ");
+$mesg="";
 if (!isset($pods[$indexm])) {
 $files=fopen(".$base_loc/catid.txt", "a");
 if (!$files) {echo ".$base_loc/catid.txt"; exit;}
@@ -72,14 +73,14 @@ flock ($files, LOCK_EX);
 fputs ($files, "$indexm|$r|$sub|||||\n");
 flock ($files, LOCK_UN);
 fclose ($files);
-
+$mesg= "<b><font color=blue>$lang[658]</font></b><br><br><br>";
 }
 
 }
 
-echo "<meta http-equiv='Content-Type' content='text/html; charset=$codepage'><title>".$lang[433]."</title><head>";
+echo "<meta http-equiv='Content-Type' content='text/html; charset=$codepage'><title>".$lang[433]."</title>";
 echo $css;
-echo "</head>
+echo "
 <SCRIPT language='JavaScript1.1'>
 <!--
 
@@ -97,7 +98,7 @@ if ($clone=="yes") {echo "window.opener.location.href='$htpath/index.php?catid="
 
 }
 //-->
-</SCRIPT>
+</SCRIPT></head>
 <BODY bgcolor=$nc0 link=$nc2 text=$nc5>";
 
 if ((!@$id) || (@$id==0)): $id=="0"; endif;
@@ -166,11 +167,12 @@ flock ($file, LOCK_EX); fputs ($file, $unifw."\n".translit(@$outc[1]." ". @$outc
 fclose ($file);
 
 if ($admin_speedup==1) {
+echo "<div class=\"mr ml\">Admin speedup - <font color=green>".$lang['yes']."</font></div>";
 $nomer=count($fcontents);
 unset ($fcontents);
 $outc[0]=$nomer;
 $line=implode("|", $outc);
-$catid=translit($outc[1]." ".$outc[2]." ");
+$catid=translit(@$r." ".$sub." ");
 $file = fopen (".$base_loc/items/$catid.txt", "a");
 if (!$file) {
 echo "<p> File is write protect: <b>.$base_loc/items/$catid.txt</b>\n";
@@ -179,9 +181,9 @@ exit;
 flock ($file, LOCK_EX); fputs ($file, $line);flock ($file, LOCK_UN);
 fclose ($file);
 }
-echo "<center><b>".$lang[432]." id=$id</b><br>
-<br><hr><br>
-<p><input type='button' value='".$lang[440]."' name='no' onclick='javascript:rc()'></p><br>".$lang[441];
+echo "<div class=\"mr ml\"><b>".$lang[432]." id=$id</b><br>
+<br>$mesg
+<div align=center><input type='button' class=\"btn btn-primary btn-large\" value='".$lang[440]."' name='no' onclick='javascript:rc()'></div><br>".$lang[441]."</div>";
 exit;
 }
 $st=0;
@@ -189,18 +191,7 @@ $fcontents = file(".$base_file");
 
 $line=@$fcontents[$id];
 if (($line!="")&&($line!="\n")) {
-echo "ID=$id<br>
-<table border=0 class=table style='width:96%'>
-<tr>
-<td align='left' valign='top'><small><b>".$lang[419]."</b></small></td>
-<td align='left' valign='top'><small><b>".$lang['name']."</b></small></td>
-<td align='left' valign='top'><small><b>".$lang['price']."</b></small></td>
-<td align='left' valign='top'><small><b>".$lang[427]."</b></small></td>
-<td align='left' valign='top'><small><b>".$lang[355]."</b></small></td>
 
-
-</tr>
-";
 
 
 
@@ -223,13 +214,24 @@ $nomer = $out[0];
 @$full_descr=@$out[15];
 @$kolvo=@$out[16];
 
-
-echo "<form method='POST' target='_self' action='clone.php'>
+echo "ID=$id<br><form method='POST' target='_self' action='clone.php'>
 <input type='hidden' value='".$speek."' name='speek'>
 <input type='hidden' value='$id' name='id'>
 <input type='hidden' value='yes' name='clone'>
 <input type='hidden' value='$newnomer' name='nomer'>
-<tr bgcolor='$nc6'>
+<table border=0 class=table style='width:96%'>
+<tr>
+<td align='left' valign='top'><small><b>".$lang[419]."</b></small></td>
+<td align='left' valign='top'><small><b>".$lang['name']."</b></small></td>
+<td align='left' valign='top'><small><b>".$lang['price']."</b></small></td>
+<td align='left' valign='top'><small><b>".$lang[427]."</b></small></td>
+<td align='left' valign='top'><small><b>".$lang[355]."</b></small></td>
+
+
+</tr>
+";
+
+echo "<tr bgcolor='$nc6'>
 <td align='left' valign='top'><small>$ext_id</small></td>
 <td align='left' valign='top'><small>$nazv</small></td>
     <td align='left' valign='top'><small>$price</small></td>
@@ -265,7 +267,7 @@ echo "<form method='POST' target='_self' action='clone.php'>
 
 
 } else {
-echo "<div align=center><font face=verdana>".$lang[434]."<br><br><input type='button' value='OK' name='no' onclick='javascript:self.close()'></font></div>";
+echo "<div align=center><font face=verdana>".$lang[434]."<br><br><input type='button' class=\"btn btn-primary btn-large\" value='OK' name='no' onclick='javascript:self.close()'></font></div>";
 }
 ?>
 

@@ -426,7 +426,7 @@ $idff="$mpdir".str_replace("%20"," ", "$fileopen").".idx";
 $idxf="";
 if (file_exists($idff)) {
 $idxfo=fopen($idff,"r");
-$idxf="<table border=0 width=100% cellpadding=0 cellspacing=0><tr><td>".fread($idxfo,filesize($idff))."</td></tr></table>";
+$idxf="<table border=0 width=100% cellpadding=0 cellspacing=0 class=table2><tr><td>".fread($idxfo,filesize($idff))."</td></tr></table>";
 fclose($idxfo);
 }
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
@@ -550,7 +550,7 @@ $idff="$mpdir".str_replace("%20"," ", "$fileopen").".idx";
 $idxf="";
 if (file_exists($idff)) {
 $idxfo=fopen($idff,"r");
-$idxf="<table border=0 width=100% cellpadding=0 cellspacing=0><tr><td>".fread($idxfo,filesize($idff))."</td></tr></table>";
+$idxf="<table border=0 width=100% cellpadding=0 cellspacing=0 class=table2><tr><td>".fread($idxfo,filesize($idff))."</td></tr></table>";
 fclose($idxfo);
 }
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
@@ -703,7 +703,7 @@ $idff="$mpdir".str_replace("%20"," ", "$fileopen").".idx";
 $idxf="";
 if (file_exists($idff)) {
 $idxfo=fopen($idff,"r");
-$idxf="<table border=0 width=100%><tr><td>".fread($idxfo,filesize($idff))."</td></tr></table>";
+$idxf="<table border=0 width=100% class=table2><tr><td>".fread($idxfo,filesize($idff))."</td></tr></table>";
 fclose($idxfo);
 }
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
@@ -777,7 +777,7 @@ if ($fancybox_enable==1) {
 //fancybox
 $fileopens[$s] = "<!-- ".$sortby." -->
 <td align='left' valign='top' width=".floor(100/$gallery_cols)."%>
-<a rel=\"example_group\" href=\"$htpath/gallery".str_replace("%2F", "/",rawurlencode(str_replace("//","/",str_replace("//","/", "$i/$fileopen"))))."\" title=\"".substr(str_replace("\"","", strip_tags($idxf)),0, 150)."\"><img border=0 alt=\"\" src=\"$htpath/gallery".str_replace("%2F", "/", rawurlencode(str_replace("//","/",str_replace("//","/", "$i/$tn$fileopen"))))."\" border=\"0\" $wh title=\"".substr(str_replace("\"","", strip_tags($idxf)),0, 150)."\"></a><br>$idate<br>&nbsp;<b>$form1".$ftyname."$form2$ddel".str_replace("\n","<br>", $idxf)."<br>".str_replace("\n","<br>", $idxf)."<br>
+<a rel=\"example_group\" href=\"$htpath/gallery".str_replace("%2F", "/",rawurlencode(str_replace("//","/",str_replace("//","/", "$i/$fileopen"))))."\" title=\"".substr(str_replace("\"","", strip_tags($idxf)),0, 150)."\"><img border=0 alt=\"\" src=\"$htpath/gallery".str_replace("%2F", "/", rawurlencode(str_replace("//","/",str_replace("//","/", "$i/$tn$fileopen"))))."\" border=\"0\" $wh title=\"".substr(str_replace("\"","", strip_tags($idxf)),0, 150)."\"></a><br>$idate<br>&nbsp;<b>$form1".$ftyname."$form2$ddel".str_replace("\n","<br>", $idxf)."<br>
 </td>";
 } else {
 $fileopens[$s] = "<!-- ".$sortby." -->
@@ -895,7 +895,7 @@ $st += 1;
 
 $ddt += 1;
 $gal .= "$val\n";
-if ($ddt>=$gallery_cols) { $eee+=1; $ddt=0; $gal.="</tr></table><table border=0 cellpadding=0 cellspacing=10 width=100% bordercolor=$back><tr>";}
+if ($ddt>=$gallery_cols) { $eee+=1; $ddt=0; $gal.="</tr></table><table border=0 cellpadding=0 cellspacing=10 width=100% class=table><tr>";}
 }
 
 $gal.="";
@@ -993,7 +993,7 @@ if ($fancybox_enable==1) {
 $ggal.="</div>";
 }
 if ($view_gal_slide!=1) {$jgal="";}
-$gal="$ggal<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=gal&isort=&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=gal&isort=date&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_date']."</a></small></div>$hear</center><table border=0 cellspacing=10 cellpadding=0 width=100%>
+$gal="$ggal<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=gal&isort=&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=gal&isort=date&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_date']."</a></small></div>$hear</center><table border=0 cellspacing=10 cellpadding=0 width=100% clas==table>
 <tr>
 $gal
 </tr>

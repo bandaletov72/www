@@ -213,11 +213,11 @@ require("fileupload-class.php");
                 } else {
 
                         if(stristr($my_uploader->file['type'], "image")) {
-                        echo "<a href='#22' onClick=\"javascript:rc('".  $sdir.$my_uploader->file['name'] . "', '".$my_uploader->file['width']."' , '".$my_uploader->file['height']."')\"><img src=\"" . $path . $my_uploader->file['name'] . "\" width=50 height=50 align='left' border=\"1\" title=\"".$lang[784]."\"></a><br>&lt;-- ".$lang[783]."<br>";
+                        echo "<a href='#22' onClick=\"javascript:rc('".  $my_uploader->file['name'] . "', '".$my_uploader->file['width']."' , '".$my_uploader->file['height']."')\"><img src=\"" . $path . $my_uploader->file['name'] . "\" width=50 height=50 align='left' border=\"1\" title=\"".$lang[784]."\"></a><br>&lt;-- ".$lang[783]."<br>";
                         print($my_uploader->file['name'] . " - ".$lang[743]." $htpath/$fbase/$sdir <br>");
             } else {
 
-                       echo "<a class=\"btn\" href='#22' onClick=\"javascript:rc('".  $sdir.$my_uploader->file['name'] . "', '".$my_uploader->file['width']."' , '".$my_uploader->file['height']."')\"><font color=3>".$lang[784]."</font><br>" . $my_uploader->file['name'] . "</a><br><br>";
+                       echo "<a class=\"btn\" href='#22' onClick=\"javascript:rc('".  $my_uploader->file['name'] . "', '".$my_uploader->file['width']."' , '".$my_uploader->file['height']."')\"><font color=3>".$lang[784]."</font><br>" . $my_uploader->file['name'] . "</a><br><br>";
 
 
                         }

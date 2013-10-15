@@ -1493,19 +1493,15 @@ $admined.="<div align=center><img src=\"$image_path/handup.png\"></div><div clas
 }
 
 if ($usetheme==0) {
-if ($links_to_bottom==0) {
+
 
 if (($incart_menu==0)&&($unifid!="")&&($catid=="")) { } else {
 if ($leftmenu==1) {
 include "./templates/$template/menu.inc";
-}
-}
-if (($incart_menu==0)&&($unifid!="")&&($catid=="")) { } else {
-if ($leftmenu==1) {
 echo "$admined";
 }
 }
-}
+
 } else {
 
 if (@file_exists("./templates/$template/menu.inc")==TRUE) {
@@ -2564,6 +2560,10 @@ top("", "$spectit$spec_spisok", "100%",  $nc0, $nc0 , "noshadow",1, "[specpr]");
 if ($view_birth=="r") {
 top("<div style=\"white-space:nowrap;\"><small>$lang[1497]</small></div>", "$birthday", $style ['right_width'], $nc2, $nc0, 5,0,"[birthday]");
 }
+
+if (($incart_menu==0)&&($unifid!="")&&($catid=="")) {include "./templates/$template/menu.inc";
+echo "$admined"; }
+
 if ($view_tag_clouds=="r") {
 top("", "$tags_cloud", $style ['right_width'], $nc2, $nc0, 5,0,"[tagclouds]");
 }
@@ -2632,13 +2632,8 @@ topwo("", "<table width=100%><tr class=footer><td><img src=$image_path/pix.gif b
 }
 }
 if ($links_to_bottom==1) {
-echo "<table width=100%><tr class=footer><td><img src=$image_path/pix.gif border=0></td><td class=footer style=\"width:$shwid;\">";
-
-include "./templates/$template/menu.inc";
-
-
-
-echo "$admined<div class=pull-right>$rekm</div>";
+echo "<table width=100%><tr class=footer><td><img src=$image_path/pix.gif border=0></td><td class=footer style=\"width:$shwid;\">
+<div class=pull-right>$rekm</div>";
 echo "</td><td><img src=$image_path/pix.gif border=0></td></tr></table>";
 }
 

@@ -701,7 +701,7 @@ $link1="";
 if ($j==($fpage+1)) {
 $link1=" class=\"disabled\"";
 }
-$fppages.="<li".$link1."><a href=\"$htpath/index.php?action=forum&fr=$fr&act=list&fpage=".($j-1)."\">".$j."</a></li>\n";
+$fppages.="<li".$link1."><a href=\"$htpath/index.php?action=forum&fr=$fr&act=show&nr=$nr&fpage=".($j-1)."\">".$j."</a></li>\n";
 
 $j+=1;
 }
@@ -1066,7 +1066,7 @@ $link1="";
 if ($j==($fpage+1)) {
 $link1=" class=\"disabled\"";
 }
-$fppages.="<li".$link1."><a href=\"$htpath/index.php?action=forum&fr=$fr&act=list&fpage=".($j-1)."\">".$j."</a></li>\n";
+$fppages.="<li".$link1."><a href=\"$htpath/index.php?action=forum&fr=$fr&act=show&nr=$nr&fpage=".($j-1)."\">".$j."</a></li>\n";
 
 $j+=1;
 }

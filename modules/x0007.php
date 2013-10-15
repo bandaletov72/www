@@ -72,7 +72,7 @@ margin: 0px 0px 0px 0px;
 -webkit-box-shadow: 0 0px 5px ".lighter($nc6,-20).";
 -moz-box-shadow:0 0px 5px ".lighter($nc6,-20).";
 box-shadow: 0 0px 5px ".lighter($nc6,-20).";
-background-image: url('images/light.png'); background-repeat: no-repeat; background-position: center\"><table style=\"width:$shwid\" align=center border=0><tr><td>$x0007</td></tr></table></div>";
+background-image: url('images/light.png'); background-repeat: no-repeat;\"><table style=\"width:$shwid\" align=center border=0><tr><td>$x0007</td></tr></table></div>";
 }
 unset ($page_content, $page_title, $pageopen);
 
@@ -93,7 +93,7 @@ margin: 0px 0px 0px 0px;
 -webkit-box-shadow: 0 0px 5px ".lighter($nc6,-20).";
 -moz-box-shadow:0 0px 5px ".lighter($nc6,-20).";
 box-shadow: 0 0px 5px ".lighter($nc6,-20).";
-background-image: url('images/light.png'); background-repeat: no-repeat; background-position: center\"><table style=\"width:$shwid\" align=center border=0><tr><td>$catid_content</td></tr></table></div>";
+background-image: url('images/light.png'); background-repeat: no-repeat;\"><table style=\"width:$shwid\" align=center border=0><tr><td>$catid_content</td></tr></table></div>";
 }
 if ($usetheme==0)  { $catid_content=""; $catid_title="";}
 

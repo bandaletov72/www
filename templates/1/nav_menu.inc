@@ -237,7 +237,7 @@ if (($header_type==2)||($header_type==3)) { if ($lngv!="") { $navmenu.= "<li cla
 if  ($allow_search==1) {
 if (($header_type>=2)&&($usetheme==0)) {
  if ($query=="") { $lquery=""; } else { $lquery=$query; }
- $searchmenu="<form class=\"navbar-search pull-left\" method=\"get\" id=\"header_searcH_form\" name=\"header_searcH_form\" action=\"$htpath/index.php\"><script type=\"text/javascript\"><!--
+ $searchmenu="<form class=\"navbar-search pull-right\" method=\"get\" id=\"header_searcH_form\" name=\"header_searcH_form\" action=\"$htpath/index.php\"><script type=\"text/javascript\"><!--
 function setWidth () {
 document.getElementById('search_tips_cont').style.width=(0+document.getElementById('search_input').clientWidth*4)+'px';
 document.getElementById('search_tips').style.width=(0+document.getElementById('search_input').clientWidth*4+3)+'px';
@@ -252,7 +252,7 @@ function submit_search1(e)
 }
 -->
 </script>
-<input class=\"ml\" value=\"".$lquery."\" name=\"query\" id=\"search_input\" onkeyup=\"submit_search1(event); get_search_tips(this, '".$speek."');setWidth();\" onfocus=\"setWidth();\" onblur=\"setWidth();\" onchange=\"setWidth();\" type=\"search\" autocomplete=\"off\" placeholder=\"".$lang['search']."...\" style=\"margin-right: 40px;\">
+<input class=\"ml\" value=\"".$lquery."\" name=\"query\" id=\"search_input\" onkeyup=\"submit_search1(event); get_search_tips(this, '".$speek."');setWidth();\" onfocus=\"setWidth();\" onblur=\"setWidth();\" onchange=\"setWidth();\" type=\"search\" autocomplete=\"off\" placeholder=\"".$lang['search']."...\" style=\"margin-right: 10px;\">
 <input type=hidden id=search_usl value=AND><input type=hidden name=usl value=$usl>
 <div id=\"search_tips\" class=\"search_tips\" style=\"display: none; margin-top:0px; right: 0px;\" onmouseout=\"hide_search_tips();setWidth();\" onmouseover=\"show_search_tips();setWidth();\">
 <div style=\"height: 138px; padding: 3px 3px 10px 3px; overflow: auto;\" id=\"search_tips_cont\"></div>

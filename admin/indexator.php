@@ -1522,7 +1522,7 @@ document.getElementById('d_'+arg).style.display='none';
 document.getElementById('i_'+arg).className='icon-chevron-right icon-white';
 }
 }
-</script><div class=box3 style=\"width: 96%;\">".str_replace("<font style=\"font-size: ".($main_font_size+1)."pt;\">","", str_replace("</font>","",$normalinks))."</div>");
+</script><div class=box3>".str_replace("<font style=\"font-size: ".($main_font_size+1)."pt;\">","", str_replace("</font>","",$normalinks))."</div>");
 fclose ($file);
 
 

@@ -1118,12 +1118,13 @@ $oform="";
 $full_basket="";
 $print_basket="";
 $tovarov=0;
+$stuks=0;
 $summa=0;
 
 
 
 
-$tovarov = $cart->itemcount; $summa = $cart->total;
+$tovarov = $cart->itemcount; $summa = $cart->total;  $tovarov = $cart->itemstuks;
 $full="";
 if ($tovarov>0){
 $full=1;
@@ -1291,13 +1292,23 @@ if ($leftmenu==1) { if ($affix==1) { echo "<td valign=\"top\" align=\"left\" sty
 <script>
           $(document).ready(function(){
             $('#sidebar').stickyMojo({footerID: '#footer', contentID: '#main'});
+            $('#sidebar').mCustomScrollbar({theme:\"dark2\",
+            scrollInertia: 0,
+            autoDraggerLength: true,
+            advanced: {
+            	normalizeMouseWheelDelta: true,
+                updateOnContentResize: true,
+                updateOnBrowserResize: true,
+                },
+            scrollButtons: {enable: true}
+		  });
+
           });
         </script>
-      <div id=\"sidebar\">
-      <div class=\"sidebar_inner\">
-      <div class=\"box3\" style=\"width: 96%;\" align-center><table border=0 style=\"margin-top:40px; margin-bottom:20px;\" cellpadding=6><tr><td><a href=\"/\" title=\"$kwrd\"><img src=logo_mini.png border=0></a></td><td><b class=lnk><a href=\"/\" title=\"$kwrd\"><font color=$nc9>$kwrd</font></a></b></td></tr></table></div>
-      </div>
-      <div class=\"sidebar_inner\">";
+        <div id=\"sidebar\" class=\"affixbox\">
+        <div align-center><table border=0 style=\"margin-top:40px; margin-bottom:20px;\" cellpadding=6><tr><td><a href=\"/\" title=\"$kwrd\"><img src=logo_mini.png border=0></a></td><td><b class=lnk><a href=\"/\" title=\"$kwrd\"><font color=$nc9>$kwrd</font></a></b></td></tr></table></div>
+       <div class=\"sidebar_inner\">
+      ";
         } else {
 		if (($page!="") &&($view_left_menu_page==0)&&($view_left_menu_page==0)&&($view_itemsmenu_page==0))
 		{
@@ -1956,6 +1967,7 @@ topwo("", @$cartlist, $style ['center_width'], $nc0, $nc0 , 4,1,"[content]");
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")&&($action=="tospec")&&(count(@$new_price)>=1)){$spr="";$anonses="";$topics="";$full_basket="";foreach($items as $item) {$full_basket .=(0.01*round(@$new_price["".$item['id'].""]/($kurs*0.01)))."^".$item['base']."\n";}
 if ($full_basket!=""){
 $tovarov = $cart->itemcount;
+$stuks = $cart->itemstuks;
 $summa = $cart->total;
 $oform ="<p align=center></p>"; }
 $filepr="$base_loc/db_spec_$toraz.txt";$fpr=fopen($filepr,"w"); flock ($fpr, LOCK_EX);fputs($fpr, $full_basket); flock ($fpr, LOCK_UN);fclose ($fpr);unset($filepr);top("", "<font size=4 color=\"".$style['nav_col1']."\">".$lang[236]."</font><br><br><p align=center>".$mpz['file']." <b>db_spec_$toraz.txt</b> - OK.</p><br>", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0,"[content]");}}if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")&&($action=="addtospec")){$fff= "<form class=form-inline action=\"" . $_SERVER['PHP_SELF']. "\" method=\"POST\" name=\"basket\"><input type=\"hidden\" name=\"flag\" value=\"".$cart->basket_speek."\"><input type=\"hidden\" name=\"action\" value=\"tospec\"><input type=\"hidden\" name=\"old_action\" value=\"tospec\">";if ($usetheme==0) {echo $fff;} else {top("", "$fff", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0, "[form]");}$anonses="";$topics="";
@@ -2054,6 +2066,7 @@ $oform = "</form><form class=form-inline action=\"" . $_SERVER['PHP_SELF']. "\" 
 
 if ($full_basket!=""){
 $tovarov = $cart->itemcount;
+$stuks = $cart->itemstuks;
 $summa = $cart->total;
 $oform ="<p align=center><small>".$lang[248]."</small> $tmpr<br><br><input type=\"submit\" class=\"btn btn-primary\" value=\"".$lang[258]."\"></p></form>";
 }
@@ -2234,7 +2247,7 @@ if (($wishzak==1)&&($valid=="1")&&($login!="")&&($password!="")) {
 $oform.="<p align=center><b>".$lang[245]."</b><br>".$lang[246]." <a href=\"".$_SERVER['PHP_SELF']."?action=zakaz&wishzak=1&flag=".$cart->basket_speek."\"><b>".$lang[247]."</b></a></p><META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=" . $_SERVER['PHP_SELF']. "?action=zakaz&wishzak=1&flag=".$cart->basket_speek."\">";}
 
 
-if ($full_basket!=""){ $tovarov=$cart->itemcount;
+if ($full_basket!=""){ $tovarov=$cart->itemcount;  $stuks = $cart->itemstuks;
 if($summa<$currencies_zakaz_menee[$valut]){$ditogo=$summa+$zakaz_do_stavka;
 if ($dost_naim1!="") {
 $ddost="<br><small>$dost_naim1".$currencies_zakaz_menee[$valut]." ".$currencies_sign[$_SESSION["user_currency"]]." - <b> ".$currencies_zakaz_dostav[$valut]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</small><br></small><br>".$lang[34].": <b>".$ditogo."</b>"." ".$currencies_sign[$_SESSION["user_currency"]]."<br>";
@@ -2281,7 +2294,7 @@ $print_basket="<small>$full_basket</b></small><div class=\"comnts\"><i class=ico
 }
 if ($use_weight==1) {$print_basket.=$lang['totalweight'].": <b><span id=\"jsves\">".$totalweight."</span></b> ".$kg."<br>";}
 if ($use_volume==1) {$print_basket.=$lang['totalvolume'].": <b><span id=\"jsvolume\">".$totalvolume."</span></b> ".$vol."<br>";}
-if ($classic_basket==1) { $print_basket.=$lang[32].": <b>$tovarov</b> <br>"; }
+if ($classic_basket==1) { $print_basket.=$lang[350]." <b>$stuks</b> <br>"; $print_basket.=$lang[32].": <b>$tovarov</b> <br>"; }
 if($summa>0) { $print_basket.=$lang[33].": <b><span id=\"jscheck\">".$summa."</span></b>"." ".$currencies_sign[$_SESSION["user_currency"]];
 if ($action=="basket") {$print_basket.="<div class=hidden>".$lang[33].": <b><span id=\"sosk\">".$summa."</span></div>";}
 } else {
@@ -2294,7 +2307,7 @@ $print_basket.="</p> ".$oform;
 $mainbasket="<small>$mainbasket</small><hr noshade size=\"1\" color=\"$nc2\"><p align=\"left\">";
 if ($use_weight==1) {$mainbasket.=$lang['totalweight'].": <b>".$totalweight."</b> ".$kg."<br>";}
 if ($use_volume==1) {$mainbasket.=$lang['totalvolume'].": <b>".$totalvolume."</b> ".$vol."<br>";}
-$mainbasket.=$lang[32].": <b>$tovarov</b>";
+$mainbasket.=$lang[350]." <b>".$stuks."</b><br>$lang[32]".": <b>".$tovarov."</b>";
 if($summa>0) { $mainbasket.="<br>".$lang[33].": <b>".$summa."</b>"." ".$currencies_sign[$_SESSION["user_currency"]].@$ddost;}
 $mainbasket.="</p> ";
 if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSION["user_currency"]])) { $mainbasket.= "<div class= round3>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>"; } else {$mainbasket.="<form class=form-inline action=\"".$_SERVER['PHP_SELF']."\" method=GET><input type=hidden name=\"action\" value=\"$allow_zakaz\"><input type=hidden name=\"flag\" value=\"".$cart->basket_speek."\"><div align=center><input class=btn type=submit value=\"".$lang[59]."&nbsp;&nbsp;&nbsp;&gt;&gt;\"></div></form><br><hr noshade color=\"$nc6\" size=1><br>"; }
@@ -2336,6 +2349,7 @@ top("", "$print_basket<br>", $style ['center_width'], strtolower($style ['bg_con
   }
 
   if ($basket!=""){
+  $stuks = $cart->itemstuks;
    $tovarov = $cart->itemcount;
    $summa = $cart->total;
    if($summa<$currencies_zakaz_menee[$valut]){

@@ -674,6 +674,7 @@ unset ($user_arr);
 } else {$choosecountry="";}
 
 $tovout = $cart->itemcount;
+$stuks = $cart->itemstuks;
 $summaout = $cart->total;
 if (($minimal_order_not_available==1)&&($summaout<$currencies_minimal_order[$_SESSION["user_currency"]])) { $errs.= "<div>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>";}
 
@@ -997,11 +998,10 @@ $zakbody .="$ffus
 <div class=\"noprint\"> <h4>".$lang[348]."</h4></div>
 $basout<br>";
 if ($tovout>0) {
-$zakbody .="<b>".$lang[349]."</b> $tovout<br><br>";
+$zakbody .=$lang[350].": <b>$stuks</b><br>".$lang[32].": <b>$tovout</b> <br><br>";
 }
-if ($sqrpf==1) {
-$zakbody .=$lang[350]." $basket_poz<br>";
-}
+
+
 if ($use_weight==1) {$zakbody.="<b>".$lang['totalweight'].":</b> ".$totalweight."$kg<br>";}
 if ($use_volume==1) {$zakbody.="<b>".$lang['totalvolume'].":</b> ".$totalvolume."$vol<br>";}
 
@@ -1037,12 +1037,9 @@ $x0006<h4>".$lang[244]." $nomer ". date("d.m.Y / H:i") . "</h4>
 $basout
 <br>";
 if ($tovout>0) {
-$verifylist.="<b>".$lang[349]."</b> $tovout<br><br>";
+$verifylist.=$lang[350].": <b>$stuks</b><br>".$lang[32].": <b>$tovout</b> <br><br>";
 } else {
 $verifylist.="<br>";
-}
-if ($sqrpf==1) {
-$zakbody .=$lang[350]." $basket_poz<br>";
 }
 $zakbody .="<br><br>";
 if ($use_weight==1) {$verifylist.="<b>".$lang['totalweight'].":</b> ".$totalweight."$kg<br>"; }

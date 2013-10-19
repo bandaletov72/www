@@ -385,9 +385,9 @@ $cmenu_cont=str_replace(" href=\"index.php?b=$b&query=$query", " style=\"font-we
 if ($dirvar!=0) {
 if ($view_dirs_j==0) {
 if ($view_ndir==0) {
-topwo ("", "<div align=left style=\"width: 96%; padding:5px;\" class=box3>".$dir_cont.$cmenu_cont."</div><br>", "100%", $nc10, $nc0, 2,0,"[categories]");
+topwo ("", "<div align=left class=box3>".$dir_cont.$cmenu_cont."</div><br>", "100%", $nc10, $nc0, 2,0,"[categories]");
 } else {
-top ($lang['all_items'], "<div align=left style=\"width: 96%; padding:5px;\" class=box3>".$dir_cont.$cmenu_cont."</div><br>", "100%", $nc10, $nc0, 2,0,"[categories]");
+top ($lang['all_items'], "<div align=left class=box3>".$dir_cont.$cmenu_cont."</div><br>", "100%", $nc10, $nc0, 2,0,"[categories]");
 }
 }
 }
@@ -433,9 +433,9 @@ if ($dirvar!=0) {
 $ndir="<div class=onav2 style=\"margin: 10px 0px 0px 0px; background: url('"."$htpath/grad.php?h=150&w=20&s=".str_replace("#","",$nc10)."&e=".str_replace("#","",$nc10)."&d=vertical') repeat-x scroll 0% 0% $nc10; \" align=left><font size=3 color=$nc0><b>".$lang['all_items']."</b></font></div><div class=clear></div>";
 if ($view_ndir==0) {$ndir="";}
 if ($usetheme==1) {
-topwo ("", "<div style=\"width: 96%;\" class=box3>$ndir<div align=left>".$dir_cont.$cmenu_cont."<img src=$image_path/pix.gif border=0 style=\"width:96%\" height=2></div></div>", "100%", $nc3, strtolower($style ['left_menu']), 2,0, "[categories]");
+topwo ("", "<div class=box3>$ndir<div align=left>".$dir_cont.$cmenu_cont."<img src=$image_path/pix.gif border=0 style=\"width:96%\" height=2></div></div>", "100%", $nc3, strtolower($style ['left_menu']), 2,0, "[categories]");
 } else {
-topwo ($lang['all_items'], "<div class=box3 style=\"width: 96%;\">$ndir<div align=left style=\"padding:5px;\">".$dir_cont.$cmenu_cont."<img src=$image_path/pix.gif border=0 style=\"width:96%\" height=2></div></div>", "100%", $nc3, strtolower($style ['left_menu']), 2,0, "[categories]");
+topwo ($lang['all_items'], "<div class=box3>$ndir<div align=left style=\"padding:5px;\">".$dir_cont.$cmenu_cont."<img src=$image_path/pix.gif border=0 style=\"width:96%\" height=2></div></div>", "100%", $nc3, strtolower($style ['left_menu']), 2,0, "[categories]");
 }
 }
 }

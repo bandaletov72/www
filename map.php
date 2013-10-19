@@ -74,7 +74,7 @@ imagesavealpha($im,1);
 $x=imagesx($im);
 $y=imagesy($im);
 $white=imagecolorallocate($im, 0xff, 0xff, 0xff);
-$grey=imagecolorallocate($im, 0xd0, 0xd0, 0xd0);
+$grey=imagecolorallocate($im, 0xff, 0xff, 0xff);
 $fontsize=8;
 imagefilledrectangle( $im, 0, $y/2, $x, $y/2, $grey );
 imagefilledrectangle( $im, $x/2-21, 0, $x/2-21, $y, $grey );
@@ -149,11 +149,13 @@ $line_color = ImageColorAllocate ($im, 233, 14, 91);
 $strt=0;
 while(list($kc,$kv)=each($shirota)) {
 if ($id!="") {
-if ($strt==0) {$sty=$shirota[$kc]; $stx=$dolgota[$kc]; imagecopy($im, $im3, $x/2+$stx*$x/360-2-21, $y/2-$sty*$y/180-2, 0, 0, $w, $h);  } else {
+if ($strt==0) {$sty=$shirota[$kc]; $stx=$dolgota[$kc]; 
+//imagecopy($im, $im3, $x/2+$stx*$x/360-2-21, $y/2-$sty*$y/180-2, 0, 0, $w, $h);  
+} else {
 $y11=$shirota[$kc];
 $x11=$dolgota[$kc];
 //echo "$stx , $sty -&gt; $x11 , $y11<br>";
-//imageline ($im,$x/2+$stx*$x/360-2-21, $y/2-$sty*$y/180-2, $x/2+$x11*$x/360-2-21, $y/2-$y11*$y/180-2, $line_color);
+imageline ($im,$x/2+$stx*$x/360-21, $y/2-$sty*$y/180, $x/2+$x11*$x/360-21, $y/2-$y11*$y/180, $line_color);
 $stx=$x11; $sty=$y11;
 }
 $strt++;
@@ -174,15 +176,17 @@ $o[3]= substr(
 str_replace("  "," ",
 str_replace("  "," ",
 str_replace("_"," ",
-preg_replace("/[^a-zA-Z0-9-\.\, ]/","",
-$o[3])))),0,45);
+str_replace(","," ",
+preg_replace("/[^a-zA-Z0-9-\. ]/","",
+$o[3]))))),0,45);
 
 $h=imagesy($im2);
 $w=imagesx($im2);
 
 
 if ($o[1]=="Проданные") {
-$rand=rand(-1,1);
+//$rand=rand(-1,1);
+$rand=0;
 
 if (trim($o[$i20])!="") {
 
@@ -216,7 +220,8 @@ imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$x, $rand+$y/2-$o[$i20]*$y/1
 }
 
 if ($o[1]=="В резерве") {
-$rand=rand(-1,1);
+//$rand=rand(-1,1);
+$rand=0;
 if (trim($o[$i20])!="") {
 imagecopy($im, $im4, $rand+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2, 0, 0, $w, $h);
 if ($o[$i21]<165) { imagecopy($im, $im4, $rand+$x+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2, 0, 0, $w, $h); }
@@ -248,10 +253,12 @@ imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$x, $rand+$y/2-$o[$i20]*$y/1
 }
 }
 if ($o[1]=="Свободные к продаже") {
-$rand=rand(-1,1);
+//$rand=rand(-1,1);
+$rand=0;
 if (trim($o[$i20])!="") {
 //echo $o[$i20]." ".$o[$i21]."<br>";
-$rand=rand(-1,1);
+//$rand=rand(-1,1);
+$rand=0;
 imagecopy($im, $im2, $rand+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2, 0, 0, $w, $h);
 if ($o[$i21]<165) { imagecopy($im, $im2, $rand+$x+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2, 0, 0, $w, $h); }
 if ($o[$i21]>165) { imagecopy($im, $im2, $rand+$x/2+$o[$i21]*$x/360-7-21-$x, $rand+$y/2-$o[$i20]*$y/180-$h+2, 0, 0, $w, $h); }

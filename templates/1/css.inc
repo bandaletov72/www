@@ -170,7 +170,7 @@ $style = array (
 'button_text' =>"$nc0",#button foreground color
 'max_image_width' =>$small_foto_width,#Max Image Width in pixels
 'max_image_height'=>$small_foto_height,#Max Image Height in pixels
-'left_width'=>"22%",#Left Column Width in px or %
+'left_width'=>"21%",#Left Column Width in px or %
 'right_width' =>220,#Right Column Width in pixels
 'center_width'=>"100%",#Center column Width in pixels
 );
@@ -183,12 +183,12 @@ $css= "<link href=\"$htpath/uploadify/uploadify.css\" rel=\"stylesheet\" type=\"
 <script type=\"text/javascript\" src=\"$htpath/js/lib.js\"></script>
 <script type=\"text/javascript\" src=\"$htpath/js/jquery-1.8.2.min.js\"></script>
 <script type=\"text/javascript\" src=\"$htpath/js/bootstrap.js\"></script>
-<script type=\"text/javascript\" src=\"$htpath/js/jquery.js\"></script>
-<script type=\"text/javascript\" src=\"$htpath/js/iscroll.js\"></script>";
+<script type=\"text/javascript\" src=\"$htpath/js/jquery.js\"></script>";
 if ($affix==1) {
 $css.="
 <script type=\"text/javascript\" src=\"$htpath/js/stickyMojo.js\"></script>
-<script type=\"text/javascript\" src=\"$htpath/js/iscroll.js\"></script>
+<link href=\"css/jquery.mCustomScrollbar.css\" rel=\"stylesheet\" type=\"text/css\" />
+<script src=\"js/jquery.mCustomScrollbar.min.js\"></script>
 ";
 }
 $css.="
@@ -196,7 +196,7 @@ $css.="
 <script type=\"text/javascript\" src=\"$htpath/fancybox/jquery.fancybox-1.3.4.pack.js\"></script>
 <link rel=\"stylesheet\" type=\"text/css\" href=\"$htpath/fancybox/jquery.fancybox-1.3.4.css\" media=\"screen\" />
 <link href=\"$htpath/css/bootstrap".$bootstrap_theme.".css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\" />
-<link href=\"$htpath/css/prettify.css\" rel=\"stylesheet\"><link type=\"text/css\" href=\"$htpath/css/jquery.scrollbar.css\" rel=\"stylesheet\" media=\"all\" /> ";
+<link href=\"$htpath/css/prettify.css\" rel=\"stylesheet\">";
 if (@$action=="blog") { $css.="<script type=\"text/javascript\" src=\"https://apis.google.com/js/plusone.js\"></script>"; }
 
 if ($flush_css==0){
@@ -259,15 +259,15 @@ $cssflush.="
         width:78%;
         height:auto; /*can be anything, just should make sure it is taller than the sidebar*/
         float: right;
-        background-color: #fafafa;
 }
 #sidebar {
         width: ".$style['left_width'].";
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 500px;
+        max-height: 500px;
         overflow: auto;
         margin: 0px 0px 0px 0px; /*controls the cutoff of the top and bottom limitations*/
         float: left; /* float right for a right aligned sidebar */
+
 }
 #sidebar_inner {
         width: 80%;
@@ -283,13 +283,6 @@ $cssflush.="
         margin-right: auto;
 }
 
-#scroller {
-	position:absolute; z-index:1;
-/*	-webkit-touch-callout:none;*/
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	width:100%;
-	padding:0;
-}
 ";
 
 }
@@ -374,11 +367,17 @@ background: $nc0;
 ";
 if ($affix==1) {
 $cssflush.="
+}
+.affixbox {
 background-color:$nc1;
 background:$nc1;
 margin-bottom: 0px;
 margin-top: 0px;
+margin-right: 0px;
 padding:5px 5px 5px 5px;
+width:100%;
+overflow: scroll;
+overflow-x: hidden;
 }";
 } else {
 $cssflush.="

@@ -14,6 +14,7 @@ class webcart {
         var $totalweight = 0;
         var $totalvolume = 0;
         var $itemcount = 0;
+        var $itemstuks = 0;
         var $items = array();
         var $itemprices = array();
         var $itemweights = array();
@@ -644,6 +645,7 @@ if (isset($this->itemqtys[$itemid])) {
                 $this->totalweight = 0;
                 $this->totalvolume = 0;
                 $this->itemcount = 0;
+                $this->itemstuks = 0;
                 $this->items = array();
                 $this->itemprices = array();
                 $this->itemweights = array();
@@ -677,6 +679,7 @@ if (isset($this->itemqtys[$itemid])) {
         $bask_tosave="";
 
                 $this->itemcount = 0;
+                $this->itemstuks = 0;
                 $this->total = 0;
                 $this->totalweight = 0;
                 $this->totalvolume= 0;
@@ -687,6 +690,7 @@ if (isset($this->itemqtys[$itemid])) {
                                 $this->totalweight = $this->totalweight + ($this->itemweights[$item] * $this->itemqtys[$item]);
                                 $this->totalvolume = $this->totalvolume + ($this->itemvolumes[$item] * $this->itemqtys[$item]);
                                 $this->itemcount++;
+                                $this->itemstuks+=$this->itemqtys[$item];
                         if ($items_db_type=="mysql") {
                         $bask_tosave.=$this->itemqtys[$item]."|".($okr*round($this->itemprices[$item]*$kurs/$okr))."|".$this->itemoptions[$item]."|".$this->itemoptions2[$item]."|".$this->iteminfo[$item]."|".$this->itemfids[$item]."|".$this->itemimg[$item]."|".$this->itemopt[$item]."|".$valut."|$language|".$this->itembase[$item]."|".$this->itemflag[$item]."|\n";
                         } else {

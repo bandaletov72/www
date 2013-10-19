@@ -115,7 +115,7 @@ $language="rus"; #Default language
 $deflanguage=$language;
 $template=1; #number of design template
 $smods=Array("site","shop"); #available modules
-$smod="shop"; #Default script module
+$smod="site"; #Default script module
 //testing GD
 $gd=0; if (function_exists('imagecreatetruecolor')) {$gd=1;} elseif (function_exists('imagecreate')) {$gd=2;} else {$gd=0;}
 // ending GD
@@ -171,7 +171,7 @@ $sape_id="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 $secret_salt="GpaDxcwN7MjAvH9PWlzJbgSTK328rBty0qOERLZ01dfeFuUIXCYio465snmQVhk"; //hash salt, please enter 50-100 random chars 0-9a-zA-Z to security your cookies
 $hache_salt="UIlzrBOtyu2vbXCVPA890qwNTK34567hjkERLZdfeFGpasnmQ01WgSDxcHJYioM"; //50-100 random chars 0-9a-zA-Z
 $fbmeta="";
-$affix=0;
+$affix=1;
 $affix_ofset=100;
 $bootstrap_theme=""; //leave blank for light theme or for dark design may use -night
 //$bootstrap_theme="-night"; //for dark designs only

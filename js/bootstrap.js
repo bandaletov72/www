@@ -1125,6 +1125,10 @@
     }
 
   , enter: function (e) {
+  var mousePos = { x: -1, y: -1 };
+       mousePos.x = e.pageX-40;
+       mousePos.y = e.pageY+40;
+       window.mousePos = mousePos;
       var defaults = $.fn[this.type].defaults
         , options = {}
         , self
@@ -1203,6 +1207,9 @@
           case 'right':
             tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width}
             break
+		case 'mouse':
+        tp = {top: window.mousePos.y, left: window.mousePos.x}
+        break
         }
 
         this.applyPlacement(tp, placement)

@@ -88,37 +88,39 @@ $dp="Ориентировочная дата прибытия: $dp"."<br>$uut<br>";
 $ims = @getimagesize("./images/map.png");
 $x=$ims[0]; $y=$ims[1];
 $lid=md5(@$o[3]." ID:".@$o[6]);
-
-
+$jo=0;
+$bst=str_replace("<img ", "<img class=thumbnail width=150 height=100 ", $o[9])."<br>$o[1]<br>$o[3]<br>".str_replace("\"", "'",$o[7])."<br>"."<span class='label label-info'>".number_format($o[4], 0, ',', ' ')." ".substr($o[12],1)."</span>";
 if ($o[1]=="Проданные") {
 if (trim($o[$i20])!="") {
-$area3.="<area href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" title=\"$o[1]\n\n$o[3]\n".str_replace("\"", "'",str_replace("<br>", "\n", $o[7]))."\n\n".$o[4]." ".substr($o[12],1)."\" onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\">";
-if ($o[$i21]<165) { $area3.="<area href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x+$x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x+$x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" title=\"$o[1]\n\n$o[3]\n".str_replace("\"", "'",str_replace("<br>", "\n", $o[7]))."\n\n".$o[4]." ".substr($o[12],1)."\">";}
-if ($o[$i21]>165) { $area3.="<area href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h)."\" title=\"$o[1]\n\n$o[3]\n".str_replace("\"", "'",str_replace("<br>", "\n", $o[7]))."\n\n".$o[4]." ".substr($o[12],1)."\">"; }
+$jo++;
+$area3.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\" onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\">";
+if ($o[$i21]<165) { $jo++; $area3.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x+$x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x+$x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">";}
+if ($o[$i21]>165) { $jo++; $area3.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">"; }
 
-$map3.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1><img src=$image_path/pin.png border=0> <b>$o[3]</b></a><br><small>$o[7]<br>$dp<br></small></div>";
+$map3.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1 onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\"><img src=$image_path/pin.png border=0> <b>$o[3]</b></a><br><small>$o[7]<br>$dp<br></small></div>";
 }
 }
 
 if ($o[1]=="В резерве") {
 if (trim($o[$i20])!="") {
-$area2.="<area href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" title=\"$o[1]\n\n$o[3]\n".str_replace("\"", "'",str_replace("<br>", "\n", $o[7]))."\n\n".$o[4]." ".substr($o[12],1)."\" onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\">\n";
-if ($o[$i21]<165) { $area2.="<area href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x+$x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x+$x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" title=\"$o[1]\n\n$o[3]\n".str_replace("\"", "'",str_replace("<br>", "\n", $o[7]))."\n\n".$o[4]." ".substr($o[12],1)."\">";}
-if ($o[$i21]>165) { $area2.="<area href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h)."\" title=\"$o[1]\n\n$o[3]\n".str_replace("\"", "'",str_replace("<br>", "\n", $o[7]))."\n\n".$o[4]." ".substr($o[12],1)."\">"; }
+$jo++;
+$area2.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\" onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\">\n";
+if ($o[$i21]<165) { $jo++; $area2.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x+$x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x+$x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">";}
+if ($o[$i21]>165) { $jo++; $area2.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">"; }
 
-$map2.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1><img src=$image_path/pin3.png border=0> <b>$o[3]</b></a><br><small>$o[7]<br>$dp<br></small></div>";
+$map2.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1 onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\"><img src=$image_path/pin3.png border=0> <b>$o[3]</b></a><br><small>$o[7]<br>$dp<br></small></div>";
 }
 }
 
 if ($o[1]=="Свободные к продаже") {
 if (trim($o[$i20])!="") {
+$jo++;
+$area1.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\" onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\">";
+if ($o[$i21]<165) { $jo++; $area1.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x+$x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x+$x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">";}
+if ($o[$i21]>165) { $jo++; $area1.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">"; }
 
-$area1.="<area href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" title=\"$o[1]\n\n$o[3]\n".str_replace("\"", "'",str_replace("<br>", "\n", $o[7]))."\n\n".$o[4]." ".substr($o[12],1)."\" onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\">";
-if ($o[$i21]<165) { $area1.="<area href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x+$x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x+$x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" title=\"$o[1]\n\n$o[3]\n".str_replace("\"", "'",str_replace("<br>", "\n", $o[7]))."\n\n".$o[4]." ".substr($o[12],1)."\">";}
-if ($o[$i21]>165) { $area1.="<area href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h)."\" title=\"$o[1]\n\n$o[3]\n".str_replace("\"", "'",str_replace("<br>", "\n", $o[7]))."\n\n".$o[4]." ".substr($o[12],1)."\">"; }
 
-
-$map1.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1><img src=$image_path/pin2.png border=0> <b>$o[3]</b></a><br><small>$o[7]<br>$dp<br></small></div>";
+$map1.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1 onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\"><img src=$image_path/pin2.png border=0> <b>$o[3]</b></a><br><small>$o[7]<br>$dp<br></small></div>";
 }
 }
 
@@ -127,6 +129,9 @@ $map1.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1>
 }
 if ($fmap==1) {
 $page_content=str_replace("[map]", "<script language=javascript>
+$(function () {
+$(\"[rel=tooltip]\").tooltip({html:true,placement:'mouse',delay: { show: 1500, hide: 100 }});
+    });
 function RestorePath() {
 document.getElementById('mapp').src='map.php?rnd=".md5(date("d.m.y H:i", time()))."';
 }
@@ -136,6 +141,9 @@ document.getElementById('mapp').src='map.php?rnd=".md5(date("d.m.y H:i", time())
 </script><map name=\"mapmap\">$area1"."$area2"."$area3</map><img id=mapp src=\"map.php?rnd=".md5(date("d.m.y H:i", time()))."\" width=$x height=$y border=0 class=one-edge-shadow usemap=\"#mapmap\"><br><br>$map1"."$map2"."$map3<div class=clearfix></div>", $page_content);
 } else {
 $themecontent=str_replace("[map]", "<script language=javascript>
+$(function () {
+$(\"[rel=tooltip]\").tooltip({html:true,placement:'mouse',delay: { show: 1500, hide: 100 }});
+    });
 function RestorePath() {
 document.getElementById('mapp').src='map.php?rnd=".md5(date("d.m.y H:i", time()))."';
 }

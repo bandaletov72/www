@@ -171,6 +171,7 @@ $style = array (
 'max_image_width' =>$small_foto_width,#Max Image Width in pixels
 'max_image_height'=>$small_foto_height,#Max Image Height in pixels
 'left_width'=>"21%",#Left Column Width in px or %
+'affix_width'=>"22%",#Left Column Width in px or %
 'right_width' =>220,#Right Column Width in pixels
 'center_width'=>"100%",#Center column Width in pixels
 );
@@ -216,7 +217,10 @@ padding: 0;
 background: $nc0;
 text-align:left;
 }
-
+.mCSB_scrollTools .mCSB_draggerRail{
+	width:4px;
+	box-shadow:2px 2px 2px rgba(255,255,255,0.2);
+}
 input[type=search] {
 	-webkit-appearance: textfield;
 	-webkit-box-sizing: content-box;
@@ -259,6 +263,7 @@ $cssflush.="
         width:78%;
         height:auto; /*can be anything, just should make sure it is taller than the sidebar*/
         float: right;
+
 }
 #sidebar {
         width: ".$style['left_width'].";
@@ -281,6 +286,12 @@ $cssflush.="
         width: 1020; /* MUST HAVE WIDTH SET, should be the sidebar width + main width */
         margin-left: auto;
         margin-right: auto;
+background-image: -webkit-gradient(linear, left center, right center, from($nc1), to($nc0), color-stop(".$style['affix_width'].", $nc1), color-stop(".$style['affix_width'].", $nc0));
+background-image: -webkit-linear-gradient(left, $nc1, $nc1 ".$style['affix_width'].", $nc0 ".$style['affix_width'].", $nc0);
+background-image: -moz-linear-gradient(left, $nc1, $nc1 ".$style['affix_width'].", $nc0 ".$style['affix_width'].", $nc0);
+background-image: -o-linear-gradient(left, $nc1, $nc1 ".$style['affix_width'].", $nc0 ".$style['affix_width'].", $nc0);
+background-image: -ms-linear-gradient(left, $nc1, $nc1 ".$style['affix_width'].", $nc0 ".$style['affix_width'].", $nc0);
+background-image: linear-gradient(to right, $nc1, $nc1 ".$style['affix_width'].", $nc0 ".$style['affix_width'].", $nc0);
 }
 
 ";
@@ -306,6 +317,15 @@ background-image: linear-gradient(to bottom, $nc0, $nc0 3%, $nc0 12%, $nc0 90%, 
 -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.29), inset 0 0 7px $nc0;
 box-shadow: 0 1px 5px rgba(0,0,0,0.29), inset 0 0 7px $nc0;
 margin-bottom: 10px;
+}
+.qty{
+margin-left:5px;
+margin-right:5px;
+height:30px;
+-webkit-box-shadow: inset 0 0 14px rgba(0,0,0,0.29);
+-moz-box-shadow: inset 0 0 14px rgba(0,0,0,0.29);
+box-shadow: inset 0 0 14px rgba(0,0,0,0.29);
+padding:5px;
 }
 .box{
 margin: 10px 10px 0 0;
@@ -800,6 +820,13 @@ width: 100%;
 .hr2 {
 background-color: ".lighter($nc1,-10).";
 border-bottom: 1px solid ".lighter($nc1,10).";
+height: 2px;
+margin: 10px 0;
+width: 100%;
+}
+.hr3 {
+background-color: ".lighter($nc5,-10).";
+border-bottom: 1px solid ".lighter($nc5,10).";
 height: 2px;
 margin: 10px 0;
 width: 100%;

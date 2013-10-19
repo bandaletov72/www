@@ -1,8 +1,6 @@
 <?php
 if (($catid!="")||($unifid!="")||($item_id!="")) { if ($view_left_menu_items==0) {$view_all_site=0; } else {$links_to_bottom=0; } }
 if ($view_all_site==1) {
-if (isset($_GET['bb'])) { $bb=$_GET['bb']; } elseif(isset($_POST['bb'])) { $bb=$_POST['bb']; } else { $bb=0; }
-if (!preg_match('/^[0-9]+$/i',$bb)) { $bb=0;}
 if ($usetheme==0) {
 if ($leftmenu==0) {$links_to_bottom=1;}
 if ($affix==1) { $leftmenu=1; $links_to_bottom=0;}

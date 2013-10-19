@@ -1476,7 +1476,7 @@ if ($nlinkcontent!="") {
 if (preg_match("/\?/i",$link)) {
 $titlink=str_replace("$link","$link&speek=$speek&bb=".$linkey, $titlink);
 }
-$normalinks.="<div class=\"lcat1\" style=\"border-bottom: 1px $nc6 dotted; padding-top:10px; padding-bottom:10px;\" onclick=\"nl('".$linkey."');\"><div class=pull-left>".str_replace("<br>","","".str_replace("</font><br>","", $titlink)."")."</div><div class=\"pull-right\"><i id=\"i_".$linkey."\" class=\"icon-chevron-right icon-white\"></i></div><div class=clearfix></div></div>";
+$normalinks.="<div class=\"lcat1\" style=\"border-bottom: 1px $nc6 dotted; padding-top:10px; padding-bottom:10px;\" onclick=\"nl('".$linkey."');\" id=bb_".$linkey."><div class=pull-left>".str_replace("<br>","","".str_replace("</font><br>","", $titlink)."")."</div><div class=\"pull-right\"><i id=\"i_".$linkey."\" class=\"icon-chevron-right icon-white\"></i></div><div class=clearfix></div></div>";
 //content
 $normalinks.="<div style=\"display: none;\" id=\"d_".$linkey."\">".$nlinkcontent."</div>";
 } else {

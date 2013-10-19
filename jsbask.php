@@ -222,7 +222,7 @@ if ($sw=="offon") {$sw="on"; $_SESSION["maxin"]=$maxinb;}
 if ($sw=="onoff") {$sw="on"; $_SESSION["maxin"]=1000;}
 if ($sw=="on") {
 $_SESSION["basksw"]="on";
-$butonoff="<div class=pull-right><a class=btn href=#minimize onclick=baskoff()><small><i class=icon-chevron-down></i></small></a></div>";
+$butonoff="<div class=pull-right><a class=btn href=#minimize onclick=baskoff()><i class=icon-chevron-down></i></a></div>";
 
 }
 if ($sw=="off") {
@@ -231,7 +231,7 @@ $butonoff="&nbsp;&nbsp;<a class=btn href=#show onclick=baskon() ondragstart=bask
 }
 if ($sw=="") {
 if ($_SESSION["basksw"]=="on") {
-$butonoff="<div class=pull-right><a class=btn href=#minimize onclick=baskoff()><small><i class=icon-chevron-down></i></small></a></div>";
+$butonoff="<div class=pull-right><a class=btn href=#minimize onclick=baskoff()><i class=icon-chevron-down></i></a></div>";
 } else {
 $butonoff="&nbsp;&nbsp;<a class=btn href=#show onclick=baskon() ondragstart=baskon()>$basket_img</a><br><br>";
 }
@@ -314,15 +314,15 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
     } else {
     $full_baskets[$ss] .="<table border=0 cellspacing=0 cellpadding=3 width=".$style['right_width']."><tr><td valign=top align=left>";
     }
-    $bdelb="<a class=btn href=#del onclick=baskodel(~~~". md5($item['id']) ."~~~) title='".$lang['del']."'><i class=icon-remove></i></a>";
+    $bdelb="<a href=#del class=ml onclick=baskodel(~~~". md5($item['id']) ."~~~) title='".$lang['del']."'><i class=icon-remove></i></a>";
     if ($hidart==1) {
     $itid=strtoupper(substr(md5( str_replace(" ID:", "", str_replace(strtoken ($item['info'], " ID:") , "" , $item['info'])).$artrnd), -7));
-    $full_baskets[$ss] .= "<div style=~~~display: block; position: relative;~~~><span id=sp". md5($item['id']) ." style=~~~position: absolute; top: 0px;~~~></span></div><small>$llid".strtoken(strtoken(str_replace(" ID:","^", $item['info']), "^" ),"*")." $itid</a>".$item['options']."</small>";
+    $full_baskets[$ss] .= "<div style=~~~display: block; position: relative;~~~><span id=sp". md5($item['id']) ." style=~~~position: absolute; top: 0px;~~~></span></div>$llid".strtoken(strtoken(str_replace(" ID:","^", $item['info']), "^" ),"*")." $itid</a>".$item['options']."";
     } else {
-    $full_baskets[$ss] .= "<div style=~~~display: block; position: relative;~~~><span id=sp". md5($item['id']) ." style=~~~position: absolute; top: 0px;~~~></span></div><small>$llid".strtoken(str_replace(" ID:","^", $item['info']), "^" )."</a>".$item['options']."</small>";
+    $full_baskets[$ss] .= "<div style=~~~display: block; position: relative;~~~><span id=sp". md5($item['id']) ." style=~~~position: absolute; top: 0px;~~~></span></div>$llid".strtoken(str_replace(" ID:","^", $item['info']), "^" )."</a>".$item['options']."";
     }
     if (!isset ($mainbaskets[$ss])) { $mainbaskets[$ss] =""; }
-    //$mainbaskets[$ss].="<br><li><small>$llid".strtoken(str_replace(" ID:","^", $item['info']), "^" )."</a>".$item['options']."</small></li>";
+    //$mainbaskets[$ss].="<br><li>$llid".strtoken(str_replace(" ID:","^", $item['info']), "^" )."</a>".$item['options']."</li>";
     if (!isset ($wishzak)) { $wishzak =""; }
     if ($wishzak!="") {
     if ($hidart==1) {
@@ -341,7 +341,7 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
   if (!isset($out_c[$minorderrow])) { } else { $out_c[$minorderrow]=doubleval($out_c[$minorderrow]);
   if (@$out_c[$minorderrow]>=1) {$minorder=@$out_c[$minorderrow]; $minorder2=(@$out_c[$minorderrow]*2); $minorderblock=" readonly=readonly"; $minsht="<br><font color=$nc3>".str_replace("[pcs]",$out_c[11], str_replace("[num]","$minorder", $lang[1005]))."</font>"; $minupak="<br><font color=$nc3>".str_replace("[pcs]",$out_c[11], str_replace("[num]","$minorder", $lang[1006]))."</font>";}
   }
-    $full_baskets[$ss] .="<span class=nowrap><b>".$lang['qty'].":</b><br><a class=btn href=#minus onclick=bminus(~~~". md5($item['id']) ."~~~,".(doubleval($item['qty'])-$minorder).")><i class=icon-minus></i></a><a class=btn><b>".$item['qty']."</b></a><a class=btn href=#plus onclick=bplus(~~~". md5($item['id']) ."~~~,".(doubleval($item['qty'])+$minorder).")><i class=icon-plus></i></a>$bdelb</span>$minupak<br>";
+    $full_baskets[$ss] .="<span class=nowrap><b>".$lang['qty'].":</b><br><a class=btn href=#minus onclick=bminus(~~~". md5($item['id']) ."~~~,".(doubleval($item['qty'])-$minorder).")><i class=icon-minus></i></a><span class=qty>".$item['qty']."</span><a class=btn href=#plus onclick=bplus(~~~". md5($item['id']) ."~~~,".(doubleval($item['qty'])+$minorder).")><i class=icon-plus></i></a>$bdelb</span>$minupak<br>";
    // $full_basket .=$item['qty'];
 
     //$full_basket .= "";
@@ -352,7 +352,7 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
     //if ($use_weight==1) {$full_basket .= "<br><b>".$lang['subtotalweight'].":</b> ".$item['subtotalweight']."$kg"; }
     //if ($use_volume==1) {$full_basket .= "<br><b>".$lang['subtotalvolume'].":</b> ".$item['subtotalvolume']."$vol"; }}
     if ($item['price']>0) {
-    $full_baskets[$ss] .= $item['qty']."".$out_c[11]." x ".($okr*round($item['price']*$kurs/$okr))."".$currencies_sign[$_SESSION["user_currency"]]."</small><br>";
+    $full_baskets[$ss] .= $item['qty']."".$out_c[11]." x ".($okr*round($item['price']*$kurs/$okr))."".$currencies_sign[$_SESSION["user_currency"]]."<br>";
     $full_baskets[$ss] .= "<b>".$item['qty']*($okr*round($item['price']*$kurs/$okr))."".$currencies_sign[$_SESSION["user_currency"]]."</b>";
     }
     $summa+=$item['qty']*($okr*round($item['price']*$kurs/$okr));
@@ -370,7 +370,7 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
   $fbsk=array_reverse($full_baskets);
   $ss=0;
   while (list($jbkey,$jbval)=each($fbsk)) {
-  if ($ss>=$_SESSION["maxin"]) { $printmax="<div align=center><a href=#all onclick=baskonoff()><small>$lang[422] [".$tovarov."]</small><br><img src=$image_path/handdown.png border=0></a></div><br>";} else {
+  if ($ss>=$_SESSION["maxin"]) { $printmax="<div align=center><a href=#all onclick=baskonoff()>$lang[422] [".$tovarov."]<br><img src=$image_path/handdown.png border=0></a></div><br>";} else {
   $full_basket.=$jbval;
   }
   $ss+=1;
@@ -378,14 +378,14 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
   if ($_SESSION["maxin"]>$maxinb) { $printmax="<div align=center><a href=#hide onclick=baskoffon()><img src=$image_path/handup.png border=0><br>$lang[386]</a></div><br>";  }
   $full_basket.="$printmax";
   if ($summa>0) {$full_basket.="<div align=center>".$lang[33].": <b>".$summa."".$currencies_sign[$_SESSION["user_currency"]]."</b></div>";}
-  if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSION["user_currency"]])) {$full_basket.= "<br><div style=width:".($style['right_width']-10)."px;><small>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</small></div>"; } else { $full_basket.="<br><br><div align=center><button onclick=javascript:document.location.href=~~~$htpath/index.php?action=zakaz~~~ type=button class=~~~btn btn-primary btn-large~~~><i class=icon-ok></i> ".$lang[59]."</b></button></div>"; }
+  if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSION["user_currency"]])) {$full_basket.= "<br><div style=width:".($style['right_width']-10)."px;>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>"; } else { $full_basket.="<br><br><div align=center><button onclick=javascript:document.location.href=~~~$htpath/index.php?action=zakaz~~~ type=button class=~~~btn btn-primary btn-large~~~><i class=icon-ok></i> ".$lang[59]."</b></button></div>"; }
   $full_basket.="</form>";
 $js_spisok ="var jsbasks=document.getElementById('jsbask');
 ";
 
 if ($_SESSION["basksw"]=="on") {
 //if ($tovarov>0) { $js_spisok .="jsbasks.innerHTML=\"<div class=round3 align=left style='width:".$style['right_width']."px;'>".str_replace("<a ","\";\njsbasks.innerHTML+=\"<a ",str_replace("<span ","\";\njsbasks.innerHTML+=\"<span ",str_replace("<tr","\";\njsbasks.innerHTML+=\"<tr",str_replace("<div","\";\njsbasks.innerHTML+=\"<div",str_replace("~~~","'",str_replace("\"","",   $full_basket))))))."</div>\";";}
-if ($tovarov>0) { $js_spisok .="jsbasks.innerHTML=\"<div align=left style='width: 96%;'><img src=images/pix.gif style='height:1px; width:96%;'><br>".str_replace("~~~","'",str_replace("\"","",   $full_basket))."</div>\";";}
+if ($tovarov>0) { $js_spisok .="jsbasks.innerHTML=\"<div align=left class=box5><img src=images/pix.gif style='height:1px; width:96%;'><br>".str_replace("~~~","'",str_replace("\"","",   $full_basket))."</div>\";";}
 
 } else {
 if ($tovarov>0) { $js_spisok .="jsbasks.innerHTML=\"<img src=$image_path/pix.gif height=10 width=20 border=0><br>".$butonoff."\";";}

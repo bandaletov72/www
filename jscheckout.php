@@ -299,7 +299,7 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
     } else {
     $full_baskets[$ss] .="<table border=0 cellspacing=0 cellpadding=3><tr><td valign=top align=left>";
     }
-    $bdelb="<a class=btn href=#del onclick=baskodel(~~~". md5($item['id']) ."~~~)><i class=icon-remove></i></a>";
+    $bdelb="<a class=ml href=#del onclick=baskodel(~~~". md5($item['id']) ."~~~)><i class=icon-remove></i></a>";
     if ($hidart==1) {
     $itid=strtoupper(substr(md5( str_replace(" ID:", "", str_replace(strtoken ($item['info'], " ID:") , "" , $item['info'])).$artrnd), -7));
     $full_baskets[$ss] .= "<div style=~~~display: block; position: relative;~~~><span id=sp". md5($item['id']) ." style=~~~position: absolute; top: 0px;~~~></span></div<$llid".strtoken(strtoken(str_replace(" ID:","^", $item['info']), "^" ),"*")." $itid</a>".$item['options']."";
@@ -327,7 +327,7 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
   if (@$out_c[$minorderrow]>=1) {$minorder=@$out_c[$minorderrow]; $minorder2=(@$out_c[$minorderrow]*2); $minorderblock=" readonly=readonly"; $minsht="<br><font color=$nc3>".str_replace("[pcs]",$out_c[11], str_replace("[num]","$minorder", $lang[1005]))."</font>"; $minupak="<br><font color=$nc3>".str_replace("[pcs]",$out_c[11], str_replace("[num]","$minorder", $lang[1006]))."</font>";}
   }
 
-    $full_baskets[$ss] .="<nobr>".$lang['qty'].":<br><a class=btn href=#minus onclick=bminus(~~~". md5($item['id']) ."~~~,".(doubleval($item['qty'])-$minorder).")><i class=icon-minus></i></a><font size=3 class=btn><b>".$item['qty']."</b></font><a class=btn href=#plus onclick=bplus(~~~". md5($item['id']) ."~~~,".(doubleval($item['qty'])+$minorder).")><i class=icon-plus></i></a>$bdelb</nobr>$minupak<br>";
+    $full_baskets[$ss] .="<nobr>".$lang['qty'].":<br><a class=btn href=#minus onclick=bminus(~~~". md5($item['id']) ."~~~,".(doubleval($item['qty'])-$minorder).")><i class=icon-minus></i></a><span class=qty>".$item['qty']."</span><a class=btn href=#plus onclick=bplus(~~~". md5($item['id']) ."~~~,".(doubleval($item['qty'])+$minorder).")><i class=icon-plus></i></a>$bdelb</nobr>$minupak<br>";
    // $full_basket .=$item['qty'];
 
     //$full_basket .= "";

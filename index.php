@@ -129,6 +129,8 @@ return @$_SERVER["REMOTE_ADDR"];
 }
 }
 $_SERVER["REMOTE_ADDR"] = determineIP();
+if (isset($_GET['bb'])) { $bb=$_GET['bb']; } elseif(isset($_POST['bb'])) { $bb=$_POST['bb']; } else { $bb=0; }
+if (!preg_match('/^[0-9]+$/i',$bb)) { $bb=0;}
 if (isset($_GET['onlyforum'])) { $onlyforum=$_GET['onlyforum']; } elseif(isset($_POST['onlyforum'])) { $onlyforum=$_POST['onlyforum']; } else { $onlyforum=0; }
 if (!preg_match('/^[0-9]+$/i',$onlyforum)) { $onlyforum=0;}
 if (isset($_GET['au'])) { $au=$_GET['au']; } elseif(isset($_POST['au'])) { $au=$_POST['au']; } else { $au=0; }
@@ -1300,9 +1302,13 @@ if ($leftmenu==1) { if ($affix==1) { echo "<td valign=\"top\" align=\"left\" sty
                 updateOnContentResize: true,
                 updateOnBrowserResize: true,
                 },
-            scrollButtons: {enable: true}
+            scrollButtons: {enable: false}
 		  });
-
+          ";
+if ($bb!="") { echo  "var elID=\"#bb_".$bb."\";
+$('#sidebar').mCustomScrollbar(\"scrollTo\",elID);";
+}
+          echo"
           });
         </script>
         <div id=\"sidebar\" class=\"affixbox\">

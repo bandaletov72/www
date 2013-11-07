@@ -490,7 +490,9 @@ exit;
 fputs ($file, "$towish");flock ($file, LOCK_UN);
 fclose ($file);
 unset ($file);
-
+if ($postorder==1) {
+require("./modules/postorder.php");
+}
 $cart->empty_cart();
 
 $verifylist="Ваши персональные пожелания будут учтены при оформлении совместного заказа.<br>Теперь Вы можете договариваться с организатором закупки о дате и времени получения заказа, а также о его оплате.<br><br>Через 20 сек. - Ваш броузер должен переправить Вас на страницу совместного заказа, чтобы Вы проконтролировали, что Ваша заявка попала в совместный заказ.<p align=center>Если этого не произошло или Вы не хотите ждать, нажмите <a href=\"".$_SERVER['PHP_SELF']."?zak=wishlist\"><b>здесь</b></a></p><META HTTP-EQUIV=\"Refresh\" CONTENT=\"20;URL=".$_SERVER['PHP_SELF']. "?zak=wishlist\"><br><br>";
@@ -839,16 +841,17 @@ $out_c[9]="<img src=\"".$image_path."/no_photo.gif\" border=0 width=".$style['ww
 
 }
 $out_c[9]=str_replace("width= height= ", "", $out_c[9]);
-
-    $basout .="<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\"><tr><td valign=top align=center><a href=\"$htpath/index.php?unifid=".md5($item['info'])."&flag=".$item['flag']."\">".@$out_c[9]."</a></td><td valign=top align=left width=100%>";
+    $llink="unifid=".md5($item['info']);
+    if ($friendly_url==1) { $llink="item_id=".translit(@$out_c[3])."-".translit(@$out_c[6]);}
+    $basout .="<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\"><tr><td valign=top align=center><a href=\"$htpath/index.php?".$llink."&flag=".$item['flag']."\">".@$out_c[9]."</a></td><td valign=top align=left width=100%>";
     //$basout .= "<small><b>".$lang['id'].":</b> ".$item['id']."<br>";
     if ($hidart==0) {
-    $basout .= "<b>".$lang['info'].":</b> <a href=\"$htpath/index.php?unifid=".md5($item['info'])."&flag=".$item['flag']."\">".$item['info']."</a> ".$item['options']."<br>";
+    $basout .= "<b>".$lang['info'].":</b> <a href=\"$htpath/index.php?".$llink."&flag=".$item['flag']."\">".$item['info']."</a> ".$item['options']."<br>";
     $wishn=$item['info'];
 
     } else {
     $itid=strtoupper(substr(md5( str_replace(" ID:", "", str_replace(strtoken ($item['info'], " ID:") , "" , $item['info'])).$artrnd), -7));
-    $basout .= "<a href=\"$htpath/index.php?unifid=".md5($item['info'])."&flag=".$item['flag']."\">".strtoken($item['info'],"*")." ".$itid."</a> ".$item['options']."<br>";
+    $basout .= "<a href=\"$htpath/index.php?".$llink."&flag=".$item['flag']."\">".strtoken($item['info'],"*")." ".$itid."</a> ".$item['options']."<br>";
     $wishn=strtoken($item['info'],"*");
      }
     if (!isset($wishm[$wishn])){$wishm[$wishn]="";}
@@ -1206,7 +1209,7 @@ if ($postpost[$sd]=="post") {$zay="505";}
 $ssttaaggss=str_replace("|","", @$_SESSION["sfrom"]." / ".@$_SESSION["stag"]);
 $ssttaaggss="<b><a href=$htpath/index.php?action=view_users&filter=".$details[1].">".$details[1]."</a></b> ".$details[6]." -&gt; $ssttaaggss";
 $stroke ="$nomer|/admin/baskets/$prenaz|$email|$fio|<b>".
-@$_SESSION["partner_id"]."</b> $country <font size=1>$gorod</font> +$countrycode($telcode)$tel<br><font size=1>$street"." $street2, $house"." "."$korp"." "."$ofice</font>| "."$metro|$now<br>".str_replace("|", " ",
+@$_SESSION["partner_id"]."</b> $country <font class=small>$gorod</font> +$countrycode($telcode)$tel<br><font class=small>$street"." $street2, $house"." "."$korp"." "."$ofice</font>| "."$metro|$now<br>".str_replace("|", " ",
 @$_SERVER['REMOTE_ADDR'])."<br>".@$_SERVER['REMOTE_ADDR']."<br>".$ssttaaggss." / ".$mpz['time'].": " .gmdate("H:i:s", (time()-$_SESSION["stime"]))."|".str_replace(",",".", (0.01*round(($totulus/$kurs)/0.01)))."|".str_replace(",",".", $basket_opt)."|".str_replace(",",".", (0.01*round(($basket_dost/$kurs)/0.01)))."|$zay|".
 @$details[1]."|||".
 @$posturl[$sd]."|".
@@ -1507,10 +1510,12 @@ fputs($fp,$pm_link);
 fclose ($fp);
 
 if ($ppps==2) {$pm_link="<h1><a href=\"$htpath/index.php?action=cabinet\">".$lang[520]." $totulus $valut</a> (".$lang[380].")</h1><br><br>";}
-
-$cart->empty_cart();
 mail ("$email","Order $nomer From: $shop_mail To: $email", $emailbody.$pm_link."</body></html>\n", "From: $shop_mail\nContent-Type: text/html; charset=$codepage\nContent-Transfer-Encoding: 8bit");
 mail ("$shop_mail","Order $nomer From: $shop_mail To: $email", $emailbody.$pm_link."</body></html>\n", "From: $shop_mail\nContent-Type: text/html; charset=$codepage\nContent-Transfer-Encoding: 8bit");
+if ($postorder==1) {
+require("./modules/postorder.php");
+}
+$cart->empty_cart();
 
 }
 

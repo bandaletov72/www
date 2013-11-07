@@ -151,13 +151,13 @@ $template_list .= "<p align=\"center\">
 <b>".$lang[211]."</b> ".$lang[318]." \"&lt;?\" \"?&gt;\"<br>
 ".$lang[319]."</small><br><br>
 <form class=form-inline action=\"index.php\" method=\"post\">
-<textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
+<a name=\"textarea\"></a><textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
 <br><br>
 <input type=\"hidden\" name=\"save\" value=\"1\">
 <input type=\"hidden\" name=\"nt\" value=\"$nt\">
 <input type=\"hidden\" name=\"action\" value=\"template\">
 <input type=\"hidden\" name=\"t\" value=\"$t\">
-<input type=submit value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\">
+<input type=submit class=\"btn btn-primary btn-large\" value=\"".$lang['ch']."\">
 </form>
 </p>
 <center>
@@ -187,13 +187,13 @@ $template_list .= "
 <div><h4><font color=#b94a48>$lang[980]</font></h4></div>
 <b>".$lang['edits']." $nt/$t.txt</b><br>
 <form class=form-inline action=\"index.php\" method=\"post\">
-<textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
+<a name=\"textarea\"></a><textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
 <br><br>
 <input type=\"hidden\" name=\"save\" value=\"1\">
 <input type=\"hidden\" name=\"nt\" value=\"$nt\">
 <input type=\"hidden\" name=\"action\" value=\"template\">
 <input type=\"hidden\" name=\"t\" value=\"$t\">
-<input type=submit value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\">
+<input type=submit class=\"btn btn-primary btn-large\" value=\"".$lang['ch']."\">
 </form>
 \n";
 }
@@ -216,13 +216,13 @@ $template_list .= "
 <div><h4><font color=#b94a48>$lang[1001]</font></h4></div>
 <b>".$lang['edits']." $nt/$t.txt</b><br>
 <form class=form-inline action=\"index.php\" method=\"post\">
-<textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
+<a name=\"textarea\"></a><textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
 <br><br>
 <input type=\"hidden\" name=\"save\" value=\"1\">
 <input type=\"hidden\" name=\"nt\" value=\"$nt\">
 <input type=\"hidden\" name=\"action\" value=\"template\">
 <input type=\"hidden\" name=\"t\" value=\"$t\">
-<input type=submit value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\">
+<input type=submit class=\"btn btn-primary btn-large\" value=\"".$lang['ch']."\">
 </form>
 \n";
 }
@@ -243,13 +243,13 @@ $template_content=$temp;
 $template_list .= "
 <b>$htpath/robots.txt</b>
 <form class=form-inline action=\"index.php\" method=\"post\">
-<textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
+<a name=\"textarea\"></a><textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
 <br><br>
 <input type=\"hidden\" name=\"save\" value=\"1\">
 <input type=\"hidden\" name=\"nt\" value=\"robots\">
 <input type=\"hidden\" name=\"action\" value=\"template\">
 <input type=\"hidden\" name=\"t\" value=\"\">
-<input type=submit value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\">
+<input type=submit class=\"btn btn-primary btn-large\" value=\"".$lang['ch']."\">
 </form>
 \n";
 }
@@ -289,13 +289,13 @@ This will switch ON this widget:
 <div class=round4>require (\"./widgets/weather.inc\"); </div>
 <br>
 <form class=form-inline action=\"index.php\" method=\"post\">
-<textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
+<a name=\"textarea\"></a><textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
 <br><br>
 <input type=\"hidden\" name=\"save\" value=\"1\">
 <input type=\"hidden\" name=\"nt\" value=\"widgetlist\">
 <input type=\"hidden\" name=\"action\" value=\"template\">
 <input type=\"hidden\" name=\"t\" value=\"\">
-<input type=submit value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\">
+<input type=submit class=\"btn btn-primary btn-large\" value=\"".$lang['ch']."\">
 </form>
 <br><div class=round2><b>Widgets installed:</b><br><br>$wfiles</div>
 \n";
@@ -323,13 +323,13 @@ $template_content=$temp;
 $template_list .= "
 <b>$htpath/.htaccess</b>
 <form class=form-inline action=\"index.php\" method=\"post\">
-<textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
+<a name=\"textarea\"></a><textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
 <br><br>
 <input type=\"hidden\" name=\"save\" value=\"1\">
 <input type=\"hidden\" name=\"nt\" value=\"htaccess\">
 <input type=\"hidden\" name=\"action\" value=\"template\">
 <input type=\"hidden\" name=\"t\" value=\"\">
-<input type=submit value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\">
+<input type=submit class=\"btn btn-primary btn-large\" value=\"".$lang['ch']."\">
 </form>
 \n";
 }
@@ -363,13 +363,13 @@ $template_list .= "
 3|3|Support|Technical Support for all users|admin,sasha|Forum Rules|http://www.yoursite.com/rules.htm|1|1|images/mini_folder.png|0|
 </small></pre><br><b>".$lang[1004]."</b>
 <form class=form-inline action=\"index.php\" method=\"post\">
-<textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
+<a name=\"textarea\"></a><textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
 <br><br>
 <input type=\"hidden\" name=\"save\" value=\"1\">
 <input type=\"hidden\" name=\"nt\" value=\"forums\">
 <input type=\"hidden\" name=\"action\" value=\"template\">
 <input type=\"hidden\" name=\"t\" value=\"\">
-<input type=submit value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\">
+<input type=submit class=\"btn btn-primary btn-large\" value=\"".$lang['ch']."\">
 </form>
 \n";
 }
@@ -403,13 +403,13 @@ DOC Sertificate|*|checkbox|20||
 Other requirements|*|textarea|10||
 </pre>
 <form class=form-inline action=\"index.php\" method=\"post\">
-<textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
+<a name=\"textarea\"></a><textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
 <br><br>
 <input type=\"hidden\" name=\"save\" value=\"1\">
 <input type=\"hidden\" name=\"nt\" value=\"$nt\">
 <input type=\"hidden\" name=\"action\" value=\"template\">
 <input type=\"hidden\" name=\"t\" value=\"$t\">
-<input type=submit value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\">
+<input type=submit class=\"btn btn-primary btn-large\" value=\"".$lang['ch']."\">
 </form>
 \n";
 
@@ -442,13 +442,13 @@ $template_list .= "
 guest|Guest chat|Welcome aboard!|0||||||
 </pre><br><b>".str_replace(toLower($lang[9]),$lang[1011], $lang[1004])."</b>
 <form class=form-inline action=\"index.php\" method=\"post\">
-<textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
+<a name=\"textarea\"></a><textarea rows=\"22\" name=\"temp\" cols=\"60\" style=\"width:100%\">".str_replace("[nc10]", "{nc10}", str_replace("[lnc10]", "{lnc10}", @$template_content))."</textarea>
 <br><br>
 <input type=\"hidden\" name=\"save\" value=\"1\">
 <input type=\"hidden\" name=\"nt\" value=\"chats\">
 <input type=\"hidden\" name=\"action\" value=\"template\">
 <input type=\"hidden\" name=\"t\" value=\"\">
-<input type=submit value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\">
+<input type=submit class=\"btn btn-primary btn-large\" value=\"".$lang['ch']."\">
 </form>
 \n";
 }

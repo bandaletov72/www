@@ -58,7 +58,7 @@ if ($tagword!="") {$tot_kws+=doubleval($f5[0]);}
 $colortag=0;
 $fontsize=20;
 /*
-$fontcolortags1="$nc2";
+$fontcolortags1="$nc3";
 $fontcolortags2=lighter($nc6, -40);
 //sort($kwr);
 @reset( $kwr);
@@ -109,8 +109,8 @@ fclose ($filetagf);
 $tags_admined = "<h1>OK</h1> $tags_admined";
 */
 
-$fontcolortags1="$nc2";
-$fontcolortags2="$nc5";
+$fontcolortags1="$nc3";
+$fontcolortags2="$nc4";
 //sort($kwr);
 @reset( $kwr);
 $colortag=0;
@@ -123,7 +123,7 @@ $fontcolortags=$fontcolortags1;
 } else {
 $fontcolortags=$fontcolortags2;
 }
-if (floor($colortag/2)==($colortag/2)) {$bgk1=lighter($nc6,10);} else {$bgk1=$nc0;}
+if (floor($colortag/2)==($colortag/2)) {$bgk1=" style=\"font-weight:400;\"";} else {$bgk1="";}
 //if ($kwr5[$line_num]!="") { $kwr5[$line_num]=str_replace(strtoken($kwr5[$line_num], "?")."?", "", $kwr5[$line_num]); parse_str(strtoken($kwr5[$line_num], "?")); }
 $sorta=$kwr2[$line_num];
 $chars= intval(strlen($sorta));
@@ -138,7 +138,7 @@ if ($chars==7): $sortbytags="000$sorta"; endif;
 if ($chars==8): $sortbytags="00$sorta"; endif;
 if ($chars==9): $sortbytags="0$sorta"; endif;
 if ($chars==10): $sortbytags="$sorta"; endif;
-$tags_ad[$line_num]="<!-- $sortbytags --><li><span style=\"font-size: ".($tagsize+ceil($fontsize*$kwr2[$line_num]/$maxtag))."px;\"><a href=\"".$kwr3[$line_num]."\" title=\"".$kwr2[$line_num]."\"><font color=\"".$fontcolortags."\">".wordwrap(strtoken(strip_tags(rawurldecode($line)),"&"),22," ",1)."</font></a></span></li>\n";
+$tags_ad[$line_num]="<!-- $sortbytags --><div class=\"lnk pull-left mr\"".$bgk1."><span style=\"font-size: ".($tagsize+ceil($fontsize*$kwr2[$line_num]/$maxtag))."px;\"><a href=\"".$kwr3[$line_num]."\" title=\"".$kwr2[$line_num]."\"><font color=\"".$fontcolortags."\">".wordwrap(strtoken(strip_tags(rawurldecode($line)),"&"),22," ",1)."</font></a></span></div>\n";
 $colortag+=1;
 }
 }
@@ -172,7 +172,7 @@ $cdd+=1;
 
 }
 if ($cmas>0) {
-$tages.= $tags_admind["$cdd"]."<br><br>";
+$tages.= "<div>".$tags_admind["$cdd"]."<div class=clearfix></div></div>";
 $filetg=fopen("$base_loc/".$cdd.".txt","w");
 flock ($filetg, LOCK_EX);
 fputs($filetg, $tags_admind["$cdd"]);
@@ -188,7 +188,7 @@ fclose ($filetg);
 
 $filetagf=fopen("$base_loc/tag_index.txt","w");
 flock ($filetagf, LOCK_EX);
-fputs($filetagf, @$tags_admind["0"]. "<small><br><br><b>".$lang[286].":</b> '$populartag' (".$lang[287].": $maxtag)</small>");
+fputs($filetagf, @$tags_admind["0"]. "<br><br><b>".$lang[286].":</b> '$populartag' (".$lang[287].": $maxtag)");
 flock ($filetagf, LOCK_UN);
 fclose ($filetagf);
 $filetagp=fopen("./admin/db/tags_pages.txt","w");

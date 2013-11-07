@@ -282,7 +282,7 @@ function clickHandler(src) {
 #treeBar {
         border-bottom: 1px solid #999999;
         background-color: #cccccc;
-        font-weight: bold;
+        font-weight:400;
 }
 #treeHolder {
         border: 1px solid #999999;

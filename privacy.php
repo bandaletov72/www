@@ -17,8 +17,8 @@ LABEL {CURSOR: default;}
 .normal {FONT-WEIGHT: normal;}
 .load {background-image: url('images/ind.gif'); background-repeat: none; background-position: center}
 a.menu { color: black; }
-.ALERT  { font-size: 12; color: red; font-weight: bold; }
-.ROW {  padding: 4px; color:black; font-weight:bold; background-color: #ffffff; }
+.ALERT  { font-size: 12; color: red; font-weight:400; }
+.ROW {  padding: 4px; color:black; font-weight:400; background-color: #ffffff; }
 ol.results {margin:0 40px 0 40px; padding:0 0 0 40px}
 ol.results li {margin-bottom:1em; padding:0;}
 ol.results div.text {font-size:80%; padding-bottom:0.1em;}

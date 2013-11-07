@@ -188,7 +188,7 @@ $llid="<a href=\"$htpath/index.php?unifid=".$lid."\">";
 if ($friendly_url==1) {
 if($hidart!=1) {$man=translit(@$out[3])."-".translit(@$out[6]);
 if ($mod_rw_enable==0) { $llid="<a href=\"$htpath/index.php?item_id=".$man."\">"; }else {$llid="<a href=\"$htpath/".$man.".htm\">";}}}
-
+$speprice=$price;
 eval ($evstr);
 //if (($foto1!="")&&($view_vitrin!=0)&&($price!=0)): $vitrin_content[$vit_qty] = "$file|$dir|$subdir|$nazv ID:".@$out[6]."|$price|$opt|$description|$foto1|$ff|"; $vit_qty+=1; endif;
 $files_found += 1;

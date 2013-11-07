@@ -480,7 +480,7 @@ $t=explode("|",$t2);
 $zz++;
 echo "<div class=cat2 onclick=\"document.location.href='$htpath/index.php?action=cl&level=".rawurlencode("$level/$clfile")."&cl_post=".$t[4]."'\" style='cursor: pointer; cursor: hand;' onmouseover=this.style.backgroundColor='$nc6'; onmouseout=this.style.backgroundColor='';><font color=$nc10>".wordwrap(substr(strip_tags($t[13]),0,100), 27, "\n", true)."</font> <a href=\"$htpath/index.php?action=cl&level=".rawurlencode("$level/$clfile")."&cl_post=".$t[4]."\"><b>".wordwrap(substr(strip_tags($t[5]),0,100), 27, " \n", true)."</b></a> - ".wordwrap(substr(strip_tags($t[6]),0,60), 27, "\n", true)."<br>
 <small>".to_html(wordwrap(substr(str_replace("[br]", " ", strip_tags($t[12])),0,200), 100, "\n", true),1)."
- - <font color=$nc3><noindex>".wordwrap(substr(strip_tags($t[14]),0,60), 27, "\n", true)."</noindex></font> - <font size=1><i>".date("d.m.Y H:i", $t[0])."</i></font></small><div class=clear></div></div>";
+ - <font color=$nc3><noindex>".wordwrap(substr(strip_tags($t[14]),0,60), 27, "\n", true)."</noindex></font> - <font class=small><i>".date("d.m.Y H:i", $t[0])."</i></font></small><div class=clear></div></div>";
 }
 unset ($t, $t1, $t2);
 }

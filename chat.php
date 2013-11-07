@@ -375,13 +375,13 @@ if (!isset($bir[$idx])) { $birtc=""; $birti="";} else { $birtc=" class=round2"; 
 
 if ($read==22) {
 if ($portal==1) {
-$online.="<tr><td".$birtc."><a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek target=_blank><img class=shadow src=$ava align=left width=26 height=26 border=0 style=\"border: 2px solid $nc0; width: 26px; height: 26px; -webkit-border-radius: 3px; border-radius: 3px;\"><font color=$font size=1><b>$tmp[3]</b></a></font>$birti<br><font size=1>".$tmp[5]."</font><br><font size=1>".$tmp[4]." <b>".date("H:i:s", $tmp[0])."</b></font></td></tr>\n";
+$online.="<tr><td".$birtc."><a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek target=_blank><img class=shadow src=$ava align=left width=26 height=26 border=0 style=\"border: 2px solid $nc0; width: 26px; height: 26px; -webkit-border-radius: 3px; border-radius: 3px;\"><font color=$font size=1><b>$tmp[3]</b></a></font>$birti<br><font class=small>".$tmp[5]."</font><br><font class=small>".$tmp[4]." <b>".date("H:i:s", $tmp[0])."</b></font></td></tr>\n";
 } else {
 $online.="<tr><td".$birtc."><a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek><img src=$ava align=absmiddle width=20 height=20 hspace=5 vspace=2 border=0><font color=$font>$tmp[1]</a></font>$birti</td></tr>";
 }
 } else {
 if ($portal==1) {
-$online.="<a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek><img class=shadow src=$ava align=left width=26 height=26 border=0 class=shadow hspace=10><font color=$font size=1><b>$tmp[3]</b></a></font>$birti<br><font size=1>".$tmp[5]."</font><br><font size=1>".$tmp[4]." <b>".date("H:i:s", $tmp[0])."</b></font><br><br>";
+$online.="<a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek><img class=shadow src=$ava align=left width=26 height=26 border=0 class=shadow hspace=10><font color=$font size=1><b>$tmp[3]</b></a></font>$birti<br><font class=small>".$tmp[5]."</font><br><font class=small>".$tmp[4]." <b>".date("H:i:s", $tmp[0])."</b></font><br><br>";
 
 } else {
 $online.="<a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek><img src=$ava align=absmiddle width=20 height=20 hspace=5 vspace=2 border=0><font color=$font>$tmp[1]</a></font>$birti<br>";
@@ -521,7 +521,7 @@ function clearchat()
 $priva="";
 $privc="";
 if ($valid=="1") {
-if ($privat!="") { $priva="<font color=$nc10 size=3><b>".$privat." <img border=0 align=absmiddle src=$image_path/chat.gif hspace=10> $details[1]</b></font>"; $privc="<div align=center><font size=1>$lang[1012]</font></div>";}
+if ($privat!="") { $priva="<font color=$nc10 size=3><b>".$privat." <img border=0 align=absmiddle src=$image_path/chat.gif hspace=10> $details[1]</b></font>"; $privc="<div align=center><font class=small>$lang[1012]</font></div>";}
 }
 echo "
 function exit()

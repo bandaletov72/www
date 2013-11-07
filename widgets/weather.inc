@@ -55,10 +55,10 @@ $themecontent=str_replace("[weather_ico]", "<img src=\"http://img.yandex.net/i/w
 $themecontent=str_replace("[weather_city]", "<a href=\"go.php?".strrev("http://pogoda.yandex.ru")."\">".$lang['citys']."</a>",$themecontent);
 $themecontent=str_replace("[weather_type]", $weather_array[3],$themecontent);
 }
-$widget= "<div class=shadow align=left style=\"background-image: url('grad.php?h=40&w=1&e=".str_replace("#","",$nc6)."&s=".str_replace("#","",$nc6)."&d=vertical'); background-repeat: repeat-x; background-color: $nc6; position: fixed; width: 54px; height: 40px; overflow:hidden; top: ".(40+$expos*40)."px; right: -20px; z-index:".(1000-$expos)."; padding: 0px; cursor: pointer; cursor: hand;\" onmouseover=\"javascript:this.style.width='400px';\" onmouseout=\"javascript:this.style.width='54px';\"><table border=0 cellspacing=5 cellpadding=5 style=\"height:35px;\"><tr><td valign=top align=center>
-<img src=\"$image_path/pix.gif\" align=absmiddle width=26 height=8><br><font size=1><b>".$weather_array[1]."</b></font></td><td>
-<img src=\"http://img.yandex.net/i/wiz".$weather_array[2].".png\" alt=\"".$weather_array[3]."\" title=\"".$weather_array[3]."\" align=absmiddle></td><td><a href=\"go.php?".strrev("http://pogoda.yandex.ru")."\"><font size=1>".$lang['citys']."</a></font></td><td style=\"white-space:nowrap;\">
-<font size=1>$weather_array[3]</font></td><td><font color=#468847 size=1>".date("H:i", filemtime("./admin/weather.txt"))."</font></td></tr></table></div>";
+$widget= "<div class=shadow align=left style=\"background-image: url('grad.php?h=".(40+$popr)."&w=1&e=".str_replace("#","",$nc6)."&s=".str_replace("#","",$nc6)."&d=vertical'); background-repeat: repeat-x; background-color: $nc6; position: fixed; width: ".(54+$popr)."px; height: ".(40+$popr). "px; overflow:hidden; top: ".((40+$popr)+$expos*(40+$popr))."px; right: -20px; z-index:".(1000-$expos)."; padding: 0px; cursor: pointer; cursor: hand;\" onmouseover=\"javascript:this.style.width='400px';\" onmouseout=\"javascript:this.style.width='".(54+$popr)."px';\"><table border=0 cellspacing=5 cellpadding=5 style=\"height:35px;\"><tr><td valign=top align=center>
+<img src=\"$image_path/pix.gif\" align=absmiddle width=26 height=8><br><font class=small><b>".$weather_array[1]."</b></font></td><td>
+<img src=\"http://img.yandex.net/i/wiz".$weather_array[2].".png\" alt=\"".$weather_array[3]."\" title=\"".$weather_array[3]."\" align=absmiddle></td><td><a href=\"go.php?".strrev("http://pogoda.yandex.ru")."\"><font class=small>".$lang['citys']."</font></a></td><td style=\"white-space:nowrap;\">
+<font class=small>$weather_array[3]</font></td><td><font color=#468847 size=1>".date("H:i", filemtime("./admin/weather.txt"))."</font></td></tr></table></div>";
 if ($usetheme==1) {
 $themecontent=str_replace("[widgets]", "$widget"."[widgets]",$themecontent);
 } else {
@@ -69,6 +69,6 @@ echo $widget;
 
 
 }
-$expos+=1; 
+$expos+=1;
 }
 ?>

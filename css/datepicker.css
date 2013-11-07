@@ -161,7 +161,7 @@
 }
 .datepicker th.switch {
   width: 145px;
-font-weight: bold;
+font-weight:400;
 }
 .datepicker th.next,
 .datepicker th.prev {

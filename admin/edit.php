@@ -15,6 +15,7 @@ extract($_POST, EXTR_SKIP);
 extract($_COOKIE, EXTR_SKIP);
 
 }
+$curstatus="";
 $datepicker="";
 $hhh="";
 $onsubm="";
@@ -99,7 +100,7 @@ $lt=0;
 $listnews[0]=$c."0000";
 $handle=opendir("../.$base_loc/content/");
 while (($file = readdir($handle))!==FALSE) {
-If (($file == '.') || ($file == '..') || ($file == 'config.inc')) {
+if (($file == '.') || ($file == '..') || ($file == 'config.inc')) {
 continue;
 } else {
 $out=explode(".",$file);
@@ -136,11 +137,11 @@ exit;
 }
 flock ($fp, LOCK_EX);
 if ($c=="a") {
-$month=date ("d:m:Y");
+$month=date ("d:m:Y",time());
 fwrite ($fp, "==$month==");
 } else {
 if ($c=="c") {
-$curd=date ("d.m.Y");
+$curd=date ("d.m.Y",time());
 
 fwrite ($fp, "==$curd==");
 } else {
@@ -260,8 +261,26 @@ $kwords = str_replace("<br>", chr(10), $kwords);
 $description = str_replace("<br>", chr(10), $description);
 $foto=$foto1;
 $unifid=md5(@$out[3]." ID:".@$out[6]);
+$hist="";
+$statusfile=".$base_loc/status/".substr($unifid,0,2)."/".$unifid."/status.txt.history.txt";
+if (file_exists($statusfile)) {
+$sp=array_reverse(file($statusfile));;
+while (list($kh,$vh)=each($sp)) {
+if (trim($vh)!="") {
+$h=explode("|", trim($vh));
+$hist.=date("d.m.Y H:i:s", $h[1])." ".$h[0]. "<div class=muted>".$h[2]." ". $h[3]."</div>";
+}
+}
+}
+unset ($sp);
+
+$statusfile=".$base_loc/status/".substr($unifid,0,2)."/".$unifid."/status.txt";
+if (file_exists($statusfile)) {
+$sp=file($statusfile);
+$curstatus=trim($sp[0]);
+}
 $section1.= "<tr bgcolor='$nc6'>
-<td align='left' valign='top' title=\"COLUMN 6\"><input class=input-small type=text name='ext_id' size='20' value='$ext_id' ><input type='hidden' name='nomer' value='$nomer'> </td>
+<td align='left' valign='top' title=\"COLUMN 6\"><input type=hidden name=status id=sstatus value=\"$curstatus\"><input class=input-small type=text name='ext_id' size='20' value='$ext_id' ><input type='hidden' name='nomer' value='$nomer'> </td>
     <td align='left' valign='top' title=\"COLUMN 4\">$price</td>
     <td align='left' valign='top' title=\"COLUMN 11\"><input class=input-mini type=text size='3' name='vitrin' value=\"$vitrin\" ></td>
     <td align='left' valign='top' title=\"COLUMN 12\"><select class=input-mini size='1' name='onsale'><option selected value='$onsale'>".substr($onsale,0,1)."</option><option value='1'>".$lang['yes']."</option><option value='0'>".$lang['no']."</option></select></td>
@@ -277,31 +296,126 @@ $foto=str_replace("<img ","<img style=\"cursor:pointer; cursor: hand;\" onclick=
 $section4.= $foto;
 }
 $section4.= "</div>";
-$section1.= "<table class=table width=100% cellspacing=0 border=0 cellpadding=2>
+$fcontentsac=file(".$base_loc/catid.txt");
+$drs="";
+$subdrs="";
+$subdrsm=Array();
+$zfm=0;
+while (list ($line_numfc, $linefc) = each ($fcontentsac)) {
+if (trim ($linefc)!="") {
+$outfc=explode("|",$linefc);
+$iindfc=$outfc[1]."|".$outfc[2]."|";
+$podstava[$iindfc]=$outfc[0];
+if ($outfc[2]=="") {$drsm[$zfm]=$outfc[1]; } else {
+$subdrsm[$zfm]=$outfc[2];
+$zfm++;
+}
+}
+}
+$ddb=array_unique($drsm);
+natcasesort($ddb);
+reset($ddb);
+while (list ($kb,$vb)=each($ddb)) {
+
+$drs.="<li><a href='#' onclick='drs(\"".$vb."\");'>".$vb."</a></li>";
+}
+
+$subdb=array_unique($subdrsm);
+natcasesort($subdb);
+reset($subdb);
+while (list ($ksb,$vsb)=each($subdb)) {
+
+$subdrs.="<li><a href='#' onclick='subdrs(\"".$vsb."\");'>".$vsb."</a></li>";
+}
+unset ($fcontentsac);
+$status="";
+$clr="";
+if (file_exists("../templates/$template/$speek/status.inc")) {
+
+$fcontentsac=file("../templates/$template/$speek/status.inc");
+$lln=0;
+while (list ($ln, $linefc) = each ($fcontentsac)) {
+if (trim ($linefc)!="") {
+if ($lln==0) { $sty=' label-success';}
+if ($lln==1) { $sty=' label-warning';}
+if ($lln==2) { $sty=' label-important';}
+if ($lln==3) { $sty=' label-info';}
+if ($lln==4) { $sty=' label-inverse';}
+if (trim($linefc)==trim($curstatus)) { $curstatus="<b class=\"label".$sty."\" style=\"font-size:".($main_font_size+4)."pt; padding:8px;\">$curstatus</b>";}
+$status.="<li><a href='#' onclick='SetStatus(\"".trim ($linefc)."\",".($lln+1).");'><i class=\"label".$sty."\">&nbsp;</i> ".trim ($linefc)."</a></li>";
+$lln++;
+}
+}
+}
+if ($status!="") {
+$status="<td><ul class=\"nav nav-pills dropup\" style=\"margin:0;\">
+<li class=\"dropdown active\">
+<a class=\"dropdown-toggle mr ml\" data-toggle=\"dropdown\" href=\"#\">".$lang[397]."<b class=\"caret\"></b></a>
+<ul class=\"dropdown-menu\">
+<li><a href='#' onclick='SetStatus(\"\",0);'>".$lang[397]." ".$lang[906]."</a></li>
+$status
+<li class=\"divider\"></li>
+<li><a href='$htpath/index.php?action=template&nt=templates/".$template."/".$speek."&t=status#textarea' target=_blank style=\"font-weight:400;\">".$lang[1618]."</a></li>
+</ul>
+</li>
+</ul></td><td><div id=istatus>$curstatus</div></td>";
+} else {
+$status="<td></td>";
+}
+$section1.= "<script>
+function SetStatus(id,clr) {
+var st='';
+if (id=='') {
+document.getElementById('sstatus').value='na';
+} else {
+document.getElementById('sstatus').value=id;
+}
+if (clr==1) { st=' label-success';}
+if (clr==2) { st=' label-warning';}
+if (clr==3) { st=' label-important';}
+if (clr==4) { st=' label-info';}
+if (clr==5) { st=' label-inverse';}
+document.getElementById('istatus').innerHTML='<b class=\"label'+st+'\" style=\\\"font-size:".($main_font_size+4)."pt; padding:8px; \\\">'+id+'</b>';
+}
+function drs(id) {
+document.getElementById('idir').value=id;
+}
+function subdrs(id) {
+document.getElementById('isubdir').value=id;
+}
+</script>
+<table class=table width=100% cellspacing=0 border=0 cellpadding=2>
 <tr>
 <td align='right' valign='top'>3. <b>".$lang['name'].":</b></td>
-<td align='left' valign='top'><input class=input-large type=text name='nazv' size='60' style=\"width:90%\" value='$nazv'></td>
+<td align='left' valign='top'><input class=input-large type=text name='nazv' size='60' style=\"width:96%\" value='$nazv'></td><td>&nbsp;</td>
 </tr>
 <tr>
 <td align='right' valign='top'>1. <b>".$lang[430].":</b></td>
-<td align='left' valign='top'><input class=input-large type=text name='dir' size='60' style=\"width:90%\" value='$dir'></td>
+<td align='left' valign='top'><input class=input-large type=text name='dir' id=idir size='60' style=\"width:96%\" value='$dir'></td><td><ul class=\"nav nav-pills\" style=\"margin:0;\">
+<li class=\"dropdown pull-right active\">
+<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><b class=\"caret\"></b></a>
+<ul class=\"dropdown-menu\">
+$drs
+</ul>
+</li>
+</ul></td>
 </tr>
 <tr>
 <td align='right' valign='top'>2. <b>".$lang[431].":</b></td>
-<td align='left' valign='top'><input class=input-large type=text name='subdir' size='60' style=\"width:90%\" value='$subdir'></td>
+<td align='left' valign='top'><input class=input-large type=text name='subdir' id=isubdir size='60' style=\"width:96%\" value='$subdir'></td><td><ul class=\"nav nav-pills\" style=\"margin:0;\">
+<li class=\"dropdown pull-right active\">
+<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><b class=\"caret\"></b></a>
+<ul class=\"dropdown-menu\">
+$subdrs
+</ul>
+</li>
+</ul></td>
 </tr>
 ";
 
 //custom card add
 $c_filename="../templates/$template/$speek/custom_cart.inc";
 $cc_cart="";
-
-$fcontentsac=file(".$base_loc/catid.txt");
-while (list ($line_numfc, $linefc) = each ($fcontentsac)) {
-$outfc=explode("|",$linefc);
-$iindfc=$outfc[1]."|".$outfc[2]."|";
-$podstava[$iindfc]=$outfc[0];
-}
 if (@file_exists($c_filename)==TRUE) {
 
 $custom_cart1=file("../templates/$template/$speek/custom_cart.inc");
@@ -354,10 +468,10 @@ if (trim($val)!="") {
 $str2.=";";
 if ($key==0) {
 $tabh.="<div class=\\\"pull-left muted mr\" style=\\\"width:".floor(80/$qcols)."\\\" align=center>$val</div>";
-$row.="<input class=\"span2 pull-left mr\" data-date-format=\"$ewc_dateformat\" style=\"width:".floor(70/$qcols)."\" type=text id=inp$ncc"."_nullrow_$key value=\"\" onkeyup=\"calc".$ncc."();\" onchange=\"calc".$ncc."();\" placeholder=\"$ewc_dateformat\">";
+$row.="<input class=\"span2 pull-left mr\" data-date-format=\"$ewc_dateformat\" style=\"width:".floor(70/$qcols)."\" type=text id=inp$ncc"."_nullrow_$key value=\"\" placeholder=\"$ewc_dateformat\">";
 } else {
 $tabh.="<div class=\\\"pull-left muted mr\" style=\\\"width:".floor(80/$qcols)."%\\\" align=center>$val</div>";
-$row.="<input class=\"span2 pull-left mr\" style=\"width:".floor(80/$qcols)."%\" type=text id=inp$ncc"."_nullrow_$key value=\"\" onkeyup=\"calc".$ncc."();\" onchange=\"calc".$ncc."();\" placeholder=\"$val\">";
+$row.="<input class=\"span2 pull-left mr\" style=\"width:".floor(80/$qcols)."%\" type=text id=inp$ncc"."_nullrow_$key value=\"\" placeholder=\"$val\">";
 }
 }
 }
@@ -365,13 +479,13 @@ $tabh.="<div class=clearfix></div>";
 $row.="<div class=pull-right style=\"width:".floor(20/$qcols)."%\"><a class=\"btn\" onclick=delrow$ncc(nullrow)><i class=icon-remove></i></a></div><div class=clearfix></div></div>";
 $datepicker.="init$ncc();\n";
 $onsubm.="checkrow".$ncc."();\n";
-$dops2[$totaldops]= @$dops2[$totaldops]."<tr><td align='right' valign='top' colspan=2>$ncc. <b>".@$ccc[0]."</b>, ".@$ccc[2]." <input type=hidden class=span2 id=cc$ncc name='cc[$cc_num]' value=\"".@$out[$ncc]."\"><a class=\"pull-right btn btn-success\" style=\"margin-left:10px;\" onclick=\"addrow$ncc();\"><i class=\"icon-plus\"></i> ".$lang['add']."</a><div class=clearfix></div></td></tr>
+$dops2[$totaldops]= @$dops2[$totaldops]."<tr><td align='right' valign='top' colspan=2>$ncc. <b>".@$ccc[0]."</b>, ".@$ccc[2]." <span id=ta_".$cc_num." class=hidden><textarea id=cc$ncc name='cc[$cc_num]' cols=40 rows=10 style=\"width:100%\" autocomplete=\"off\" onchange=\"document.getElementById('cc".$ncc."').innerHTML=this.value;\">".@$out[$ncc]."</textarea></span><b id=ic_".$cc_num." class=\"icon-eye-open mr ml b1\" onclick=\"if (document.getElementById('ta_".$cc_num."').className=='hidden') { document.getElementById('ta_".$cc_num."').className=''; document.getElementById('ic_".$cc_num."').className='icon-eye-close mr ml b1'; document.getElementById('row".$ncc."').innerHTML=''; } else { document.getElementById('ta_".$cc_num."').className='hidden';document.getElementById('ic_".$cc_num."').className='icon-eye-open mr ml b1'; init".$ncc."();}\"></b><a class=\"pull-right btn btn-success\" style=\"margin-left:10px;\" onclick=\"addrow$ncc();\"><i class=\"icon-plus\"></i> ".$lang['add']."</a><div class=clearfix></div></td></tr>
 <tr><td align='left' valign='top' colspan=2>
 <script language=javascript>
 var nrow".$ncc."=0;
 function addrow".$ncc."() {
 checkrow".$ncc."();
-document.getElementById('cc".$ncc."').value=document.getElementById('cc".$ncc."').value+'$str2^<br>';
+document.getElementById('cc".$ncc."').innerHTML=document.getElementById('cc".$ncc."').innerHTML+'$str2^<br>';
 init".$ncc."();
 }
 
@@ -380,10 +494,10 @@ init".$ncc."();
 function init".$ncc."() {
 nrow".$ncc."=0;
 document.getElementById('row".$ncc."').innerHTML='';
-var z=document.getElementById('cc".$ncc."').value;
+var z=document.getElementById('cc".$ncc."').innerHTML;
 var tabh='".$tabh."';
 if (z!='') {
-var t=z.split('<br>');
+var t=z.split('&lt;br&gt;');
 for(var i = 0; i < t.length; i++) {
 if (t[i]!='') {
 nrow".$ncc."++;
@@ -424,7 +538,7 @@ if (i!=drow) {
 r=r+c+'<br>';
 }
 }
-document.getElementById('cc".$ncc."').value=r;
+document.getElementById('cc".$ncc."').innerHTML=r;
 init".$ncc."();
 }
 
@@ -439,7 +553,7 @@ c=c+v+';';
 }
 }
 r=r+c+'<br>';
-document.getElementById('cc".$ncc."').value=r;
+document.getElementById('cc".$ncc."').innerHTML=r;
 }
 }
 </script>
@@ -690,7 +804,7 @@ natcasesort($tmp);
 $selectf="<option>".implode("</option>\n<option>",$tmp)."</option>\n";
 
 $dops2[$totaldops]= @$dops2[$totaldops]."<tr><td align='right' valign='top'>$ncc. <b>".@$ccc[0]."</b>, ".@$ccc[2]."</td>
-<td align='left' valign='top'><select style=\"width:90%;\" name='cc[$cc_num]'><option selected>".@$out[$ncc]."</option>\n".$selectf."</select></td></tr>";
+<td align='left' valign='top'><select class=input-mini name='cc[$cc_num]'><option selected>".@$out[$ncc]."</option>\n".$selectf."</select></td></tr>";
 
 } else {
 
@@ -747,7 +861,7 @@ if ($out[0]=="electron1") {$defaults=$lang[1570];}
 $att=str_replace("<br>", "\n", @$out[$ncc]);
 $att_qty=count(explode("\n",$att))-1;
 $headersect=str_replace("[att_qty]",$att_qty, $headersect);
-$section5.= "<tr><td>0. <b>$lang[1569]:</b> <select name=\"item_type\"><option value=".@$out[0].">".$defaults."</option><option value=\"00000\">".$lang[1572]."</option><option value=\"electron1\">".$lang[1570]."</option><option value=\"electron1000\">".$lang[1571]."</option></select><br><br>$ncc. <a class=\"btn btn-success\" onClick=\"javascript:window.open('attach.php?speek=$speek&gtype=1&perpage=6','gal1','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\"><i class=icon-download-alt></i> ".$lang[1554]."</a>
+$section5.= "<tr><td>0. <b>$lang[1569]:</b> <select class=input-mini name=\"item_type\"><option value=".@$out[0].">".$defaults."</option><option value=\"00000\">".$lang[1572]."</option><option value=\"electron1\">".$lang[1570]."</option><option value=\"electron1000\">".$lang[1571]."</option></select><br><br>$ncc. <a class=\"btn btn-success\" onClick=\"javascript:window.open('attach.php?speek=$speek&gtype=1&perpage=6','gal1','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\"><i class=icon-download-alt></i> ".$lang[1554]."</a>
 </td>
 </tr>
 <tr>
@@ -832,20 +946,35 @@ $section3.= "
 </table>";
 
 $section1.= "
-<tr><td align='left' valign='top' colspan=2>14. <b>".$lang['artlink'].":</b><br><input class=input-large type=text name='ext_lnk' size=40 value='$ext_lnk' style=\"width:90%;\"></td>
+<tr><td align='left' valign='top' colspan=3>14. <b>".$lang['artlink'].":</b><br><input class=input-large type=text name='ext_lnk' size=40 value='$ext_lnk' style=\"width:90%;\"></td>
 </tr>
 <tr>
-<td align='left' valign='top' colspan=2>8. <b>".$lang['kwrds'].":</b><br><textarea rows='1' id=textarea_kwords name='kwords' style=\"width:90%; height:30px;\" cols='60'>$kwords</textarea></td>
+<td align='left' valign='top' colspan=3>8. <b>".$lang['kwrds'].":</b><br><textarea rows='1' id=textarea_kwords name='kwords' style=\"width:90%; height:30px;\" cols='60'>$kwords</textarea></td>
 </tr></table>
-<table border=0 cellpadding=10 cellspacing=0>
+<table class=table2>
 <tr>
-<td align='right' valign='middle'><b title=\"COLUMN 16\">".$lang['qty'].":</b></td>
-<td align='left' valign='bottom'><input class=input-mini type=text name='kolvo' size='3' value='$kolvo' title=\"COLUMN 16\">
-&nbsp;<b title=\"COLUMN 5\">".$lang['148'].":</b> <input class=input-mini id=col5 type=text name='opt' size='3' value='$opt' title=\"COLUMN 5\">
-&nbsp;<b title=\"COLUMN 4\">".$lang['price'].":</b> <input class=input-mini id=col4 type=text name='price' size='3' value='$price' title=\"COLUMN 4\"></td>";
+<td>
+<b title=\"COLUMN 16\">".$lang['qty'].":</b>
+</td>
+<td>
+<input class=input-mini type=text name='kolvo' size='3' value='$kolvo' title=\"COLUMN 16\">
+</td>
+<td>
+<b title=\"COLUMN 5\">".$lang['148'].":</b>
+</td>
+<td>
+<input class=input-mini id=col5 type=text name='opt' size='3' value='$opt' title=\"COLUMN 5\">
+</td>
+<td>
+<b title=\"COLUMN 4\">".$lang['price'].":</b>
+</td>
+<td>
+<input class=input-mini id=col4 type=text name='price' size='3' value='$price' title=\"COLUMN 4\">
+</td>
+";
 if (count($currencies)>1) {
 reset($currencies);
-$section1.= "<td><select class=input-small name=cur title=\"+COLUMN 12\"><option>".$cur."</option>";
+$section1.= "<td><select class=input-mini name=cur title=\"+COLUMN 12\"><option>".$cur."</option>";
 while (list($keyc,$valc)=each($currencies)) {
 $section1.= "<option>$keyc</option>";
 }
@@ -872,10 +1001,11 @@ $section2
 <div>$section5</div>
 </div>
 <div class=\"tab-pane\" id=\"tab6\">
-<div><table class=table width=100% cellspacing=0 border=0 cellpadding=2>$hhh</table></div>
+<div>$hist<table class=table width=100% cellspacing=0 border=0 cellpadding=2>$hhh</table></div>
 </div>
 </div>
-<div align=right><a class=\"btn btn-primary\" style=\"margin-top: 10px; margin-right: 20px;\"  onclick=\"if(\$('#chb').attr('checked') == 'checked') { document.getElementById('chb2').value='1';} else {document.getElementById('chb2').value='';} $onsubm"."document.getElementById('thisform').submit()\"><i class=icon-ok></i> ".$lang['ch']."</a></div>
+<div class=pull-left><table border=0><tr>$status<td></td></tr></table></div><div class=pull-right><a class=\"btn btn-primary\" style=\"margin-top: 10px; margin-right: 20px;\"  onclick=\"if(\$('#chb').attr('checked') == 'checked') { document.getElementById('chb2').value='1';} else {document.getElementById('chb2').value='';} $onsubm"."document.getElementById('thisform').submit()\"><i class=icon-ok></i> ".$lang['ch']."</a></div>
+<div class=clearfix></div>
 
 </div> </form>
 <script>

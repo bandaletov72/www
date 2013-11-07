@@ -52,6 +52,7 @@ function rc() {
 <BODY onload=\"javascript:self.focus()\"><br><div class=\"mr ml\">
 ";
 if (!isset($_POST['id'])) { $id=0; } else {$id=$_POST['id'];}
+if (!isset($_POST['status'])) { $status=""; } else { $status=$_POST['status']; }
 if (isset($_POST['cc'])) { $cc=$_POST['cc'];}
 
 if (isset ($cc)) {
@@ -103,6 +104,26 @@ $catid2=translit("$tdir");
 @$text_lnk=@$out[14];
 @$tfull_descr=@$out[15];
 @$tkolvo=@$out[16];
+$tunifid=md5(@$out[3]." ID:".@$out[6]);
+echo "<pre>LOG:<br>".$lang['edits']." DB - <b>".$lang[209]."</b><br>";
+if ($status!="") {
+$statusfile=".$base_loc/status/".substr($tunifid,0,2)."/".$tunifid."/status.txt";
+if ($status=="na") {
+@unlink ($statusfile);
+echo "$lang[397]: <b>".$lang[906]."</b><br>";
+} else {
+if(is_dir(".$base_loc/status")!=true) { mkdir(".$base_loc/status",0755); }
+if(is_dir(".$base_loc/status/".substr($tunifid,0,2))!=true) { mkdir(".$base_loc/status/".substr($tunifid,0,2),0755); }
+if(is_dir(".$base_loc/status/".substr($tunifid,0,2)."/".$tunifid)!=true) { mkdir(".$base_loc/status/".substr($tunifid,0,2)."/".$tunifid,0755); }
+$sp=fopen($statusfile,"w");
+fputs($sp,$status."\n".$details[1]."\n".$details[3]);
+fclose ($sp);
+echo "$lang[397]: <b>".$status."</b><br>";
+$sp=fopen($statusfile.".history.txt","a");
+fputs($sp,$status."|".time()."|".$details[1]."|".$details[3]."\n");
+fclose ($sp);
+}
+}
 $nochange = "";
 if (isset ($cc)) {
 while (list ($kcc, $lcc) = each ($cc)) {
@@ -115,7 +136,7 @@ $custom_cart.="$lcc|";
 $stroket = "$item_type|$dir|$subdir|$nazv|$price|$opt|$ext_id|$description|$kwords|$foto1|$foto2|$vitrin|$onsale".@$cur."|$brand_name|$ext_lnk|$full_descr|$kolvo|".@$custom_cart."\n";
 $stroket2 = $_POST['id']."|$dir|$subdir|$nazv|$price|$opt|$ext_id|$description|$kwords|$foto1|$foto2|$vitrin|$onsale".@$cur."|$brand_name|$ext_lnk|$full_descr|$kolvo|".@$custom_cart."\n";
 $fcontents [$id]=$stroket;
-echo "<pre>LOG:<br>".$lang['edits']." DB - <b>".$lang[209]."</b><br>";
+
 $html = implode ("", $fcontents);
 $file = fopen (".$base_file", "w");
 if (!$file) {
@@ -142,10 +163,10 @@ $fcontents[$key]=$stroket2;
 }
 }
 }
+$html = implode ("", $fcontents);
 if (trim($html)=="") {
 unlink (".$base_loc/items/$catid.txt");
 } else {
-$html = implode ("", $fcontents);
 $file = fopen (".$base_loc/items/$catid.txt", "w");
 if (!$file) {
 echo "<p> File is write protect: <b>.$base_loc/items/$catid.txt</b>\n";

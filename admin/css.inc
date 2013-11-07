@@ -194,8 +194,8 @@ LABEL {CURSOR: default;}
 .normal {FONT-WEIGHT: normal;}
 .load {background-image: url('images/ind.gif'); background-repeat: none; background-position: center}
 a.menu { color: black; }
-.ALERT  { font-size: 12; color: red; font-weight: bold; }
-.ROW {  padding: 4px; color:black; font-weight:bold; background-color: $nc0; }
+.ALERT  { font-size: 12; color: red; font-weight:400; }
+.ROW {  padding: 4px; color:black; font-weight:400; background-color: $nc0; }
 ol.results {margin:0 40px 0 40px; padding:0 0 0 40px}
 ol.results li {margin-bottom:1em; padding:0;}
 ol.results div.text {font-size:80%; padding-bottom:0.1em;}
@@ -237,7 +237,6 @@ margin: 0pt;
 	border: 1px solid $nc4;
 	height: 22px;
 	width: 465px;
-	font-family: Verdana;
 	font-size: 13px;
 	color: $nc6;
 	margin-bottom: 4px;

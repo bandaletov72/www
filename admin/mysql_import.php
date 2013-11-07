@@ -140,8 +140,8 @@ LABEL {
 background-image: url('images/ind.gif'); background-repeat: none; background-position: center
 }
 a.menu { color: black; }
-.ALERT  { font-size: 12; color: red; font-weight: bold; }
-.ROW {  padding: 4px; color:black; font-weight:bold; background-color: #ffffff; }
+.ALERT  { font-size: 12; color: red; font-weight:400; }
+.ROW {  padding: 4px; color:black; font-weight:400; background-color: #ffffff; }
 
 /*ol.results {margin:0 40px 1.7em 40px; padding:0 0 0 40px}*/
 ol.results {margin:0 40px 0 40px; padding:0 0 0 40px}

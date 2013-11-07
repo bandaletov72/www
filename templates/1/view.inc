@@ -148,8 +148,8 @@ if (@\$out[14]==\"\"): \$mduni=\"NO\"; endif;
 		\";
 
 \$sps[\$s].= \"<td height=100% width=100% valign=top align=center\";
-\$sps[\$s].= \"><table width=100% border=0 height=100% cellspacing=0 cellpadding=3><tr><td valign=top height=100% align=center><a name=\\\"spis\$s\\\"></a><a href=\\\"$htpath/index.php?catid=\" .\$podstava[\"\$dir|\$subdir|\"] . \"\\\">\".\"\$foto1</a>
-<br><b><a href=\\\"$htpath/index.php?catid=\" .\$podstava[\"\$dir|\$subdir|\"] . \"\\\">\".\$out[4].\"</a></b>\$minmax<br><br></td></tr></table></td>\";
+\$sps[\$s].= \"><table width=100% border=0 height=100% cellspacing=0 cellpadding=3><tr><td valign=top height=100% align=center><a name=\\\"spis\$s\\\"></a><a href=\\\"$htpath/index.php?catid=\" .@\$podstava[\"\$dir|\$subdir|\"] . \"\\\">\".\"\$foto1</a>
+<br><b><a href=\\\"$htpath/index.php?catid=\" .@\$podstava[\"\$dir|\$subdir|\"] . \"\\\">\".\$out[4].\"</a></b>\$minmax<br><br></td></tr></table></td>\";
 
 \$sps[\$s].= \"	</tr></table></td>\";
 \$sps[\$s].= \"\n\n|\$mduni|\$foto1\";
@@ -664,7 +664,7 @@ if (\$view_callback==1) { \$callback=\"<a class=\\\"btn btn-warning\\\" style=\\
 if (\$view_goodsprice==1){
 \$sps[\$s].= \"\$prem1
 <input type=\\\"hidden\\\" name=\\\"buy_row\\\" value=\\\"\$s\\\"><input type=\\\"hidden\\\" name=\\\"usl\\\" value=\\\"\$usl\\\">
-\$prem2<div class=clear><small>\$minupak\$minsht</small></div><div class=pull-left>\$callback</div><div class=pull-right align=left style=\\\"margin-bottom: 10px; margin-right:10px;\\\"><b><font size=4>$pricess</font></b> <font size=1>\$valutss\$sqrp</font></div><div class=clear></div><!-- hiddens [hiddens] -->\$prem1
+\$prem2<div class=clear><small>\$minupak\$minsht</small></div><div class=pull-left>\$callback</div><div class=pull-right align=left style=\\\"margin-bottom: 10px; margin-right:10px;\\\"><b><font size=4>$pricess</font></b> <font class=small>\$valutss\$sqrp</font></div><div class=clear></div><!-- hiddens [hiddens] -->\$prem1
 <input type=\\\"hidden\\\" name=\\\"catid\\\" value=\\\"\$catid\\\">
 <input type=\\\"hidden\\\" name=\\\"query\\\" value=\\\"$query\\\">
 <input type=\\\"hidden\\\" name=\\\"unifid\\\" value=\\\"\".md5(@\$out[3].\" ID:\".@\$out[6]).\"\\\">
@@ -706,7 +706,7 @@ $optilist<br><table border=0><tr>\$callback<td valign=top width=50%><small>$dtod
 if (\$view_goodsprice==1){
 \$sps[\$s].= \"\$prem1
 <table width=100% border=0 cellspacing=5 cellpadding=5>
-<tr><td valign=middle>[sklad]</td><td valign=middle align=center width=100%>$qtyss\".str_replace(\"/\",\"\", \$sqrp).\"</td><td valign=middle><nobr>".$lang[99].": </nobr></td><td valign=middle align=center><nobr><b><font size=4>$pricess\$valutss\$sqrp</font></b></nobr></td><td valign=middle align=right><font size=1></font><input type=\\\"hidden\\\" name=\\\"buy_row\\\" value=\\\"\$s\\\"><input type=\\\"hidden\\\" name=\\\"usl\\\" value=\\\"\$usl\\\"></td><td align=right valign=middle>
+<tr><td valign=middle>[sklad]</td><td valign=middle align=center width=100%>$qtyss\".str_replace(\"/\",\"\", \$sqrp).\"</td><td valign=middle><nobr>".$lang[99].": </nobr></td><td valign=middle align=center><nobr><b><font size=4>$pricess\$valutss\$sqrp</font></b></nobr></td><td valign=middle align=right><font class=small></font><input type=\\\"hidden\\\" name=\\\"buy_row\\\" value=\\\"\$s\\\"><input type=\\\"hidden\\\" name=\\\"usl\\\" value=\\\"\$usl\\\"></td><td align=right valign=middle>
 \$prem2<!-- hiddens [hiddens] -->\$prem1
 <input type=\\\"hidden\\\" name=\\\"catid\\\" value=\\\"\$catid\\\">
 <input type=\\\"hidden\\\" name=\\\"query\\\" value=\\\"$query\\\">
@@ -764,7 +764,7 @@ $descriptionss<div align=center><br>\$ddescription</div>\$kupil \".@\$hear.\" \$
 if (\$view_goodsprice==1){
 \$sps[\$s].= \"\$prem1
 <table width=100% border=0 cellspacing=2 cellpadding=1>
-<tr><td valign=bottom align=center width=100%>$qtyss</td><td valign=bottom align=center><b><font size=4>$pricess</font></b></td><td valign=bottom align=right><font size=1>\$valutss</font><input type=\\\"hidden\\\" name=\\\"buy_row\\\" value=\\\"\$s\\\"><input type=\\\"hidden\\\" name=\\\"usl\\\" value=\\\"\$usl\\\"></td><td align=right valign=bottom>
+<tr><td valign=bottom align=center width=100%>$qtyss</td><td valign=bottom align=center><b><font size=4>$pricess</font></b></td><td valign=bottom align=right><font class=small>\$valutss</font><input type=\\\"hidden\\\" name=\\\"buy_row\\\" value=\\\"\$s\\\"><input type=\\\"hidden\\\" name=\\\"usl\\\" value=\\\"\$usl\\\"></td><td align=right valign=bottom>
 <input type=\\\"hidden\\\" name=\\\"catid\\\" value=\\\"\$catid\\\">
 <input type=\\\"hidden\\\" name=\\\"query\\\" value=\\\"$query\\\">
 <input type=\\\"hidden\\\" name=\\\"unifid\\\" value=\\\"\".md5(@\$out[3].\" ID:\".@\$out[6]).\"\\\">
@@ -1104,7 +1104,7 @@ if (\$view_callback==1) { \$callback=\"<a class=\\\"btn btn-warning\\\" style=\\
 
 if (\$view_goodsprice==1){
 \$sps[\$s].= \"<div align=center><img class=hidden id=\\\"p_\$s\\\" src=\\\"pix.gif\\\" width=78 height=12 border=0><font color=$nc3><b id=\\\"kup_\$s\\\">\$inb1</b><b id=\\\"pcs_\$s\\\">\$inbasket</b><b id=\\\"st_\$s\\\">\$inb2</b></font><b id=\\\"oform_\$s\\\"></b></div>\$prem1
-<div class=clear></div><div class=pull-right align=left style=\\\"margin-bottom: 10px; margin-right:10px;\\\"><b><font size=4>$pricess</font></b> <font size=1>\$valutss\$sqrp</font></div><div class=clear></div>
+<div class=clear></div><div class=pull-right align=left style=\\\"margin-bottom: 10px; margin-right:10px;\\\"><b><font size=4>$pricess</font></b> <font class=small>\$valutss\$sqrp</font></div><div class=clear></div>
 <div class=pull-left>\$callback</div><div class=pull-right>\$vbt1 $jbuybutton \$vbt2</div<\$prem2</td>
 
     </tr>
@@ -1144,7 +1144,7 @@ if (\$view_callback==1) { \$callback=\"<a class=\\\"btn btn-warning\\\" style=\\
 if (\$view_goodsprice==1){
 \$sps[\$s].= \"$optilist<small>$dtoday</small>\$prem1
 <input type=\\\"hidden\\\" name=\\\"buy_row\\\" value=\\\"\$s\\\"><input type=\\\"hidden\\\" name=\\\"usl\\\" value=\\\"\$usl\\\">
-\$prem2<div class=clear><small>\$minupak\$minsht</small></div><div class=pull-left>\$callback</div><div class=pull-right align=left style=\\\"margin-bottom: 10px; margin-right:10px;\\\"><b><font size=4>$pricess</font></b> <font size=1>\$valutss\$sqrp</font></div><div class=clear></div><!-- hiddens [hiddens] -->\$prem1
+\$prem2<div class=clear><small>\$minupak\$minsht</small></div><div class=pull-left>\$callback</div><div class=pull-right align=left style=\\\"margin-bottom: 10px; margin-right:10px;\\\"><b><font size=4>$pricess</font></b> <font class=small>\$valutss\$sqrp</font></div><div class=clear></div><!-- hiddens [hiddens] -->\$prem1
 <input type=\\\"hidden\\\" name=\\\"catid\\\" value=\\\"\$catid\\\">
 <input type=\\\"hidden\\\" name=\\\"query\\\" value=\\\"$query\\\">
 <input type=\\\"hidden\\\" name=\\\"unifid\\\" value=\\\"\".md5(@\$out[3].\" ID:\".@\$out[6]).\"\\\">
@@ -1239,7 +1239,7 @@ if (\$view_goodsprice==1){
 <td valign=middle align=center width=100%>
 $qtyss\".str_replace(\"/\",\"\", \$sqrp).\"</td>
 <td valign=middle align=center><b><font size=4>$pricess</font></font></b>\$valutss\$minsht</td>
-<td valign=middle align=right><font size=1>\$sqrp</font><input type=\\\"hidden\\\" name=\\\"buy_row\\\" value=\\\"\$s\\\"><input type=\\\"hidden\\\" name=\\\"usl\\\" value=\\\"\$usl\\\"></td><td>\$prbuy</td>
+<td valign=middle align=right><font class=small>\$sqrp</font><input type=\\\"hidden\\\" name=\\\"buy_row\\\" value=\\\"\$s\\\"><input type=\\\"hidden\\\" name=\\\"usl\\\" value=\\\"\$usl\\\"></td><td>\$prbuy</td>
 <td align=right valign=middle>\$bskalert
 \$prem2<!-- hiddens [hiddens] -->\$prem1
 <input type=\\\"hidden\\\" name=\\\"catid\\\" value=\\\"\$catid\\\">

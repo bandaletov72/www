@@ -26,7 +26,7 @@ if ((date("w",$showt+$i)>5)||(date("w",$showt+$i)==0)) {$colors="$color2";
 } else {
 $colors="$color3";}
 if (($d==$now['day'])&&($m==$now['month'])&&($y==$now['year'])) {
-$style2=" style=\"background-color:$colors; border: 3px double #FF0000;\""; $style=" style=\"font-weight: bold\"";
+$style2=" style=\"background-color:$colors; border: 3px double #FF0000;\""; $style=" style=\"font-weight:400\"";
 } else {
 $style="";
 $style2=" style=\"background-color:$colors\"";
@@ -41,7 +41,7 @@ if ((date("w",$showt+$i)>5)||(date("w",$showt+$i)==0)) {$colors="$color2";
 } else {
 $colors="$color3";}
 if (($d==$now['day'])&&($m==$now['month'])&&($y==$now['year'])) {
-$style2=" style=\"background-color:$colors; border: 3px double #FF0000;\" title=\"Сегодня\""; $style=" style=\"font-weight: bold\"";
+$style2=" style=\"background-color:$colors; border: 3px double #FF0000;\" title=\"Сегодня\""; $style=" style=\"font-weight:400\"";
 } else {
 $style="";
 $style2=" style=\"background-color:$colors\"";

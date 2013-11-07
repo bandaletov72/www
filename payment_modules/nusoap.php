@@ -5370,9 +5370,9 @@ class wsdl extends nusoap_base {
 			font-family: arial; overflow: hidden; width: 600;
 			padding: 20px; font-size: 10px; background-color: #999999;
 			layer-background-color:#FFFFFF; }
-		    a,a:active  { color: charcoal; font-weight: bold; }
-		    a:visited   { color: #666666; font-weight: bold; }
-		    a:hover     { color: cc3300; font-weight: bold; }
+		    a,a:active  { color: charcoal; font-weight:400; }
+		    a:visited   { color: #666666; font-weight:400; }
+		    a:hover     { color: cc3300; font-weight:400; }
 		</style>
 		<script language="JavaScript" type="text/javascript">
 		<!--

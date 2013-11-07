@@ -209,7 +209,7 @@ $line.=str_replace("\n","<br>", str_replace("\r", "<br>",str_replace("|", " ", $
 }
 if (($line!="")&&($line!="\n")) {
 $out=explode("|",$line);
-echo "<font size=1 color=$nc2>".$lang[448]." UNIFID=$unifid ITEM_ID=$item_id</font>
+echo "<font class=small color=$nc2>".$lang[448]." UNIFID=$unifid ITEM_ID=$item_id</font>
 <table width=100% cellspacing=0 cellpadding=1>
 <tr bgcolor=$nc6>
 <td align='left' valign='top'><small><b>".$lang[419]."</b></small></td>

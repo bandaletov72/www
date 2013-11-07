@@ -23,7 +23,7 @@ $checkout="<br><br><div align=left>
 <td><input type=\"text\" id=\"CompanySum\" name=\"CompanySum\" readonly=\"readonly\" value=\"".(1*round(($currencies['RUR']*$totulus/$kurs)/1))."\" size=\"4\" style=\"margin-right: 5px;\"/></td>
 <td nowrap=\"nowrap\" valign=\"bottom\"><strong>рублей яндекс.ƒеньгами</strong></td>
 </tr></table></td><td width=\"90\" rowspan=\"3\" valign=\"bottom\"><a href=\"http://money.yandex.ru/\"><img src=\"https://img.yandex.net/i/ym-logo.gif\" width=\"90\" height=\"39\" border=\"0\" style=\"margin-left: 5px;\"/></a></td></tr>
-<tr><td nowrap=\"nowrap\">на счет <span style=\"color: #006600; font-weight: bold;\">
+<tr><td nowrap=\"nowrap\">на счет <span style=\"color: #006600; font-weight:400;\">
 ".$tmptmp[4]."
 </span>&nbsp;(<span class=lnk><a href=\"http://$htpath\">$shop_name</a></span>)</td></tr><tr>
 <td><img src=\"https://img.yandex.net/i/x.gif\" width=\"1\" height=\"10\" /></td></tr></table></div></div></div></div></td></tr></table></form>

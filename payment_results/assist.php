@@ -77,8 +77,8 @@ $style = array (
 'center_width'        =>    "100%",       #Center column Width in pixels
 );
 
-$css ="\n\nh1{font-weight:bold;font-size:18px;margin-top:0 px;margin-bottom:0px;}
-h2{font-size:14px;font-weight:bold;margin-bottom:0px}
+$css ="\n\nh1{font-weight:400;font-size:18px;margin-top:0 px;margin-bottom:0px;}
+h2{font-size:14px;font-weight:400;margin-bottom:0px}
 
 
 BODY {
@@ -147,8 +147,8 @@ a:hover {text-decoration:none; color:#660000; font-weight: plain;}
 .top { vertical-align: top }
 .poster { FONT-SIZE: 2pt }
 
-.ALERT  { font-size: 12; color: red; font-weight: bold; }
-.ROW {  padding: 4px; color:black; font-weight:bold; background-color: #e0e0e0; }
+.ALERT  { font-size: 12; color: red; font-weight:400; }
+.ROW {  padding: 4px; color:black; font-weight:400; background-color: #e0e0e0; }
 
 /*ol.results {margin:0 40px 1.7em 40px; padding:0 0 0 40px}*/
 ol.results {margin:0 40px 0 40px; padding:0 0 0 40px}
@@ -161,8 +161,8 @@ ol.results div.info a:visited {color:#800080;}
 ";
 $hedy="<META NAME=\"Last-Modified\" CONTENT=\"$llast\">
 <style>
-h1{font-weight:bold;font-size:18px;margin-top:0 px;margin-bottom:0px;}
-h2{font-size:14px;font-weight:bold;margin-bottom:0px}
+h1{font-weight:400;font-size:18px;margin-top:0 px;margin-bottom:0px;}
+h2{font-size:14px;font-weight:400;margin-bottom:0px}
 $css
 </style>";
 $conten="<font face=verdana><div align=left><br>";

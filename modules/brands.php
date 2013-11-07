@@ -2,9 +2,9 @@
 $gghr=0;
 $brandslist="";
 if ($view_brands_inlist==1) {
-if ($brandtype==1) {$brzag="";}
-$brandslist="<div align=center>$brzag<div align=center>";
-if ($brandtype==1){$brt="<br><br>";} else{$brt="  ";}
+if (($brandtype==1)||($brandtype==3)) {$brzag="";}
+$brandslist="<div align=center class=box5><br>$brzag<div align=center>";
+if (($brandtype==1)||($brandtype==3)){$brt="<br><br>";} else{$brt="  ";}
 $brandnames_file="$base_loc/brands.txt";
 if (@file_exists($brandnames_file)==TRUE){
 $spis_brandnames=file($brandnames_file);
@@ -45,13 +45,13 @@ $ghr="<hr color=$nc2 noshade size=1>";
 $gghr+=1;
 //if ($gghr==1) {$ghr="";}
 if (trim($imgi)=="") {
-$brandslist.="<a href=\"$htpath/index.php?action=allbrands#$linebnw\" title=\"$linebnw\"><font size=3 color=$nc4><b>$linebnw</b></font></a>$brt\n";
+$brandslist.="<font size=3><span class=lnk><a href=\"$htpath/index.php?action=allbrands#$linebnw\" title=\"$linebnw\">$linebnw</a></span></font>$brt\n";
 
  } else {
-$brandslist.="<a href=\"$htpath/index.php?action=allbrands#$linebnw\" title=\"$linebnw\">$imgi</a>$brt\n";
+$brandslist.="<a href=\"$htpath/index.php?action=allbrands#$linebnw\" title=\"$linebnw\">".$imgi."</a>$brt\n";
 }
 } else {
-$brandslist.="<a href=\"$htpath/index.php?action=allbrands#$linebnw\" title=\"$linebnw\"><font size=3 color=$nc4><b>$linebnw</b></font></a>$brt\n";
+$brandslist.="<font size=3><span class=lnk><a href=\"$htpath/index.php?action=allbrands#$linebnw\" title=\"$linebnw\">$linebnw</a></span></font>$brt\n";
 }
 }
 }
@@ -59,7 +59,7 @@ unset ($spis_brandnames);
 }
 
 unset ($uurl, $urlsi, $imgi);
-$brandslist.="<br><br><b><a class=btn href=\"$htpath/index.php?action=allbrands\">".$lang[422]."</a></b></div></div><br>";
+$brandslist.="<br><b class=lnk><a href=\"$htpath/index.php?action=allbrands\">".$lang[422]."</a></b></div></div><br>";
 }
 if ($interface==1) {
 if (($valid=="1")&&($details[7]=="ADMIN")): $oldval="view_brands_inlist";$strnum=132; $oldvalue=$$oldval;

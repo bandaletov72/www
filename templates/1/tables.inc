@@ -3,7 +3,8 @@
 if ($usetheme==0) {
 if ($css_style==1) {
 if ($affix==1) {
-echo "</div><div id=\"main\" class=\"pr\" style=\"width:71%; left:0px;\">";
+if ($_SESSION["mclosed"]=="1") { $stwi="93%"; } else { $stwi=(doubleval($style['center_width'])-doubleval($style['affix_width']))."%"; }
+echo "</div></div><div id=\"main\" class=\"pr\" style=\"width:".$stwi."; left:0px;\">";
 } else {
 echo "</td><td valign=top>";
 }

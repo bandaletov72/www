@@ -322,14 +322,14 @@ $temp=str_replace("<br>","<br>\n", $temp);
         $repst=ExtractString($temp, "[img]", "[/img]");
         $img = @getimagesize($repst);
         if (doubleval($img[0])==0) {
-        $repto="<div class=img style=\"width:550px; height:auto; overflow:auto;\" title=\"".$lang[139]." $img[0]x$img[1]\"><a rel=forum_group href=$repst><img src=".$repst." border=0></a></div>";
+        $repto="<div class=img style=\"width:550px; height:auto; overflow:auto;\" title=\"".$lang[139]." $img[0]x$img[1]\"><a rel=forum_group href=\"$repst\"><img src=\"".$repst."\" border=0></a></div>";
         } else {
         $iheight=round($forum_imgwidth*$img[1]/$img[0]);
         if ($img[1]<=$forum_imgwidth) {
         $repto="<img src=".$repst." title=\"$img[0]x$img[1]\" class=img hspace=10 vspace=10>";
 
         } else {
-        $repto="<div class=img style=\"width:".$forum_imgwidth."px;\" title=\"".$lang[139]." $img[0]x$img[1]\"><a rel=forum_group href=$repst><div style=\"display: block; position: relative; width:".$forum_imgwidth."px;\" align=\"center\"><span style=\"width:100%; position: absolute; top: ".($iheight-38)."px; right: 0px; background-image: url('".$image_path."/50w.png');\"><img src=$image_path/pix.gif width=32 height=32 align=absmiddle hspace=10 vspace=4 border=0><font face=Arial color=$nc5 size=1>$img[0]"."x"."$img[1]</font><img src=$image_path/zoomicon.png align=absmiddle hspace=10 vspace=4 border=0></span></div><img src=".$repst." width=$forum_imgwidth height=$iheight border=0><div style=\"clear: both;\" align=\"center\"></div></a></div>";
+        $repto="<div class=img style=\"width:".$forum_imgwidth."px;\" title=\"".$lang[139]." $img[0]x$img[1]\"><a rel=forum_group href=\"$repst\"><div style=\"display: block; position: relative; width:".$forum_imgwidth."px;\" align=\"center\"><span style=\"width:100%; position: absolute; top: ".($iheight-38)."px; right: 0px; background-image: url('".$image_path."/50w.png');\"><img src=$image_path/pix.gif width=32 height=32 align=absmiddle hspace=10 vspace=4 border=0><font face=Arial color=$nc5 size=1>$img[0]"."x"."$img[1]</font><img src=$image_path/zoomicon.png align=absmiddle hspace=10 vspace=4 border=0></span></div><img src=".$repst." width=$forum_imgwidth height=$iheight border=0><div style=\"clear: both;\" align=\"center\"></div></a></div>";
         }
         }
         //$repto="<img src=".$repst." class=thumb border=0>";
@@ -355,13 +355,14 @@ $temp=str_replace("<br>","<br>\n", $temp);
 
         if (substr($url_link,0,7)!="mailto:") {
         if (substr($url_link,0,6)!="ftp://") {
+		if (substr($url_link,0,7)!="https://") {
         if (substr($url_link,0,7)!="http://") {
         $url_link2="http://".$url_link;
-        }}}
+        }}}}
         }
 
 
-        $searchh=strtoken(str_replace("http://","",str_replace("www.","",str_replace("ftp://","",$htpath))),"/");
+        $searchh=strtoken(str_replace("http://","",str_replace("https://","",str_replace("www.","",str_replace("ftp://","",$htpath)))),"/");
         if (!preg_match("/$searchh/i",$url_link2)) {
         $temp = str_replace("[a href='".$url_link."']".$url_text."[/a]","<a href='go.php?".strrev($url_link2)."' target=_blank>".$url_text."</a>", $temp);
         } else {
@@ -497,9 +498,9 @@ if ($details[7]=="ADMIN"){$validmoder=1;}
 if ($details[7]=="MODER"){$validmoder=1;}
 }
 if ($validmoder==1) {
-$forum_list.="<tr class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><font size=3><b><a href=index.php?action=forum&fr=".$out[1]."&act=list>".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=center>".$topn." / ".$popn."</td><td align=left><span class=muted><small>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</small></span></td><td align=left onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" style=\"white-space:nowrap;\"><a href=index.php?action=userinfo&usernik=".rawurlencode(@$lp[1]).">$onlinestatus".@$lp[1]."</a></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><span><a href=index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3].">".@$lp[2]."</a></span></td><td align=left><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=".$out[1]."&act=list';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td></tr>";
+$forum_list.="<tr class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><font size=3><b><a href=\"index.php?action=forum&fr=".$out[1]."&act=list\">".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=center>".$topn." / ".$popn."</td><td align=left><span class=muted><small>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</small></span></td><td align=left onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" style=\"white-space:nowrap;\"><a href=\"index.php?action=userinfo&usernik=".rawurlencode(@$lp[1])."\">$onlinestatus".@$lp[1]."</a></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><span><a href=\"index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3]."\">".@$lp[2]."</a></span></td><td align=left><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=".$out[1]."&act=list';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td></tr>";
 } else {
-$forum_list.="<tr onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td align=left class=pcont><font size=3><b><a href=index.php?action=forum&fr=".$out[1]."&act=list>".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td align=center>".$topn." / ".$popn."</td><td align=left><span class=muted><small>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</small></span></td><td align=left style=\"white-space:nowrap;\"><a href=index.php?action=userinfo&usernik=".rawurlencode(@$lp[1]).">$onlinestatus".@$lp[1]."</a></td><td align=left colspan=2><span class=lnk><a href=index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3].">".@$lp[2]."</a></span></td></tr>";
+$forum_list.="<tr onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td align=left class=pcont><font size=3><b><a href=\"index.php?action=forum&fr=".$out[1]."&act=list\">".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td align=center>".$topn." / ".$popn."</td><td align=left><span class=muted><small>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</small></span></td><td align=left style=\"white-space:nowrap;\"><a href=\"index.php?action=userinfo&usernik=".rawurlencode(@$lp[1])."\">$onlinestatus".@$lp[1]."</a></td><td align=left colspan=2><span class=lnk><a href=\"index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3]."\">".@$lp[2]."</a></span></td></tr>";
 }
 }
         }
@@ -687,9 +688,9 @@ $forum_list.="<script language=\"javascript\">
         <table border=0 style=\"width:100%;\" cellpadding=0 cellspacing=0 width=100%>
 <tr><td colspan=5 align=left>
     <table class=table2 border=0 width=100% cellpadding=0 cellspacing=0><tr><td align=left class=pcont><a href=\"$htpath/index.php?action=forum\"><i class=icon-chevron-up title=\"".$lang[1002]."\"></i> </a><span class=lnk><a href=\"$htpath/index.php?action=forum\">".$lang[1002]."</a></span></td><td align=right style=\"white-space: nowrap;\" class=pcont>";
-    if ($f_rules_link!="") {$forum_list.="<a href=$f_rules_link>$f_rules_text <i class=\"icon-warning-sign\"></i></a>"; }
+    if ($f_rules_link!="") {$forum_list.="<a href=\"$f_rules_link\">$f_rules_text <i class=\"icon-warning-sign\"></i></a>"; }
     $forum_list.="</td></tr></table></td></tr>
-        <tr><td colspan=5 align=left><table class=ocat1 border=0 width=100% cellpadding=10><tr><td align=left><img src=\"".$f_ico."\" border=0></td><td width=100% align=left class=pcont><font size=3><b><a href=$htpath/index.php?action=forum&fr=$fr&act=list>$f_name</a></b></font><br><span>$f_desc</span></td><td align=right valign=top width=150><nobr>$sf</nobr><br><img src=\"$image_path/pix.gif\" width=150 height=1></td>$modbutton</tr></table></td></tr>
+        <tr><td colspan=5 align=left><table class=ocat1 border=0 width=100% cellpadding=10><tr><td align=left><img src=\"".$f_ico."\" border=0></td><td width=100% align=left class=pcont><font size=3><b><a href=\"$htpath/index.php?action=forum&fr=$fr&act=list\">$f_name</a></b></font><br><span>$f_desc</span></td><td align=right valign=top width=150><nobr>$sf</nobr><br><img src=\"$image_path/pix.gif\" width=150 height=1></td>$modbutton</tr></table></td></tr>
         ";
 
 $fppages="<center><div class=\"pagination\">
@@ -760,10 +761,10 @@ $co=""; $cti="";
 
                  $forum_list.= "        <tr".$list[$i][7]." class=searchitem".$onkl2.">\n";
                  $forum_list.= "        <td width=50% align=left".$onkl." class=pcont>".$list[$i][5]."
-<font color=$nc3><i class=\"$co\" title=\"$cti\"></i></font><a href=?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."> ".$list[$i][2]."</a>$ffpagee</td>\n";
+<font color=$nc3><i class=\"$co\" title=\"$cti\"></i></font><a href=\"index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."\"> ".$list[$i][2]."</a>$ffpagee</td>\n";
 if (!isset($online_users[$list[$i][1]])) {$onlinestatus=""; } else {$onlinestatus="<font color=#57ae57><i class=icon-ok title=Online></i></font>&nbsp;";}
 
-                $forum_list.="        <td  onclick=\"location.href='".$htpath."/index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."';\"align=center><a href=index.php?action=userinfo&usernik=".rawurlencode($list[$i][1]).">$onlinestatus".$list[$i][1]."</a></td>\n";
+                $forum_list.="        <td  onclick=\"location.href='".$htpath."/index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."';\"align=center><a href=\"index.php?action=userinfo&usernik=".rawurlencode($list[$i][1])."\">$onlinestatus".$list[$i][1]."</a></td>\n";
                  $modbutton="<td align=right><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=$fr&act=show&nr=".$list[$i][3]."';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td>";
 if ($tname!="") { $ttname=$tname."<br>"; } else {$ttname=""; }
  $forum_list.= "        <td align=center onclick=\"location.href='".$htpath."/index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."';\">".$list[$i][4]."</td><td align=center><img src=$image_path/pix.gif width=100 height=1 border=0><br><span>".$ttname."<small class=muted>".date("d.m.Y", $list[$i][6])." ".date("H:i", $list[$i][6])."</small></span></td>$modbutton</tr>\n\n";
@@ -774,10 +775,10 @@ if ($tname!="") { $ttname=$tname."<br>"; } else {$ttname=""; }
 
                  $forum_list.= "        <tr".$list[$i][7]." class=searchitem".$onkl2. $onkl.">\n";
                  $forum_list.= "        <td width=50% align=left class=pcont>".$list[$i][5]."
-<i class=\"$co\" title=\"$cti\"></i> <a href=?action=forum&fr=$fr&act=show&nr=".$list[$i][3].">".$list[$i][2]."</a>$ffpagee</td>\n";
+<i class=\"$co\" title=\"$cti\"></i> <a href=\"index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."\">".$list[$i][2]."</a>$ffpagee</td>\n";
 if (!isset($online_users[$list[$i][1]])) {$onlinestatus=""; } else {$onlinestatus="<font color=#57ae57><i class=icon-ok title=Online></i></font>&nbsp;";}
 
-                $forum_list.="        <td align=center><a href=index.php?action=userinfo&usernik=".rawurlencode($list[$i][1]).">$onlinestatus<b>".$list[$i][1]."</b></a></td>\n";
+                $forum_list.="        <td align=center><a href=\"index.php?action=userinfo&usernik=".rawurlencode($list[$i][1])."\">$onlinestatus<b>".$list[$i][1]."</b></a></td>\n";
 if ($tname!="") { $ttname=$tname."<br>"; } else {$ttname=""; }
                                $forum_list.= "        <td align=center>".$list[$i][4]."</td><td align=center colspan=2><img src=$image_path/pix.gif width=100 height=1 border=0><br><span>".$ttname."<small class=muted>".date("d.m.Y", $list[$i][6])." ".date("H:i", $list[$i][6])."</small></span></td></tr>\n\n";
 
@@ -805,7 +806,7 @@ $forum_list.="</table><table width=100% border=0><tr><td align=left colspan=5 st
         <input type=\"hidden\" name=\"act\" value=\"addt\">
         <input type=\"hidden\" name=\"nr\" value=\"" . ($max+1) ."\">
         ";
-    if ($f_rules_link!="") {$forum_list.="<a href=$f_rules_link>$f_rules_text <i class=\"icon-warning-sign\"></i></a>"; }
+    if ($f_rules_link!="") {$forum_list.="<a href=\"$f_rules_link\">$f_rules_text <i class=\"icon-warning-sign\"></i></a>"; }
 
     $forum_list.="
         <tr><td colspan=5 align=left>
@@ -1111,7 +1112,7 @@ $forum_list.="<script language=\"javascript\">
 
     if ($me!="") {$forum_list.="<b>".$lang[85].": #$fr"."-"."$nr"."-"."$me</b>";}
 $forum_list.="</td><td style=\"white-space: nowrap;\" align=right class=pcont>";
-    if ($f_rules_link!="") {$forum_list.="<a href=$f_rules_link>$f_rules_text <i class=\"icon-warning-sign\"></i></a>"; }
+    if ($f_rules_link!="") {$forum_list.="<a href=\"$f_rules_link\">$f_rules_text <i class=\"icon-warning-sign\"></i></a>"; }
     $forum_list.="</td></tr></table></td></tr>
 
 ";
@@ -1287,7 +1288,7 @@ $forum_list.= "</table><table border=0 width=100%>";
     if (($f_reg==1)&&($valid!="1")) { $forum_list.="</table>"; } else {
     if ($me=="") {
 $forum_list.="<tr><td colspan=3 align=right style=\"white-space: nowrap;\" class=pcont>";
-    if ($f_rules_link!="") {$forum_list.="<a href=$f_rules_link>$f_rules_text <i class=\"icon-warning-sign\"></i></a>"; }
+    if ($f_rules_link!="") {$forum_list.="<a href=\"$f_rules_link\">$f_rules_text <i class=\"icon-warning-sign\"></i></a>"; }
     $forum_list.="</td></tr>";
     $forum_list.="<tr><td colspan=3 align=left>
 
@@ -1567,7 +1568,7 @@ global $f_rules_link;
 global $fpage;
 //global $forum_list;
 //$forum_list.="<tr><td colspan=3 align=right style=\"white-space: nowrap;\">";
-//    if ($f_rules_link!="") {$forum_list.="<a href=$f_rules_link><b><font color=$nc3 size=3>$f_rules_text</font></b> <i class=\"icon-warning-sign\"></i></a>"; }
+//    if ($f_rules_link!="") {$forum_list.="<a href=\"$f_rules_link\"><b><font color=$nc3 size=3>$f_rules_text</font></b> <i class=\"icon-warning-sign\"></i></a>"; }
 //    $forum_list.="</td></tr>";
 
 global $f_asp;

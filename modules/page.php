@@ -67,6 +67,7 @@ if(isset($_GET['p_comm'])) $p_comm=$_GET['p_comm']; elseif(isset($_POST['p_comm'
 if(isset($_GET['p_icon'])) $p_icon=$_GET['p_icon']; elseif(isset($_POST['p_icon'])) $p_icon=$_POST['p_icon']; else $p_icon="";
 if(isset($_GET['p_title'])) $p_title=$_GET['p_title']; elseif(isset($_POST['p_title'])) $p_title=$_POST['p_title']; else $p_title="";
 if(isset($_GET['p_url'])) $p_url=$_GET['p_url']; elseif(isset($_POST['p_url'])) $p_url=$_POST['p_url']; else $p_url="";
+if(isset($_GET['p_coord'])) $p_coord=$_GET['p_coord']; elseif(isset($_POST['p_coord'])) $p_coord=$_POST['p_coord']; else $p_coord="";
 //save page with new titles
 if(get_magic_quotes_gpc()) {
 $p_icon=stripslashes($p_icon);
@@ -74,9 +75,11 @@ $p_title=stripslashes($p_title);
 $p_comm=stripslashes($p_comm);
 $p_url=stripslashes($p_url);
 $p_tags=stripslashes($p_tags);
+$p_coord=stripslashes($p_coord);
 }
 $pageopen = fopen ("$base_loc/content/$page.txt" , "w");
 if ($p_comm!="") {$p_comm="|[comm]".$p_comm."[/comm]";}
+if ($p_coord!="") {$p_coord="[coord]".$p_coord."[/coord]";}
 if ($p_url!="") {$p_url="[url]".$p_url."[/url]";}
 if (trim(trim($p_tags))!="") {
 $p_tags="|".str_replace(",", "|", str_replace("\n","", str_replace("\r","", trim(trim($p_tags)))));
@@ -92,12 +95,14 @@ if (trim(trim($p_title))=="") {
 $p_title=$lang[221];
 }
 $viewpage_content=str_replace("==".$outputviewpage[1]."==","", $viewpage_content2);
-$outputviewpage[1]="$p_icon$p_title".str_replace("||","|",str_replace("||","|",str_replace("||","|", $p_tags)))."$p_comm"."$p_url";
+$outputviewpage[1]="$p_icon$p_title".str_replace("||","|",str_replace("||","|",str_replace("||","|", $p_tags)))."$p_comm"."$p_url"."$p_coord";
 fputs ($pageopen, "==".$outputviewpage[1]."==".$viewpage_content);
 fclose ($pageopen);
 }}}
 $p_url="";
 $p_url=ExtractString($outputviewpage[1],"[url]","[/url]");
+$p_coord="";
+$p_coord=ExtractString($outputviewpage[1],"[coord]","[/coord]");
 $comm="";
 $comm=ExtractString($outputviewpage[1],"[comm]","[/comm]");
 $comms=$comm;
@@ -197,94 +202,6 @@ $viewpage_content = str_replace ("~~" . $matches[1][$i] . "~~", "" , $viewpage_c
 }
 
 
-
-if (substr($page, 0, 1)=="v") {
-$handle=opendir("$base_loc/content/");
-$nach=0;
-$st=0;
-while (($file = readdir($handle))!==FALSE) {
-
-if (($file == '.') || ($file == '..') || ($file == 'config.inc')||(substr($file, -4)==".del")||(substr($file,0, 1)=="s")||(substr($file,0, 1)=="x")||(substr($file,0, 1)!=substr($page,0, 1))) {
-continue;
-} else {
-$fp = fopen ("$base_loc/content/$file" , "r");
-
-$all= fread ($fp, 300);
-if (preg_match ("/==(.*)==/", $all, $out)) {
-$line=$out[1];
-} else {
-$line = $lang[221];
-}
-$line=substr($line, 0 , 82);
-fclose ($fp);
-$out=explode(".",$file);
-$c = $out[0];
-if (strlen($c)==1) {
-$zame ="$line";
-$name="<!--00000--><b><a href='$htpath/index.php?page=$c'><font color=$nc2>$line :</font></a></b><hr color=$nc2 noshade size=1>";
-} else {
-$zame ="$line";
-if ($page==$c) {
-$name = "<!--$c--><b><font color=$nc3>$carat</b>&nbsp;<b>$line</b></font>";
-} else {
-$name = "<!--$c--><b><font color=$nc4>$carat</font></b>&nbsp;<a href='$htpath/index.php?page=$c'>$line</a>";
-}
-
-
-$outma=explode("|", $zame);
-$database[$st] = $outma[1]."|" . $outma[2]. "|". $nach . "|" . $outma[0] . "|" . $c;
-$sortus="";
-if(substr($outma[0],0,1)=="м") { $sortus=1; } else { $sortus=2; }
-if($outma[0]=="") {$outma[0]="Центральный офис"; $sortus=0; }
-$demozalz[$st]="<!-- ".$sortus." ".$outma[0]." --><option value=\"index.php?page=".$c."\">".$outma[0]."</option>\n";
-$nach+=1;
-$st += 1;
-
-}
-$files["$c"] = "$name\n";
-
-}
-}
-
-closedir ($handle);
-@sort ($demozalz);
-@reset($demozalz);
-$demzal="<select id=\"loc\" onchange=\"location.href=document.getElementById('loc').value\"><option value=\"\"></option>".implode("",$demozalz)."</select>";
-
-@sort ($files);
-@reset ($files);
-while (list ($key, $val) = @each ($files)) {
-$all_links .= "<br>$val\n";
-}
-$all_links .= "<br><br>\n";
-
-/*
-if (strlen($page)==1) {
-reset ($files);
-while (list ($key, $val) = each ($files)) {
-if ((substr($key, 0, 1)==$page)&&($key!=$page)) {
-//$razd_links .= "$val<br>\n";
-}
-}
-}
-*/
-$dbase=implode("^", $database);
-$flashobj="";
-
-$viewpage_content.="[flashobj]";$flashobj="<div align=\"center\" class=\"noprint\"><br><br><br>
-<table style=\"border-collapse: collapse;\" width=\"800\" cellspacing=\"0\" cellpadding=\"0\" bordercolor=\"#8896a4\" border=\"1\" align=\"center\"><tbody><tr><td width=\"100%\" valign=\"top\">
-<p align=center>
-<table style=\"border-collapse: collapse;\" width=\"100%\" cellspacing=\"0\" cellpadding=\"10\" bordercolor=\"#8896a4\" border=\"0\" align=\"center\"><tbody><tr><td width=\"100%\" valign=\"top\">
-<font size=\"2\" face=\"Verdana\" color=\"#687684\">Выберите интересующий Вас демонстрационный зал:</font>
-</td><td align=right>$demzal</td></tr></table>
-<br><OBJECT classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0\" WIDTH=720 HEIGHT=550>
-<PARAM NAME=FLASHVARS VALUE=\"database=$dbase&sendok=1\">
-<param name=\"wmode\" value=\"transparent\">
- <PARAM NAME=movie VALUE=\"moscow_map.swf\"> <PARAM NAME=quality VALUE=high> <PARAM NAME=bgcolor VALUE=#ffffff> <EMBED src=\"moscow_map.swf\" quality=high bgcolor=#ffffff WIDTH=720 HEIGHT=550 TYPE=\"application/x-shockwave-flash\" PLUGINSPAGE=\"http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash\" FLASHVARS=\"database=$dbase&sendok=1\" wmode=transparent></EMBED>
-</OBJECT><br><br>
-</td></tr></tbody></table><br></div>";
- }
-
 $viewpage_content=str_replace("==$vpt==", "" , $viewpage_content);
 $viewpage_content=str_replace("[rss]","$rss", $viewpage_content);
 $viewpage_title=strip_tags(str_replace("\n","", $viewpage_title));
@@ -333,11 +250,24 @@ $themecontent=str_replace("[sapeblock]".$sapec2."[/sapeblock]",$saped->return_bl
 }
 }
 }
+
+if (trim($p_coord)!="") {
+require ("./modules/citymap.php");
+$viewpage_content=$viewpage_content."<br><br>".$lemap;
+} else {
+if (preg_match("/\[citymap\]/",$viewpage_content)) {
+require ("./modules/citymap.php"); 
+$viewpage_content=str_replace("[citymap]","$lemap", $viewpage_content);
+}
+}
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")):
 $imgas="";
 if ($imgs!="") {$imgas="<img src=\"$imgs\" id=\"img_1\">";$imgs="<img src=\"$imgs\">";} else {$imgas="<img src=\"$image_path/pix.gif\" id=\"img_1\">";}
 $purl="";
-$purl="<tr><td colspan=3><b>URL:</b><br><input type=text size=20 style=\"width:96%\" name=\"p_url\" value=\"".htmlspecialchars($p_url)."\"></td></tr>";
+$purl="<tr><td colspan=3><b>URL:</b><br><input type=text size=20 style=\"width:96%\" name=\"p_url\" value=\"".htmlspecialchars($p_url)."\" placeholder=\"http://\"></td></tr>";
+$pcoord="";
+$pcoord="<tr><td colspan=3><b>Loc:</b><br><input type=text size=20 style=\"width:96%\" name=\"p_coord\" value=\"".htmlspecialchars($p_coord)."\" placeholder=\"x:y\"></td></tr>";
+
 if (isset($_POST['p_title'])) {
 $viewpage_title=trim($_POST['p_title']);
 }
@@ -390,7 +320,7 @@ document.getElementById('divbut').innerHTML='<i class=icon-arrow-down></i> ".$la
 <tr><td align=right><b>".$lang[862].":</b></td><td width=100% colspan=2><input type=text size=20 style=\"width:96%\" name=\"p_title\" value=\"".htmlspecialchars($viewpage_title)."\"></td></tr>
 <tr><td align=right><b>".$lang[861].":</b></td><td width=100%><input type=text id=\"el_1\" size=20 style=\"width:96%\" name=\"p_icon\" value=\"".htmlspecialchars($imgs)."\"></td><td align=right><a class=\"btn btn-success mr nowrap\" onClick=\"javascript:window.open('$htpath/admin/newgal.php?speek=$speek&gtype=3&dest=1','gal','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=400,left=10,top=10');\" title=\"".$lang[938]."\"><i class=icon-camera></i> ".$lang[421]."</a></td></tr>
 <tr><td colspan=3><b>".$lang['short'].":</b><br><input type=text size=20 style=\"width:96%\" name=\"p_comm\" value=\"".htmlspecialchars($comms)."\"></td></tr>
-<tr><td colspan=3><b>".$lang[863].":</b><br><input type=text size=20 style=\"width:96%\" name=\"p_tags\" value=\"".htmlspecialchars($tags_s)."\"></td></tr>$purl</table></td><td valign=top align=right><div class=\"img-polaroid\" style=\"width:150px; height:150px; padding:10px 10px 10px 10px; margin-bottom:20px; cursor:pointer; cursor: hand; overflow:hidden;\" align=center onClick=\"javascript:window.open('$htpath/admin/newgal.php?speek=$speek&gtype=3&dest=1','gal','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=400,left=10,top=10');\" title=\"".$lang[938]."\">$imgas<div class=muted>$lang[421]</div></div></td></tr><tr><td valign=bottom align=right><input class=\"btn btn-primary btn-large\" type=submit value=\"".$lang[527]."\"></td></tr></table>
+<tr><td colspan=3><b>".$lang[863].":</b><br><input type=text size=20 style=\"width:96%\" name=\"p_tags\" value=\"".htmlspecialchars($tags_s)."\"></td></tr>$purl"."$pcoord</table></td><td valign=top align=right><div class=\"img-polaroid\" style=\"width:150px; height:150px; padding:10px 10px 10px 10px; margin-bottom:20px; cursor:pointer; cursor: hand; overflow:hidden;\" align=center onClick=\"javascript:window.open('$htpath/admin/newgal.php?speek=$speek&gtype=3&dest=1','gal','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=400,left=10,top=10');\" title=\"".$lang[938]."\">$imgas<div class=muted>$lang[421]</div></div></td></tr><tr><td valign=bottom align=right><input class=\"btn btn-primary btn-large\" type=submit value=\"".$lang[527]."\"></td></tr></table>
 </form>
 
 
@@ -900,6 +830,8 @@ if ($comm!="") {$comm="<div class=\"comnts\">$comm</div>\n\n";}
 $ttt.="<div class=\"pull-left muted\"><i class=\"icon-calendar\"></i> ".date("d",$ts)." ".$rmon[date("m",$ts)-1]." ".date("Y",$ts)." <i>".date("H:i",$ts)."</i></div>\n\n";
 
 if ($ttt!="") {$viewpage_content=$comm.$ttt."<div class=clearfix></div>".$viewpage_content;}
+
 $viewpage_content="<div class=pcont>$viewpage_content</div>";
+
 }
 ?>

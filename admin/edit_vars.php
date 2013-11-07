@@ -1,6 +1,6 @@
 <?php
 $version=Array();
-$kkkr="Freeware version / Open source";
+$kkkr="Licensed version";
 if (file_exists("./install.php")) {unlink ("./install.php"); }
 if (file_exists("./shop.zip")) {unlink ("./shop.zip"); }
 $lic_lis="";
@@ -222,9 +222,18 @@ $vznach="<input class=input-xlarge type=text name=\"ev[$st]\" id=\"el_$st\" size
 }
 if ($param=="timezone") {$vopis.=$tzones;}
 if ($param=="codepage") {$vopis.=$chrses;}
+$gfonts="";
+$googlefont="";
+if ($param=="main_fontface") { reset ($googlefonts);
+if (count($googlefonts)>0) { 
+while (list($fontkey, $fontval)=each($googlefonts)) {
+if ($main_fontface=="$fontval") { $googlefont=$fontval; }
+$gfonts.="<option value=\"$fontval\">Google: $fontval</option>";
+}
+}}
 if (preg_match("/\^/", $vopis)==TRUE) {
 $tmpopis=explode("^",$vopis);
-$vznach="<select class=input-small name=\"ev[$st]\"><option selected value=\"$vznachen\">$vznachen</option>";
+$vznach="<select class=input-small name=\"ev[$st]\"><option selected value=\"$vznachen\">$vznachen</option>$gfonts";
 unset($tmpopis[0]);
 while (list ($line_numop, $lineop) = each ($tmpopis)) {
 if ($lineop=="blank") {$lineop="";}
@@ -247,7 +256,11 @@ $vars_lis[$st].="<tr>
 <td align=center valign=top><small>".($st-$hidd).".</small></td>
 <td valign=top><small><input type=hidden name=\"en[$st]\" value=\"".$param."\"><b>".$vnazv."</b><br>\$$param / $strpar</small><input type=hidden name=\"nk[$st]\" value=\"$kavuse\">";
 if ($param=="logotype") { $vars_lis[$st].="<br>".str_replace("<img ", "<img id=\"img_$st\" ", $vznachen); }
-if ($param=="main_fontface") { $vars_lis[$st].="<table width=100% border=0><tr><td>Verdana: </td><td><font face=Verdana>The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Arial: </td><td><font face=Arial>The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Arial Black: </td><td><font face=\"Arial Black\">The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Tahoma: </td><td><font face=Tahoma>The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Georgia: </td><td><font face=Georgia>The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Times New Roman: </td><td><font face=\"Times New Roman\">The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Courier: </td><td><font face=Courier>The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Comic Sans MS: </td><td><font face=\"Comic Sans MS\">The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Geneva: </td><td><font face=Geneva>The quick brown fox jumps over the lazy lilly</font></td></tr></table>";}
+if ($param=="main_fontface") { 
+$vars_lis[$st].="<table width=100% border=0>";
+if ($googlefont!="") { $vars_lis[$st].="<tr><td>$googlefont: </td><td><font style=\"font-family: '".$googlefont."';\">The quick brown fox jumps over the lazy lilly</font></td></tr>"; }
+$vars_lis[$st].="<tr><td>Verdana: </td><td><font face=Verdana>The quick brown fox jumps over the lazy lilly</font></td></tr>
+<tr><td>Arial: </td><td><font face=Arial>The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Arial Black: </td><td><font face=\"Arial Black\">The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Tahoma: </td><td><font face=Tahoma>The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Georgia: </td><td><font face=Georgia>The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Times New Roman: </td><td><font face=\"Times New Roman\">The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Courier: </td><td><font face=Courier>The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Comic Sans MS: </td><td><font face=\"Comic Sans MS\">The quick brown fox jumps over the lazy lilly</font></td></tr><tr><td>Geneva: </td><td><font face=Geneva>The quick brown fox jumps over the lazy lilly</font></td></tr></table>";}
 if ($param=="main_font_size") { $vars_lis[$st].="<font style=\"font: 6pt $main_fontface\">6</font>&nbsp;<font style=\"font: 7pt $main_fontface\">7</font>&nbsp;<font style=\"font: 8pt $main_fontface\">8</font>&nbsp;<font style=\"font: 9pt $main_fontface\">9</font>&nbsp;<font style=\"font: 10pt $main_fontface\">10</font>&nbsp;<font style=\"font: 11pt $main_fontface\">11</font>&nbsp;<font style=\"font: 12pt $main_fontface\">12</font>&nbsp;<font style=\"font: 13pt $main_fontface\">13</font>&nbsp;<font style=\"font: 14pt $main_fontface\">14</font>&nbsp;<font style=\"font: 15pt $main_fontface\">15</font>&nbsp;<font style=\"font: 16pt $main_fontface\">16</font>&nbsp;<font style=\"font: 17pt $main_fontface\">17</font>&nbsp;<font style=\"font: 18pt $main_fontface\">18</font>&nbsp;<font style=\"font: 19pt $main_fontface\">19</font>&nbsp;<font style=\"font: 20pt $main_fontface\">20</font>";}
 $vars_lis[$st].="</td>
 <td valign=top>".$vznachold.$vznach;
@@ -292,12 +305,6 @@ $lic_lis.="</td></tr><tr><td valign=top align=right>
 <b>".$lang[827].":</b></td>
 <td valign=top>".$kkkr."</td>
 </tr>";
-if ($htpath!=="http://localhost") {
-$lic_lis.="<tr><td valign=top align=right>
-<b>".$lang[838].":</b></td>
-<td valign=top>".$ssops."</td>
-</tr>";
-}
 $lic_lis.="<tr><td valign=top align=right><b>".$lang[828].":</b></td>
 <td valign=top>";
 $lice_arr=Array();

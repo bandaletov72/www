@@ -99,8 +99,9 @@ if ($affix==1) { echo "<li class=\"f1$activeh\"><a class=pull-left href=\"./\" t
 echo "$contbuttons
 $enter
 <li class=\"f1 pull-right$active\">$korz</li>
+<li style=\"width:55px; text-align:right;\">$searchmenu</li>
 </ul>
-</div><div class=pull-right>$searchmenu</div>
+</div>
 </div>
 </div>
 </div><img src=\"".$image_path."/pix.gif\" border=0 width=1000 height=41><br>";
@@ -126,20 +127,21 @@ $contbuttons=str_replace("VIDEO - ","<i class=icon-facetime-video></i> ", $contb
 if ($action=="basket") { $active=" active"; }
 if ($action=="clear") { $active=" active"; }
 echo "<div class=\"navbar navbar-inverse navbar-fixed-top\">
-<div class=\"navbar-inner\">
+<div class=\"navbar-inner\" style=\"white-space:nowrap;\">
 <div class=\"container\" style=\"width:$shwid;\">
 ";
 if ($affix==0){echo "<a class=pull-left href=\"./\" title=\"".$lang['mainsite']."\" style=\"margin-top:4px;\"><img src=\"logo_mini.png\" border=0></a>"; }
 echo "
-<div class=\"nav-collapse collapse navbar-responsive-collapse\">
-<ul class=\"nav\">
+<div class=\"nav-collapse collapse navbar-responsive-collapse nowrap\">
+<ul class=\"nav nowrap\">
 ";
 if ($affix==1) { echo "<li class=\"f1$activeh\"><a class=pull-left href=\"./\" title=\"".$lang['mainsite']."\" style=\"margin-top:4px;\"><i class=\"icon-home icon-white\"></i></a></li>"; }
 echo "$contbuttons
 $enter
 <li class=\"f1 pull-right$active\">$korz</li>
+<li style=\"width:55px; text-align:right;\">$searchmenu</li>
 </ul>
-</div><div class=pull-right>$searchmenu</div>
+</div>
 </div>
 </div>
 </div><img src=\"".$image_path."/pix.gif\" border=0 width=1000 height=41><br>";

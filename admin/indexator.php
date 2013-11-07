@@ -540,7 +540,7 @@ $subrcount[$ra] = $line;
 $count_sub=@substr_count($subbr[$ra."|".$out[1]], "$sym");
 //echo $subbr[$ra."|".$out[1]]. " $count_sub " . $subrcount[$ra]. " " .@$subbrcount[$ra."|".$out[1]]."<br>";
 if (($count_sub==1)&&($java_brands==0)){ $subbr[$ra."|".$out[1]]=""; }
-//if ((@$subbrcount[$ra."|".$out[1]]!="")&&($subrcount[$ra]!=@$subbrcount[$ra."|".$out[1]])): $subbr[$ra."|".$out[1]]=@$subbr[$ra."|".$out[1]]."<br>&nbsp;&nbsp;<font size=\"1\" face=\"Verdana\">$sym</font>&nbsp;<a href = \"index.php?catid=".$tablenum[$ra."|".$out[1]. "|"]."&amp;brand=nobrand\"><font color=\"".lighter($nc5,0)."\">".$lang[417]."</font></a> <font color=\"".lighter($nc5,0)."\"><sup>".(@$subbrcount[$ra."|".$out[1]]-$subrcount[$ra])."</sup></font>"; endif;
+//if ((@$subbrcount[$ra."|".$out[1]]!="")&&($subrcount[$ra]!=@$subbrcount[$ra."|".$out[1]])): $subbr[$ra."|".$out[1]]=@$subbr[$ra."|".$out[1]]."<br>&nbsp;&nbsp;<font class=small>$sym</font>&nbsp;<a href = \"index.php?catid=".$tablenum[$ra."|".$out[1]. "|"]."&amp;brand=nobrand\"><font color=\"".lighter($nc5,0)."\">".$lang[417]."</font></a> <font color=\"".lighter($nc5,0)."\"><sup>".(@$subbrcount[$ra."|".$out[1]]-$subrcount[$ra])."</sup></font>"; endif;
 $tmy=$tablenum[$ra."|".$out[1]. "|"];
 $sk="";
 if (@$catidys[$tmy]!="") {
@@ -1014,6 +1014,7 @@ closedir ($handle);
 }
 $wikireplace="";
 $handle=opendir(".$base_loc/content/");
+$citymap="";
 while (($file = readdir($handle))!==FALSE) {
 echo "\n";
 $preg="/".substr($file, 0,1)."/i";
@@ -1028,6 +1029,9 @@ $out1=Array();
 $out1[1]="";
 $out1=explode("==",$all);
 if ($out1[1]!="") {
+$coord="";
+$coord=trim(ExtractString($out1[1],"[coord]","[/coord]"));
+
 $comm="";
 $comm=ExtractString($out1[1],"[comm]","[/comm]");
 $out1[1]=str_replace("[comm]".$comm."[/comm]", "", $out1[1]);
@@ -1035,14 +1039,14 @@ $purl="";
 $ppimg="";
 $pimg="";
 
-$line=str_replace("\s", "",str_replace("\t", "",str_replace("\r", "",str_replace("\n", "", trim(strtoken(strip_tags(trim($out1[1])),"["))))));
-
+$line=str_replace("\s", "",str_replace("\t", "",str_replace("\r", "",str_replace("\n", "", strtoken(trim(strtoken(strip_tags(trim($out1[1])),"[")),"|")))));
 $ppimg=ExtractString($out1[1],"<img ",">");
 if ($ppimg!="") {
 $plinks[translit($line)]="<div align=pull-left><img ". ExtractString($out1[1],"<img ",">")."></div>";
 }
 $purl=ExtractString($out1[1],"[url]","[/url]");
 $out1[1]=str_replace("[url]".$purl."[/url]", "", $out1[1]);
+$out1[1]=str_replace("[coord]".$coord."[/coord]", "", $out1[1]);
 $linet=str_replace("\s", "",str_replace("\t", "",str_replace("\r", "",str_replace("\n", "",$out1[1]))));
 $out[1]=$out1[1];
 unset ($out1);
@@ -1099,6 +1103,7 @@ unset($tmpvotef);
 }
 }
 if ($friendly_url==1) { $flafsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
+if (preg_match("/\:/",$coord)) { $citymap.="$line|$manc|".str_replace(":","|",$coord)."|".str_replace("\n", "", str_replace("\r", "", $comm))."|"."\n"; }
 if (@$mod_rw_enable==1){ $llink="$manc.html"; $llinks="$manc.html";}  else {$llink="index.php?page=$manc&z=".rawurlencode($subline)."[jstart]"; $llinks="index.php?page=$manc";}
 if ($purl!="") {$llink="$purl"; $llinks="$purl";}
 if (preg_match("/<img/i", $linet)) {
@@ -1918,6 +1923,14 @@ exit;
 fputs ($file, " <form name=\"sopto\" action=\"index.php\" method=\"GET\"><small>".$namez["".$numo]."</small> <input type=\"hidden\" name=\"catid\" value=\"$numo\"> <select name=\"query\" onchange=\"document.forms['sopto'].submit()\"> <option value=\"\"> </option>$lineo</select>&nbsp;&nbsp;</form> ");
 fclose ($file);
 }
+
+$file = fopen (".$base_loc/citymap.txt", "w");
+if (!$file) {
+echo "<p> Error opening file <b>.$base_loc/citymap.txt</b>, or file write protected. Please check CHMOD.\n";
+exit;
+}
+fputs ($file, "$citymap");
+fclose ($file);
 
 echo "$reindex";
 ?>

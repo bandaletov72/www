@@ -184,8 +184,10 @@ $st=str_replace("[".$stla."]","<!--", str_replace("[/".$stla."]","-->", $st));
 }
 }
 $out=explode("|",$st);
-
-
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){
+} else {
+if ($out[1]==$lang[418]) {continue;}
+}
 if ($hidart==1) {
 $ext_id=strtoupper(substr(md5(@$out[6].$artrnd), -7));
 $newname=strtoken($out[3],"*");

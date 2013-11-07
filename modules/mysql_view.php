@@ -155,7 +155,7 @@ $brtab[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle 
 }
 
 if ($brand==$br_line) {
-$brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight: bold;\">$br_line</b></td>";
+$brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight:400;\">$br_line</b></td>";
 } else {
 $brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=".rawurlencode($br_line)."\">$br_line</a></td>";
 }
@@ -163,7 +163,7 @@ $brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle
 $img="";
 $brtab[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=".rawurlencode($br_line)."\">$br_line</a></td>";
 if ($brand==$br_line) {
-$brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight: bold;\">$br_line</b></td>";
+$brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight:400;\">$br_line</b></td>";
 } else {
 $brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=".rawurlencode($br_line)."\">$br_line</a></td>";
 }
@@ -172,7 +172,7 @@ $brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle
 //Тут будет обработка разных
 $brtab[$br_num]="<!-- zzz ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=nobrand\"><h4>".$lang[417]."</h4></a></td>";
 if ($brand=="nobrand") {
-$brtab2[$br_num]="<!-- zzz ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight: bold;\">".$lang[417]."</b></td>";
+$brtab2[$br_num]="<!-- zzz ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight:400;\">".$lang[417]."</b></td>";
 }else {
 $brtab2[$br_num]="<!-- zzz ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=nobrand\">".$lang[417]."</a></td>";
 }

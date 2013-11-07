@@ -9,7 +9,7 @@ if (($style['dirs_v']==1)){
 $dirs = fopen ("$base_loc/dirs.txt" , "r");
 if ($dirvar==1) {
 if ($repcatid!="") {
-$dir_cont= str_replace("$repcatid\" style=\"color:".$nc4."\"", "$repcatid\" style=\"color:".$nc0."; font-weight: bold; text-decoration:underline; background-color: $nc4;\"", str_replace( $onc9, $nc9, (@fread ($dirs, @filesize ("$base_loc/dirs.txt")))));
+$dir_cont= str_replace("$repcatid\" style=\"color:".$nc4."\"", "$repcatid\" style=\"color:".$nc0."; font-weight:400; text-decoration:underline; background-color: $nc4;\"", str_replace( $onc9, $nc9, (@fread ($dirs, @filesize ("$base_loc/dirs.txt")))));
 } else {
 $dir_cont= @fread ($dirs, @filesize ("$base_loc/dirs.txt"));
 }
@@ -86,9 +86,9 @@ $dir_conts["$mk"].="<br><div class=round2><h4 style=\"font-size: ".($main_font_s
 } else {
 $dir_conts["$mk"].="<br><div style=\"cursor:pointer; cursor:hand; font-style:normal;\" onclick=\"location.href='index.php?catid=".$curcatid."';\" class=lcat1><h4 style=\"font-size: ".($main_font_size+0)."pt; line-height: 1.1em; margin: 0pt;\"><img src=\"$image_path/pix.gif\" style=\"background-color: ".$fillc.";\" height=\"8\" border=\"0\" width=\"8\">&nbsp;<a href=\"index.php?catid=".$curcatid."\"><font color=".$fillc.">$mk</font></a></h4></div>";
 }
-reset ($mysql_subdirs[$mk]);
-natcasesort ($mysql_subdirs[$mk]);
-while(list($msubk,$msubv)=each($mysql_subdirs[$mk])) {
+@reset (@$mysql_subdirs[$mk]);
+@natcasesort (@$mysql_subdirs[$mk]);
+while(list($msubk,$msubv)=@each($mysql_subdirs[$mk])) {
 $curcatid=translit("$mk $msubk ");
 if (($catid==$curcatid)&&($catid!="_")&&($catid!="")) {
 $dir_conts["$mk"].="<div class=round2><font color=".$fillc."><b>$carat</b></font>&nbsp;<a href=\"index.php?catid=".$curcatid."\">$msubk</a></div>";
@@ -379,7 +379,7 @@ if  ($allow_search==1) {$cmenu = fopen ("$base_loc/cmenu_index.txt" , "r");$cmen
 $cmenu_cont=str_replace("<br><br>","", $cmenu_cont);
 if ($b>0) {
 $cmenu_cont=str_replace(" style=\"display: none;\" id=\"hdiv_".$b."\""," id=\"hdiv_".$b."\"", str_replace("id=\"himg_".$b."\" class=\"icon-chevron-right icon-white\"","id=\"himg_".$b."\" class=\"icon-chevron-down icon-white\"",$cmenu_cont));
-$cmenu_cont=str_replace(" href=\"index.php?b=$b&query=$query", " style=\"font-weight:bold; background-color: ".$nc5.";\" href=\"index.php?b=$b&query=$query", $cmenu_cont);
+$cmenu_cont=str_replace(" href=\"index.php?b=$b&query=$query", " style=\"font-weight:400; background-color: ".$nc5.";\" href=\"index.php?b=$b&query=$query", $cmenu_cont);
 
 }
 if ($dirvar!=0) {
@@ -394,7 +394,7 @@ top ($lang['all_items'], "<div align=left class=box3>".$dir_cont.$cmenu_cont."</
 }
 
 if (($view_dirs_j==1)){
-$dirs = fopen ("$base_loc/dirs_j.txt" , "r"); if ($repcatid!="") {$dir_cont=str_replace(" id=\"".@$podstava["$r||"]."\"><img src=\"$image_path/cat2.png\"", " id=\"".@$podstava["$r||"]."\"><img src=\"$image_path/cat2.png\"", str_replace( " style=\"display:None;\"><!-- ".@$podstava["$r||"]." -->", " style=\"display:inline;\"><!-- ".@$podstava["$r||"]." -->", str_replace("$repcatid\" style=\"color:".$nc4."\"", "$repcatid\" style=\"color:".$nc0."; font-weight: bold; text-decoration:underline; background-color: $nc4;\"",  str_replace( $onc9, $nc9,(@fread ($dirs, @filesize ("$base_loc/dirs_j.txt")))))));} else {$dir_cont= @fread ($dirs, @filesize ("$base_loc/dirs_j.txt"));}
+$dirs = fopen ("$base_loc/dirs_j.txt" , "r"); if ($repcatid!="") {$dir_cont=str_replace(" id=\"".@$podstava["$r||"]."\"><img src=\"$image_path/cat2.png\"", " id=\"".@$podstava["$r||"]."\"><img src=\"$image_path/cat2.png\"", str_replace( " style=\"display:None;\"><!-- ".@$podstava["$r||"]." -->", " style=\"display:inline;\"><!-- ".@$podstava["$r||"]." -->", str_replace("$repcatid\" style=\"color:".$nc4."\"", "$repcatid\" style=\"color:".$nc0."; font-weight:400; text-decoration:underline; background-color: $nc4;\"",  str_replace( $onc9, $nc9,(@fread ($dirs, @filesize ("$base_loc/dirs_j.txt")))))));} else {$dir_cont= @fread ($dirs, @filesize ("$base_loc/dirs_j.txt"));}
 fclose ($dirs);$cmenu_cont=""; if ($java_brands==1) { if ((substr($catid,-1)=="_")&&($catid!="_")) {$dir_cont.="<script language=javascript>
 var d=document.getElementById('d_".$catid."');
 if (d) {
@@ -426,7 +426,7 @@ $cmenu_cont=str_replace("$repzeme","themes/$repzeme",$cmenu_cont);
 $cmenu_cont=str_replace("<br><br>","", $cmenu_cont);
 if ($b>0) {
 $cmenu_cont=str_replace(" style=\"display: none;\" id=\"hdiv_".$b."\""," id=\"hdiv_".$b."\"", str_replace("id=\"himg_".$b."\" class=\"icon-chevron-right icon-white\"","id=\"himg_".$b."\" class=\"icon-chevron-down icon-white\"",$cmenu_cont));
-$cmenu_cont=str_replace(" href=\"index.php?b=$b&query=$query", " style=\"font-weight:bold; background-color: ".$nc5.";\" href=\"index.php?b=$b&query=$query", $cmenu_cont);
+$cmenu_cont=str_replace(" href=\"index.php?b=$b&query=$query", " style=\"font-weight:400; background-color: ".$nc5.";\" href=\"index.php?b=$b&query=$query", $cmenu_cont);
 }
 if ((trim($cmenu_cont)=="")||(trim($cmenu_cont)=="<br>")){ } else { $cmenu_cont= $cmenu_cont; }
 if ($dirvar!=0) {

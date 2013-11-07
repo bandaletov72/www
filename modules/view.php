@@ -158,7 +158,7 @@ $brtab[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle 
 }
 
 if ($brand==$br_line) {
-$brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight: bold;\">$br_line</b></td>";
+$brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight:400;\">$br_line</b></td>";
 } else {
 $brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=".rawurlencode($br_line)."\">$br_line</a></td>";
 }
@@ -166,7 +166,7 @@ $brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle
 $img="";
 $brtab[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=".rawurlencode($br_line)."\">$br_line</a></td>";
 if ($brand==$br_line) {
-$brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight: bold;\">$br_line</b></td>";
+$brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight:400;\">$br_line</b></td>";
 } else {
 $brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=".rawurlencode($br_line)."\">$br_line</a></td>";
 }
@@ -175,7 +175,7 @@ $brtab2[$br_num]="<!-- ".translit($br_line)." ---><td valign=center align=middle
 //Тут будет обработка разных
 $brtab[$br_num]="<!-- zzz ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=nobrand\"><h4>".$lang[417]."</h4></a></td>";
 if ($brand=="nobrand") {
-$brtab2[$br_num]="<!-- zzz ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight: bold;\">".$lang[417]."</b></td>";
+$brtab2[$br_num]="<!-- zzz ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><b style=\"border-bottom: 1px dotted; font-weight:400;\">".$lang[417]."</b></td>";
 }else {
 $brtab2[$br_num]="<!-- zzz ---><td valign=center align=middle width=\"".round(100/$brands_cols)."%\"><a href=\"$htpath/index.php?catid=$catid&brand=nobrand\">".$lang[417]."</a></td>";
 }
@@ -372,7 +372,7 @@ $file="$base_file";
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 
 
-if (($valid=="1")){
+if (("$valid"=="1")){
 if ($admin_speedup==1) {
 	$file="$base_loc/items/$catid.txt";
     $rating=@file("./admin/comments/$catid.rate");
@@ -392,6 +392,7 @@ $rating=@file("./admin/comments/$catid.rate");
 //	echo "$r_num $r_line<br>";
 //	}
 }
+if (file_exists($file)) {
 $f=fopen($file,"r");
 $vit_qty=0;
 $ff=0;
@@ -1143,6 +1144,7 @@ $s+=1;
 }
 //Закрываем базу
 fclose($f);
+}
 $make_col=$cols_of_goods; //
 $st=0;
 $ddt=0;
@@ -1344,7 +1346,7 @@ $total-=1;
 unset($spisok_g);
 
 if ($files_found==0): $spisok =""; $error = "<br><br><font color=$nc2><b>".$lang[94]."</b></font><br><br>"; endif;
-if ($s==0):$vitrin_content[0]=""; $spisok="$sortecho<br><br><center><b>".$lang[94]."</b> (<b>$priceot</b>".$currencies_sign[$_SESSION["user_currency"]]." - <b>$pricedo</b>".$currencies_sign[$_SESSION["user_currency"]].")</center><br><br>"; endif;
+if ($s==0):$vitrin_content[0]=""; $spisok="$sortecho<br><div class=alert><center><br><br><b>".$lang[94]."</b><br><br><br></center></div><br>"; endif;
 
 }
 $spisok=$spisoks.@$spisok;

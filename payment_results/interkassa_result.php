@@ -65,7 +65,7 @@ $result=$_POST["ik_payment_state"];
   mail($adminemail, strtoupper($_POST["ik_payment_state"])." payment ". $_POST["ik_payment_id"], "New payment ".strtoupper($_POST["ik_payment_state"])."\r\nOrder ID: ". $_POST["ik_payment_id"]."\r\nTransaction ID: "
     .$_POST["ik_trans_id"]."\r\nTransaction time: "
     .@date ("d/m/Y H:i:s", $_POST["ik_payment_timestamp"])."\r\n".$_POST["ik_trans_id"]);
-echo "<h1>".strtoupper($_POST["ik_payment_state"])."!</h1> Order #".$_POST["ik_payment_id"]." / Ref: ".$_POST["ik_trans_id"]."<br>Time: ".@date ("d/m/Y H:i:s", $_POST["ik_payment_timestamp"])."<br><br>";
+echo "<h1>SUCCESS!</h1>";
 }
 
 echo "".$lang['back'].": <a href=\"$htpath\"><b>$htpath</b></a>";

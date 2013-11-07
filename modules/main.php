@@ -38,10 +38,6 @@ require ("./modules/view.php");
 }
 }
 
-
-
-
-
 if (($catid!="")&&($catid!="_")) {
 if (($usetheme==0)&&(substr($catid,-1)=="_")) { echo "<table border=0 cellpadding=0 cellspacing=0 width=100%><tr><td valign=top>"; }
 $catm="";

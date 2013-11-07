@@ -249,7 +249,12 @@ exit;
 $fold=".";
 
 //echo $css;
-echo "<body bgcolor=$nc0>";
+$statuses=Array();
+$statusfile="./templates/$template/$speek/status.inc";
+if (file_exists($statusfile)) {
+$statuses=file($statusfile);
+} else { $usestatus=0; }
+echo "$css<body bgcolor=$nc0><br><div class=\"mr ml\">";
 if (($unifid!="") && ($unifid!=md5(" ID:"))) {
 $cartlist="";
 $cart_title="";
@@ -414,15 +419,38 @@ if ($onlyopt==1) {
 if ($valid=="1") { if ((substr($details[7],0,3)=="OPT")||($details[7]=="ADMIN")||($details[7]=="MODER")) { } else { $lang['prebuy']=$lang[736]; $price=0; $ppp=0;} } else { $lang['prebuy']=$lang[736]; $price=0; $ppp=0;}
 }
 //Eof OPT
+$unif=md5(@$outc[3]." ID:".@$outc[6]);
+$curstatus="";
+$curstats="";
+if ($usestatus==1) {
+$statusfile="$base_loc/status/".substr($unif,0,2)."/".$unif."/status.txt";
+if (file_exists($statusfile)) {
+$sp=file($statusfile);
+$curstatus=trim($sp[0]);
+}
 
-if (($price==0)||($price=="")){$prem1="<!-- "; $prem2=" -->"; $prbuy="<small><b>".$lang['prebuy']."</b></small>";} else {$prem1="";$prem2="";$prbuy=""; }
+
+if (($curstatus=="")||($curstatus==trim($statuses[0]))) { $sty=' label-success'; } else {
+
+$view_buybut=0; $price=0;
+if ($curstatus==trim($statuses[1])){ $sty=' label-warning';} else {
+if ($curstatus==trim($statuses[2])){ $sty=' label-important';} else {
+if ($curstatus==trim($statuses[3])){ $sty=' label-info';} else {
+if ($curstatus==trim($statuses[4])){ $sty=' label-inverse';}
+}
+}
+}
+}
+$curstats="<b class=\"label".$sty." mr ml mb pull-right\" style=\"font-size:".($main_font_size+4)."pt; padding:8px;\">$curstatus</b>";
+}
+if (($price==0)||($price=="")){$prem1="<!-- "; $prem2=" -->"; $prbuy="<b>".$lang['prebuy']."</b>";} else {$prem1="";$prem2="";$prbuy=""; }
 if(substr($details[7],0,3)!="OPT") {
-if (($podstavas["$dir|$subdir|"]!="")||(preg_match("/\%/", @$outc[8])==TRUE)) { $strto=strtoken(@$outc[8],"%"); $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike><small>".$currencies_sign[$_SESSION["user_currency"]]."</small></font><br>"; if ((preg_match("/\%/", @$outc[8])==TRUE)&&(doubleval($strto)>0)) {$ueprice=@$ueprice-(@$ueprice*(doubleval($strto))/100); $price=$okr*(round((@$price-(@$price*(doubleval($strto))/100))/@$okr));} else {$strto=doubleval($podstavas["$dir|$subdir|"]);  @$ueprice=@$ueprice-(@$ueprice*((double)$podstavas["$dir|$subdir|"])/100); $price=$okr*(round((@$price-(@$price*((double)$podstavas["$dir|$subdir|"])/100))/@$okr));  } } else {
-if (($valid=="1")&&($details[7]=="VIP")): $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike><small>".$currencies_sign[$_SESSION["user_currency"]]."</small></font> / <b>$lang[176]</b> "; @$price=$okr*round((@$price-@$price*$vipprocent)/$okr); endif;
+if (($podstavas["$dir|$subdir|"]!="")||(preg_match("/\%/", @$outc[8])==TRUE)) { $strto=strtoken(@$outc[8],"%"); $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike>".$currencies_sign[$_SESSION["user_currency"]]."</font><br>"; if ((preg_match("/\%/", @$outc[8])==TRUE)&&(doubleval($strto)>0)) {$ueprice=@$ueprice-(@$ueprice*(doubleval($strto))/100); $price=$okr*(round((@$price-(@$price*(doubleval($strto))/100))/@$okr));} else {$strto=doubleval($podstavas["$dir|$subdir|"]);  @$ueprice=@$ueprice-(@$ueprice*((double)$podstavas["$dir|$subdir|"])/100); $price=$okr*(round((@$price-(@$price*((double)$podstavas["$dir|$subdir|"])/100))/@$okr));  } } else {
+if (($valid=="1")&&($details[7]=="VIP")): $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike>".$currencies_sign[$_SESSION["user_currency"]]."</font> / <b>$lang[176]</b> "; @$price=$okr*round((@$price-@$price*$vipprocent)/$okr); endif;
 }
 }
-if (($valid=="1")&&($details[7]=="ADMIN")): @$description=@$description . "<br><small>(".$lang[148].": <b>".@$opt."</b>".$currencies_sign[$_SESSION["user_currency"]]." <font color=\"#a0a0a0\">[&#36;$ueopt]</font></small>"; endif;
-if (($valid=="1")&&($details[7]=="ADMIN")): $admin_functions = "<br><br><small><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/".$scriptprefix."edit.php?speek=".$speek."&id=$fid&view=no','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=760,height=580,left=10,top=10')> <input type=button value=\"Cc&nbsp;&nbsp;&nbsp;".$lang[137]."\" onClick=javascript:window.open('$htpath/admin/".$scriptprefix."clone.php?speek=".$speek."&id=$fid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')> <input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('$htpath/admin/".$scriptprefix."del.php?speek=".$speek."&id=$fid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10')></small><br><br>"; endif;
+if (($valid=="1")&&($details[7]=="ADMIN")): @$description=@$description . "<br>(".$lang[148].": <b>".@$opt."</b>".$currencies_sign[$_SESSION["user_currency"]]." <font color=\"#a0a0a0\">[&#36;$ueopt]</font>"; endif;
+if (($valid=="1")&&($details[7]=="ADMIN")): $admin_functions = "<br><br><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/".$scriptprefix."edit.php?speek=".$speek."&id=$fid&view=no','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=760,height=580,left=10,top=10')> <input type=button value=\"Cc&nbsp;&nbsp;&nbsp;".$lang[137]."\" onClick=javascript:window.open('$htpath/admin/".$scriptprefix."clone.php?speek=".$speek."&id=$fid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')> <input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('$htpath/admin/".$scriptprefix."del.php?speek=".$speek."&id=$fid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10')><br><br>"; endif;
 if($podstavas["$dir|$subdir|"]<0){$sales=""; $vipold="";}
 @$kwords=@$outc[8];
 @$foto1=@$outc[9];
@@ -546,15 +574,15 @@ unset ($output, $page_content, $pageopen);
 }
 
 $cartlist = "<!-- $nazv -->$fotos<br><br><b>$nazv</b><br>".str_replace("$lang[196]:" , "<b>$lang[196]:</b>", str_replace("$lang[197]:" , "<b>$lang[197]:</b>",$description))."<br>$full_descr";
-if ($view_date_of_goods!=0) {$cartlist.="<br><small>\n<b>".$lang[198]."</b> ". @date("d-m-Y", @filemtime(".$fi"))."</small>";}
-if ($view_goodsprice==1){ $cartlist.=" $prbuy$prem1<br><b>".$lang['price'].":</b> $vipold <b>".($okr*round(@$price/$okr))."</b><small>".$currencies_sign[$_SESSION["user_currency"]]."</small>"; }
+if ($view_date_of_goods!=0) {$cartlist.="<br>\n<b>".$lang[198]."</b> ". @date("d-m-Y", @filemtime(".$fi"))."";}
+if ($view_goodsprice==1){ $cartlist.=" $curstats$prbuy$prem1<br><b>".$lang['price'].":</b> $vipold <b>".($okr*round(@$price/$okr))."</b>".$currencies_sign[$_SESSION["user_currency"]].""; }
 $cartlist.="$prem2";
 //custom card add
 $c_filename="./templates/$template/$speek/custom_cart.inc";
 
 $cc_cart="";
 if (@file_exists($c_filename)==TRUE) {
-$cartlist .= "<br><br><div align=left><table border=0 cellspacing=0 cellpadding=5>";
+$cartlist .= "<br><br><div align=left><table class=\"table table-striped\" border=0 cellspacing=0 cellpadding=5>";
 $custom_cart1=file("./templates/$template/$speek/custom_cart.inc");
 if (@file_exists("./templates/$template/$speek/cc_".$podstava["$dir|$subdir|"].".inc")) {
 $custom_cart2=file("./templates/$template/$speek/cc_".$podstava["$dir|$subdir|"].".inc");
@@ -566,8 +594,9 @@ $custom_cart=$custom_cart1;
 $ddd=0;
 while (list ($cc_num, $cc_line) = each ($custom_cart)) {
 $ccc=explode("|", $cc_line);
-
-if (($cc_line!="")&&(@$ccc[0]!="")&&(@$ccc[1]!="")&&(substr(@$ccc[0],0,2)!="g:")){
+$proceedc=1;
+if (($curstatus=="")||($curstatus==trim($statuses[0]))) { } else { if (trim(@$ccc[5])=="*") {  $proceedc=0; } }
+if (($proceedc==1) &&($cc_line!="")&&(@$ccc[0]!="")&&(@$ccc[1]!="")&&(substr(@$ccc[0],0,2)!="g:")&&(@$ccc[3]!="location")){
 $ncc=17+$cc_num;
 $fw=0;
 reset ($whsalerprice);
@@ -582,11 +611,9 @@ if ((trim(@$outc[$ncc])!="")
 &&($ncc!=$catdirrow4)
 &&($ncc!=$metatitlerow)
 &&($ncc!=$metadescrow)&&($ncc!=$metakeyrow)&&($ncc!=$minorderrow)) {
-if (($ddd/2)==round($ddd/2)) {
-$cartlist .="<tr bgcolor=$nc6><td valign=\"top\" width=50%><b>".trim(@$ccc[1]).":</b></td><td width=50% valign=\"top\" align=\"justify\">".@$outc[$ncc]."</td></tr>";
-} else {
-$cartlist .="<tr><td width=50%><b>".trim(@$ccc[1]).":</b></td><td width=50% valign=\"top\" align=\"justify\">".@$outc[$ncc]."</td></tr>";
-}
+
+$cartlist .="<tr><td valign=\"top\" width=50%><b>".trim(@$ccc[1]).":</b></td><td width=50% valign=\"top\" align=\"justify\">".@$outc[$ncc]."</td></tr>";
+
 $ddd+=1;
 }
 }
@@ -596,7 +623,7 @@ $cartlist .= "</table>$f_con</div><br><br>";
 }
 //end
 
-$cart_title="<small>".$lang[201]."</small> / <small>$dir</small> / <small>$subdir</small>";
+$cart_title="".$lang[201]." / $dir / $subdir";
 
 echo  @$cart_title."<br><br>". @$cartlist."<hr style=\"border-style: dashed; border-width: 1px\" size=\"1\" color=\"$nc6\">";
 echo "
@@ -605,7 +632,7 @@ window.print()
 </script>";
 }
 
-echo "» <small>Copyright (c)".date("Y",time()).", <a href=\"$htpath\"><b>$shop_name</b></a>, <a href=\"$htpath/index.php?unifid=$unifid\">$htpath/index.php?unifid=$unifid</a></small>";
-echo "</body>
+echo "» Copyright (c)".date("Y",time()).", <a href=\"$htpath\"><b>$shop_name</b></a>, <a href=\"$htpath/index.php?unifid=$unifid\">$htpath/index.php?unifid=$unifid</a>";
+echo "</div></body>
 </html>";
 ?>

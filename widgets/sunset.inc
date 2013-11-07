@@ -30,17 +30,17 @@ $zenith=96;
 $sun3=date_sunrise(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
 $sun4=date_sunset(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
 
-$widget= "<div class=shadow align=left style=\"background-image: url('grad.php?h=40&w=1&e=".str_replace("#","",$nc6)."&s=".str_replace("#","",$nc6)."&d=vertical'); background-repeat: repeat-x; background-color: $nc6; position: fixed; width: 54px; height: 40px; overflow:hidden; top: ".(40+$expos*40)."px; right: -20px; z-index:".(1000-$expos)."; padding: 0px; cursor: pointer; cursor: hand;\" onmouseover=\"javascript:this.style.width='400px';\" onmouseout=\"javascript:this.style.width='54px';\"><table border=0 cellspacing=5 cellpadding=5 height=40><tr>
+$widget= "<div class=shadow align=left style=\"background-image: url('grad.php?h=".(40+$popr)."&w=1&e=".str_replace("#","",$nc6)."&s=".str_replace("#","",$nc6)."&d=vertical'); background-repeat: repeat-x; background-color: $nc6; position: fixed; width: ".(54+$popr)."px; height: ".(40+$popr)."px; overflow:hidden; top: ".((40+$popr)+$expos*(40+$popr))."px; right: -20px; z-index:".(1000-$expos)."; padding: 0px; cursor: pointer; cursor: hand;\" onmouseover=\"javascript:this.style.width='400px';\" onmouseout=\"javascript:this.style.width='".(54+$popr)."px';\"><table border=0 cellspacing=5 cellpadding=5 height=".(40+$popr)."><tr>
 <td style=\"white-space:nowrap; width:26px;\" align=center valign=top>
 <img src=\"$image_path/$timeday.png\" align=absmiddle width=26 height=26 style=\"background-color: $colorday\" title=\"$timeday\"></td>
 <td><b>$cityname</b></td>
-<td><font size=1>
+<td><font class=small>
 <img src=\"$image_path/pix.gif\" width=8 height=8 style=\"background-color: #074d6d\" title=\"Twilight\" hspace=3> $sun3 <img src=\"$image_path/pix.gif\" width=8 height=8 style=\"background-color: #ff9c00\" title=\"Sunrise\" hspace=3> $sun1<br>
 <img src=\"$image_path/pix.gif\" width=8 height=8 style=\"background-color: #074d6d\" title=\"Twilight\" hspace=3> $sun2 <img src=\"$image_path/pix.gif\" width=8 height=8 style=\"background-color: #000000\" title=\"Sunset\" hspace=3> $sun4</font></td>
-<td align=center><font size=1>
+<td align=center><font class=small>
 <font color=#468847>|</font><br>
 <font color=#3a87ad>—</font></font></td>
-<td><font size=1>
+<td><font class=small>
 $lat&deg;<br>
 $long&deg;</font></td></tr></table></div>";
 if ($usetheme==1) {

@@ -1,5 +1,8 @@
 <?php
+//if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $show_bigger_map=1;} }
+$shirota=Array();
 $h=0;
+$h2=0;
 if ($au!=1) {
 $page_content="";
 if ((@file_exists("$base_loc/content/x0002.txt")==TRUE)) {
@@ -21,136 +24,30 @@ if (preg_match("/\[map\]/i", $page_content)) { $fmap=1; } else {
 if ($usetheme==1) {
 if (preg_match("/\[map\]/i", $themecontent)) { $fmap=2; }
 }
-
 }
-if ($fmap>0) {
-$i20=20;
-$i21=21;
-$ncc=0;
-$cc=file("./templates/$template/$speek/custom_cart.inc");
 
-$dateformat=str_replace("y", "Y", str_replace("dd", "d",str_replace("mm", "m",str_replace("yy", "y", str_replace("yy", "y", $ewc_dateformat)))));
-
-while(list($kc,$kv)=each($cc)) {
-$out=explode("|", $kv);
-if ($out[3]=="location") {
-$ncc=17+$kc;
-
+if (preg_match("/\[citymap\]/i", $page_content)) { $fmap=3; } else {
+if ($usetheme==1) {
+if (preg_match("/\[citymap\]/i", $themecontent)) { $fmap=4; }
 }
 
 }
-
-$tmp=file($base_file);
-$map1=""; $map2=""; $map3="";
-$area1=""; $area2=""; $area3="";
-unset($kc,$kv,$out,$out2);
-while(list($key,$val)=each($tmp)) {
-if (trim($val)!="") {
-$o=explode("|", $val);
-unset($shirota,$dolgota,$dp,$day,$month,$year);
-if ($ncc!=0) {
-$tt=explode("<br>", $o[$ncc]);
-while(list($kc,$kv)=each($tt)) {
-if (trim ($kv)!="") {
-$out2=explode(";",$kv);
-list($day,$month,$year) = explode(substr($dateformat,1,1),$out2[0]);
-$unixtime=mktime(0, 0, 1, (int)$month, (int)$day, (int)$year);
-$shirota[$unixtime]=(int)trim($out2[1]);
-$dolgota[$unixtime]=(int)trim($out2[2]);
-}
-}
-ksort ($shirota);
-$sh=-1000;
-$do=-1000;
-$ls=-1000;
-$ld=-1000;
-$dp="";
-unset($kc,$kv,$tt);
-$ttime=time();
-//echo $o[3]."<br>";
-while(list($kc,$kv)=each($shirota)) {
-//echo "$ttime>$kc ? $shirota[$kc] $dolgota[$kc]<br>";
-if ($ttime>$kc) {
-$o[$i20]=$kv;
-$o[$i21]=$dolgota[$kc];
-}
-$ls=$kv;
-$ld=$dolgota[$kc];
-$dp=date($dateformat,$kc);
-$ut=$kc;
-}
-}
-if ($dp!="") {
-$uut="";
-if ($ttime>$ut) {$uut="<b><font color=green>Груз прибыл в порт прибытия (".@$o[39].")</font></b>";} else { $uut="<b>Груз в пути (порт прибытия: ".@$o[39].")</b><br>";}
-$dp="Ориентировочная дата прибытия: $dp"."<br>$uut<br>";
-}
-$ims = @getimagesize("./images/map.png");
-$x=$ims[0]; $y=$ims[1];
-$lid=md5(@$o[3]." ID:".@$o[6]);
-$jo=0;
-$bst=str_replace("<img ", "<img class=thumbnail width=150 height=100 ", $o[9])."<br>$o[1]<br>$o[3]<br>".str_replace("\"", "'",$o[7])."<br>"."<span class='label label-info'>".number_format($o[4], 0, ',', ' ')." ".substr($o[12],1)."</span>";
-if ($o[1]=="Проданные") {
-if (trim($o[$i20])!="") {
-$jo++;
-$area3.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\" onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\">";
-if ($o[$i21]<165) { $jo++; $area3.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x+$x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x+$x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">";}
-if ($o[$i21]>165) { $jo++; $area3.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">"; }
-
-$map3.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1 onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\"><img src=$image_path/pin.png border=0> <b>$o[3]</b></a><br><small>$o[7]<br>$dp<br></small></div>";
-}
-}
-
-if ($o[1]=="В резерве") {
-if (trim($o[$i20])!="") {
-$jo++;
-$area2.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\" onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\">\n";
-if ($o[$i21]<165) { $jo++; $area2.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x+$x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x+$x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">";}
-if ($o[$i21]>165) { $jo++; $area2.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">"; }
-
-$map2.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1 onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\"><img src=$image_path/pin3.png border=0> <b>$o[3]</b></a><br><small>$o[7]<br>$dp<br></small></div>";
-}
-}
-
-if ($o[1]=="Свободные к продаже") {
-if (trim($o[$i20])!="") {
-$jo++;
-$area1.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\" onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\">";
-if ($o[$i21]<165) { $jo++; $area1.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x+$x/2+$o[$i21]*$x/360-7-5-21).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x+$x/2+$o[$i21]*$x/360-7+20-21).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">";}
-if ($o[$i21]>165) { $jo++; $area1.="<area class=jons id=jons".$jo." href=index.php?unifid=$lid shape=\"rect\" coords=\"".round($x/2+$o[$i21]*$x/360-7-5-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h+2-25).", ".round($x/2+$o[$i21]*$x/360-7+20-21-$x).", ".round($y/2-$o[$i20]*$y/180-$h)."\" rel=\"tooltip\" data-original-title=\"$bst\">"; }
-
-
-$map1.="<div class=\"pull-left mr mb\"><a href=index.php?unifid=$lid class=cat1 onmouseover=\"ShowPath('".rawurlencode($o[6])."');\" onmouseout=\"RestorePath();\"><img src=$image_path/pin2.png border=0> <b>$o[3]</b></a><br><small>$o[7]<br>$dp<br></small></div>";
-}
-}
-
-
-}
-}
+if (($fmap==1)||($fmap==2)) {
+require("./modules/worldmap.php");
 if ($fmap==1) {
-$page_content=str_replace("[map]", "<script language=javascript>
-$(function () {
-$(\"[rel=tooltip]\").tooltip({html:true,placement:'mouse',delay: { show: 1500, hide: 100 }});
-    });
-function RestorePath() {
-document.getElementById('mapp').src='map.php?rnd=".md5(date("d.m.y H:i", time()))."';
-}
-function ShowPath(id) {
-document.getElementById('mapp').src='map.php?rnd=".md5(date("d.m.y H:i", time()))."&id='+id;
-}
-</script><map name=\"mapmap\">$area1"."$area2"."$area3</map><img id=mapp src=\"map.php?rnd=".md5(date("d.m.y H:i", time()))."\" width=$x height=$y border=0 class=one-edge-shadow usemap=\"#mapmap\"><br><br>$map1"."$map2"."$map3<div class=clearfix></div>", $page_content);
+$page_content=str_replace("[citymap]", "$lemap", $page_content);
 } else {
-$themecontent=str_replace("[map]", "<script language=javascript>
-$(function () {
-$(\"[rel=tooltip]\").tooltip({html:true,placement:'mouse',delay: { show: 1500, hide: 100 }});
-    });
-function RestorePath() {
-document.getElementById('mapp').src='map.php?rnd=".md5(date("d.m.y H:i", time()))."';
+$themecontent=str_replace("[citymap]", "$lemap", $themecontent);
+
+
 }
-function ShowPath(id) {
-document.getElementById('mapp').src='map.php?rnd=".md5(date("d.m.y H:i", time()))."&id='+id;
 }
-</script><map name=\"mapmap\">$area1"."$area2"."$area3</map><img id=mapp src=\"map.php?rnd=".md5(date("d.m.y H:i", time()))."\" width=$x height=$y border=0 class=one-edge-shadow usemap=\"#mapmap\"><br><br>$map1"."$map2"."$map3<div class=clearfix></div>", $themecontent);
+if (($fmap==3)||($fmap==4)) {
+require("./modules/citymap.php");
+if ($fmap==3) {
+$page_content=str_replace("[citymap]", "$lemap", $page_content);
+} else {
+$themecontent=str_replace("[citymap]", "$lemap", $themecontent);
 
 
 }

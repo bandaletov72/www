@@ -1,4 +1,5 @@
 <?php
+$kwo="";
 $catid_content = "";
 $catid_title = "";
 //Выведем описания категорий//

@@ -237,7 +237,7 @@ if (($header_type==2)||($header_type==3)) { if ($lngv!="") { $navmenu.= "<li cla
 if  ($allow_search==1) {
 if (($header_type>=2)&&($usetheme==0)) {
  if ($query=="") { $lquery=""; } else { $lquery=$query; }
- $searchmenu="<form class=\"navbar-search pull-right\" method=\"get\" id=\"header_searcH_form\" name=\"header_searcH_form\" action=\"$htpath/index.php\"><script type=\"text/javascript\"><!--
+ $searchmenu="<form class=\"navbar-search\" method=\"get\" id=\"header_searcH_form\" name=\"header_searcH_form\" action=\"$htpath/index.php\"><script type=\"text/javascript\"><!--
 function setWidth () {
 document.getElementById('search_tips_cont').style.width=(0+document.getElementById('search_input').clientWidth*4)+'px';
 document.getElementById('search_tips').style.width=(0+document.getElementById('search_input').clientWidth*4+3)+'px';
@@ -294,7 +294,7 @@ background-image: -ms-linear-gradient(top, $nc0, #000 23%, rgba() 89%, $nc6);
 background-image: linear-gradient(to bottom, $nc0, #000 23%, rgba() 89%, $nc6);\" name=\"query\" id=\"search_input\" onkeyup=\"submit_search1(event); get_search_tips(this, '".$speek."');setWidth();\" onfocus=\"this.style.background='$nc0'; searchFieldFocus(this);setWidth();\" onblur=\"searchFieldBlur(this);setWidth();\" onchange=\"searchFieldOnChange(this);setWidth();\" type=\"text\" autocomplete=\"off\" placeholder=\"".$lang['search']."...\"><br><img src=\"$image_path/pix.gif\" width=\"100\" height=1 border=0><br></td><td style=\"vertical-align: middle\" align=left><div id=searhbutton  style=\"cursor: pointer; cursor: hand; margin: 4px;\" onclick=\"document.getElementById('header_searcH_form').submit();\" title=\"".$lang['search']."\" align=center><img src=$image_path/searchbutton.png></div>";
 
 if ($advanced_search==1) {
-$searchmenu.="</td><td><input type=hidden id=search_usl value=AND><input type=radio name=usl value=OR onclick=\"document.getElementById('search_usl').value=='OR';\"></td><td><font size=1>$lang[988]</font></td><td><input type=radio name=usl checked value=AND onclick=\"document.getElementById('search_usl').value=='OR';\"></td><td><font size=1>$lang[989]</font></td></tr></table></form>";
+$searchmenu.="</td><td><input type=hidden id=search_usl value=AND><input type=radio name=usl value=OR onclick=\"document.getElementById('search_usl').value=='OR';\"></td><td><font class=small>$lang[988]</font></td><td><input type=radio name=usl checked value=AND onclick=\"document.getElementById('search_usl').value=='OR';\"></td><td><font class=small>$lang[989]</font></td></tr></table></form>";
  } else {
 $searchmenu.="<input type=hidden id=search_usl value=AND><input type=hidden name=usl value=$usl></td></tr></table></form>";
 }

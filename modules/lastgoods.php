@@ -141,7 +141,7 @@ $vipold="";
 $sales="";
 $wh="";
 if (($price==0)||($price=="")){$prem1="<!-- "; $prem2=" -->"; $prbuy="<br><br><font color=\"".$nc5."\"><small><b>".$lang['prebuy']."</b></small></font>";} else {$prem1="";$prem2="";$prbuy=""; }
-if (($podstavas["$dir|$subdir|"]!="")||(preg_match("/\%/", @$out[10])==TRUE)) { $strto=strtoken(@$out[10],"%"); $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike></font>"; if ((preg_match("/\%/", @$out[10])==TRUE)&&(doubleval($strto)>0)) { $sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle\">SALE<BR><b>-$strto%</b></td></tr></table>"; $ueprice=@$ueprice-(@$ueprice*(doubleval($strto))/100); $price=$okr*(round((@$price-(@$price*(doubleval($strto))/100))/$okr));} else { $strto=doubleval($podstavas["$dir|$subdir|"]); $sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" style=\"vertical-align: middle\" align=center>SALE<BR><b>-".$podstavas["$dir|$subdir|"]."%</b></td></tr></table>";  @$ueprice=@$ueprice-(@$ueprice*((double)$podstavas["$dir|$subdir|"])/100); $price=$okr*(round((@$price-(@$price*((double)$podstavas["$dir|$subdir|"])/100))/$okr));} } else {
+if ((@$podstavas["$dir|$subdir|"]!="")||(preg_match("/\%/", @$out[10])==TRUE)) { $strto=strtoken(@$out[10],"%"); $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike></font>"; if ((preg_match("/\%/", @$out[10])==TRUE)&&(doubleval($strto)>0)) { $sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle\">SALE<BR><b>-$strto%</b></td></tr></table>"; $ueprice=@$ueprice-(@$ueprice*(doubleval($strto))/100); $price=$okr*(round((@$price-(@$price*(doubleval($strto))/100))/$okr));} else { $strto=doubleval(@$podstavas["$dir|$subdir|"]); $sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" style=\"vertical-align: middle\" align=center>SALE<BR><b>-".@$podstavas["$dir|$subdir|"]."%</b></td></tr></table>";  @$ueprice=@$ueprice-(@$ueprice*((double)@$podstavas["$dir|$subdir|"])/100); $price=$okr*(round((@$price-(@$price*((double)@$podstavas["$dir|$subdir|"])/100))/$okr));} } else {
 if (($valid=="1")&&($details[7]=="VIP")): @$description=@$description . "<br><small>(".$lang[149].": <b>".@$price."</b>$valut) <font color=\"#a0a0a0\">[&#36;$ueprice]</font></small>"; $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike></font>"; @$price=$okr*round((@$price-@$price*$vipprocent)/$okr); @$ueprice=@$ueprice-@$ueprice*$vipprocent;  endif;
 }
 
@@ -163,13 +163,13 @@ if ($fo==1) {$optionselect="<br><table border=0>$optionselect</table>";}
 @$foto1=@$out[11];
 $inxcd=$out[3]."|".$out[4]."|";
 
-if ($logodirsy[$inxcd]!="") {$foto1=$logodirsy[$inxcd];}
+if (@$logodirsy[$inxcd]!="") {$foto1=@$logodirsy[$inxcd];}
 $sps2[$inxcd2]=$out[3];
-$sps3[$inxcd2]=$logodirsy[$inxcd2];
+$sps3[$inxcd2]=@$logodirsy[$inxcd2];
 $sps4[$inxcd]=$minmax;
 //echo "$dir|$subdir|".$podstavas["$dir|$subdir|"]."<br>";
-if ($podstavas["$dir|$subdir|"]!=""){
-$minmax="<br><font color=#b94a48><b>".$podstavas["$dir|$subdir|"]."%</b> $lang[233]</font>$minmax";
+if (@$podstavas["$dir|$subdir|"]!=""){
+$minmax="<br><font color=#b94a48><b>".@$podstavas["$dir|$subdir|"]."%</b> $lang[233]</font>$minmax";
 }
 if ($foto1=="") {$foto1="<img src=\"$image_path/no_photo.gif\" border=0>";}
 @$foto2=@$out[12];
@@ -191,7 +191,7 @@ $htpat=str_replace("http://www.", "http://", $htpath);
 
 
 
-if ($logodirsy[$inxcd]=="") {
+if (@$logodirsy[$inxcd]=="") {
 //echo "1.Нет картинки подраздела $inxcd <br>";
 
 $wh="";
@@ -219,7 +219,7 @@ if (($style['ww']!="")&&($style['hh']!="")) { $wh=" width=\"".$style['ww_v']."\"
 $foto1=str_replace("width= height= ", "", @$foto1);
 //echo "ее размеры $wh<br>";
 //echo "Проверим есть вообще картинка раздела $inxcd2 ?<br>";
-if ($logodirsy[$inxcd2]=="") {
+if (@$logodirsy[$inxcd2]=="") {
 //echo "НЕТ! давайте сделаем картинкой раздела $inxcd2 - $foto1<br>";
 $sps3[$inxcd2]=$foto1;
 } else {
@@ -245,7 +245,7 @@ $sps3[$inxcd2]="$foto1";
 }
 
 
-if ($logodirsy[$inxcd2]!="") {
+if (@$logodirsy[$inxcd2]!="") {
 //echo "55. Есть картинка раздела $inxcd2 $logodirsy[$inxcd2]<br>"; $wh="";
 $htpat=str_replace("http://www.", "http://",$htpath);
 $foto1=str_replace("http://www.", "http://", str_replace("\"","'", $foto1));

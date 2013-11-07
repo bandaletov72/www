@@ -1,4 +1,5 @@
 <?php
+$prebuy="";
 $dcc=0;
 $men4="";
 $mmen1=0;
@@ -16,6 +17,11 @@ $outc=array();
 $dopwidth=350;
 $cvipold="";
 $spprice="price";
+$statuses=Array();
+$statusfile="./templates/$template/$speek/status.inc";
+if (file_exists($statusfile)) {
+$statuses=file($statusfile);
+} else { $usestatus=0; }
 if (file_exists("./images/".$_SESSION["user_currency"].".png")==TRUE) { $vsygn="<img align=absbottom src=$htpath/$image_path/".$_SESSION["user_currency"].".png>"; } else {$vsygn=$currencies_sign[$_SESSION["user_currency"]]; }
 $antispam_array=Array("2x2=4", "3x3=9", "6-4=2", "10+2=12", "20-10=10");
 if (file_exists("./templates/$template/$language/antispam.inc")==TRUE) {
@@ -101,7 +107,32 @@ $st=str_replace("[".$stla."]","<!--", str_replace("[/".$stla."]","-->", $st));
 }
 
 $outc=explode("|",$st);
+
 if (count($outc)<=9): continue;  endif;
+$unif=md5(@$outc[3]." ID:".@$outc[6]);
+$curstatus="";
+$curstats="";
+if ($usestatus==1) {
+$statusfile="$base_loc/status/".substr($unif,0,2)."/".$unif."/status.txt";
+
+if (file_exists($statusfile)) {
+$sp=file($statusfile);
+$curstatus=trim($sp[0]);
+}
+
+if (($curstatus=="")||($curstatus==trim($statuses[0]))) { $sty=' label-success'; } else {
+
+$view_buybut=0;
+if ($curstatus==trim($statuses[1])){ $sty=' label-warning';} else {
+if ($curstatus==trim($statuses[2])){ $sty=' label-important';} else {
+if ($curstatus==trim($statuses[3])){ $sty=' label-info';} else {
+if ($curstatus==trim($statuses[4])){ $sty=' label-inverse';}
+}
+}
+}
+}
+$curstats="<b class=\"label".$sty." mr ml mb pull-right\" style=\"font-size:".($main_font_size+4)."pt; padding:8px;\">$curstatus</b>";
+}
 @$file=@$outc[0];
 
 @$dir=@$outc[1];
@@ -269,7 +300,6 @@ $accs=explode(",", $acs);
 
 $vipold="";
 $ccat=@$podstava["$dir|$subdir|"];
-$unif=md5(@$outc[3]." ID:".@$outc[6]);
 $novina=""; if ((@$outc[8]!="")&&($novinka!="")) { if (@preg_match("/".$novinka."/",@$outc[8])==TRUE) { $novina="&nbsp;&nbsp;<font color=#b94a48 size=2><b>".$lang[172]."</b></font>";} else {$novina="";}} else {$novina="";}
 if (!isset($stinfo)) { $stinfo=""; }
 if ($stinfo=="") {
@@ -341,11 +371,11 @@ if ($valid=="1") { if ((substr($details[7],0,3)=="OPT")||($details[7]=="ADMIN")|
 
 if ($zero_price_incart==0) {
 //not sale items with zero price
-if (($price==0)||(doubleval($onsale)==0)){$prem1="<!-- "; $prem2=" -->"; $prbuy="<small><b>".$lang['prebuy']."</b></small>";} else {$prem1="";$prem2="";$prbuy=""; }
+if (($price==0)||(doubleval($onsale)==0)){$prem1="<!-- "; $prem2=" -->"; $prbuy="<small><b>".$prebuy."</b></small>";} else {$prem1="";$prem2="";$prbuy=""; }
 } else {
 //sale items with zero price
 if (doubleval($onsale)==0){$prem1="<!-- "; $prem2=" -->"; $prbuy="<small><b>".$lang['prebuy']."</b></small>";} else {$prem1="";$prem2="";$prbuy=""; }
-if (($price==0)||($price=="")) { $prbuy="<small><b>".$lang['prebuy']."</b></small>";}
+if (($price==0)||($price=="")) { $prbuy="<small><b>".$prebuy."</b></small>";}
 }
 
 //opt
@@ -373,9 +403,10 @@ if(($details[7]=="ADMIN")){if (($valid=="1")): @$description=@$description . "<b
 $goodofday="";
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $skl="<br><b>$ext_id</b> -&gt; $nazv [".$outc[6]."]<br>".$sklad;
 if (($admin_speedup==1)||($item_speedup==1)) {
-$admin_functions = "<br><div align=center><small><button type=\"button\" class=btn onClick=javascript:window.open('$htpath/admin/".$scriptprefix."edit.php?speek=".$speek."&id=".$outc[0]."&view=no','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=760,height=580,left=10,top=10') title=\"".$lang['ch']."\"><font color=#468847>V</font>&nbsp;<small>".$lang['ch']."</small></button> <button type=\"button\" class=btn onClick=javascript:window.open('$htpath/admin/".$scriptprefix."clone.php?speek=".$speek."&id=".$outc[0]."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10') title=\"".$lang[137]."\"><font color=#f89406>Cc</font>&nbsp;<small>".$lang[137]."</small></button> <button type=\"button\" class=btn onClick=javascript:window.open('$htpath/admin/".$scriptprefix."del.php?speek=".$speek."&id=".$outc[0]."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10') title=\"".$lang['del']."\"><font color=$nc3>X</font>&nbsp;<small>".$lang['del']."</small></button><br>".$lang[982]."</small></div>";
+if ($item_id!="") {
+$admin_functions = "<br><div align=center><small><button type=\"button\" class=btn onClick=javascript:window.open('$htpath/admin/".$scriptprefix."edit.php?speek=".$speek."&id=".$outc[0]."&view=no','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=760,height=580,left=10,top=10') title=\"".$lang['ch']."\"><font color=#468847>V</font>&nbsp;<small>".$lang['ch']."</small></button> <button type=\"button\" class=btn onClick=javascript:window.open('$htpath/admin/".$scriptprefix."clone.php?speek=".$speek."&id=".$outc[0]."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10') title=\"".$lang[137]."\"><font color=#f89406>Cc</font>&nbsp;<small>".$lang[137]."</small></button> <button type=\"button\" class=btn onClick=javascript:window.open('$htpath/admin/".$scriptprefix."del.php?speek=".$speek."&id=".$outc[0]."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10') title=\"".$lang['del']."\"><font color=$nc3>X</font>&nbsp;<small>".$lang['del']."</small></button><br>".$lang[983]."</small></div>";
 $admin_functions.="<div align=center><br><button type=button class=btn onClick=javascript:window.open('$htpath/admin/good_of_day.php?speek=".$speek."&id=".$outc[0]."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10') title=\"".$lang[735]."\"><font color=#3a87ad>D</font>&nbsp;<small>".$lang[735]."</small></button></div><br><br>";
-
+}
 } else {
 $admin_functions = "<br><div align=center><small><button type=\"button\" class=btn onClick=javascript:window.open('$htpath/admin/".$scriptprefix."edit.php?speek=".$speek."&id=$fid&view=no','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=760,height=580,left=10,top=10') title=\"".$lang['ch']."\"><font color=#468847>V</font>&nbsp;<small>".$lang['ch']."</small></button> <button type=\"button\" class=btn onClick=javascript:window.open('$htpath/admin/".$scriptprefix."clone.php?speek=".$speek."&id=$fid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10') title=\"".$lang[137]."\"><font color=#f89406>Cc</font>&nbsp;<small>".$lang[137]."</small></button> <button type=\"button\" class=btn onClick=javascript:window.open('$htpath/admin/".$scriptprefix."del.php?speek=".$speek."&id=$fid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10') title=\"".$lang['del']."\"><font color=$nc3>X</font>&nbsp;<small>".$lang['del']."</small></button><br>".$lang[982]."</small></div>";
 $admin_functions.="<div align=center><br><button type=button class=btn onClick=javascript:window.open('$htpath/admin/good_of_day.php?speek=".$speek."&id=$fid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10') title=\"".$lang[735]."\"><font color=#3a87ad>D</font>&nbsp;<small>".$lang[735]."</small></button></div><br><br>";
@@ -1206,7 +1237,6 @@ $cueopt=@$copt;
 @$consale=substr(@$cout[12],0,1);
 $cvipold="";
 $csales="";
-
 if (($cprice==0)||($cprice=="")){$cprem1="<!-- "; $cprem2=" -->"; $cprbuy="<font color=\"#0d0d0d\"><small><b>".$lang['prebuy']."</b></small></font>";} else {$cprem1="";$cprem2="";$cprbuy=""; }
 if ((@$podstavas["$cdir|$csubdir|"]!="")||(preg_match("/\%/", @$cout[8])==TRUE)) {
 $cstrto=0;
@@ -1498,7 +1528,9 @@ $custom_cart=$custom_cart1;
 $ncc5=2;
 while (list ($cc_num, $cc_line) = each ($custom_cart)) {
 $ccc=explode("|", $cc_line);
-if (($cc_line!="")&&(@$ccc[0]!="")&&(@$ccc[1]!="")&&($cc_line!="\n")&&($cc_num!=($taxcolumn-17))&&($cc_num!=($othertaxcolumn-17))&&($cc_num!=($catdirrow3-17))&&($cc_num!=($catdirrow4-17))&&($cc_num!=($metatitlerow-17))&&($cc_num!=($metadescrow-17))&&($cc_num!=($metakeyrow-17))) {
+$proceedc=1;
+if (($curstatus=="")||($curstatus==trim($statuses[0]))) { } else { if (trim(@$ccc[5])=="*") {  $proceedc=0; } }
+if (($proceedc==1) &&($cc_line!="")&&(@$ccc[0]!="")&&(@$ccc[1]!="")&&($cc_line!="\n")&&($cc_num!=($taxcolumn-17))&&($cc_num!=($othertaxcolumn-17))&&($cc_num!=($catdirrow3-17))&&($cc_num!=($catdirrow4-17))&&($cc_num!=($metatitlerow-17))&&($cc_num!=($metadescrow-17))&&($cc_num!=($metakeyrow-17))) {
 if (substr(@$ccc[0],0,2)!="g:") {
 $ncc=17+$cc_num;
 
@@ -1713,9 +1745,10 @@ $cartlist.="</tr>
 //Buy button
 if ($additional_photos_poz==3) {if (trim($dopos)!="") {$cartlist.="<div><div style=\"height: auto; overflow: auto;\">".$dopos."</div></div>";}}
 
+if (($curstatus=="")||($curstatus==trim($statuses[0]))) { } else { $prebuy=$curstats; $price=0; }
 
 if ($price==0) {
-$cartlist.="<div>$minupak</div><br><div class=clear></div>$callback<div class=pull-right style=\"margin-right:20px; margin-bottom: 10px;\"><font size=3><b><span class=muted>".$lang['prebuy']."</span></b></font></div><div class=clear><br></div>$prem1
+$cartlist.="<div>$minupak</div><br><div class=clear></div>$callback<div class=pull-right style=\"margin-right:20px; margin-bottom: 10px;\">$curstats<font size=3><b><span class=muted>".$lang['prebuy']."</span></b></font></div><div class=clear><br></div>$prem1
 <table class='table panel' border=0 width=100% cellspacing=5 cellpadding=5><tr>";
 
 if ($zero_price_incart==1){
@@ -1748,7 +1781,7 @@ $cartlist.="</div>";
 
 //item price>0
 if ($view_goodsprice==1){
-$cartlist.="<div>$minupak</div><br><div class=clear></div>$callback<div class=clear></div>";
+$cartlist.="<div>$minupak</div><br><div class=clear></div>$callback$curstats<div class=clear></div>";
 $cartlist.="$prem1
 <table class='table panel' border=0 width=100% cellspacing=5 cellpadding=5><tr>";
 
@@ -1822,7 +1855,7 @@ $cartlist.=wikify($cartlisto."<br>".$full_descr,"");
 } else {
 $cartlist.=$cartlisto."<br>".$full_descr;
 }
-if($map_functions==1) { $cartlist.="<div><img src=\"map.php?t=".time()."&id=".rawurlencode(@$outc[6])."\" border=0></div>";}
+if($map_functions==1) { $cartlist.="<div><br><b>$lang[1617]:</b><br><img class=shadow style=\"background-image: url('images/map.png');\" src=\"map.php?t=".time()."&mid=1&id=".rawurlencode(@$outc[6])."\" border=0></div><br>$curstats<div class=clearfix></div>";}
 $cartlist.="<br>".$finddocz.$findtxtz."<br>$prbuy
 </div>
 ";

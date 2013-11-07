@@ -1447,7 +1447,7 @@ $cmnts.="<a name=\"comment_$message/$key\"></a><div style=\"overflow: hidden; wi
 <br><div id=\"d_$key\">";
 if ("$valid"=="1") {$cmnts.="<a href=\"#reply\" onclick=\"javascript:document.getElementById('$key').style.display='';document.getElementById('$key').style.visibility='visible';document.getElementById('d_$key').style.display='none';document.getElementById('d_$key').style.visibility='hidden';\">$lang[806]</a>";
 }
-$cmnts.="$cls__delc<div style=\"float:right; width:180px;\" align=center><font size=1><a href=\"#comment_$message/$key\">URL</a></font></div></div>
+$cmnts.="$cls__delc<div style=\"float:right; width:180px;\" align=center><font class=small><a href=\"#comment_$message/$key\">URL</a></font></div></div>
 <div id=\"$key\" style=\"display:none; vilibility:hidden\">
 ";
 if ("$valid"=="1") {$cmnts.="<br><form method=POST action=index.php id=\"f_$key\">
@@ -1473,7 +1473,7 @@ $cmnts.="<a name=\"comment_$message/$key\"></a><div style=\"overflow: hidden; wi
 "."$social_ava"."<div class=cat2 style=\"float:right; width:160px; background: $color;\" align=center>".date("Y/m/d H:i:s" , $dates[$key])."</div><div><font size=3><b>$val[0]</b></font> &nbsp; $social_ico$social_user<b>".$social_link1."$val[1]".$social_link2."</b><br>$val[2]
 <br><div id=\"d_$key\">";
 if ("$valid"=="1") {$cmnts.="<a href=\"#reply\" onclick=\"javascript:document.getElementById('$key').style.display='';document.getElementById('$key').style.visibility='visible';document.getElementById('d_$key').style.display='none';document.getElementById('d_$key').style.visibility='hidden';\">$lang[806]</a>"; }
-$cmnts.="$cls__delc<div style=\"float:right; width:180px;\" align=center><font size=1><a href=\"#comment_$message/$key\">URL</a></font></div></div>
+$cmnts.="$cls__delc<div style=\"float:right; width:180px;\" align=center><font class=small><a href=\"#comment_$message/$key\">URL</a></font></div></div>
 <div id=\"$key\" style=\"display:none; vilibility:hidden\">
 ";
 if ("$valid"=="1") {$cmnts.="<br><form method=POST action=index.php id=\"f_$key\">
@@ -1613,7 +1613,7 @@ $zz=0;
 while (list ($t1,$t2)=each($tmp)) {
 $t=explode("|",$t2);
 $zz++;
-$clcont.="<div class=cat2 onclick=\"document.location.href='$htpath/index.php?action=cl&level=".rawurlencode("$level/$clfile")."&cl_post=".$t[4]."'\" style='cursor: pointer; cursor: hand;' onmouseover=this.style.backgroundColor='$nc6'; onmouseout=this.style.backgroundColor='';><font color=$nc10>".wordwrap(substr(strip_tags($t[13]),0,100), 27, "\n", true)."</font> <a href=\"$htpath/index.php?action=cl&level=".rawurlencode("$level/$clfile")."&cl_post=".$t[4]."\"><b>".wordwrap(substr(strip_tags($t[5]),0,100), 27, "\n", true)."</b></a> - ".wordwrap(substr(strip_tags($t[6]),0,60), 27, "\n", true)."<br><small>".to_html(wordwrap(substr(str_replace("[br]", " ", strip_tags($t[12])),0,200), 100, "\n", true),1)." - <font color=$nc3><noindex><span id=\"z_".$zz."_".md5($level."/".$clfile)."\"></span></noindex></font> - <font size=1><i>".date("d.m.Y H:i", $t[0])."</i></font></small><div class=clear></div>
+$clcont.="<div class=cat2 onclick=\"document.location.href='$htpath/index.php?action=cl&level=".rawurlencode("$level/$clfile")."&cl_post=".$t[4]."'\" style='cursor: pointer; cursor: hand;' onmouseover=this.style.backgroundColor='$nc6'; onmouseout=this.style.backgroundColor='';><font color=$nc10>".wordwrap(substr(strip_tags($t[13]),0,100), 27, "\n", true)."</font> <a href=\"$htpath/index.php?action=cl&level=".rawurlencode("$level/$clfile")."&cl_post=".$t[4]."\"><b>".wordwrap(substr(strip_tags($t[5]),0,100), 27, "\n", true)."</b></a> - ".wordwrap(substr(strip_tags($t[6]),0,60), 27, "\n", true)."<br><small>".to_html(wordwrap(substr(str_replace("[br]", " ", strip_tags($t[12])),0,200), 100, "\n", true),1)." - <font color=$nc3><noindex><span id=\"z_".$zz."_".md5($level."/".$clfile)."\"></span></noindex></font> - <font class=small><i>".date("d.m.Y H:i", $t[0])."</i></font></small><div class=clear></div>
 <script language='javascript'>
 rev('z_".$zz."_".md5($level."/".$clfile)."', '".strrev(substr(strip_tags($t[14]),0,60))."');
 </script></div>";

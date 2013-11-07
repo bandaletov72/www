@@ -384,7 +384,10 @@ $stun=str_replace("[".$stla."]","<!--", str_replace("[/".$stla."]","-->", $stun)
 }
 
 $out=explode("|",$stun);
-
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){
+} else {
+if ($out[0]==$lang[418]) {continue;}
+}
 $stun=strip_tags($stun);
 $ext_id=substr(md5(@$out[5].$artrnd), -7);
 $unifw=md5(@$out[2]." ID:".@$out[5]);

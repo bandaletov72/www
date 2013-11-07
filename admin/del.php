@@ -64,9 +64,9 @@ if ($del=="yes") {
 settype ($id, "integer");
 $fcontents = file(".$base_file");
 $out=explode("|",$fcontents [$id]);
-$catid=translit($out[1]." ".$out[2]." ");
-$catid=translit($out[1]);
-if (trim($fcontents [$id])=="") { echo "<div class=\"mr ml\" align=center><br><h1>$lang[202]</h1><br><br><div align=center><input type='button' class=\"btn btn-large btn-primary\" value='".$lang[428]."' name='no' onclick='javascript:rc()'></div></div>"; exit; }
+$catid=translit(@$out[1]." ".@$out[2]." ");
+$catid2=translit(@$out[1]);
+if (trim($fcontents[$id])=="") { echo "<div class=\"mr ml\" align=center><br><h1>$lang[202]</h1><br><br><div align=center><input type='button' class=\"btn btn-large btn-primary\" value='".$lang[428]."' name='no' onclick='javascript:rc()'></div></div>"; exit; }
 $fcontents [$id] = "\n";
 
 $html = implode ("", $fcontents);
@@ -98,8 +98,8 @@ $founds=0;
 while (list ($key,$val)=each ($fcontents)) {
 
 $out=explode("|",$val);
-if ((trim($line)!="")&&(trim($line)!="\n")&&(trim($out[0])!="")){
-if (($out[0]==$catid)||($out[0]==$catid2)) {
+if ((trim($val)!="")&&(trim($out[0])!="")){
+if ((@$out[0]==$catid)||(@$out[0]==$catid2)) {
 unset($fcontents[$key]);
 }
 }

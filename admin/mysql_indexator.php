@@ -440,9 +440,9 @@ if (!isset($brandname[$indexbr])) {$brandname[$indexbr]=trim($out[13]);}
 //if ($view_brands==1){
 
 if ($out[13]!=""){
-@$tmpbrands[$st] = $out[2]."|<!--".$out[13]."-->&nbsp;&nbsp;<font size=\"1\" face=\"Verdana\" color=\"".$nc4."\">$sym</font>&nbsp;<b><a href = \"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=".rawurlencode($out[13])."\"><font size=1 color=\"".$nc9."\">".$out[13]."</font></a></b><br>|".$out[1]."|".$out[13]."|";
+@$tmpbrands[$st] = $out[2]."|<!--".$out[13]."-->&nbsp;&nbsp;<font class=small face=\"Verdana\" color=\"".$nc4."\">$sym</font>&nbsp;<b><a href = \"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=".rawurlencode($out[13])."\"><font class=small color=\"".$nc9."\">".$out[13]."</font></a></b><br>|".$out[1]."|".$out[13]."|";
 } else {
-$tmpbrands[$st] = $out[2]."|<!--zzzzz-->&nbsp;&nbsp;<font size=\"1\" face=\"Verdana\" color=\"".$nc4 ."\">$sym</font>&nbsp;<b><a href = \"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=nobrand\"><font size=1 color=\"".$nc9."\">".$lang[417]."</font></a></b><br>|".$out[1]."|".$lang[417]."|";
+$tmpbrands[$st] = $out[2]."|<!--zzzzz-->&nbsp;&nbsp;<font class=small face=\"Verdana\" color=\"".$nc4 ."\">$sym</font>&nbsp;<b><a href = \"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=nobrand\"><font class=small color=\"".$nc9."\">".$lang[417]."</font></a></b><br>|".$out[1]."|".$lang[417]."|";
 
 }
 //}
@@ -528,7 +528,7 @@ $subrcount[$ra] = $line;
 $count_sub=@substr_count($subbr[$ra."|".$out[1]], "$sym");
 //echo $subbr[$ra."|".$out[1]]. " $count_sub " . $subrcount[$ra]. " " .@$subbrcount[$ra."|".$out[1]]."<br>";
 if ($count_sub==1){ $subbr[$ra."|".$out[1]]=""; }
-//if ((@$subbrcount[$ra."|".$out[1]]!="")&&($subrcount[$ra]!=@$subbrcount[$ra."|".$out[1]])): $subbr[$ra."|".$out[1]]=@$subbr[$ra."|".$out[1]]."<br>&nbsp;&nbsp;<font size=\"1\" face=\"Verdana\">$sym</font>&nbsp;<a href = \"index.php?catid=".$tablenum[$ra."|".$out[1]. "|"]."&amp;brand=nobrand\"><font color=\"".lighter($nc5,0)."\">".$lang[417]."</font></a> <font color=\"".lighter($nc5,0)."\"><sup>".(@$subbrcount[$ra."|".$out[1]]-$subrcount[$ra])."</sup></font>"; endif;
+//if ((@$subbrcount[$ra."|".$out[1]]!="")&&($subrcount[$ra]!=@$subbrcount[$ra."|".$out[1]])): $subbr[$ra."|".$out[1]]=@$subbr[$ra."|".$out[1]]."<br>&nbsp;&nbsp;<font class=small face=\"Verdana\">$sym</font>&nbsp;<a href = \"index.php?catid=".$tablenum[$ra."|".$out[1]. "|"]."&amp;brand=nobrand\"><font color=\"".lighter($nc5,0)."\">".$lang[417]."</font></a> <font color=\"".lighter($nc5,0)."\"><sup>".(@$subbrcount[$ra."|".$out[1]]-$subrcount[$ra])."</sup></font>"; endif;
 $tmy=$tablenum[$ra."|".$out[1]. "|"];
 $sk="";
 if (@$catidys[$tmy]!="") {

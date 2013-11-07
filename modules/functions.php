@@ -223,7 +223,7 @@ echo " align=left style=\"background: $var02 url(grad.php?h=50&w=20&s=".str_repl
 }
 
 echo "<div class=\"content\" align=left>$var00</div>
-<div class=clear></div>
+<div class=clear></div></div>
 ";
 }
 }

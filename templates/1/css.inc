@@ -1,4 +1,9 @@
 <?php
+$postorder=0; //enable postorder.php after checkouts before cart clear
+$change_status_to_reserved=0; //after checkout
+$usestatus=0; //use item status
+$googlefonts=Array("Open Sans","PT Sans Narrow","Roboto Condensed","Noto Sans","Arimo","Ubuntu Mono", "Roboto","PT Sans", "PT Sans Narrow", "Ubuntu", "Play", "Didact Gothic", "Open Sans Condensed", "Tenor Sans", "Ubuntu Condensed", "Andika");
+$no_x0007=1; //Do not show z_ files at x0007 place
 $big_photos_inlist=1; //Show big photos in items list
 $map_functions=0; //Use map.php functions
 $minify_big=0;
@@ -49,6 +54,7 @@ $rssurl= Array(
 //$jg=(($gallery_maxwidth*$gallery_cols)+90)."px"; //width of jquery gallery
 $jg="100%"; //width of jquery gallery
 $metat="";
+$googlefont="";
 if (!isset($_SESSION["partner_id"])) {$_SESSION["partner_id"]="";}
 if (!isset($pid)) { $pid=""; }
 if (!preg_match("/^[a-zA-Z0-9\._]+$/i",$pid)) { $pid="";}
@@ -68,6 +74,11 @@ $nnc=fopen("$fold"."/templates/$template/colors"."/colors.txt","r");$colr=fread 
 }
 } else {
 $nnc=fopen("$fold"."/templates/$template/colors"."/colors.txt","r");$colr=fread ($nnc, filesize("$fold"."/templates/$template/colors"."/colors.txt"));fclose ($nnc);unset ($nnc);$colrmas=explode("|", $colr); $qcol=0; while (list ($colrkey, $colrval) = each ($colrmas)) {if (($colrval!="")&&($colrval!="\n")) {$opp="nc".$qcol; $$opp=$colrval;$qcol+=1;}}
+}
+if (count($googlefonts)>0) {
+while (list($fontkey, $fontval)=each($googlefonts)) {
+if ($main_fontface=="$fontval") { $googlefont=$fontval; }
+}
 }
 
 $line_height="120%";
@@ -170,10 +181,10 @@ $style = array (
 'button_text' =>"$nc0",#button foreground color
 'max_image_width' =>$small_foto_width,#Max Image Width in pixels
 'max_image_height'=>$small_foto_height,#Max Image Height in pixels
-'left_width'=>"21%",#Left Column Width in px or %
-'affix_width'=>"22%",#Left Column Width in px or %
-'right_width' =>220,#Right Column Width in pixels
-'center_width'=>"100%",#Center column Width in pixels
+'left_width'=>"17%",#Left Column Width in px or %
+'affix_width'=>"19%",#Left Column Width in px or %
+'right_width' =>180,#Right Column Width in pixels
+'center_width'=>"93%",#Center column Width in pixels
 );
 
 $style_cheat=1; //view ms effects
@@ -199,7 +210,7 @@ $css.="
 <link href=\"$htpath/css/bootstrap".$bootstrap_theme.".css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\" />
 <link href=\"$htpath/css/prettify.css\" rel=\"stylesheet\">";
 if (@$action=="blog") { $css.="<script type=\"text/javascript\" src=\"https://apis.google.com/js/plusone.js\"></script>"; }
-
+if ($googlefont!="") { $css.="<link href='http://fonts.googleapis.com/css?family=".str_replace(" ", "+", $googlefont)."&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>"; }
 if ($flush_css==0){
 $css.= "<STYLE type=\"text/css\">";
 }
@@ -209,7 +220,15 @@ if ($css_style==1) {
 $cssflush.="
 body{
 position: relative;
-font: " . $style ['font_size1'] . "/140% " . $style ['font_face'] . ",Arial, Helvetica, Geneva, sans-serif;
+font-size: " . $style ['font_size1'] . ";";
+if ($googlefont!="") {
+$cssflush.="
+font-family: '".$googlefont."';";
+} else {
+$cssflush.="
+font-family: '".$main_fontface."';";
+}
+$cssflush.="
 color: $nc5;
 font-weight: lighter;
 margin: 0;
@@ -217,10 +236,33 @@ padding: 0;
 background: $nc0;
 text-align:left;
 }
+b {font-weight:400;}
+strong {font-weight:400;}
+.small {font-size: smaller; }
+small {font-size: smaller; }
+i{font-weight:lighter}
 .mCSB_scrollTools .mCSB_draggerRail{
 	width:4px;
-	box-shadow:2px 2px 2px rgba(255,255,255,0.2);
 }
+
+.mCSB_scrollTools .mCSB_draggerRail{
+	background:".lighter($nc1,-3).";
+	filter:\"alpha(opacity=40)\"; -ms-filter:\"alpha(opacity=40)\"; /* old ie */
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+	background:".lighter($nc1,-20).";
+	filter:\"alpha(opacity=75)\"; -ms-filter:\"alpha(opacity=75)\"; /* old ie */
+}
+.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
+	background:".lighter($nc1,-20).";
+	filter:\"alpha(opacity=85)\"; -ms-filter:\"alpha(opacity=85)\"; /* old ie */
+}
+.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
+.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{
+	background:".lighter($nc1,-20).";
+	filter:\"alpha(opacity=90)\"; -ms-filter:\"alpha(opacity=90)\"; /* old ie */
+}
+
 input[type=search] {
 	-webkit-appearance: textfield;
 	-webkit-box-sizing: content-box;
@@ -271,7 +313,7 @@ $cssflush.="
         max-height: 500px;
         overflow: auto;
         margin: 0px 0px 0px 0px; /*controls the cutoff of the top and bottom limitations*/
-        float: left; /* float right for a right aligned sidebar */
+        float: left;
 
 }
 #sidebar_inner {
@@ -286,6 +328,9 @@ $cssflush.="
         width: 1020; /* MUST HAVE WIDTH SET, should be the sidebar width + main width */
         margin-left: auto;
         margin-right: auto;
+}
+
+.smenu {
 background-image: -webkit-gradient(linear, left center, right center, from($nc1), to($nc0), color-stop(".$style['affix_width'].", $nc1), color-stop(".$style['affix_width'].", $nc0));
 background-image: -webkit-linear-gradient(left, $nc1, $nc1 ".$style['affix_width'].", $nc0 ".$style['affix_width'].", $nc0);
 background-image: -moz-linear-gradient(left, $nc1, $nc1 ".$style['affix_width'].", $nc0 ".$style['affix_width'].", $nc0);
@@ -293,13 +338,21 @@ background-image: -o-linear-gradient(left, $nc1, $nc1 ".$style['affix_width'].",
 background-image: -ms-linear-gradient(left, $nc1, $nc1 ".$style['affix_width'].", $nc0 ".$style['affix_width'].", $nc0);
 background-image: linear-gradient(to right, $nc1, $nc1 ".$style['affix_width'].", $nc0 ".$style['affix_width'].", $nc0);
 }
+.smenu2 {
+background-image: -webkit-gradient(linear, left center, right center, from($nc1), to($nc0), color-stop(15px, $nc1), color-stop(15px, $nc0));
+background-image: -webkit-linear-gradient(left, $nc1, $nc1 15px, $nc0 15px, $nc0);
+background-image: -moz-linear-gradient(left, $nc1, $nc1 15px, $nc0 15px, $nc0);
+background-image: -o-linear-gradient(left, $nc1, $nc1 15px, $nc0 15px, $nc0);
+background-image: -ms-linear-gradient(left, $nc1, $nc1 15px, $nc0 15px, $nc0);
+background-image: linear-gradient(to right, $nc1, $nc1 15px, $nc0 15px, $nc0);
+}
 
 ";
 
 }
 $cssflush.="
 .b1{
-cursor: pointer; cursor: hand; font-weight: bold; white-space:nowrap;
+cursor: pointer; cursor: hand; font-weight:400; white-space:nowrap;
 }
 .b2{
 display:none; visibility:hidden; white-space:nowrap;
@@ -382,20 +435,30 @@ background: $nc0;
   width:3px;
   height:3px
 }
-
+.pd0 {
+padding-right:0px;
+padding-top:20px;
+padding-bottom:20px;
+}
+.pd0:hover{
+padding-right:10px;
+padding-left:20px;
+padding-top:20px;
+padding-bottom:20px;
+}
 .box3{
 ";
 if ($affix==1) {
 $cssflush.="
 }
 .affixbox {
+font-size:".($main_font_size-1)."pt;
 background-color:$nc1;
 background:$nc1;
 margin-bottom: 0px;
 margin-top: 0px;
 margin-right: 0px;
-padding:5px 5px 5px 5px;
-width:100%;
+padding:5px 5px 5px 15px;
 overflow: scroll;
 overflow-x: hidden;
 }";
@@ -447,8 +510,6 @@ border-bottom-left-radius: 6px;
 background-color:$nc0;
 background:$nc0;
 margin-bottom: 0px;
-margin-top: 10px;
-
 padding:5px 5px 5px 5px;
 
 }
@@ -553,10 +614,10 @@ float: left;
 padding: 0 10px;
 margin: 0 10px 0 0;
 color: #fff;
-font-weight: bold;
+font-weight:400;
 height: 25px;
 line-height: 25px;
-font-size: 13px;
+font-size:".($main_font_size-1)."pt;
 cursor: pointer;
 
 -webkit-box-shadow: 0 -1px 1px ".lighter($nc6,-50).";
@@ -591,7 +652,6 @@ margin: 0px 0px 0px 0px;
 box-shadow: 0 1px 5px rgba(0,0,0,0.19), inset 0 0 5px $nc0;
 }
 .itemdiv {
-font-face: Arial;
 margin: 0px 0px 0px 0px;
 padding: 10px 10px 10px 10px;
 -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.19), inset 0 0 5px $nc0;
@@ -618,7 +678,6 @@ margin-top:10px;
 .tagdiv{
 font-weight: lighter;
 font-style: oblique;
-font-face: Arial;
 margin-bottom:10px;
 margin-top:10px;
 }
@@ -954,16 +1013,15 @@ padding: 10;
 width: 100%;
 }
 
-TD {FONT: " . $style ['font_size1'] . " " . $style ['font_face'] . "; align: left; }
-TH {FONT: " . $style ['font_size1'] . " " . $style ['font_face'] . "; align: left; }
-P {FONT: " . $style ['font_size1'] . " " . $style ['font_face'] . "; align: left; }
-SELECT {FONT: " . $style ['font_size1'] . " " . $style ['font_face'] . "}
-FORM {DISPLAY: inline;}
-LABEL {CURSOR: default;}
-.normal {FONT-WEIGHT: normal;}
+td {align: left; }
+th {align: left; }
+p {align: left; }
+form{DISPLAY: inline;}
+label {cursor: default;}
+.normal {font-weight: normal;}
 .load {background-image: url('images/ind.gif'); background-repeat: none; background-position: center}
 a.menu { color: black; }
-H1 {
+h1 {
 margin : 0px 0px 0px 0px;
 font-size : ".($main_font_size+6)."pt;
 line-height: 1em;
@@ -1009,13 +1067,11 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.29), inset 0 0 7px $nc0;
 
 }
 .cat1 {
-font-size: ".($main_font_size+2)."pt;
 border-bottom: $nc6 1px dotted;
 
 }
 
 .ccat1 {
-font-size: ".($main_font_size+2)."pt;
 padding: 5px 5px 5px 5px;
 margin: 10px 0px 0px 0px;
 border-bottom: $nc6 1px dotted;
@@ -1024,7 +1080,6 @@ border-bottom: $nc6 1px dotted;
 
 .lcat1{
 color: $nc9;
-font-size: ".($main_font_size+1)."pt;
 padding: 5px 5px 5px 5px;
 cursor: pointer;
 cursor:hand;
@@ -1037,13 +1092,11 @@ color: $nc9;
 }
 
 .lcat1:hover{
-font-size: ".($main_font_size+1)."pt;
 color: $nc0;
 padding: 5px 5px 5px 5px;
 background: $nc3;
 }
 .lcat1:hover a{
-font-size: ".($main_font_size+1)."pt;
 color: $nc0;
 }
 
@@ -1070,7 +1123,6 @@ color: $nc4;
 }
 
 .brand{
-font-size: ".($main_font_size+1)."pt;
 padding: 5px 5px 5px 5px;
 cursor: pointer;
 cursor:hand;
@@ -1082,41 +1134,35 @@ color: $nc2;
 color: $nc2;
 }
 .brand:hover{
-font-size: ".($main_font_size+1)."pt;
-color: $nc2;
+color: $nc0;
 padding: 5px 5px 5px 5px;
 background: $nc3;
 }
 .brand:hover a{
-font-size: ".($main_font_size+1)."pt;
-color: $nc2;
+color: $nc0;
 background: ".$nc3.";
 border-bottom: 1px $nc2 dotted;
 }
 
 .cat1:hover {
-font-size: ".($main_font_size+2)."pt;
 color: $nc0;
 background: #[nc10];
 border-bottom: $nc6 1px solid;
 
 }
 .cat1:hover a{
-font-size: ".($main_font_size+2)."pt;
 color: $nc0;
 background: #[nc10];
 border-bottom: $nc6 1px solid;
 
 }
 .cat1 a:hover {
-font-size: ".($main_font_size+2)."pt;
 color: $nc0;
 background: #[nc10];
 border-bottom: $nc6 1px solid;
 
 }
 .cat1 a:active {
-font-size: ".($main_font_size+2)."pt;
 color: $nc0;
 background: #[nc10];
 border-bottom: $nc6 1px solid;
@@ -1221,16 +1267,16 @@ box-shadow: 0 -1px 1px ".lighter($nc6,0).";
 }
 .price {
 color:$nc5;
-font: 20pt Georgia;
+font: Georgia;
 }
 .newprice {
 color:$nc5;
-font: 20pt Georgia;
+font: Georgia;
 color:#b94a48;
 }
 .oldprice {
 color:$nc5;
-font: 20pt Georgia;
+font: Georgia;
 text-decoration: line-through;
 }
 
@@ -1300,7 +1346,6 @@ border-radius: 6px;
 -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
 box-shadow: rgba(0,0,0,1) 0 1px 0;
 text-shadow: rgba(0,0,0,.4) 0 1px 0;
-font-size: 19px;
 text-decoration: none;
 vertical-align: middle;
 color: #ffffff;
@@ -1329,7 +1374,7 @@ background: #265c1b;
   background: rgba(".hexdec(substr($nc10,1,2)).", ".hexdec(substr($nc10,3,2)).", ".hexdec(substr($nc10,5,2)).", 0.55);
 }
  .dow {
- font-weight: bold;
+ font-weight:400;
     border-top: 1px solid $nc10 !important;
     color:$nc10;
 }

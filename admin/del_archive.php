@@ -37,12 +37,12 @@ echo "<!DOCTYPE html><html>
 <head>
 <meta http-equiv=\"Content-Type\" content=\"text/html; charset=$codepage\"><title>ARCHIVE</title>
 $css
-<SCRIPT language=\"JavaScript1.1\">
+<SCRIPT language='JavaScript1.1'>
 <!--
 
 function rc() {
-  window.opener.location.reload();
-  self.close();
+window.opener.location.reload();
+self.close();
 
 }
 //-->
@@ -125,9 +125,9 @@ unset ($fcontents, $html, $file);
 }
 }
 
-echo "<div align=center><font face=verdana>Товар перенесен в ".$lang[418].".<br><br><input type='button' value='OK' name='no' onclick='javascript:self.close()'></font></div>";
+echo "<div align=center><font face=verdana>$lang[209]<br><br><input type='button' class=\"btn btn-primary btn-large\" value='OK' name='no' onclick='javascript:rc()'></font></div>";
 } else {
-echo "<div align=center><font face=verdana>Товар с данным id не найден.<br><br><input type='button' value='OK' name='no' onclick='javascript:self.close()'></font></div>";
+echo "<div align=center><font face=verdana>$lang[434]<br><br><input class=\"btn btn-primary btn-large\" type='button' value='OK' name='no' onclick='javascript:self.close()'></font></div>";
 
 }
 }

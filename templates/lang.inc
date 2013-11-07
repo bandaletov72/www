@@ -3,8 +3,8 @@ $u_mes="";
 unset($details);
 $details=array("","","","","","","","USER","","","","","","","","","","","","","","","","","","");
 
-error_reporting(0); //switch off error reporting to prevent undefined vars detection
-//error_reporting(E_ALL); //switch on error reporting to detet bugs
+//error_reporting(0); //switch off error reporting to prevent undefined vars detection
+error_reporting(E_ALL); //switch on error reporting to detet bugs
 $shopdir=""; //Store Directory: Specify a directory of shops on the main directory, or leave blank if the shop is located in the main directory ex. /shop
 $htpath=$_SERVER['SERVER_NAME'].$shopdir; //URL of index.php ex. $htpath="http://".$_SERVER['SERVER_NAME']."/shop";
 //if (substr($htpath, 0, 4)!="www."){ $htpath= "www.".$htpath;} //add www support

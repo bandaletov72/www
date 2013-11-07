@@ -145,7 +145,7 @@ fclose($fp);
 }
 if ($u_mes!="") {
 header("Content-type: text/html; charset=$codepage");
-echo "<table border=0 width=500><tr><td>".str_replace("<!-- goto -->", "<br><br><a href=$htpath/index.php?action=inbox&speek=$speek>".$lang[1482]."</a>" , trim(trim( str_replace("'","", str_replace("\"","",$u_mes)))))."<br><OBJECT classid=clsid:D27CDB6E-AE6D-11cf-96B8-444553540000 codebase=http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0 WIDTH=1 HEIGHT=1><PARAM NAME=movie VALUE=sms.swf> <PARAM NAME=quality VALUE=high> <PARAM NAME=bgcolor VALUE=$nc0> <EMBED src=sms.swf quality=high bgcolor=$nc0 WIDTH=1 HEIGHT=1 TYPE=application/x-shockwave-flash PLUGINSPAGE=http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash></EMBED></OBJECT></td></tr></table>";
+echo "<table border=0 width=500><tr><td>".str_replace("<!-- goto -->", "<br><br><a href=$htpath/index.php?action=inbox&amp;speek=$speek>".$lang[1482]."</a>" , trim(trim( str_replace("'","", str_replace("\"","",$u_mes)))))."<br><OBJECT classid=clsid:D27CDB6E-AE6D-11cf-96B8-444553540000 codebase=http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0 WIDTH=1 HEIGHT=1><PARAM NAME=movie VALUE=sms.swf> <PARAM NAME=quality VALUE=high> <PARAM NAME=bgcolor VALUE=$nc0> <EMBED src=sms.swf quality=high bgcolor=$nc0 WIDTH=1 HEIGHT=1 TYPE=application/x-shockwave-flash PLUGINSPAGE=http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash></EMBED></OBJECT></td></tr></table>";
 if ($read==1) {
 } else {
 @unlink($u_mesf);

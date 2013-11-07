@@ -21,7 +21,7 @@ top("", "<div width=100%><table border=0 width=100%>
 <button onclick=javascript:location.href='"."$htpath/index.php?action=view_baskets"."' title=\"".$lang['adm4']."\" class=btn><small>".$lang['adm4']."</small></button>
 </td>
 <td>
-<button onclick=javascript:location.href='"."$htpath/index.php?action=interface_off&start=$start&page=$page&catid=$scatid&item_id=$item_id&unifid=$unifid&query=".rawurlencode($query)."&brand=".rawurlencode($brand)."' title=\"".$lang[969]."\" class=btn><i class=icon-eye-close></i><small> </small></button>
+<button onclick=javascript:location.href='"."$htpath/index.php?action=interface_off&amp;start=$start&amp;page=$page&catid=$scatid&item_id=$item_id&unifid=$unifid&query=".rawurlencode($query)."&brand=".rawurlencode($brand)."' title=\"".$lang[969]."\" class=btn><i class=icon-eye-close></i><small> </small></button>
 </td></tr></table></div>
 ", $style ['center_width'], $nc0, $nc0, 4,0,"[x0001]");
 }
@@ -96,7 +96,7 @@ $fold=$oldfold;
 }
 if ((@file_exists("$base_loc/content/x0001.txt")==TRUE)) {
 
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")): $x0001="<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0001</span> <a class=\"btn\" href=#edit onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/x0001.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10') title=\"".$lang['edits']."\"><i class=\"icon-edit icon-large\"></i></a>&nbsp;<a class=\"btn\" href=#del onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=x0001&del=x0001','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10') title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a></div>"; endif;}
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")): $x0001="<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0001</span> <a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/x0001.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['edits']."\"><i class=\"icon-edit icon-large\"></i></a>&nbsp;<a class=\"btn\" href=#del onClick=\"javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=x0001&amp;del=x0001','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a></div>"; endif;}
 
 
 

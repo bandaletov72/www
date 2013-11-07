@@ -492,7 +492,7 @@ while ($s < $numberpages) {
 if (($start/$perpage)==$s) {
 $pp.= "<b>" . ($s+1) . "</b> | ";
 } else {
-$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=view_users&start=" . ($s*$perpage) . "&perpage=$perpage&usersort=$usersort&filter=".rawurlencode($filter)."&usertype=$usertype\">" . ($s+1) . "</a> | ";
+$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=view_users&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&usersort=$usersort&filter=".rawurlencode($filter)."&usertype=$usertype\">" . ($s+1) . "</a> | ";
 }
 $s+=1;
 }
@@ -1279,7 +1279,7 @@ while ($s < $numberpages) {
 if (($start/$perpage)==$s) {
 $pp.= "<b>" . ($s+1) . "</b> | ";
 } else {
-$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=view_users&start=" . ($s*$perpage) . "&perpage=$perpage&usersort=$usersort&filter=".rawurlencode($filter)."&usertype=$usertype\">" . ($s+1) . "</a> | ";
+$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=view_users&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&usersort=$usersort&filter=".rawurlencode($filter)."&usertype=$usertype\">" . ($s+1) . "</a> | ";
 }
 $s+=1;
 }

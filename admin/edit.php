@@ -152,7 +152,7 @@ flock ($fp, LOCK_UN);
 fclose ($fp);
 echo "<p>".$lang[447]." <b>../.$base_loc/content/$c$nomer.txt</b>.<br><br><br>
 <a href='./index.php'>".$lang['back']."</a>\n
-<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='edit/index.php?working_file=?speek=$speek&working_file=../.".$base_loc."/content/$c$nomer.txt'\">";
+<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='edit/index.php?working_file=?speek=$speek&amp;working_file=../.".$base_loc."/content/$c$nomer.txt'\">";
 exit;
 }
 
@@ -861,7 +861,7 @@ if ($out[0]=="electron1") {$defaults=$lang[1570];}
 $att=str_replace("<br>", "\n", @$out[$ncc]);
 $att_qty=count(explode("\n",$att))-1;
 $headersect=str_replace("[att_qty]",$att_qty, $headersect);
-$section5.= "<tr><td>0. <b>$lang[1569]:</b> <select class=input-mini name=\"item_type\"><option value=".@$out[0].">".$defaults."</option><option value=\"00000\">".$lang[1572]."</option><option value=\"electron1\">".$lang[1570]."</option><option value=\"electron1000\">".$lang[1571]."</option></select><br><br>$ncc. <a class=\"btn btn-success\" onClick=\"javascript:window.open('attach.php?speek=$speek&gtype=1&perpage=6','gal1','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\"><i class=icon-download-alt></i> ".$lang[1554]."</a>
+$section5.= "<tr><td>0. <b>$lang[1569]:</b> <select class=input-mini name=\"item_type\"><option value=".@$out[0].">".$defaults."</option><option value=\"00000\">".$lang[1572]."</option><option value=\"electron1\">".$lang[1570]."</option><option value=\"electron1000\">".$lang[1571]."</option></select><br><br>$ncc. <a class=\"btn btn-success\" onClick=\"javascript:window.open('attach.php?speek=$speek&gtype=1&amp;perpage=6','gal1','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\"><i class=icon-download-alt></i> ".$lang[1554]."</a>
 </td>
 </tr>
 <tr>

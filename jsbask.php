@@ -302,7 +302,7 @@ if (("$out_c[11]"=="0")||($out_c[11]=="")) {$out_c[11]=$lang['pcs'];$sqrp="";}
 if (@$out_c[9]==""): $out_c[9]=""; endif;
 
 $lid=md5(@$out_c[3]." ID:".@$out_c[6]);
-$llid="<a href=~~~$htpath/index.php?unifid=".$lid."&flag=$speek~~~>";
+$llid="<a href=~~~$htpath/index.php?unifid=".$lid."&amp;flag=$speek~~~>";
 if ($friendly_url==1) {
 if($hidart!=1) {
 $man=translit(@$out_c[3])."-".translit(@$out_c[6]);

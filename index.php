@@ -1027,7 +1027,7 @@ unset($key, $val, $new_qty);
 $ccat="";
 if (!isset($_SESSION["jscur"])){ $_SESSION["jscur"]=0;  }
 
-if ($old_action!=""){ $action=$old_action; $cart_id=$cod; $kupil=" "; if ($view_basketalert==1) { $kupil.="<a id=minibasket_"."$unifid href=$htpath/".$scriptprefix."minibasket.php?unifid=$unifid&qty=$qty&speek=$speek></a><script type=\"text/javascript\">
+if ($old_action!=""){ $action=$old_action; $cart_id=$cod; $kupil=" "; if ($view_basketalert==1) { $kupil.="<a id=minibasket_"."$unifid href=$htpath/".$scriptprefix."minibasket.php?unifid=$unifid&amp;qty=$qty&amp;speek=$speek></a><script type=\"text/javascript\">
         $(document).ready(function() {
            $(\"#minibasket_"."$unifid\").fancybox({
                    'onComplete'	:	function() {\$(\"#fancybox-wrap\").unbind('mousewheel.fb');} ,
@@ -1106,7 +1106,7 @@ require ("./modules/stat.php");
 require ("./modules/tags.php");
 if ($smod=="shop") {
 
-$korz="<a href=\"$htpath/index.php?action=basket&flag=$speek\"><i class=icon-shopping-cart></i> <b id=\"scart\">0</b>&nbsp;".str_replace(" ", "&nbsp;", $currencies_sign[$_SESSION["user_currency"]])."</a>";
+$korz="<a href=\"$htpath/index.php?action=basket&amp;flag=$speek\"><i class=icon-shopping-cart></i> <b id=\"scart\">0</b>&nbsp;".str_replace(" ", "&nbsp;", $currencies_sign[$_SESSION["user_currency"]])."</a>";
 
 } else {$korz="";}
 if (($valid=="1")&&($details[7]=="VIP")){ $vipskidka="<div><div align=center><font color=\"".$style['nav_col1']."\" size=4><b>".($vipprocent*100)."% ".$lang[233]."</b>!</font></div>
@@ -1132,7 +1132,7 @@ $full="";
 if ($tovarov>0){
 $full=1;
 
-$korz="<a href=\"$htpath/index.php?action=basket&flag=$speek\"><span class=basketfont><i class=icon-shopping-cart></i> <b id=\"scart\">".$summa."</b>&nbsp;".str_replace(" ", "&nbsp;", $currencies_sign[$_SESSION["user_currency"]])."</font></span></a>";
+$korz="<a href=\"$htpath/index.php?action=basket&amp;flag=$speek\"><span class=basketfont><i class=icon-shopping-cart></i> <b id=\"scart\">".$summa."</b>&nbsp;".str_replace(" ", "&nbsp;", $currencies_sign[$_SESSION["user_currency"]])."</span></a>";
 
 }
 if (($header_type>=2)&&($usetheme==0)) {
@@ -1209,7 +1209,7 @@ if ($usetheme==0) { echo "<table width=100% cellpadding=0 cellspacing=0 border=0
 
 require ("./modules/warning.php");
 if ((!@$query) || (@$query=="")){ $query=""; }
-$themecontent=str_replace("[minibasket]","<a href=\"$htpath/index.php?action=basket&flag=$speek\">".str_replace(" ", "&nbsp;", $lang[35]).":</a><br><font color=".lighter($nc3,-80)."><b id=\"scart\">".$summa."</b>"." ".$currencies_sign[$_SESSION["user_currency"]]."</font>",$themecontent);
+$themecontent=str_replace("[minibasket]","<a href=\"$htpath/index.php?action=basket&amp;flag=$speek\">".str_replace(" ", "&nbsp;", $lang[35]).":</a><br><font color=".lighter($nc3,-80)."><b id=\"scart\">".$summa."</b>"." ".$currencies_sign[$_SESSION["user_currency"]]."</font>",$themecontent);
 $themecontent=str_replace("[loginout]","$loginout",$themecontent);
 
 $searchmenu=str_replace("[searchstyle]", " style=\"color: $nc5; border: 1px solid ".lighter($nc10,-20)."; padding: 2px; height:20px; width:100%; font-size: 8pt; background-color: ".lighter($nc10,-10)."; background-image: url('grad.php?h=10&w=1&e=".str_replace("#","",lighter($nc10,-10))."&s=".str_replace("#","",lighter($nc10,-20))."&d=crystal'); background-repeat: repeat-x\"", str_replace("[searchbuttonstyle]", " style=\"color: $nc5; border: 1px solid ".lighter($nc10,-20)."; padding: 2px; font-size: 9pt; background-image: url('grad.php?h=25&w=1&e=".str_replace("#","",lighter($nc10,-20))."&s=".str_replace("#","",$nc10)."&d=vertical'); background-repeat: repeat-x\"", $searchmenu));
@@ -1323,14 +1323,14 @@ $('#sidebar').mCustomScrollbar(\"scrollTo\",elID);";
           });
 function MenuShow() {
 document.getElementById('wrapper').className='smenu';
-document.getElementById('SMenu').innerHTML=\"<a class='btn pd0' style='background: $nc1;' href=#MenuClose onclick=MenuClose()><i class='icon-chevron-left icon-large'><i></a>\";
+document.getElementById('SMenu').innerHTML=\"<a class='btn pd0' style='background: $nc1;' href=#MenuClose onclick=MenuClose()><i class='icon-chevron-left icon-large'><i><\/a>\";
 document.getElementById('sidebar').className='affixbox';
 document.getElementById('main').style.width='".(doubleval($style['center_width'])-doubleval($style['affix_width']))."%';
 RefreshMwnu();
 }
 function MenuClose() {
 document.getElementById('wrapper').className='smenu2';
-document.getElementById('SMenu').innerHTML=\"<a class='btn pd0' style='background: $nc1;' href=#MenuShow onclick=MenuShow()><i class='icon-chevron-right icon-large'><i></a>\";
+document.getElementById('SMenu').innerHTML=\"<a class='btn pd0' style='background: $nc1;' href=#MenuShow onclick=MenuShow()><i class='icon-chevron-right icon-large'><i><\/a>\";
 document.getElementById('sidebar').className='hidden';
 document.getElementById('main').style.width='".doubleval($style['center_width'])."%';
 RefreshMwnu();
@@ -1346,7 +1346,7 @@ scriptNode.type = 'text/javascript';
 </script>
 
 <div id=\"sidebar\" class=\"affixbox".$fxhid."\">
-        <div align-center><table border=0 style=\"margin-top:40px; margin-bottom:5px;\" cellpadding=3><tr><td><a href=\"/\" title=\"$kwrd\"><img src=logo_mini.png border=0></a></td><td><b class=\"lnk small\"><a href=\"/\" title=\"$kwrd\"><font color=$nc9>$kwrd</font></a></b></td></tr></table></div>
+        <div align=center><table border=0 style=\"margin-top:40px; margin-bottom:5px; width:100%;\" cellpadding=3 class=lcat1><tr><td><a href=\"/\" title=\"$kwrd\"><img src=logo_mini.png border=0></a></td><td><b class=\"lnk\"><a href=\"/\" title=\"$kwrd\"><font color=$nc9>$kwrd</font></a></b></td></tr></table></div>
        <div class=\"sidebar_inner\">
       ";
         } else {
@@ -1548,7 +1548,9 @@ if ($usetheme==0) {
 
 if (($incart_menu==0)&&($unifid!="")&&($catid=="")) { } else {
 if ($leftmenu==1) {
+if ($affix==0) {
 include "./templates/$template/menu.inc";
+}
 echo "$admined";
 }
 }
@@ -1916,7 +1918,7 @@ $oldvaluta=$tmp_old[8];
 $oldaflag=$tmp_old[9];
 $key_old+=1;
 
-$content_older.="<tr><td><b>".$key_old.".</b></td><td><a href=\"index.php?unifid=".md5($tmp_old[4])."&flag=$oldaflag\">". $tmp_old[6] ."</a><a href=\"index.php?unifid=".md5($tmp_old[4])."&flag=$oldaflag\">";
+$content_older.="<tr><td><b>".$key_old.".</b></td><td><a href=\"index.php?unifid=".md5($tmp_old[4])."&amp;flag=$oldaflag\">". $tmp_old[6] ."</a><a href=\"index.php?unifid=".md5($tmp_old[4])."&amp;flag=$oldaflag\">";
 if ($hidart==1) {
 $content_older.=strtoken(strtoken(str_replace(" ID:","^", $tmp_old[4]), "^" ),"*");
 } else {
@@ -2120,7 +2122,7 @@ $out_c[9]="";
 }
 $out_c[9]=str_replace("width= height= ", "", $out_c[9]);
 $lid=md5(@$out_c[3]." ID:".@$out_c[6]);
-$llid="<a href=$htpath/index.php?unifid=".$lid."&flag=$speek>";
+$llid="<a href=$htpath/index.php?unifid=".$lid."&amp;flag=$speek>";
 if ($friendly_url==1) {
 if($hidart!=1) {
 $man=translit(@$out_c[3])."-".translit(@$out_c[6]);
@@ -2267,7 +2269,7 @@ $out_c[9]="";
 $out_c[9]=str_replace("width= height= ", "", $out_c[9]);
 $sqrp="/$out_c[11]";
 $lid=md5(@$out_c[3]." ID:".@$out_c[6]);
-$llid="<a href=$htpath/index.php?unifid=".$lid."&flag=$speek>";
+$llid="<a href=$htpath/index.php?unifid=".$lid."&amp;flag=$speek>";
 if ($friendly_url==1) {
 if($hidart!=1) {
 $man=translit(@$out_c[3])."-".translit(@$out_c[6]);
@@ -2309,7 +2311,7 @@ if (("$out_c[11]"=="0")||($out_c[11]=="")) {$out_c[11]=$lang['pcs'];$sqrp="";}
     }
     $full_basket .= "";
     if ($wishzak=="") {
-    $full_basket .= "<a class=btn href=\"$htpath/index.php?action=del&cod=". md5($item['id']) ."&flag=".$item['flag']."\" title=\"".$lang['del']."\"><i class=icon-remove></i></a><br>$minsht$minupak";
+    $full_basket .= "<a class=btn href=\"$htpath/index.php?action=del&cod=". md5($item['id']) ."&amp;flag=".$item['flag']."\" title=\"".$lang['del']."\"><i class=icon-remove></i></a><br>$minsht$minupak";
     }
     if ($use_weight==1) {$full_basket .= "<br><b>".$lang['weight'].":</b> ".$item['weight']."$kg$sqrp<br>";}
     if ($use_volume==1) {$full_basket .= "<b>".$lang['volume'].":</b> ".$item['volume']."$vol$sqrp<br>";}
@@ -2344,7 +2346,7 @@ $oform = "</form><form class=form-inline action=\"" . $_SERVER['PHP_SELF']. "\" 
 if (($wishzak==1)&&($valid=="1")&&($login!="")&&($password!="")) {
 
 
-$oform.="<p align=center><b>".$lang[245]."</b><br>".$lang[246]." <a href=\"".$_SERVER['PHP_SELF']."?action=zakaz&wishzak=1&flag=".$cart->basket_speek."\"><b>".$lang[247]."</b></a></p><META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=" . $_SERVER['PHP_SELF']. "?action=zakaz&wishzak=1&flag=".$cart->basket_speek."\">";}
+$oform.="<p align=center><b>".$lang[245]."</b><br>".$lang[246]." <a href=\"".$_SERVER['PHP_SELF']."?action=zakaz&wishzak=1&amp;flag=".$cart->basket_speek."\"><b>".$lang[247]."</b></a></p><META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=" . $_SERVER['PHP_SELF']. "?action=zakaz&wishzak=1&amp;flag=".$cart->basket_speek."\">";}
 
 
 if ($full_basket!=""){ $tovarov=$cart->itemcount;  $stuks = $cart->itemstuks;
@@ -2434,9 +2436,9 @@ top("", "$print_basket<br>", $style ['center_width'], strtolower($style ['bg_con
 
   foreach($items as $item) {
     if ($hidart==1) {
-    $basket .= str_replace("title=", "id=", $item['img'])."<a href=\"$htpath/index.php?unifid=".md5($item['info'])."&flag=".$item['flag']."\"><font color=\"".$style['nav_col1']."\">".strtoken(strtoken(str_replace(" ID:","^", $item['info']), "^" ),"*")." $itid</font></a>".$item['options']."";
+    $basket .= str_replace("title=", "id=", $item['img'])."<a href=\"$htpath/index.php?unifid=".md5($item['info'])."&amp;flag=".$item['flag']."\"><font color=\"".$style['nav_col1']."\">".strtoken(strtoken(str_replace(" ID:","^", $item['info']), "^" ),"*")." $itid</font></a>".$item['options']."";
     } else {
-    $basket .= str_replace("title=", "id=", $item['img'])."<a href=\"$htpath/index.php?unifid=".md5($item['info'])."&flag=".$item['flag']."\"><font color=\"".$style['nav_col1']."\">".strtoken(str_replace(" ID:","^", $item['info']), "^" )."</font></a>".$item['options']."<br>";
+    $basket .= str_replace("title=", "id=", $item['img'])."<a href=\"$htpath/index.php?unifid=".md5($item['info'])."&amp;flag=".$item['flag']."\"><font color=\"".$style['nav_col1']."\">".strtoken(str_replace(" ID:","^", $item['info']), "^" )."</font></a>".$item['options']."<br>";
     }
 
     $basket .= "".$item['qty']." <b>x</b> ";
@@ -2471,7 +2473,7 @@ top("", "$print_basket<br>", $style ['center_width'], strtolower($style ['bg_con
    $ddost="";
    }
 
-if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSION["user_currency"]])) { $oform= "<div class= round3>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>";} else {  $oform="<table width=100% border=0><tr><td align=center>".but ("<a href=\"$htpath/index.php?action=basket&flag=".$cart->basket_speek."\">$lang[31]</a>", $nc6,$nc6,$nc0)."</td><td align=center>". but ("<a href=\"$htpath/index.php?action=$allow_zakaz&flag=".$cart->basket_speek."\">".$lang[59]."</a>", $nc6,$nc6,$nc0) ."</td></tr></table>"; }
+if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSION["user_currency"]])) { $oform= "<div class= round3>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>";} else {  $oform="<table width=100% border=0><tr><td align=center>".but ("<a href=\"$htpath/index.php?action=basket&amp;flag=".$cart->basket_speek."\">$lang[31]</a>", $nc6,$nc6,$nc0)."</td><td align=center>". but ("<a href=\"$htpath/index.php?action=$allow_zakaz&amp;flag=".$cart->basket_speek."\">".$lang[59]."</a>", $nc6,$nc6,$nc0) ."</td></tr></table>"; }
   }
 
 if ($wishlist==1) { $ddost="";}
@@ -2602,10 +2604,17 @@ if ($view_birth=="c") {
 top("", "$birthday", $style ['center_width'], $nc2, $nc0, 5,0,"[birthday]");
 }
 if ($view_tag_clouds=="c") {
-top("", "$tags_cloud", $style ['center_width'], $nc0, $nc0, "noshadow",1,"[tagclouds]"); }
-
-
+top("", "$tags_cloud", $style ['center_width'], $nc0, $nc0, "noshadow",1,"[tagclouds]"); 
+}
 if ($usetheme==0) {
+if ($leftmenu==1) {
+if ($affix==1) {
+//echo "<div class=\"mr pull-right\">";
+include "./templates/$template/menu.inc";
+//echo "</div><div class=clearfix></div>";
+}
+}
+
 if ($css_style==1) {
 if ($affix==1) {
 echo "</td></tr></table>";

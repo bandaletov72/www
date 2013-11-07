@@ -15,7 +15,7 @@ $count=0;
 while(list($key,$val)=each($tmp3)) {
 $tmp=explode("|",trim($val));
 $inbox_list.="<table class=round2 style=\"width:100%;\" width=100% border=0 cellpadding=5><tr><td valign=top><img src=$image_path/pix.gif border=0 width=150 height=1><br>".$tmp[12]."<br><b>".$tmp[6]."</b><br>";
-if ($details[1]!=$tmp[6]) { $inbox_list.="<a href=\"#Send Private Message\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$tmp[6]."&speek=".$speek."','".md5($tmp[6])."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"".$lang[1075]."\" align=\"absmiddle\" border=\"0\"></a>"; }
+if ($details[1]!=$tmp[6]) { $inbox_list.="<a href=\"#Send Private Message\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$tmp[6]."&amp;speek=".$speek."','".md5($tmp[6])."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"".$lang[1075]."\" align=\"absmiddle\" border=\"0\"></a>"; }
 $inbox_list.="</td><td valign=top width=100%><div style=\"float:right; margin:5px;\"><font size=5 color=#b94a48>NEW!</font> ".date("d-m-Y H:i:s", $tmp[0])."</div><b>".$tmp[7]."</b> - <i>".$tmp[10]."</i> <br><small>".$tmp[9]." / ".strtoken($tmp[11]," (")."</small><br><br><b>".$tmp[1]."</b><br>".$tmp[2]."</td></tr></table>\n";
 $count++;
 }
@@ -69,7 +69,7 @@ while(list($key,$val)=each($fcontm)) {
 if (trim($val)!="") {
 $tmp=explode("|",trim($val));
 $inbox_list.="<table class=round2 style=\"width:100%;\" width=100% border=0 cellpadding=5><tr><td valign=top><img src=$image_path/pix.gif border=0 width=150 height=1><br>".$tmp[12]."<br><b>".$tmp[6]."</b><br>";
-if ($details[1]!=$tmp[6]) { $inbox_list.="<a href=\"#Send Private Message\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$tmp[6]."&speek=".$speek."','".md5($tmp[6])."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"".$lang[1075]."\" align=\"absmiddle\" border=\"0\"></a>"; }
+if ($details[1]!=$tmp[6]) { $inbox_list.="<a href=\"#Send Private Message\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$tmp[6]."&amp;speek=".$speek."','".md5($tmp[6])."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"".$lang[1075]."\" align=\"absmiddle\" border=\"0\"></a>"; }
 $inbox_list.="</td><td valign=top width=100%><div style=\"float:right; margin:5px;\">".date("d-m-Y H:i:s", $tmp[0])."</div><b>".$tmp[7]."</b> - <i>".$tmp[10]."</i> <br><small>".$tmp[9]." / ".strtoken($tmp[11]," (")."</small><br><br><b>".$tmp[1]."</b><br>".$tmp[2]."</td></tr></table>\n";
 }
 }
@@ -83,7 +83,7 @@ while(list($key,$val)=each($fcontm)) {
 if (trim($val)!="") {
 $tmp=explode("|",trim($val));
 $inbox_list.="<table class=round2 style=\"width:100%;\" width=100% border=0 cellpadding=5><tr><td valign=top><img src=$image_path/pix.gif border=0 width=150 height=1><br>".$tmp[12]."<br><b>".$tmp[6]."</b><br>";
-if ($details[1]!=$tmp[6]) { $inbox_list.="<a href=\"#Send Private Message\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$tmp[6]."&speek=".$speek."','".md5($tmp[6])."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"".$lang[1075]."\" align=\"absmiddle\" border=\"0\"></a>"; }
+if ($details[1]!=$tmp[6]) { $inbox_list.="<a href=\"#Send Private Message\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$tmp[6]."&amp;speek=".$speek."','".md5($tmp[6])."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"".$lang[1075]."\" align=\"absmiddle\" border=\"0\"></a>"; }
 $inbox_list.="</td><td valign=top width=100%><div style=\"float:right; margin:5px;\">".date("d-m-Y H:i:s", $tmp[0])."</div><b>".$tmp[7]."</b> - <i>".$tmp[10]."</i> <br><small>".$tmp[9]." / ".strtoken($tmp[11]," (")."</small><br><br><b>".$tmp[1]."</b><br>".$tmp[2]."</td></tr></table>\n";
 }
 }

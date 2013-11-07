@@ -460,7 +460,7 @@ $foto1=str_replace("<img ", "<img vspace=3 hspace=10 title=\"$nazv\"",  stripsla
 $lid=md5(@$out[3]." ID:".@$out[6]);
 $qty=doubleval($qty);
 if($qty!=0){ $shtuk=$vitrin;
-if (($s==$buy_row)&&($sss=="")){ $kupleno=1; $kupil="<div align=center><font color=$nc3><b>".$lang['buyes']." $qty $shtuk</b></font></div>";  if ($view_basketalert==1) { $kupil.="<a id=minibasket_"."$unifid href=$htpath/".$scriptprefix."minibasket.php?unifid=$lid&qty=$qty&speek=$speek></a><script type=\"text/javascript\">
+if (($s==$buy_row)&&($sss=="")){ $kupleno=1; $kupil="<div align=center><font color=$nc3><b>".$lang['buyes']." $qty $shtuk</b></font></div>";  if ($view_basketalert==1) { $kupil.="<a id=minibasket_"."$unifid href=$htpath/".$scriptprefix."minibasket.php?unifid=$lid&amp;qty=$qty&amp;speek=$speek></a><script type=\"text/javascript\">
         $(document).ready(function() {
            $(\"#minibasket_$lid\").fancybox({
                    'onComplete'	:	function() {\$(\"#fancybox-wrap\").unbind('mousewheel.fb');} ,
@@ -650,10 +650,10 @@ if ($end > $total) { $end=$total-1 + $gt; }
 if (($catid!="")&&($catid!="_")) {$queryed="&catid=".rawurlencode($catid);} else {$queryed="";}
 $sstat= "<center><small><br>".$lang[203]." <b>$numberpages</b> ".$lang[206]." <b>$total</b> ".$lang[207]." ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($start+$perpage) . "&perpage=$perpage&usl=$usl&brand=$brand\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=0&perpage=&brand=$brand\"><!--homee--></a>";
+$nextpage="<a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($start+$perpage) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=0&amp;perpage=&brand=$brand\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($start-$perpage) . "&perpage=$perpage&usl=$usl&brand=$brand\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($start-$perpage) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -681,16 +681,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($s*$perpage) . "&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($s*$perpage) . "&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=0&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=0&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($perpage*($numberpages-1)) . "&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=0&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=0&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($perpage*($numberpages-1)) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 if (!isset($view_compact)){} else { if($view_compact==1) { $poisks="";} else {$poisks="$ppages";}}
@@ -785,7 +785,7 @@ if ($scount==$count) {
 $ff+=1;
 if ($ff<=100) {
 //echo "<div onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$fc[1]."\">$ff.&nbsp;".strtoken($fc[2],"/")."</a></div>";
-$search_results0[$s]="<!--".$fc[3]."--><font size=2><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">".str_replace("<img ","<img align=left border=0 hspace=10 ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a></font><div><small>".$fc[5] ." ...</small></div><div><small><span style=\"color: $nc2;\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">$htpath/index.php?page=".$fc[1]."&speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></small></div><div style=\"clear: both\"></div></div><br>";
+$search_results0[$s]="<!--".$fc[3]."--><font size=2><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">".str_replace("<img ","<img align=left border=0 hspace=10 ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a></font><div><small>".$fc[5] ." ...</small></div><div><small><span style=\"color: $nc2;\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">$htpath/index.php?page=".$fc[1]."&amp;speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></small></div><div style=\"clear: both\"></div></div><br>";
 $tfind=1;
 $s+=1;
 
@@ -801,7 +801,7 @@ $scount+=1; $ff+=1;
 if ($scount==1) {
 if ($ff<=100) {
 //echo "<div onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$fc[1]."\">$ff.&nbsp;".strtoken($fc[2],"/")."</a></div>";
-$search_results0[$s]="<!--".$fc[3]."--><font size=2><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">".str_replace("<img ","<img align=left border=0 hspace=10 ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a></font><div><small>".$fc[5] ." ...</small></div><div><small><span style=\"color: $nc2;\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">$htpath/index.php?page=".$fc[1]."&speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></small></div><div style=\"clear: both\"></div></div><br>";
+$search_results0[$s]="<!--".$fc[3]."--><font size=2><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">".str_replace("<img ","<img align=left border=0 hspace=10 ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a></font><div><small>".$fc[5] ." ...</small></div><div><small><span style=\"color: $nc2;\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">$htpath/index.php?page=".$fc[1]."&amp;speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></small></div><div style=\"clear: both\"></div></div><br>";
 $tfind=1;
 $s+=1;
 }
@@ -830,7 +830,7 @@ if ($scount==$count) {
 $ff+=1;
 if ($ff<=100) {
 //echo "<div onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$fc[1]."\">$ff.&nbsp;".strtoken($fc[2],"/")."</a></div>";
-$search_results1[$s1]="<!--".$fc[3]."--><font size=2><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">".str_replace("<img ","<img align=left border=0 hspace=10 ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a></font><div><small>".$fc[5] ." ...</small></div><div><small><span style=\"color: $nc2;\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">$htpath/index.php?page=".$fc[1]."&speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></small></div><div style=\"clear: both\"></div></div><br>";
+$search_results1[$s1]="<!--".$fc[3]."--><font size=2><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">".str_replace("<img ","<img align=left border=0 hspace=10 ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a></font><div><small>".$fc[5] ." ...</small></div><div><small><span style=\"color: $nc2;\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">$htpath/index.php?page=".$fc[1]."&amp;speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></small></div><div style=\"clear: both\"></div></div><br>";
 $tfind=1;
 $s+=1;
 $s1+=1;
@@ -845,7 +845,7 @@ $scount+=1; $ff+=1;
 if ($scount>=1) {
 if ($ff<=100) {
 //echo "<div onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$fc[1]."\">$ff.&nbsp;".strtoken($fc[2],"/")."</a></div>";
-$search_results2[$s2]="<!--".$fc[3]."--><font size=2><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">".str_replace("<img ","<img align=left border=0 hspace=10 ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a></font><div><small>".$fc[5] ." ...</small></div><div><small><span style=\"color: $nc2;\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">$htpath/index.php?page=".$fc[1]."&speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></small></div><div style=\"clear: both\"></div></div><br>";
+$search_results2[$s2]="<!--".$fc[3]."--><font size=2><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">".str_replace("<img ","<img align=left border=0 hspace=10 ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a></font><div><small>".$fc[5] ." ...</small></div><div><small><span style=\"color: $nc2;\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">$htpath/index.php?page=".$fc[1]."&amp;speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></small></div><div style=\"clear: both\"></div></div><br>";
 $tfind=1;
 //echo $s2." ".$scount." ".$search_results2[$s2];
 $s+=1;

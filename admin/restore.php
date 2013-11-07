@@ -65,7 +65,7 @@ continue;
 } else {
 $size = filesize ("./backup/$file");
 
-$files[$st] = "<!--$file-->$file [$size b]  <b><a href='restback.php?rest=$file&speek=$speek'>".$lang[322]."</a></b> | <b><a href='delback.php?del=$file&speek=$speek'>".$lang[383]."</a></b><br>\n";
+$files[$st] = "<!--$file-->$file [$size b]  <b><a href='restback.php?rest=$file&amp;speek=$speek'>".$lang[322]."</a></b> | <b><a href='delback.php?del=$file&amp;speek=$speek'>".$lang[383]."</a></b><br>\n";
 $st += 1;
 }
 }

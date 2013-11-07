@@ -138,7 +138,7 @@ flock ($fp, LOCK_UN);
 fclose ($fp);
 echo "<p>".$lang[447]." <b>../.$base_loc/content/$c$nomer.txt</b>.<br><br><br>
 <a href='./index.php'>".$lang['back']."</a>\n
-<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='edit/index.php?working_file=?speek=$speek&working_file=../.".$base_loc."/content/$c$nomer.txt'\">";
+<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='edit/index.php?working_file=?speek=$speek&amp;working_file=../.".$base_loc."/content/$c$nomer.txt'\">";
 exit;
 }
 

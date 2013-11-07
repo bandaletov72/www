@@ -1,0 +1,2 @@
+Point1|point1|100|100||
+Point2|point2|200|200||

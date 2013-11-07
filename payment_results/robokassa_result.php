@@ -1,6 +1,4 @@
 <?php
-// registration info (password #2)
-$mrh_pass2 = "sevat006";
 
 $tm=getdate(time()+9*3600);
 $date="$tm[year]-$tm[mon]-$tm[mday] $tm[hours]:$tm[minutes]:$tm[seconds]";
@@ -39,13 +37,23 @@ $speek=$language;
 }
 
 require ("../templates/$template/$speek/vars.txt"); require ("../templates/$template/$speek/config.inc");
+$foud=0;
+while (list ($key, $val) = each ($payment_metode)) {
+$tmptmp=explode("|", $val);
+if ($tmptmp[3]=="robokassa.php") {
+$foud=1;
+break;
+}
+
+}
+if ($foud==0) { echo "payment methode not found"; exit;}
 $out_summ = $_REQUEST["OutSum"];
 $inv_id = $_REQUEST["InvId"];
 $shp_item = $_REQUEST["Shp_item"];
 $crc = $_REQUEST["SignatureValue"];
 $crc = strtoupper($crc);
 
-$my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass2"));
+$my_crc = strtoupper(md5("$out_summ:$inv_id:".@$tmptmp[8]));
 
 //def
 if (!$_REQUEST["SignatureValue"]) { echo "Error 1"; exit;}

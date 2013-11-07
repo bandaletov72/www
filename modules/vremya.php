@@ -11,7 +11,7 @@ $modonoff="<input type=button onclick=javascript:location.href='"."index.php?act
 }
 
 $admined.="<div class=round align=center>
-<b>".$lang[817].": </b><br><br><input type=button onclick=javascript:location.href='"."$htpath/index.php?action=template&nt=templates/$template&speek=$speek&t=work_time"."' value=\"".$lang['ch']."\"><br><br>
+<b>".$lang[817].": </b><br><br><input type=button onclick=javascript:location.href='"."$htpath/index.php?action=template&nt=templates/$template&amp;speek=$speek&t=work_time"."' value=\"".$lang['ch']."\"><br><br>
 $modonoff
 <br><br>".$lang[888]."</div>";
 $admined.="<div align=center><img src=\"$image_path/handdown.png\"></div>";

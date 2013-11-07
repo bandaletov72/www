@@ -1,7 +1,7 @@
 ==x0007==
 <table style="border-collapse: separate;" width="90%" cellspacing="0" cellpadding="3" border="0" align="center"><tbody><tr><td width="33%" valign="middle">
 <div>
-<div align="left"><font size="6" face="Georgia" color="#ffffff">Вас приветствует Eurowebcart!</font></div><font size="2" face="Verdana"><br>
+<div align="left"><font size="6" face="Georgia" color="#ffffff">Вас приветствует Eurowebcart!</font></div><font size="2"><br>
 Уникальная <strong>Бесплатная CMS</strong> для дома или Вашей компании.<br>
 <br>
 <font color="#ffffff">Сайт | Интернет-магазин | Блог | Фотогалерея | Википедия | Архив файлов| Доска объявлений | Форум | и еще...</font><font style="background-color: rgb(102, 102, 102);" color="#ffffff"><br>

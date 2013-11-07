@@ -209,14 +209,14 @@ $raz=$raz_mass[0];
 unset($raz_mass);  //для экономии памяти
 echo "<li value=$st>
 <div class=\"title\">
-<a href=\"$htpath/index.php?flag=$speek&page=".str_replace(".txt","", $file)."\" target=_blank>".strtoken(strtoken(strip_tags($line),"|"),"[")."</a>
+<a href=\"$htpath/index.php?flag=$speek&amp;page=".str_replace(".txt","", $file)."\" target=_blank>".strtoken(strtoken(strip_tags($line),"|"),"[")."</a>
 </div>
 <div class=\"text\">
 ".substr($index_stroke,0,60)."...</div>
 <div class=\"info\">
 <span style=\"color: #006600;\"> $file ($fsize) $date_file </span> &#151; <font color=\"#bb0000\">OK</font>
 </div>
-<div class=\"info\"><nobr><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.$base_loc/content/$raz.txt','$raz','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></nobr></div>
+<div class=\"info\"><nobr><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.$base_loc/content/$raz.txt','$raz','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></nobr></div>
 $tag[$file]
 </li>";
 $search_db.="$raz > $line > $date_file > $fsize > $index_stroke > \n";

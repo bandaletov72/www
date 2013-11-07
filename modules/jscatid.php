@@ -15,7 +15,7 @@ $tmpjslist[$tmpindex]= "$carat <a href=\"$htpath/index.php?catid=$jscatid\">".$t
 <b id=\"jsphp".$jscatid."\"><br><img src=$image_path/ind.gif border=0><br>".$curjs."-".($curjs+$js_max)."</b>
 <script>
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta=".$curjs."&catid=".$jscatid."&unifid=1&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta=".$curjs."&catid=".$jscatid."&unifid=1&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 </script>
@@ -27,7 +27,7 @@ var j=document.getElementById('jsmax".$jscatid."');
 var s=document.getElementById('jscatid".$jscatid."');
 j.value=($js_max+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=1&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=1&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -38,7 +38,7 @@ if (Math.round(j.value)>=$js_max) {
 j.value=(Math.round(j.value)-$js_max);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=1&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=1&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -49,7 +49,7 @@ $tmpjslistv[$tmpindex]= "$carat <a href=\"$htpath/index.php?catid=$jscatid\">".$
 <b id=\"jsphp".$jscatid."\"><br><img src=$image_path/ind.gif border=0><br>".$curjs."-".($curjs+$js_max)."</b>
 <script>
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta=".$curjs."&catid=".$jscatid."&unifid=1&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta=".$curjs."&catid=".$jscatid."&unifid=1&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 </script>
@@ -61,7 +61,7 @@ var j=document.getElementById('jsmax".$jscatid."');
 var s=document.getElementById('jscatid".$jscatid."');
 j.value=($js_max+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=1&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=1&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -72,7 +72,7 @@ if (Math.round(j.value)>=$js_max) {
 j.value=(Math.round(j.value)-$js_max);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=1&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=1&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }

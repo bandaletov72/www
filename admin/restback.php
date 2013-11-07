@@ -69,12 +69,12 @@ continue;
 if ($file!=$rest) {
 $size = filesize ("./backup/$file");
 
-$files[$st] = "<!--$file-->$file [$size b]  <b><a href='restback.php?speek=$speek&rest=$file'>".$lang[322]."</a></b> | <b><a href='delback.php?speek=$speek&del=$file'>".$lang[383]."</a></b><br>\n";
+$files[$st] = "<!--$file-->$file [$size b]  <b><a href='restback.php?speek=$speek&rest=$file'>".$lang[322]."</a></b> | <b><a href='delback.php?speek=$speek&amp;del=$file'>".$lang[383]."</a></b><br>\n";
 $st += 1;
 } else {
 $size = filesize ("./backup/$file");
 
-$files[$st] = "<!--$file-->$file [$size b]  <b><a href='delback.php?speek=$speek&del=$file'>".$lang[383]."</a></b> | <b> <font color=#b94a48>".$mpz['success_undel']."</font></b><br>\n";
+$files[$st] = "<!--$file-->$file [$size b]  <b><a href='delback.php?speek=$speek&amp;del=$file'>".$lang[383]."</a></b> | <b> <font color=#b94a48>".$mpz['success_undel']."</font></b><br>\n";
 $st += 1;
 }
 }

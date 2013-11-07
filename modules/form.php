@@ -14,7 +14,7 @@ $agree_title = $lang[347];
 fclose ($agreement);
 
 $x0004= str_replace("==$agree_title==", "" , $agree_content);
-if (($valid=="1")&&($details[7]=="ADMIN")): $aagreem= "<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0004</span><br><input class=btn type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/x0004.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div>"; endif;
+if (($valid=="1")&&($details[7]=="ADMIN")): $aagreem= "<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0004</span><br><input class=btn type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/x0004.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div>"; endif;
 
 
 $agreem="<a name=\"agreement\"></a><div class=round3 style=\"width:100%; height: 200px; overflow: auto;\"><table border=0><tr><td valign=top><h4>$agree_title</h4>";

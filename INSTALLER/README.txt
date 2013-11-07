@@ -12,7 +12,7 @@ See LICENSE.TXT for more information.
 
 AUTOMATIC INSTALL
 --------------------------------------------------------------------------
-Installer you can found on http://24ok.ru/index.php?page=download&flag=eng
+Installer you can found on http://24ok.ru/index.php?page=download&amp;flag=eng
 
 Download installer on your desktop and unzip it.
 

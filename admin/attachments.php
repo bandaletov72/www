@@ -219,7 +219,7 @@ echo "<form class=form-inline id=sform enctype='multipart/form-data' action='$ht
 
 
 $s=0;
-echo "<br><br><font face='Verdana, Arial, Helvetica, sans-serif' size='2' color='".$nc5."'><b>".$lang[1557].":</b> <B><a href = '$htpath/admin/attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=9&dir=$dir'>9</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=18&dir=$dir'>18</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=30&dir=$dir'>30</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=60&dir=$dir'>60</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=90&dir=$dir'>90</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=900&dir=$dir'>900</a></B>
+echo "<br><br><font face='Verdana, Arial, Helvetica, sans-serif' size='2' color='".$nc5."'><b>".$lang[1557].":</b> <B><a href = '$htpath/admin/attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=9&dir=$dir'>9</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=18&dir=$dir'>18</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=30&dir=$dir'>30</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=60&dir=$dir'>60</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=90&dir=$dir'>90</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=900&dir=$dir'>900</a></B>
 </small>
 ";
 
@@ -234,7 +234,7 @@ if (($fileopen!=".")&&($fileopen!="..")) {
 
 if (is_dir("../$fbase/$sdir".$fileopen)==true) {
 $fileopens[$s] = "<!--zzzzzz $fileopen-->
-<td align='center' valign='top' width=".ceil(100/$gallery_cols)."%><small><br><a href=\"$htpath/admin/attach.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$sdir"."$fileopen\"><img src='../images/of_mini.png"."' border=0><br>$fileopen</a>
+<td align='center' valign='top' width=".ceil(100/$gallery_cols)."%><small><br><a href=\"$htpath/admin/attach.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$sdir"."$fileopen\"><img src='../images/of_mini.png"."' border=0><br>$fileopen</a>
 </small></td>";
 $files_found += 1;
 $s+=1;
@@ -242,7 +242,7 @@ $s+=1;
 $size = intval((filesize ("../$fbase/$sdir"."$fileopen"))/1024);
 $fileopens[$s] = "<!--$fileopen-->
 <td align='center' valign='top' width=".ceil(100/$gallery_cols)."%><small><br><a class=btn href=#insert onClick=\"javascript:rc('$fileopen')\">$lang[784]<br>$fileopen<br>[$size Kb]</a><br>
-<a href='$htpath/admin/attach.php?dest=$dest&speek=$speek&gtype=$gtype&del=$fileopen&start=$start&perpage=$perpage&dir=$dir'><font color=#b94a48>X</font> ".$lang[383]."</a><br>
+<a href='$htpath/admin/attach.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;del=$fileopen&amp;start=$start&amp;perpage=$perpage&dir=$dir'><font color=#b94a48>X</font> ".$lang[383]."</a><br>
 </small></td>";
 $files_found += 1;
 $s+=1;
@@ -269,7 +269,7 @@ $ftyname=substr("$fileopen",0,(strlen("$fileopen")-strlen($typ)));
 $fileopens[$s] = "<!--$fileopen-->
 <td align='center' valign='top' width=".ceil(100/$gallery_cols)."%><small><br><a href='#".$lang[784]."' onClick=\"javascript:rc('".$sdir.$fileopen."','".$size."')\" title='".$lang[784]." $fileopen'>".wordwrap($fileopen,20,"\n",1)."</a><br>$fwidth x $fheight / $size Kb<br><a href='#".$lang[784]."' onClick=\"javascript:rc('$fileopen','".$size."')\"><img src='../$fbase/$sdir"."$fileopen' border=0 $wh title='".$lang[784]." $fileopen'></a>
 <br>
-<a href='$htpath/admin/attachments.php?dest=$dest&speek=$speek&gtype=$gtype&del=$fileopen&start=$start&perpage=$perpage&dir=$dir'><font color=#b94a48>X</font> ".$lang[383]."</a><br></small></td>";
+<a href='$htpath/admin/attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;del=$fileopen&amp;start=$start&amp;perpage=$perpage&dir=$dir'><font color=#b94a48>X</font> ".$lang[383]."</a><br></small></td>";
 $files_found += 1;
 $s+=1;
 }
@@ -277,7 +277,7 @@ $s+=1;
 closedir ($handle);
 if ((!@$fileopens[0]) || (@$fileopens[0]=="")) {
 	$fileopens[0]="";
-	//$gal.="<a href=\"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&i=".rawurlencode($backurl)."\"><img src='$htpath/images/ofb.png' border=0 align=middle hspace=10></a><a href=\"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&i=".rawurlencode($backurl)."\"><small><i>".$lang['back_to_higher_level']."</i></small></a><br><br><br>";
+	//$gal.="<a href=\"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&i=".rawurlencode($backurl)."\"><img src='$htpath/images/ofb.png' border=0 align=middle hspace=10></a><a href=\"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&i=".rawurlencode($backurl)."\"><small><i>".$lang['back_to_higher_level']."</i></small></a><br><br><br>";
 	} else {
 //сортировка по алфавиту//
 reset ($fileopens);
@@ -327,10 +327,10 @@ $end=$startnew + $perpage - 1 + $gt;
 if ($end > $total): $end=$total-1 + $gt; endif;
 $stat= "<center><small><br>".$lang[203]." <b>$numberpages</b> <img src=\"$image_path/a.gif\"> ".$lang[206]." <b>$total</b> ".$lang[207]." <img src=\"$image_path/a.gif\"> ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($start+$perpage) . "&perpage=$perpage&dir=$dir\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=&dir=$dir\"><!--homee--></a>";
+$nextpage="<a href=\"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($start+$perpage) . "&amp;perpage=$perpage&dir=$dir\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=&dir=$dir\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($start-$perpage) . "&perpage=$perpage&dir=$dir\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($start-$perpage) . "&amp;perpage=$perpage&dir=$dir\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>=$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -353,16 +353,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($s*$perpage) . "&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($s*$perpage) . "&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href=\"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($perpage*($numberpages-1)) . "&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href=\"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($perpage*($numberpages-1)) . "&amp;perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 
@@ -375,7 +375,7 @@ $prevdir="";
 $tmps=@explode("/",$dir);
 @array_pop($tmps);
 $prevdir=@implode("/",@$tmps);
-$gal.="<br><div align=center><a href=\"attachments.php?dest=$dest&speek=$speek&gtype=$gtype&start=$start&perpage=$perpage&dir=$prevdir\"><img src=\"../images/ofb.png\" border=0><br>".$lang['back']."</a></div>";}
+$gal.="<br><div align=center><a href=\"attachments.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=$start&amp;perpage=$perpage&dir=$prevdir\"><img src=\"../images/ofb.png\" border=0><br>".$lang['back']."</a></div>";}
 $gal.="<div align=center><br>$ppages<br><b>".$lang[783]."</b><br>".$lang[1558]."<br></div>\n";
 echo $gal;
 

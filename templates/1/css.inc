@@ -208,9 +208,9 @@ $css.="
 <script type=\"text/javascript\" src=\"$htpath/fancybox/jquery.fancybox-1.3.4.pack.js\"></script>
 <link rel=\"stylesheet\" type=\"text/css\" href=\"$htpath/fancybox/jquery.fancybox-1.3.4.css\" media=\"screen\" />
 <link href=\"$htpath/css/bootstrap".$bootstrap_theme.".css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\" />
-<link href=\"$htpath/css/prettify.css\" rel=\"stylesheet\">";
+<link href=\"$htpath/css/prettify.css\" rel=\"stylesheet\" />";
 if (@$action=="blog") { $css.="<script type=\"text/javascript\" src=\"https://apis.google.com/js/plusone.js\"></script>"; }
-if ($googlefont!="") { $css.="<link href='http://fonts.googleapis.com/css?family=".str_replace(" ", "+", $googlefont)."&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>"; }
+if ($googlefont!="") { $css.="<link href='http://fonts.googleapis.com/css?family=".str_replace(" ", "+", $googlefont)."&amp;subset=latin,cyrillic-ext' rel='stylesheet' type='text/css' />"; }
 if ($flush_css==0){
 $css.= "<STYLE type=\"text/css\">";
 }
@@ -1267,16 +1267,16 @@ box-shadow: 0 -1px 1px ".lighter($nc6,0).";
 }
 .price {
 color:$nc5;
-font: Georgia;
+font: ".($main_font_size+9)."pt Georgia;
 }
 .newprice {
 color:$nc5;
-font: Georgia;
+font: ".($main_font_size+9)."pt Georgia;
 color:#b94a48;
 }
 .oldprice {
 color:$nc5;
-font: Georgia;
+font: ".($main_font_size+9)."pt Georgia;
 text-decoration: line-through;
 }
 

@@ -164,10 +164,10 @@ echo "<tr>
     <td align='left' valign='top'><font face=verdana><center><div class=\"alert alert-error\">".$lang[439]."</div>
     <table border=0 cellpadding='3'>
   <tr>
-    <td width='50%' align=center valign=top><form method='POST' target='_self' action='del.php?speek=".$speek."&id=$id&del=yes&nazv=$nazv'><input type='hidden' value=\"$speek\" name=\"speek\"> <input class='btn btn-primary btn-large' type='submit' value='".$lang['yes']."' name='yes'></td>
+    <td width='50%' align=center valign=top><form method='POST' target='_self' action='del.php?speek=".$speek."&id=$id&amp;del=yes&nazv=$nazv'><input type='hidden' value=\"$speek\" name=\"speek\"> <input class='btn btn-primary btn-large' type='submit' value='".$lang['yes']."' name='yes'></td>
     <td width='50%' valign=top align=center><input class=\"btn btn-large\" type='button' value='".$lang['no']."' name='no' onclick='javascript:self.close()'></form></td></tr>
 
-  <tr><td colspan=2 align=center><div align=center><form method='POST' target='_self' action='del_archive.php?id=$id&del=yes'><input type='hidden' value=\"$speek\" name=\"speek\"> <input class='btn btn-warning btn-large' type='submit' value='".$lang[418]."' name='yes'></small></form></div></td></tr>
+  <tr><td colspan=2 align=center><div align=center><form method='POST' target='_self' action='del_archive.php?id=$id&amp;del=yes'><input type='hidden' value=\"$speek\" name=\"speek\"> <input class='btn btn-warning btn-large' type='submit' value='".$lang[418]."' name='yes'></small></form></div></td></tr>
 </table>
 <div align=center><b>$nazv</b><br></div></font></td>
     </tr>

@@ -23,7 +23,7 @@ $$a=deny_badwords($$a);
 $x0009="";
 if ((@file_exists("$base_loc/content/x0009.txt")==TRUE)) {
 
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")): $x0009="<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0009</span><br><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/x0009.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>&nbsp;<input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=x0009&del=x0009','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div>"; endif;}
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")): $x0009="<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0009</span><br><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/x0009.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>&nbsp;<input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=x0009&amp;del=x0009','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div>"; endif;}
 
 
 

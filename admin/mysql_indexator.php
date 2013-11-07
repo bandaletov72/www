@@ -996,7 +996,7 @@ $line=str_replace("[comm]".$comm."[/comm]", "", $line);
 $purl="";
 $purl=ExtractString($line,"[url]","[/url]");
 $line=str_replace("[url]".$comm."[/url]", "", $line);
-if ($friendly_url==1) { $flafsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flafsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
 if (@$mod_rw_enable==1){ $llink="$manc.html"; $llinks="$manc.html";}  else {$llink="index.php?page=$manc&z=".rawurlencode($subline)."[jstart]"; $llinks="index.php?page=$manc";}
 if ($purl!="") {$llink="$purl";}
 if (preg_match("/<img/i", $linet)) {
@@ -1011,7 +1011,7 @@ if (preg_match("/<img/i", $linet)) {
 if (substr($c,0,1)!=$wiki_rubric) {
 if (strlen($c)==1) {
 $flagsy="";
-if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
 if (@$mod_rw_enable==1){ $llink="$manc.html";}  else {$llink="index.php?page=$manc".$flagsy."";}
 if (substr($c,0,1)==$wiki_content) {
 if ($view_wikicat==1) {

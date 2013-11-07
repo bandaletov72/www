@@ -129,7 +129,7 @@ while ($s < $numberpages) {
 if (($start/$perpage)==$s) {
 $pp.= "<b>" . ($s+1) . "</b> | ";
 } else {
-$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=view_links&start=" . ($s*$perpage) . "&perpage=$perpage\">" . ($s+1) . "</a> | ";
+$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=view_links&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage\">" . ($s+1) . "</a> | ";
 }
 $s+=1;
 }

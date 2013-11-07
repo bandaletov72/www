@@ -449,7 +449,7 @@ while ($pages<=$numberpages) {
 if (($pages*$perpages)==$start) {
 $pagelist.="<b>".($pages+1)."</b> | ";
 } else {
-$pagelist.="<a href=\"$htpath/index.php?speeks=$speek&action=vars&mod=admin&start=".($pages*$perpages)."\">".($pages+1)."</a> | ";
+$pagelist.="<a href=\"$htpath/index.php?speeks=$speek&action=vars&mod=admin&amp;start=".($pages*$perpages)."\">".($pages+1)."</a> | ";
 }
 $pages+=1;
 }
@@ -465,8 +465,8 @@ $st+=1;
 }
 
 }
-if ($perpages<100) {$pagelist.=" <b><a href=$htpath/index.php?speek=$speek&action=vars&mod=admin&start=0&perpages=1000>$lang[422]</a></b>"; } else {
-$pagelist.=" <b><a href=$htpath/index.php?speek=$speek&action=vars&mod=admin&start=0&perpages=20>".$lang[734]."</a></b>";
+if ($perpages<100) {$pagelist.=" <b><a href=$htpath/index.php?speek=$speek&action=vars&mod=admin&amp;start=0&perpages=1000>$lang[422]</a></b>"; } else {
+$pagelist.=" <b><a href=$htpath/index.php?speek=$speek&action=vars&mod=admin&amp;start=0&perpages=20>".$lang[734]."</a></b>";
 }
 
 $vars_list.="</tbody></table><p align=center><input type=hidden name=\"start\" value=\"$start\"><input class=\"btn btn-primary btn-large\" type=submit value=\"".$lang['ch']."\"></p></form><br><div align=center><b>".$lang[105].":</b> &nbsp; $pagelist &nbsp;  &nbsp;  &nbsp; </div><br><br>";

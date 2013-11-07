@@ -120,13 +120,14 @@ $sp=file($statusfile);
 $curstatus=trim($sp[0]);
 }
 
-if (($curstatus=="")||($curstatus==trim($statuses[0]))) { $sty=' label-success'; } else {
-
+if ($curstatus==trim($statuses[0])) { $sty=' label-success'; } else {
+if ($curstatus=="") { $curstatus=trim($statuses[0]); $sty=' label-success'; } else {
 $view_buybut=0;
 if ($curstatus==trim($statuses[1])){ $sty=' label-warning';} else {
 if ($curstatus==trim($statuses[2])){ $sty=' label-important';} else {
 if ($curstatus==trim($statuses[3])){ $sty=' label-info';} else {
 if ($curstatus==trim($statuses[4])){ $sty=' label-inverse';}
+}
 }
 }
 }
@@ -182,7 +183,7 @@ if ($hidart==1) {
 @$full_descr=@$outc[15];
 $gdf="./gooddesc/".$outc[6].".txt";
 if (file_exists($gdf)==TRUE) {
- if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $full_descr.="<div class=round align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">".$gdf."</span> <a class=\"btn\" href=#edit onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$gdf."','gdf','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10') title=\"".$lang['ch']."\"><i class=\"icon-edit icon-large\"></i></a></div>";}}
+ if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $full_descr.="<div class=round align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">".$gdf."</span> <a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$gdf."','gdf','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['ch']."\"><i class=\"icon-edit icon-large\"></i></a></div>";}}
 $fgd=@fopen($gdf,"r");
 $full_descr.=str_replace("<br><br>", "<br>",str_replace("<br><br>", "<br>",str_replace("\n", "<br>",str_replace("\r", "", @fread($fgd, @filesize($gdf))))));
 fclose($fgd);
@@ -663,7 +664,7 @@ $views=1;
 $counlen=strlen(@$_SESSION["interest"]);
 if ($counlen<5000) {
 if ($hidart==1) {$hidnazv=strtoken($nazv,"*")." $brand_name ".strtoupper(substr(md5(@$outc[6].$artrnd),-7)); } else {$hidnazv=$nazv;}
-$addinter="<div class=lnk><a href=\"index.php?unifid=" . md5("$nazv"." ID:".@$outc[6]) . "&flag=$speek\">$hidnazv</a>";
+$addinter="<div class=lnk><a href=\"index.php?unifid=" . md5("$nazv"." ID:".@$outc[6]) . "&amp;flag=$speek\">$hidnazv</a>";
 if ($view_goodsprice==1){
 if ($zero_price_incart==0) {$addinter.="$prem1 - <b>$price</b>".$currencies_sign[$_SESSION["user_currency"]]."$sqr $prem2"; }
 }
@@ -732,7 +733,7 @@ $ef=fopen("./admin/comments/$fname.txt" , "r");
 $commread=fread($ef, filesize("./admin/comments/$fname.txt"));
 fclose($ef);
 $comm_book=str_replace("[adm]","<font color=$nc2>",str_replace("[/adm]","</font>", str_replace("[vote]","<img src=\"$image_path/vote",str_replace("[/vote]",".png\">",str_replace("[hr]", "<div class=clear><br></div>", str_replace("[i]", "<i class=muted>", str_replace("[/i]", "</i>", str_replace("[b]", "<b>", str_replace ("[/b]", "</b>", str_replace ("[br]", "<br>", str_replace("[amp]", "&", $commread)))))))))));
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){$comm_book= str_replace("[ip]", "<a href=\"$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&start=0&perpage=10&ipsort=\">".$lang[186]."</a>", $comm_book));} else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));} } else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));}
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){$comm_book= str_replace("[ip]", "<a href=\"$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&amp;start=0&amp;perpage=10&ipsort=\">".$lang[186]."</a>", $comm_book));} else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));} } else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));}
 
 //Simple Comments editor    added 16.11.2005
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")) {
@@ -955,7 +956,7 @@ if ($mensort<10) {$mensort1="00".$mensort; }
 
 $menarr[$gr]="<!-- $mensort1 --><li class=\"\"><a href=\"#tab".$gr."\" data-toggle=\"tab\"><i class=icon-ok></i>&nbsp;".$mentit."</a></li>";
 $a_con="";
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $a_con.="<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">".$stex."</span> <a class=\"btn\" href=#edit onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../."."$base_loc/content/".$stex.".txt','".$stex."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10') title=\"".$lang['ch']."\"><i class=\"icon-edit icon-large\"></i></a></div>";}}
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $a_con.="<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">".$stex."</span> <a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../."."$base_loc/content/".$stex.".txt','".$stex."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['ch']."\"><i class=\"icon-edit icon-large\"></i></a></div>";}}
 $f_con.="<div class=\"tab-pane\" id=\"tab".$gr."\"><a name=\"$stex\"></a><div class=cat1 style=\"cursor: pointer; cursor: hand;\" onclick=\"javascript:document.location.href='$htpath/index.php?page=$stex';\"><b>".$page_title."</b><div style=\"float:right\"><img border=0 src=\"$htpath/images/cat1.png\"></div></div><div class=clear></div><br>$a_con".wikify($page_content."")."</div>";
 if ($stex=="s") {
 
@@ -1297,7 +1298,7 @@ $cfoto1=str_replace("width= height= ", "", $cfoto1);
 $csqr="/$cvitrin";
 if (($cvitrin=="")||("$cvitrin"=="0")) {$cvitrin=$lang['pcs']; $csqr="";}
 
-$bbut="<img id=\"p_$ms\" src=\"pix.gif\" width=78 height=12 border=0><br><font color=$nc3><b id=\"kup_$ms\"></b><b id=\"pcs_$ms\"></b><b id=\"st_$ms\"></b></font><br>".jbuybutton("<a href=#buy onclick=\"javascript:document.getElementById('p_$ms').src='images/wait.gif';document.getElementById('pcs_$ms').innerHTML=Math.round(document.getElementById('pcs_$ms').innerHTML) + 1;document.getElementById('scart').innerHTML=parseFloat(document.getElementById('scart').innerHTML) + $cprice;document.getElementById('kup_$ms').innerHTML='".$lang['buyes']." ';document.getElementById('st_$ms').innerHTML=' $cvitrin ';document.getElementById('p_$ms').src='ok.php?unifid=".md5(@$cout[3]." ID:".@$cout[6])."&t=".time()."&speek=".$speek."&qty='+document.getElementById('pcs_$ms').innerHTML; baskv();\"><i class=\"icon-shopping-cart icon-white\"></i> <b><font color=#ffffff>".str_replace(" ", "&nbsp;", $lang['buy'])."</font></b></a>", $nc2,60,$nc0);
+$bbut="<img id=\"p_$ms\" src=\"pix.gif\" width=78 height=12 border=0><br><font color=$nc3><b id=\"kup_$ms\"></b><b id=\"pcs_$ms\"></b><b id=\"st_$ms\"></b></font><br>".jbuybutton("<a href=#buy onclick=\"javascript:document.getElementById('p_$ms').src='images/wait.gif';document.getElementById('pcs_$ms').innerHTML=Math.round(document.getElementById('pcs_$ms').innerHTML) + 1;document.getElementById('scart').innerHTML=parseFloat(document.getElementById('scart').innerHTML) + $cprice;document.getElementById('kup_$ms').innerHTML='".$lang['buyes']." ';document.getElementById('st_$ms').innerHTML=' $cvitrin ';document.getElementById('p_$ms').src='ok.php?unifid=".md5(@$cout[3]." ID:".@$cout[6])."&t=".time()."&amp;speek=".$speek."&amp;qty='+document.getElementById('pcs_$ms').innerHTML; baskv();\"><i class=\"icon-shopping-cart icon-white\"></i> <b><font color=#ffffff>".str_replace(" ", "&nbsp;", $lang['buy'])."</font></b></a>", $nc2,60,$nc0);
 if ($cvipold!="") {$cspprice="newprice";} else {$cspprice="price";}
 $accsst="<td width=".ceil(100/$acqty)."% valign=top><table border=0 width=100%><tr><td valign=bottom align=center><a href=\"$htpath/index.php?unifid=" . md5($cout[3]." ID:".@$cout[6]) . "\">$cfoto1</a><br><small><b><a href=\"$htpath/index.php?catid=".translit(@$cdir."_".@$csubdir."_")."\">$csubdir</a></b><br><a href=\"$htpath/index.php?unifid=" . md5($cout[3]." ID:".@$cout[6]) . "\">$cnazv</a></small><br>$cprbuy$cprem1<br>".$cpricetax.$vsygn.$cvipold."&nbsp;<span class=$cspprice>".str_replace(" ","&nbsp;",str_replace(".00",".-", number_format($cprice,2,".","")))."</span>
 <br>$bbut$cprem2<br><br></td></tr></table></td>\n\n";
@@ -1320,7 +1321,7 @@ if (file_exists("$fik")){$imagesz = getimagesize("$fik"); $k=(100/$imagesz[1]); 
 $cfoto1=str_replace("<img ", "<img class=img". $wh ." vspace=3 hspace=10 title=\"".str_replace("\"", "", str_replace("\'", "",$cnazv))."\" ",stripslashes(@$cfoto1));
 @$cfoto1=str_replace("border=0", "style=\"border: 0px solid ".lighter($nc6,-10).";\" ", @$cfoto1);
 $cfoto1=str_replace("width= height= ", "", $cfoto1);
-$bbut="<img id=\"p_$ms\" src=\"pix.gif\" width=78 height=12 border=0><br><font color=$nc3><b id=\"kup_$ms\"></b><b id=\"pcs_$ms\"></b><b id=\"st_$ms\"></b></font><br>".jbuybutton("<a href=#buy onclick=\"javascript:document.getElementById('p_$ms').src='images/wait.gif';document.getElementById('pcs_$ms').innerHTML=Math.round(document.getElementById('pcs_$ms').innerHTML) + 1;document.getElementById('scart').innerHTML=parseFloat(document.getElementById('scart').innerHTML) + $cprice;document.getElementById('kup_$ms').innerHTML='".$lang['buyes']." ';document.getElementById('st_$ms').innerHTML=' $cvitrin ';document.getElementById('p_$ms').src='ok.php?unifid=".md5(@$cout[3]." ID:".@$cout[6])."&t=".time()."&speek=".$speek."&qty='+document.getElementById('pcs_$ms').innerHTML;baskv();\"><i class=\"icon-shopping-cart icon-white\"></i> <b><font color=#ffffff>".str_replace(" ", "&nbsp;", $lang['buy'])."</font></b></a>", $nc2,60,$nc0);
+$bbut="<img id=\"p_$ms\" src=\"pix.gif\" width=78 height=12 border=0><br><font color=$nc3><b id=\"kup_$ms\"></b><b id=\"pcs_$ms\"></b><b id=\"st_$ms\"></b></font><br>".jbuybutton("<a href=#buy onclick=\"javascript:document.getElementById('p_$ms').src='images/wait.gif';document.getElementById('pcs_$ms').innerHTML=Math.round(document.getElementById('pcs_$ms').innerHTML) + 1;document.getElementById('scart').innerHTML=parseFloat(document.getElementById('scart').innerHTML) + $cprice;document.getElementById('kup_$ms').innerHTML='".$lang['buyes']." ';document.getElementById('st_$ms').innerHTML=' $cvitrin ';document.getElementById('p_$ms').src='ok.php?unifid=".md5(@$cout[3]." ID:".@$cout[6])."&t=".time()."&amp;speek=".$speek."&amp;qty='+document.getElementById('pcs_$ms').innerHTML;baskv();\"><i class=\"icon-shopping-cart icon-white\"></i> <b><font color=#ffffff>".str_replace(" ", "&nbsp;", $lang['buy'])."</font></b></a>", $nc2,60,$nc0);
 if ($cvipold!="") {$cspprice="newprice";} else {$cspprice="price";}
 $accsst="<td width=".ceil(100/$acqty)."% valign=top align=center><a href=\"$htpath/index.php?unifid=" . md5($cout[3]." ID:".@$cout[6]) . "\">$cfoto1</a><br><small><b><a href=\"$htpath/index.php?catid=".translit(@$cdir."_".@$csubdir."_")."\">$csubdir</a></b><br><a href=\"$htpath/index.php?unifid=" . md5($cout[3]." ID:".@$cout[6]) . "\">$cnazv</a></small><br>$cprbuy$cprem1<br>".$cpricetax.$vsygn.$cvipold."&nbsp;<span class=$cspprice>".str_replace(" ","&nbsp;",str_replace(".00",".-", number_format($cprice,2,".","")))."</span>
 <br>$bbut$cprem2<br><br></td>\n\n";
@@ -1622,7 +1623,7 @@ $cattach.="<tr id='mq_".$men5q."'><td><i class=icon-file></i>&nbsp;".$tma[0]." <
 <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
 <h3 id=\"MD3Label\">".$lang[1581]."</h3>
 </div>
-<div class=\"modal-body\"><b>$lang[1599]:</b><div align-center><h4>$price $init_currency</h4></div>$lang[1121]: <b>".$schet."</b> $init_currency<br><br><a href=#download class=\"btn btn-primary\" onclick=\"window.open('go.php?".strrev("att.php?speek=$speek&session=$sid&token=".md5($tma[0].$details[1].$secret_salt.toHache($outc[0]).(time()+$att_valid_sec).$price)."-".toHache($tma[0].$details[1].$secret_salt.toHache($outc[0]).(time()+$att_valid_sec).$price)."&sum=$price&op=".$outc[0]."&till=".(time()+$att_valid_sec)."&file=".rawurlencode($tma[0])."&user=".rawurlencode($details[1]))."','down','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=320,height=200,left=10,top=10'); document.getElementById('mq_".$men5q."').style.visibility='hidden';document.getElementById('mq_".$men5q."').style.display='none';\" data-dismiss=\"modal\" aria-hidden=\"true\"><i class=icon-file></i>&nbsp;<font color=white>".$lang[1600]."</font></a> &nbsp; <a href=\"#\" class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">".$lang[1601]."</a><br><br><div class=muted>$lang[1602]</div></div>
+<div class=\"modal-body\"><b>$lang[1599]:</b><div align=center><h4>$price $init_currency</h4></div>$lang[1121]: <b>".$schet."</b> $init_currency<br><br><a href=#download class=\"btn btn-primary\" onclick=\"window.open('go.php?".strrev("att.php?speek=$speek&session=$sid&token=".md5($tma[0].$details[1].$secret_salt.toHache($outc[0]).(time()+$att_valid_sec).$price)."-".toHache($tma[0].$details[1].$secret_salt.toHache($outc[0]).(time()+$att_valid_sec).$price)."&sum=$price&op=".$outc[0]."&till=".(time()+$att_valid_sec)."&file=".rawurlencode($tma[0])."&user=".rawurlencode($details[1]))."','down','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=320,height=200,left=10,top=10'); document.getElementById('mq_".$men5q."').style.visibility='hidden';document.getElementById('mq_".$men5q."').style.display='none';\" data-dismiss=\"modal\" aria-hidden=\"true\"><i class=icon-file></i>&nbsp;<font color=white>".$lang[1600]."</font></a> &nbsp; <a href=\"#\" class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">".$lang[1601]."</a><br><br><div class=muted>$lang[1602]</div></div>
 <div class=\"modal-footer\">
 <a href=\"#\" class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">".$lang['undo']."</a>
 </div>
@@ -1698,7 +1699,7 @@ $xz+=1;
 }
 if ($optionselect!="") {$optionselect="<table border=0>$optionselect</table>";}
 $callback="";
-if ($view_callback==1) {$callback="<div class=pull-left><a class=\"btn btn-warning\" style=\"white-space:nowrap;\" href=#callback onClick=javascript:window.open('$htpath/callback.php?speek=".$speek."&unifid=$unifid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=770,height=530,left=10,top=10')><i class=\"icon-envelope icon-white\"></i><font color=black> $lang[768]</font></a></div>";}
+if ($view_callback==1) {$callback="<div class=pull-left><a class=\"btn btn-warning\" style=\"white-space:nowrap;\" href=#callback onClick=\"javascript:window.open('$htpath/callback.php?speek=".$speek."&unifid=$unifid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=770,height=530,left=10,top=10')\"><i class=\"icon-envelope icon-white\"></i><font color=black> $lang[768]</font></a></div>";}
 $cartlist.=str_replace($lang[196].":" , "<b>".$lang[196].":</b>", str_replace($lang[197].":" , "<b>".$lang[197].":</b>",str_replace("[price]", $price, $description)))."
 <div><small>$dtoday</small></div>
 <a name=\"play\"></a>".@$hear."$stock$admin_functions</div><div style=\"clear:both;\">";
@@ -1707,7 +1708,7 @@ if ($additional_photos_poz==2) {if (trim($dopos)!="") {$cartlist.="<div align=ce
 
 $lid=md5(@$outc[3]." ID:".@$outc[6]);
 
-if ($kupil!="") {if ($view_basketalert==1) {$kupil.="<a id=minibasket_"."$unifid href=$htpath/minibasket.php?unifid=$lid&qty=$qty&speek=$speek></a><script type=\"text/javascript\">
+if ($kupil!="") {if ($view_basketalert==1) {$kupil.="<a id=minibasket_"."$unifid href=$htpath/minibasket.php?unifid=$lid&amp;qty=$qty&amp;speek=$speek></a><script type=\"text/javascript\">
         $(document).ready(function() {
            $(\"#minibasket_$lid\").fancybox({
                    'onComplete'	:	function() {\$(\"#fancybox-wrap\").unbind('mousewheel.fb');} ,
@@ -1967,7 +1968,7 @@ jQuery(document).ready(function() {
 $jslist="<br><br><div class=\"mousewheel_example\" id=\"mousewheel_example_1\"><b id=\"jsp".$jscatid."\"><font size=3><b>".$lang[733].":</b></font></b><br><br><b id=\"jsphp".$jscatid."\"><br><img src=$image_path/ind.gif border=0><br>".$_SESSION["$indcur"]."-".(doubleval($_SESSION["$indcur"])+$js_max)."</b>
 <script language=\"JavaScript\">
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta=".$curjs."&catid=".$jscatid."&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta=".$curjs."&catid=".$jscatid."&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 </script>
@@ -1979,7 +1980,7 @@ var j=document.getElementById('jsmax".$jscatid."');
 var s=document.getElementById('jscatid".$jscatid."');
 j.value=(1+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -1990,7 +1991,7 @@ if (Math.round(j.value)>=1) {
 j.value=(Math.round(j.value)-1);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -2007,7 +2008,7 @@ if (Math.round(j.value)>=1) {
 j.value=(Math.round(j.value)-1);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -2020,7 +2021,7 @@ var s=document.getElementById('jscatid".$jscatid."');
 if ((document.getElementById('nextb').src!='".$htpath."/".$image_path."/nonextc.png')&&(document.getElementById('nextb').src!='".$htpath."/".$image_path."/nonextcv.png')) {
 j.value=(1+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -2036,7 +2037,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptNode);
 $jslistv="<div class=\"mousewheel_example\" id=\"mousewheel_example_1\"><b id=\"jsp".$jscatid."\"></b><b id=\"jsphp".$jscatid."\"><img src=$image_path/ind.gif border=0><br>".$_SESSION["$indcur"]."-".(doubleval($_SESSION["$indcur"])+$js_max)."</b>
 <script language=\"JavaScript\">
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta=".$curjs."&catid=".$jscatid."&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta=".$curjs."&catid=".$jscatid."&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 </script>
@@ -2048,7 +2049,7 @@ var j=document.getElementById('jsmax".$jscatid."');
 var s=document.getElementById('jscatid".$jscatid."');
 j.value=(1+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -2059,7 +2060,7 @@ if (Math.round(j.value)>=1) {
 j.value=(Math.round(j.value)-1);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -2076,7 +2077,7 @@ if (Math.round(j.value)>=1) {
 j.value=(Math.round(j.value)-1);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -2089,7 +2090,7 @@ var s=document.getElementById('jscatid".$jscatid."');
 if ((document.getElementById('nextb').src!='".$htpath."/".$image_path."/nonextc.png')&&(document.getElementById('nextb').src!='".$htpath."/".$image_path."/nonextcv.png')) {
 j.value=(1+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }

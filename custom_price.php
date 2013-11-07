@@ -32,14 +32,14 @@ list($day,$month,$year) = explode(substr($dateformat,1,1),$str);
 $unixtime=mktime(0, 0, 1, (int)$month, (int)$day, (int)$year);
 $curtime=time();
 $days=floor(($curtime-$unixtime)/86400);
-if ($days<0) { 
+if ($days<0) {
 $dd=substr($days,-1);
 $daystogo="До прихода груза осталось ".((-1)*$days);
 if ($dd==1) { $daystogo.=" день"; }
 if (($dd==0)||($dd==5)||($dd==6)||($dd==7)||($dd==8)||($dd==9)) { $daystogo.=" дней";}
 if (($dd==2)||($dd==3)||($dd==4)) { $daystogo.=" дня";}
 }
-if ($days>=1) { 
+if ($days>=1) {
 $dd=substr($days,-1);
 $daystogo="Груз прибыл ".$days;
 if ($dd==1) { $daystogo.=" день назад"; }
@@ -87,7 +87,7 @@ $speek=$language;
 require ("./templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nls);
 if ($view_price==0) {echo "Restricted area"; exit;}
 require ("./templates/$template/$speek/config.inc");
-require("./modules/translit.php"); 
+require("./modules/translit.php");
 header("Content-type: text/html; charset=$codepage");
 require("./modules/webcart.php");
 $oldanguage=$language;
@@ -365,12 +365,13 @@ $curstatus=trim($sp[0]);
 
 
 if ($curstatus==trim($statuses[0])) { $sty=" style=\"color:green;\""; } else {
-
+if ($curstatus==""){ $curstatus=trim($statuses[0]); $sty=" style=\"color:green;\"";} else {
 $view_buybut=0; $price=0;
 if ($curstatus==trim($statuses[1])){ $sty=" style=\"color:orange;\"";} else {
 if ($curstatus==trim($statuses[2])){ $sty=" style=\"color:red;\"";} else {
 if (($curstatus==trim($statuses[3]))&&(trim(@$statuses[3]!=""))){ $sty=" style=\"color:blue;\"";} else {
 if (($curstatus==trim(@$statuses[4]))&&(trim(@$statuses[4]!=""))){ $sty=" style=\"color:grey;\"";}
+}
 }
 }
 }
@@ -430,7 +431,7 @@ if (($price==0)&&($dhid[$in]=="*")) {$proceed=0;}
 if ($in==0) {$proceed=0;}
 if ($proceed==1) {
 if ((isset($dtyp[$in]))&&(substr(@$dtyp[$in],0,3)=="kit")) {
-$top=str_replace("[curr]", $curcur, "<tr><td>".str_replace(";", "</td><td>", $dtop[$in])."</td></tr>");  
+$top=str_replace("[curr]", $curcur, "<tr><td>".str_replace(";", "</td><td>", $dtop[$in])."</td></tr>");
 $tmz=explode("<br>",@$outc[$in]);
 $ttm="";
 while (list ($kz, $vz) = each ($tmz)) {
@@ -453,7 +454,7 @@ unset($tmz,$ttm);
 } else {
 if (@$dnam[$in]!="") {
 $cpf_v.="<b>".$dnam[$in].":</b> " .@$outc[$in]."; ";
-} else { 
+} else {
 $cpf_v.=@$outc[$in]." ";
 }
 }
@@ -469,8 +470,8 @@ if (preg_match("/\*/", trim($tmpv[1]))) {
 if ($in==0) {$proceed=0;}
 if (($price==0)&&($dhid[$in]=="*")) {$proceed=0;}
 if ($proceed==1) {
-if ((isset($dtyp[$in]))&&(substr(@$dtyp[$in],0,3)=="kit")) { 
-$top=str_replace("[curr]", $curcur,"<tr><td>".str_replace(";", "</td><td>", $dtop[$in])."</td></tr>"); 
+if ((isset($dtyp[$in]))&&(substr(@$dtyp[$in],0,3)=="kit")) {
+$top=str_replace("[curr]", $curcur,"<tr><td>".str_replace(";", "</td><td>", $dtop[$in])."</td></tr>");
 $tmz=explode("<br>",@$outc[$in]);
 $ttm="";
 while (list ($kz, $vz) = each ($tmz)) {

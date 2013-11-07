@@ -1102,7 +1102,7 @@ $voting="<img src=images/pix.gif height=1 width=10 border=0><img src=\"$image_pa
 unset($tmpvotef);
 }
 }
-if ($friendly_url==1) { $flafsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flafsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
 if (preg_match("/\:/",$coord)) { $citymap.="$line|$manc|".str_replace(":","|",$coord)."|".str_replace("\n", "", str_replace("\r", "", $comm))."|"."\n"; }
 if (@$mod_rw_enable==1){ $llink="$manc.html"; $llinks="$manc.html";}  else {$llink="index.php?page=$manc&z=".rawurlencode($subline)."[jstart]"; $llinks="index.php?page=$manc";}
 if ($purl!="") {$llink="$purl"; $llinks="$purl";}
@@ -1120,7 +1120,7 @@ if (substr($c,0,1)!=$wiki_rubric) {
 echo ".";
 if (strlen($c)==1) {
 $flagsy="";
-if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
 if (@$mod_rw_enable==1){ $llink="$manc.html";}  else {$llink="index.php?page=$manc".$flagsy."";}
 if ($purl!="") {$llink="$purl";}
 if (substr($c,0,1)==$wiki_content){
@@ -1161,7 +1161,7 @@ $st += 1;
 echo ".";
 if (strlen($c)==1) {
 $flagsy="";
-if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
 if (@$mod_rw_enable==1){ $llink="$manc.html";}  else {$llink="index.php?page=$manc".$flagsy."";}
 if ($purl!="") {$llink="$purl";}
 
@@ -1456,7 +1456,7 @@ $t=explode("a href=", $val);
 $link=strtoken(str_replace("'","", str_replace("\"","",$t[1])), ">");
 $linkcontent.="$val";
 if (preg_match("/\?/i",$link)) {
-$nlinkcontent.="<div class=brand onclick=\"location.href='".$link."&speek=$speek&bb=".$linkey."';\">".str_replace("$link","$link&speek=$speek&bb=".$linkey,$val)."</div>";
+$nlinkcontent.="<div class=brand onclick=\"location.href='".$link."&amp;speek=$speek&bb=".$linkey."';\">".str_replace("$link","$link&amp;speek=$speek&bb=".$linkey,$val)."</div>";
 } else {
 $nlinkcontent.="<div class=brand onclick=\"location.href='".$link."';\">".$val."</div>";
 
@@ -1479,7 +1479,7 @@ $link=strtoken(str_replace("'","", str_replace("\"","",$t[1])), ">");
 if ($nlinkcontent!="") {
 //titul
 if (preg_match("/\?/i",$link)) {
-$titlink=str_replace("$link","$link&speek=$speek&bb=".$linkey, $titlink);
+$titlink=str_replace("$link","$link&amp;speek=$speek&bb=".$linkey, $titlink);
 }
 $normalinks.="<div class=\"lcat1\" style=\"border-bottom: 1px $nc6 dotted; padding-top:10px; padding-bottom:10px;\" onclick=\"nl('".$linkey."');\" id=bb_".$linkey."><div class=pull-left>".str_replace("<br>","","".str_replace("</font><br>","", $titlink)."")."</div><div class=\"pull-right\"><i id=\"i_".$linkey."\" class=\"icon-chevron-right icon-white\"></i></div><div class=clearfix></div></div>";
 //content

@@ -48,13 +48,13 @@ flock ($fp, LOCK_UN);
 fclose ($fp);
 echo "<p>".$lang[447]." <b>../.$base_loc/content/$create_file.txt</b>.<br><br><br>
 <a href='./index.php'>".$lang['back']."</a>\n
-<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='../edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/$create_file.txt'\">";
+<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='../edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$create_file.txt'\">";
 exit;
 }
 } else {
 echo "<p>File  <b>../.$base_loc/content/$create_file.txt</b> already exists.<br><br><br>
 <a href='./index.php'>".$lang['back']."</a>\n
-<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='../edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/$create_file.txt'\">";
+<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='../edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$create_file.txt'\">";
 exit;
 }
 
@@ -127,7 +127,7 @@ fwrite ($fp, "==$c$nomer==");
 fclose ($fp);
 echo "<p>Success create <b>../.$base_loc/content/$c$nomer.txt</b>.<br><br><br>
 <a href='./index.php?speek=".$speek."'>".$lang['back']."</a>\n
-<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='../edit/index.php?speek=".$speek."&working_file=../.".$base_loc."/content/$c$nomer.txt'\">";
+<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='../edit/index.php?speek=".$speek."&amp;working_file=../.".$base_loc."/content/$c$nomer.txt'\">";
 exit;
 }
 
@@ -152,7 +152,7 @@ exit;
 if ($rest != "") {
 rename ("../.$base_loc/content/$rest.del", "../.$base_loc/content/$rest.txt");
 echo "<p>File restore: <b>../.$base_loc/content/$rest.txt'</b>.<br>You may edit it<br><br><a href=\"./index.php?speek=".$speek."\">".$lang['back']."</a>\n
-<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='../edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/$rest.txt'\">";
+<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='../edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$rest.txt'\">";
 exit;
 }
 echo "<p><div align='center'>

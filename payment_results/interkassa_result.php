@@ -45,15 +45,16 @@ require ("../templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_n
 
 //def
 
-
+$foud=0;
 while (list ($key, $val) = each ($payment_metode)) {
 $tmptmp=explode("|", $val);
 if ($tmptmp[3]=="interkassa.php") {
+$foud=1;
 break;
 }
 
 }
-
+if ($foud==0) { echo "payment methode not found"; exit;} 
   if (!$_POST["ik_trans_id"]) { echo "<h1>You can not be there!</h1>"; } else {
 
 

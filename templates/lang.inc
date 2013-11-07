@@ -115,7 +115,7 @@ $language="rus"; #Default language
 $deflanguage=$language;
 $template=1; #number of design template
 $smods=Array("site","shop"); #available modules
-$smod="site"; #Default script module
+$smod="shop"; #Default script module
 //testing GD
 $gd=0; if (function_exists('imagecreatetruecolor')) {$gd=1;} elseif (function_exists('imagecreate')) {$gd=2;} else {$gd=0;}
 // ending GD

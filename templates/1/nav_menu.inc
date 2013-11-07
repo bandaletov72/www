@@ -24,7 +24,7 @@ $currentdate.="
 \$.ajax({
   type: \"POST\",
   url: \"chat.php\",
-  data: \"ch=main&speek=rus&privat=".$details[1]."&read=2&session=$sid\",
+  data: \"ch=main&amp;speek=rus&privat=".$details[1]."&read=2&session=$sid\",
   success: function(msg){
     $(document).ready(function() {
     document.getElementById('onlinewindow').innerHTML=msg;
@@ -130,7 +130,7 @@ $active="";
 $active="";
 if ($action=="zakaz") { $active=" class=active"; }
 if ($action=="send") { $active=" class=active"; }
-$topmenu.="<li class=divider-vertical></li><li$active><a href=\"index.php?action=zakaz&flag=".$cart->basket_speek."\"><i class=icon-ok></i> ".$lang[59]."</a></li>";}
+$topmenu.="<li class=divider-vertical></li><li$active><a href=\"index.php?action=zakaz&amp;flag=".$cart->basket_speek."\"><i class=icon-ok></i> ".$lang[59]."</a></li>";}
 $active="";
 $navmenu = "<li>$currentdate</li><li class=divider-vertical></li>";
 $navmenup="";

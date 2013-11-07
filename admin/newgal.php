@@ -1,8 +1,4 @@
 <?php
-$way="up";
-$ppages="";
-$ggal="";
-$gal="";
 if (version_compare(phpversion(), "4.1.0", "<") === true) {
 $_GET &= $HTTP_GET_VARS;
 $_POST &= $HTTP_POST_VARS;
@@ -19,6 +15,12 @@ extract($_POST, EXTR_SKIP);
 extract($_COOKIE, EXTR_SKIP);
 
 }
+
+$ppages="";
+$ggal="";
+$gal="";
+$dires=Array();
+$fileopens=Array();
 if (!isset($gtype)) {
 $gtype=1;
 }
@@ -77,6 +79,8 @@ padding: 0px 0px 0px 0px;
 $css
 ";
 if ((!@$dir) || (@$dir=="")): $dir=""; endif;
+if ((!@$fsort) ||(@$fsort=="")): $fsort="name"; endif;
+if ((!@$fway) ||(@$fway=="")): $fway="up"; endif;
 if ((!@$field_name) || (@$field_name=="")): $field_name=""; endif;
 $sdir="";
 if ($dir!="") {$sdir=$dir."/";}
@@ -165,8 +169,6 @@ if (!preg_match("/^[0-9_]+$/",$start)) { $start=0;}
 if ($start>99999) {$start=0;}
 
 
-
-$fileopens[0]="";
 $next=$start+$perpage;
 $prev=$start-$perpage;
 if ($prev <= 0) : $prev=0; endif;
@@ -230,6 +232,8 @@ echo "<form class=form-inline id=sform enctype='multipart/form-data' action='$ht
         <input type='hidden' name='perpage' value=\"$perpage\">
         <input type='hidden' name='dir' value=\"$dir\">
         <input type='hidden' name='start' value=\"$start\">
+        <input type='hidden' name='fsort' value=\"$fsort\">
+        <input type='hidden' name='fway' value=\"$fway\">
         <input type='hidden' name='dest' value=\"$dest\">
         <input type='hidden' name='speek' value=\"$speek\">
         <input type='hidden' name='language' value=\"$speek\">
@@ -257,7 +261,13 @@ echo "<form class=form-inline id=sform enctype='multipart/form-data' action='$ht
 
 
 $s=0;
-echo "<br><br><font size='2' color='#000000'><b>".$lang[786].":</b> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=9&dir=$dir'>9</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=18&dir=$dir'>18</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=30&dir=$dir'>30</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=60&dir=$dir'>60</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=90&dir=$dir'>90</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=900&dir=$dir'>900</a></B>
+$bn1="";  $bn2="";
+$bn3=""; $bn4="";
+$bn5=""; $bn6="";
+$bn7=""; $bn8="";
+if ($fsort=="name") { $bn1="<b class=label>";  $bn2="</b>"; $bn3="<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=date&fway=$fway'>";  $bn4="</a>"; } else {  $bn3="<b class=label>";  $bn4="</b>"; $bn1="<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=name&fway=$fway'>";  $bn2="</a>";   }
+if ($fway=="up") { $bn5="<b class=label>";  $bn6="</b>"; $bn7="<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=down'>";  $bn8="</a>"; } else {  $bn7="<b class=label>";  $bn8="</b>"; $bn5="<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=up'>";  $bn6="</a>";   }
+echo "<br><font size='2'><b>".$lang['sort_by'].":</b> $bn1".$lang['by_name']."$bn2 | $bn3".$lang['by_date']."$bn4 &nbsp;&nbsp;&nbsp; $bn5".$lang['down']."$bn6 | $bn7".$lang['up']."$bn8<br><b>".$lang[786].":</b> <B><a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=9&dir=$dir&fsort=$fsort&fway=$fway'>9</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=18&dir=$dir&fsort=$fsort&fway=$fway'>18</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=30&dir=$dir&fsort=$fsort&fway=$fway'>30</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=60&dir=$dir&fsort=$fsort&fway=$fway'>60</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=90&dir=$dir&fsort=$fsort&fway=$fway'>90</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=900&dir=$dir&fsort=$fsort&fway=$fway'>900</a></B>
 </small>
 ";
 
@@ -269,8 +279,9 @@ if (($typ!=".jpg")&&($typ!="jpeg")&&($typ!=".gif")&&($typ!=".png")){
 
 if ((is_dir("../$fbase/$sdir".$fileopen)==true)&&($fileopen!=".")&&($fileopen!="..")&&($fileopen!="css")&&($fileopen!="js")&&($fileopen!="admin")&&($fileopen!="templates")&&($fileopen!="blog")&&($fileopen!="chat")&&($fileopen!="classifieds")&&($fileopen!="captcha")&&($fileopen!="userdir")&&($fileopen!="poll")&&($fileopen!="payment_modules")&&($fileopen!="payment_results")&&($fileopen!="modules")&&($fileopen!="widgets")&&($fileopen!="fancybox")&&($fileopen!="comments")&&($fileopen!="forum")&&($fileopen!="gooddesc")&&($fileopen!="uploadify")&&($fileopen!="poll")&&($fileopen!="rss")) {
 //if ($dir=="") {
-$fileopens[$s] = "<!--0000001 $fileopen-->
-<div class=\"pull-left di\"><a href=\"$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$sdir"."$fileopen\">
+if ($fsort=="name") {$sortby=strtolower($fileopen); } else { $sortby=filemtime("../$fbase/$sdir".$fileopen); }
+$dires[$s] = "<!--$sortby-->
+<div class=\"pull-left di\"><a href=\"$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&fsort=$fsort&fway=$fway&dir=$sdir"."$fileopen\">
 <div class=\"img dim\" ><img src='../images/of_mini.png"."' border=0><div class=dit>$fileopen</div></div></a></div>";
 $files_found += 1;
 $s+=1;
@@ -300,16 +311,19 @@ $zoom="<img src=\"$image_path/zoom.gif\" border=0 title=\"".$lang[140]."\" style
 
 $wh="width=".$widt." height=".$hei;
 $ftyname=substr("$fileopen",0,(strlen("$fileopen")-strlen($typ)));
-
-$fileopens[$s] = "<!--$fileopen-->
+if ($fsort=="name") {$sortby=strtolower($fileopen); $ssortby=""; } else {
+$sortby=filemtime("../$fbase/$sdir".$fileopen);
+$dateformat=str_replace("y", "Y", str_replace("dd", "d",str_replace("mm", "m",str_replace("yy", "y", str_replace("yy", "y", $ewc_dateformat)))));
+$ssortby=date($dateformat." H:i:s",$sortby); }
+$fileopens[$s] = "<!--$sortby-->
 <div class=\"pull-left di\">
-<div class=\"img dim\" style=\"margin-bottom: 0px;\" onClick=\"javascript:rc('$fileopen','".$fwidth."' ,'".$fheight."')\" title='$fwidth x $fheight / $size Kb\n".$lang[784]." $fileopen'>
+<div class=\"img dim\" style=\"margin-bottom: 0px;\" onClick=\"javascript:rc('$fileopen','".$fwidth."' ,'".$fheight."')\" title='$ssortby\n$fwidth x $fheight / $size Kb\n".$lang[784]." $fileopen'>
 <a href='#".$lang[784]."'><img src='$fff'".$sty." border=0 $wh>
 <div class=dit>".$fileopen."</div>
 </a>
 </div>
 <div class=\"dit lnk\" style=\"margin-top: 8px;\">
-<a href='$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&del=$fileopen&start=$start&perpage=$perpage&dir=$dir'><i class=icon-remove></i> ".$lang[744]."</a>
+<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;del=$fileopen&amp;start=$start&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway'><i class=icon-remove></i> ".$lang[744]."</a>
 </div>
 </div>";
 $files_found += 1;
@@ -317,26 +331,33 @@ $s+=1;
 }
 }
 closedir ($handle);
-if ((!@$fileopens[0]) || (@$fileopens[0]=="")) {
-	$fileopens[0]="";
-	//$gal.="<a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&i=".rawurlencode($backurl)."\"><img src='$htpath/images/ofb.png' border=0 align=middle hspace=10></a><a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&i=".rawurlencode($backurl)."\"><small><i>".$lang['back_to_higher_level']."</i></small></a><br><br><br>";
-	} else {
 //сортировка по алфавиту//
-reset ($fileopens);
+@reset ($fileopens);
+@reset ($dires);
 $gal="";
 
 $make_col=$gallery_cols; //
 $st=0;
 $ddt=0;
-if ($way=="up") {
-sort($fileopens);
+if ($fway=="up") {
+@sort($dires);
+@sort($fileopens);
 } else {
-sort($fileopens);
+@sort($dires);
+@sort($fileopens);
+$res_tmp=array_reverse($dires);
+unset($dires);
+$dires=$res_tmp;
+unset($res_tmp);
 $res_tmp=array_reverse($fileopens);
 unset($fileopens);
 $fileopens=$res_tmp;
 unset($res_tmp);
 }
+$tmpf2=$fileopens;
+unset($fileopens);
+$fileopens=@array_merge(@$dires,@$tmpf2);
+unset ($tmpf2);
 reset($fileopens);
 $eee=1;
 if ($start>$s){$start=(floor($s/$perpage))*$perpage; }
@@ -366,21 +387,22 @@ $startnew=$start+1;
 
 $end=$startnew + $perpage - 1 + $gt;
 if ($end > $total): $end=$total-1 + $gt; endif;
+
 if ($dir!="") {
 $prevdir="";
 $tmps=@explode("/",$dir);
 @array_pop($tmps);
 $prevdir=@implode("/",@$tmps);
-$gal="<div class=\"pull-left di\"><a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=$start&perpage=$perpage&dir=$prevdir\">
+$gal="<div class=\"pull-left di\"><a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=$start&amp;perpage=$perpage&dir=$prevdir&fsort=$fsort&fway=$fway\">
 <div class=\"img dim\"><div align=center><br><br><img src=\"../images/ofb.png\" border=0><br>".$lang['back']."</div></div></a></div>$gal";
 }
 $gal.="<div class=clearfix></div>";
 $stat= "<center><small><br>".$lang[203]." <b>$numberpages</b> <img src=\"$image_path/a.gif\"> ".$lang[206]." <b>$total</b> ".$lang[207]." <img src=\"$image_path/a.gif\"> ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($start+$perpage) . "&perpage=$perpage&dir=$dir\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=&dir=$dir\"><!--homee--></a>";
+$nextpage="<a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($start+$perpage) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=&dir=$dir&fsort=$fsort&fway=$fway\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($start-$perpage) . "&perpage=$perpage&dir=$dir\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($start-$perpage) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>=$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -403,20 +425,20 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($s*$perpage) . "&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($s*$perpage) . "&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($perpage*($numberpages-1)) . "&perpage=$perpage&dir=$dir\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($perpage*($numberpages-1)) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 
-}
+
 
 $gal="<div align=center>$ppages<br><small><b>".$lang[783]."</b><br>".$lang[785]."</small><br></div>
 $gal";

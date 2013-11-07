@@ -52,7 +52,7 @@ $poll_f="./poll/".$polldir."/".md5($poll_name).".txt";
 $pollcl="";
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if (($valid=="1")){
-$adm_poll="<br><a id=polladm_".md5($poll_name)." href=$htpath/admin/polladm.php?poll=".md5($poll_name)."&dir=$polldir&action=close&speek=".$speek."><button title=\"$lang[990]\" type=button class=btn>$lang[990]</button></a>  <a href=$htpath/index.php?nt=poll/$polldir&t=".md5($poll_name)."&action=template&speek=".$speek."><button title=\"$lang[980]\" type=button class=btn><font color=#b94a48>".$lang['edits']."</font></button></a>";
+$adm_poll="<br><a id=polladm_".md5($poll_name)." href=$htpath/admin/polladm.php?poll=".md5($poll_name)."&dir=$polldir&action=close&amp;speek=".$speek."><button title=\"$lang[990]\" type=button class=btn>$lang[990]</button></a>  <a href=$htpath/index.php?nt=poll/$polldir&t=".md5($poll_name)."&action=template&amp;speek=".$speek."><button title=\"$lang[980]\" type=button class=btn><font color=#b94a48>".$lang['edits']."</font></button></a>";
 $adm_poll.="<script type=\"text/javascript\">
         $(document).ready(function() {
 $(\"#polladm_".md5($poll_name)."\").fancybox({
@@ -77,7 +77,7 @@ if (file_exists("./poll/".$polldir."/".md5($poll_name)."/closed.txt")) {
 $pollcl= "<br>$lang[977]: ".date("d/m/Y H:i:s");
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if (($valid=="1")){
-$adm_poll="<br><a id=polladm_".md5($poll_name)." href=$htpath/admin/polladm.php?poll=".md5($poll_name)."&dir=$polldir&action=open&speek=".$speek."><button title=\"$lang[991]\" type=button class=btn>$lang[991]</button></a> <a href=$htpath/index.php?nt=poll/$polldir&t=".md5($poll_name)."&action=template&speek=".$speek."><button title=\"$lang[980]\" type=button class=btn><font color=#b94a48>".$lang['edits']."</font></button></a>";
+$adm_poll="<br><a id=polladm_".md5($poll_name)." href=$htpath/admin/polladm.php?poll=".md5($poll_name)."&dir=$polldir&action=open&amp;speek=".$speek."><button title=\"$lang[991]\" type=button class=btn>$lang[991]</button></a> <a href=$htpath/index.php?nt=poll/$polldir&t=".md5($poll_name)."&action=template&amp;speek=".$speek."><button title=\"$lang[980]\" type=button class=btn><font color=#b94a48>".$lang['edits']."</font></button></a>";
 $adm_poll.="<script type=\"text/javascript\">
         $(document).ready(function() {
 $(\"#polladm_".md5($poll_name)."\").fancybox({
@@ -140,7 +140,7 @@ if ($poll_prec<25) { $cstyle=" progress-danger progress-striped"; }
 if ($ptype==1) {
 
 
-if ($pollcl=="") {$pollbut="<td><a id=poll_".md5($poll_name)."_".$pollkk." href=poll.php?poll=".md5($poll_name)."&vote=".$pollkk."&ssid=".session_id()."&user=".$inmname."&speek=".$speek."><button title=\"$lang[974]\" type=button class=btn><img src=$image_path/voting.png></button></a></td>";}
+if ($pollcl=="") {$pollbut="<td><a id=poll_".md5($poll_name)."_".$pollkk." href=poll.php?poll=".md5($poll_name)."&vote=".$pollkk."&ssid=".session_id()."&user=".$inmname."&amp;speek=".$speek."><button title=\"$lang[974]\" type=button class=btn><img src=$image_path/voting.png></button></a></td>";}
 $pollr="<tr>$pollbut<td valign=middle width=100%><div class=\"progress".$cstyle."\"><div class=bar style=\"width:".$poll_prec."%;\"></div></div><div class=clearfix></div></td><td><small>".doubleval(@$poll_r[$pollkk])."</small></td><td><small>/</small></td><td><nobr><small><b>".$poll_prec."</b>%</small></td></tr>\n";
 if ($pollcl=="") {
 $fancyb.="

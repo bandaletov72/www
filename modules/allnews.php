@@ -31,7 +31,7 @@ continue;
 $name ="$title";
 
 $admined="";
-if (($valid=="1")&&($details[7]=="ADMIN")){ $admined="<div class=round><b><font size=3>$title: </font></b><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/$file','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>&nbsp;<input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=".str_replace(".txt","",$file)."&del=".str_replace(".txt","",$file)."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div><div align=center><img src=\"$image_path/handdown.png\"></div>"; $title="";
+if (($valid=="1")&&($details[7]=="ADMIN")){ $admined="<div class=round><b><font size=3>$title: </font></b><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$file','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>&nbsp;<input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=".str_replace(".txt","",$file)."&amp;del=".str_replace(".txt","",$file)."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div><div align=center><img src=\"$image_path/handdown.png\"></div>"; $title="";
 } else {
 $title="<h4>$title</h4>";
 }

@@ -222,9 +222,9 @@ $u_mes="<div class=round3><a id=\"systems\" href=\"#sysmes\"></a><script type=\"
     //$onluser="<small><b>".str_replace("[min_update]",$min_update, $lang[1010])."</b><small><br><br>";
     while(list($uk,$uv)=each($online_users)) {
     if ($uv<(time()-($min_update*60))){
-    $onluser.= "<a name=\"$uk\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$uk."&speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"><img src=$image_path/offline.png border=0 title=\"Offline\" align=absmiddle>".$uk."</a> <b>".date("H:i:s", $uv)."</b><br>\n";
+    $onluser.= "<a name=\"$uk\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$uk."&amp;speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"><img src=$image_path/offline.png border=0 title=\"Offline\" align=absmiddle>".$uk."</a> <b>".date("H:i:s", $uv)."</b><br>\n";
     } else {
-    $onluser.= "<a name=\"$uk\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$uk."&speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"><img src=$image_path/online.png border=0 title=\"Online\" align=absmiddle>".$uk."</a> <b>".date("H:i:s", $uv)."</b><br>\n";
+    $onluser.= "<a name=\"$uk\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$uk."&amp;speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"><img src=$image_path/online.png border=0 title=\"Online\" align=absmiddle>".$uk."</a> <b>".date("H:i:s", $uv)."</b><br>\n";
     }
     }
 

@@ -2511,7 +2511,7 @@ $delivery_metode=Array (
 "Russian Post|1|+500|0|http://www.russianpost.ru/portal/ru/home/postal/trackingpo|post|100|",
 "DHL Worldwide|1|+500|0|http://www.dhl.com/publish/g0/en/eshipping/track.high.html#aPar0001|post|100|",
 "Fedex|1|+500|0|http://www.fedex.com/Tracking?cntry_code=ru|post|100|",
-"CanadaPOST|1|+500|0|https://obc.canadapost.ca/emo/basicPin.do?trackingId=[tracknum]&trackingCode=PIN&action=query&speek=en|post|100|",
+"CanadaPOST|1|+500|0|https://obc.canadapost.ca/emo/basicPin.do?trackingId=[tracknum]&trackingCode=PIN&action=query&amp;speek=en|post|100|",
 "Custom|1|+500|0|http://www.url.com/tracking.php?track=[tracknum]&order=[ordernum]&email=[useremail]|post|100|",
 
 );

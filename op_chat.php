@@ -151,7 +151,7 @@ $data="<font color=#468847>".$lang[1013]."</font>";
 if (($privat!=$details[1])&&(is_dir("./admin/userstat/".$privat))) {
 $u_mesff="./admin/userstat/".$privat."/inbox.txt";
 $fp=fopen($u_mesff, "a");
-fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br><b>".$details[1]."</b>: ".$data."<br><br><a href=op_chat.php?privat=".rawurlencode($details[1])."&speek=$speek target=_blank>".$lang[1017]."</a></td></tr></table>");
+fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br><b>".$details[1]."</b>: ".$data."<br><br><a href=op_chat.php?privat=".rawurlencode($details[1])."&amp;speek=$speek target=_blank>".$lang[1017]."</a></td></tr></table>");
 fclose($fp);
 }
 $data=$details[1]."|||".time()."|$speek|||||$data|\n";
@@ -173,7 +173,7 @@ $data="<font color=cyan>".$lang[254]."</font>";
 if (($privat!=$details[1])&&(is_dir("./admin/userstat/".$privat))) {
 $u_mesff="./admin/userstat/".$privat."/inbox.txt";
 $fp=fopen($u_mesff, "a");
-fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br><b>".$details[1]."</b>: ".$data."<br><br><a href=op_chat.php?privat=".rawurlencode($details[1])."&speek=$speek target=_blank>".$lang[1017]."</a></td></tr></table>");
+fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br><b>".$details[1]."</b>: ".$data."<br><br><a href=op_chat.php?privat=".rawurlencode($details[1])."&amp;speek=$speek target=_blank>".$lang[1017]."</a></td></tr></table>");
 fclose ($fp);
 }
 $privat="";
@@ -202,7 +202,7 @@ $data="<font color=#b94a48>".$lang[1014]."</font>";
 if (($privat!=$details[1])&&(is_dir("./admin/userstat/".$privat))) {
 $u_mesff="./admin/userstat/".$privat."/inbox.txt";
 $fp=fopen($u_mesff, "a");
-fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br><b>".$details[1]."</b>: ".$data."<br><br><a href=op_chat.php?privat=".rawurlencode($details[1])."&speek=$speek target=_blank>".$lang[1017]."</a></td></tr></table>");
+fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br><b>".$details[1]."</b>: ".$data."<br><br><a href=op_chat.php?privat=".rawurlencode($details[1])."&amp;speek=$speek target=_blank>".$lang[1017]."</a></td></tr></table>");
 fclose ($fp);
 }
 $privat="";
@@ -229,7 +229,7 @@ if ($privat!="") {
 if (($privat!=$details[1])&&(is_dir("./admin/userstat/".$privat))) {
 $u_mesff="./admin/userstat/".$privat."/inbox.txt";
 $fp=fopen($u_mesff, "a");
-fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br><b>".$details[1]."</b>: ".$data."<br><br><a href=op_chat.php?privat=".rawurlencode($details[1])."&speek=$speek target=_blank>".$lang[1017]."</a></td></tr></table>");
+fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br><b>".$details[1]."</b>: ".$data."<br><br><a href=op_chat.php?privat=".rawurlencode($details[1])."&amp;speek=$speek target=_blank>".$lang[1017]."</a></td></tr></table>");
 fclose ($fp);
 }
 }
@@ -320,7 +320,7 @@ $u_url=fread($fp,filesize($u_lurl));
 fclose($fp);
 $u_time=date("H:i:s",filemtime($u_lurl));
 }
-$online.="<a href=$u_url target=_blank><img border=0 src=$image_path/link.png align=absmiddle></a><a href=op_chat.php?privat=".rawurlencode($tmp[1])."&speek=$speek><img src=$ava align=absmiddle width=16 height=16 border=0><font color=$font><b>$tmp[1]</b></a> <small>$u_time</small><br>";
+$online.="<a href=$u_url target=_blank><img border=0 src=$image_path/link.png align=absmiddle></a><a href=op_chat.php?privat=".rawurlencode($tmp[1])."&amp;speek=$speek><img src=$ava align=absmiddle width=16 height=16 border=0><font color=$font><b>$tmp[1]</b></a> <small>$u_time</small><br>";
 } else {
 $online.="<img src=$ava align=absmiddle width=16 height=16><font color=$font><b>$tmp[1]</b><br>";
 }
@@ -347,7 +347,7 @@ function showmessage() {
 $.ajax({
   type: \"POST\",
   url: \"op_chat.php\",
-  data: \"privat=$privat&speek=$speek&read=1&session=$sid\",
+  data: \"privat=$privat&amp;speek=$speek&read=1&session=$sid\",
   success: function(msg){
    $(document).ready(function() {
     document.getElementById('chatwindow').innerHTML=msg;
@@ -359,7 +359,7 @@ $.ajax({
 $.ajax({
   type: \"POST\",
   url: \"op_chat.php\",
-  data: \"privat=$privat&speek=$speek&read=2&session=$sid\",
+  data: \"privat=$privat&amp;speek=$speek&read=2&session=$sid\",
   success: function(msg){
     $(document).ready(function() {
     document.getElementById('onlinewindow').innerHTML=msg;
@@ -436,7 +436,7 @@ if (data!='') {
        $.ajax({
                 type: \"POST\",
                 url: \"op_chat.php\",
-                data: \"privat=$privat&speek=$speek&session=$sid&data=\"+data,
+                data: \"privat=$privat&amp;speek=$speek&session=$sid&data=\"+data,
                 success: function(html) {
                 document.getElementById('mydata').value='';
                         $(\"#chatwindow\").empty();

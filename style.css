@@ -80,7 +80,7 @@ input[type=search]:focus {
 
 }
 #sidebar {
-        width: 15%;
+        width: 17%;
         min-height: 500px;
         max-height: 500px;
         overflow: auto;
@@ -103,12 +103,12 @@ input[type=search]:focus {
 }
 
 .smenu {
-background-image: -webkit-gradient(linear, left center, right center, from(#666666), to(#f2f2f2), color-stop(17%, #666666), color-stop(17%, #f2f2f2));
-background-image: -webkit-linear-gradient(left, #666666, #666666 17%, #f2f2f2 17%, #f2f2f2);
-background-image: -moz-linear-gradient(left, #666666, #666666 17%, #f2f2f2 17%, #f2f2f2);
-background-image: -o-linear-gradient(left, #666666, #666666 17%, #f2f2f2 17%, #f2f2f2);
-background-image: -ms-linear-gradient(left, #666666, #666666 17%, #f2f2f2 17%, #f2f2f2);
-background-image: linear-gradient(to right, #666666, #666666 17%, #f2f2f2 17%, #f2f2f2);
+background-image: -webkit-gradient(linear, left center, right center, from(#666666), to(#f2f2f2), color-stop(19%, #666666), color-stop(19%, #f2f2f2));
+background-image: -webkit-linear-gradient(left, #666666, #666666 19%, #f2f2f2 19%, #f2f2f2);
+background-image: -moz-linear-gradient(left, #666666, #666666 19%, #f2f2f2 19%, #f2f2f2);
+background-image: -o-linear-gradient(left, #666666, #666666 19%, #f2f2f2 19%, #f2f2f2);
+background-image: -ms-linear-gradient(left, #666666, #666666 19%, #f2f2f2 19%, #f2f2f2);
+background-image: linear-gradient(to right, #666666, #666666 19%, #f2f2f2 19%, #f2f2f2);
 }
 .smenu2 {
 background-image: -webkit-gradient(linear, left center, right center, from(#666666), to(#f2f2f2), color-stop(15px, #666666), color-stop(15px, #f2f2f2));
@@ -864,12 +864,12 @@ color: #ef6e12;
 color: #ef6e12;
 }
 .brand:hover{
-color: #ef6e12;
+color: #f2f2f2;
 padding: 5px 5px 5px 5px;
 background: #075fad;
 }
 .brand:hover a{
-color: #ef6e12;
+color: #f2f2f2;
 background: #075fad;
 border-bottom: 1px #ef6e12 dotted;
 }
@@ -997,16 +997,16 @@ box-shadow: 0 -1px 1px #c9cbcd;
 }
 .price {
 color:#222222;
-font: Georgia;
+font: 20pt Georgia;
 }
 .newprice {
 color:#222222;
-font: Georgia;
+font: 20pt Georgia;
 color:#b94a48;
 }
 .oldprice {
 color:#222222;
-font: Georgia;
+font: 20pt Georgia;
 text-decoration: line-through;
 }
 

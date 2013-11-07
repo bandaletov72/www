@@ -151,8 +151,8 @@ echo "<tr bgcolor='".lighter($nc6,10)."'>
     <td align='left' valign='top'><font face=verdana><center><small>".$lang[439]."</small>
     <table border='0' width='100%' cellpadding='3'>
   <tr>
-    <td width='50%' align=right valign=top><form method='POST' target='_self' action='".$scriptprefix."del.php?speek=".$speek."&unifid=$unifid&item_id=$item_id&del=yes&nazv=".rawurlencode($nazv)."'><input type='hidden' value=\"$speek\" name=\"speek\"> <input type='submit' value='".$lang['yes']."' name='yes'></td>
-    <td width='50%' valign=top><input type='button' value='".$lang['no']."' name='no' onclick='javascript:self.close()'></form></td></tr><tr><td colspan=2 align=center><form method='POST' target='_self' action='".$scriptprefix."del_archive.php?unifid=$unifid&item_id=$item_id&del=yes'><input type='hidden' value=\"$speek\" name=\"speek\"> <input type='submit' value='".$lang[418]."' name='yes'></small></form></td></tr>
+    <td width='50%' align=right valign=top><form method='POST' target='_self' action='".$scriptprefix."del.php?speek=".$speek."&unifid=$unifid&item_id=$item_id&amp;del=yes&nazv=".rawurlencode($nazv)."'><input type='hidden' value=\"$speek\" name=\"speek\"> <input type='submit' value='".$lang['yes']."' name='yes'></td>
+    <td width='50%' valign=top><input type='button' value='".$lang['no']."' name='no' onclick='javascript:self.close()'></form></td></tr><tr><td colspan=2 align=center><form method='POST' target='_self' action='".$scriptprefix."del_archive.php?unifid=$unifid&item_id=$item_id&amp;del=yes'><input type='hidden' value=\"$speek\" name=\"speek\"> <input type='submit' value='".$lang[418]."' name='yes'></small></form></td></tr>
 </table>
 <small><div align=left><b>$nazv</b><br><div style=\"width: 100%; border:1px solid #aaaaaa; height: 80px; overflow: auto; display: block;\">$description</div</div></small></font></td>
     </tr>

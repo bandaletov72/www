@@ -20,6 +20,6 @@ $rss.="<div align=center><img src=\"$image_path/handup.png\"></div><div class=ro
 <b>".$lang[891].": </b><input type=button onclick=javascript:location.href='"."$htpath/admin/index_rss.php"."' value=\"".$lang[870]."\">&nbsp;
 $modonoff
 <br><br>".$lang[888]."<br><b>".$lang[892].": </b>
-<input type=button onclick=javascript:location.href='"."$htpath/index.php?action=template&nt=templates/$template&t=css&speek=$speek"."' value=\"".$lang[893]."\">&nbsp;</div>"; endif;
+<input type=button onclick=javascript:location.href='"."$htpath/index.php?action=template&nt=templates/$template&t=css&amp;speek=$speek"."' value=\"".$lang[893]."\">&nbsp;</div>"; endif;
 }
 ?>

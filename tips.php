@@ -348,9 +348,9 @@ if (!isset($out[8])) {$out[8]="";}
 $out[8]=str_replace("<img", "<img hspace=10 width=20 height=20",$out[8]);
 if ($ff<=100) {
 if ($catmode==0) {
-echo "<div class=tip onclick=javascript:location.href='"."$htpath/index.php?page=".$out[1]."' onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$out[1]."\"><img src=$image_path/cat1.png border=0 align=absmiddle> <font color=$nc5>".toFirst(strtoken(strip_tags(@$newname),"|"))."</font></a></div>\n";
+echo "<div class=tip onclick=\"javascript:location.href='"."$htpath/index.php?page=".$out[1]."'\" onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$out[1]."\"><img src=$image_path/cat1.png border=0 align=absmiddle> <font color=$nc5>".toFirst(strtoken(strip_tags(@$newname),"|"))."</font></a></div>\n";
 } else {
-if (isset($out[2])) { echo "<div class=tip onclick=javascript:location.href='".$out[1]."' onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"".$out[1]."\"><img src=$image_path/cat1.png border=0 align=absmiddle> <font color=$nc5>".toFirst(substr(strip_tags($newname),0, 100))."...</font></a></div>\n"; }
+if (isset($out[2])) { echo "<div class=tip onclick=\"javascript:location.href='".$out[1]."'\" onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"".$out[1]."\"><img src=$image_path/cat1.png border=0 align=absmiddle> <font color=$nc5>".toFirst(substr(strip_tags($newname),0, 100))."...</font></a></div>\n"; }
 }
 
 }
@@ -359,7 +359,7 @@ if (isset($out[2])) { echo "<div class=tip onclick=javascript:location.href='".$
 }
 
 if ($ff>50) {
-echo "<br><div class=tip onclick=javascript:location.href='"."$htpath/index.php?query=".rawurlencode($w)."' onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?query=".rawurlencode($w)."\"><img src=$image_path/cat1.png border=0 align=absmiddle> <font color=$nc5>$lang[422] $ff...</font></a></div>";
+echo "<br><div class=tip onclick=\"javascript:location.href='"."$htpath/index.php?query=".rawurlencode($w)."'\" onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?query=".rawurlencode($w)."\"><img src=$image_path/cat1.png border=0 align=absmiddle> <font color=$nc5>$lang[422] $ff...</font></a></div>";
 }
 fclose($f);
 }
@@ -424,14 +424,14 @@ $hidnazv=@$out[2];
 }
 $shpr="";
 if ($view_goodsprice==1) { if (isset ($out[3])) { if (doubleval($out[3])==0) {$shpr=" - <b>".$lang['prebuy']."</b>";} else { $shpr=""; } }}
-echo "<div class=tip onclick=javascript:location.href='"."$htpath/index.php?unifid=$unifw"."' onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?unifid=$unifw\"><font color=$nc5>".$out[8]."".toFirst($hidnazv)."$shpr</font></a></div>\n";
+echo "<div class=tip onclick=\"javascript:location.href='"."$htpath/index.php?unifid=$unifw"."'\" onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?unifid=$unifw\"><font color=$nc5>".$out[8]."".toFirst($hidnazv)."$shpr</font></a></div>\n";
 
 }
 }
 
 }
 if ($ff>50) {
-echo "<br><div class=tip onclick=javascript:location.href='"."$htpath/index.php?query=".rawurlencode($w)."' onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc2';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?query=".rawurlencode($w)."\"><font color=$nc5>$lang[422] $ff...</font></a></div>\n";
+echo "<br><div class=tip onclick=\"javascript:location.href='"."$htpath/index.php?query=".rawurlencode($w)."'\" onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc2';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?query=".rawurlencode($w)."\"><font color=$nc5>$lang[422] $ff...</font></a></div>\n";
 }
 fclose($f);
 

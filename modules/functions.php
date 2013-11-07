@@ -57,7 +57,7 @@ function baskv() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&speek=$speek".$sw."';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&amp;speek=$speek".$sw."';
 scriptNode.type = 'text/javascript';
 
 }
@@ -65,7 +65,7 @@ function baskon() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=on&speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=on&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -73,7 +73,7 @@ function baskoff() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=off&speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=off&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -81,7 +81,7 @@ function baskonoff() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=onoff&speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=onoff&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -89,7 +89,7 @@ function baskoffon() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=offon&speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=offon&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -98,7 +98,7 @@ floading (arg);
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&del='+arg+'&speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&amp;del='+arg+'&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -107,7 +107,7 @@ floading (arg);
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&plus='+arg+'&qt='+arg2+'&speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&plus='+arg+'&qt='+arg2+'&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -116,7 +116,7 @@ floading (arg);
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&minus='+arg+'&qt='+arg2+'&speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&minus='+arg+'&qt='+arg2+'&amp;speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }

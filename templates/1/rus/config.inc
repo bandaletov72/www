@@ -1662,6 +1662,7 @@ $payment_metode=Array (
 "Безнал (выписка счета)|1|+5%|y0001|||||",
 "PayPal|1||paypal.php|XXXXXXX@YYYY.ZZZ|EUR|paypal|Pay via PayPal|",
 "InterKassa|1||interkassa.php|XXXXXXXXXX-XXXXXXXXXXXX-XXXXXXXXXX-XXXXXXX|USD|0.01|YYYYYYYYYYYYY|",
+"RoboKassa|1||robokassa.php|MrchLogin|RUR|0.01|password#1|password#2|http://test.robokassa.ru/Index.aspx|",
 "Webmoney WMR|1||webmoney.php|RXXXXXXX|WMR|wmr||",
 "Яндекс деньги|1||yd_simple.php|4100XXXXXXXXXXX|RUR|||",
 "QIWI|1||qiwi.php|1|RUR|1||",

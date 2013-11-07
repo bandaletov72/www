@@ -141,7 +141,7 @@ $fcommname=strip_tags($indexmass[($start+$st)]);
 $efc = @fopen ("./admin/comments/".$fcommname.".txt" , "r");
 $tmpviewcomm = str_replace("[hr]", "<div class=clear><br></div>", str_replace("[i]", "<i class=muted>", str_replace("[/i]", "</i>", str_replace("[b]", "<b>", str_replace ("[/b]", "</b>", @fread($efc, @filesize("./admin/comments/$fcommname.txt")))))));
 @fclose($efc);
-$val = "<tr bgcolor=$back><td valign=top><small>".($start+$st+1).".</small></td>". $commstat[($start+$st)]."<td valign=top><small>".str_replace("[vote]","<img src=\"$image_path/vote",str_replace("[/vote]",".png\">" , str_replace("[ip]", "<a href=\"$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&start=0&perpage=10&ipsort=\">".$lang[186]."</a>", $tmpviewcomm))))."</small></td></tr>";
+$val = "<tr bgcolor=$back><td valign=top><small>".($start+$st+1).".</small></td>". $commstat[($start+$st)]."<td valign=top><small>".str_replace("[vote]","<img src=\"$image_path/vote",str_replace("[/vote]",".png\">" , str_replace("[ip]", "<a href=\"$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&amp;start=0&amp;perpage=10&ipsort=\">".$lang[186]."</a>", $tmpviewcomm))))."</small></td></tr>";
 
 $c_list .= "$val\n";
 //}
@@ -161,14 +161,14 @@ while ($s < $numberpages) {
 if (($start/$perpage)==$s) {
 $pp.= "<b>" . ($s+1) . "</b> | ";
 } else {
-$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=viewcomm&mod=admin&start=" . ($s*$perpage) . "&perpage=$perpage&comsort=$comsort\">" . ($s+1) . "</a> | ";
+$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=viewcomm&mod=admin&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&comsort=$comsort\">" . ($s+1) . "</a> | ";
 }
 $s+=1;
 }
 if ($s==0): $soocomm.="<br><br><b>".$lang[42]."!</b> No comments found."; endif;
-$c_list = "$statistcomm<center>$soocomm<small>$pp</small></center><table border=0 width=100%><tr><td valign=top colspan=\"4\"><table width=100% border=0 cellspacing=3 cellpadding=0><tr><td valign=top width=20% align=left><small><a href = \"".$_SERVER['PHP_SELF']."?action=viewcomm&mod=admin&start=0&perpage=$perpage&comsort=comm\"><b>".$lang['file']."</b></a></small></td><td align=right valign=top width=80%><small><a href = \"".$_SERVER['PHP_SELF']."?action=viewcomm&mod=admin&start=0&perpage=$perpage&comsort=date\"><b>".$lang[371]."</b></a> / <a href = \"".$_SERVER['PHP_SELF']."?action=viewcomm&mod=admin&start=0&perpage=$perpage&comsort=\"><b>".$lang[8]."</b></a></small></td></tr></table></td></tr>$c_list</table><hr><br><center><small>$pp</small>
+$c_list = "$statistcomm<center>$soocomm<small>$pp</small></center><table border=0 width=100%><tr><td valign=top colspan=\"4\"><table width=100% border=0 cellspacing=3 cellpadding=0><tr><td valign=top width=20% align=left><small><a href = \"".$_SERVER['PHP_SELF']."?action=viewcomm&mod=admin&amp;start=0&amp;perpage=$perpage&comsort=comm\"><b>".$lang['file']."</b></a></small></td><td align=right valign=top width=80%><small><a href = \"".$_SERVER['PHP_SELF']."?action=viewcomm&mod=admin&amp;start=0&amp;perpage=$perpage&comsort=date\"><b>".$lang[371]."</b></a> / <a href = \"".$_SERVER['PHP_SELF']."?action=viewcomm&mod=admin&amp;start=0&amp;perpage=$perpage&comsort=\"><b>".$lang[8]."</b></a></small></td></tr></table></td></tr>$c_list</table><hr><br><center><small>$pp</small>
 <br>$statistcomm\n
-<br><br>»&nbsp;<b><a href=\"$htpath/index.php?action=viewcomm&mod=admin&delcom=1&start=0&perpage=$perpage&comsort=$comsort\">".$lang[185]."</a></b><br><br><br><br></center>\n";
+<br><br>»&nbsp;<b><a href=\"$htpath/index.php?action=viewcomm&mod=admin&delcom=1&amp;start=0&amp;perpage=$perpage&comsort=$comsort\">".$lang[185]."</a></b><br><br><br><br></center>\n";
 $total-=1;
 
 

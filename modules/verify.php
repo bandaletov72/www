@@ -843,15 +843,15 @@ $out_c[9]="<img src=\"".$image_path."/no_photo.gif\" border=0 width=".$style['ww
 $out_c[9]=str_replace("width= height= ", "", $out_c[9]);
     $llink="unifid=".md5($item['info']);
     if ($friendly_url==1) { $llink="item_id=".translit(@$out_c[3])."-".translit(@$out_c[6]);}
-    $basout .="<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\"><tr><td valign=top align=center><a href=\"$htpath/index.php?".$llink."&flag=".$item['flag']."\">".@$out_c[9]."</a></td><td valign=top align=left width=100%>";
+    $basout .="<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\"><tr><td valign=top align=center><a href=\"$htpath/index.php?".$llink."&amp;flag=".$item['flag']."\">".@$out_c[9]."</a></td><td valign=top align=left width=100%>";
     //$basout .= "<small><b>".$lang['id'].":</b> ".$item['id']."<br>";
     if ($hidart==0) {
-    $basout .= "<b>".$lang['info'].":</b> <a href=\"$htpath/index.php?".$llink."&flag=".$item['flag']."\">".$item['info']."</a> ".$item['options']."<br>";
+    $basout .= "<b>".$lang['info'].":</b> <a href=\"$htpath/index.php?".$llink."&amp;flag=".$item['flag']."\">".$item['info']."</a> ".$item['options']."<br>";
     $wishn=$item['info'];
 
     } else {
     $itid=strtoupper(substr(md5( str_replace(" ID:", "", str_replace(strtoken ($item['info'], " ID:") , "" , $item['info'])).$artrnd), -7));
-    $basout .= "<a href=\"$htpath/index.php?".$llink."&flag=".$item['flag']."\">".strtoken($item['info'],"*")." ".$itid."</a> ".$item['options']."<br>";
+    $basout .= "<a href=\"$htpath/index.php?".$llink."&amp;flag=".$item['flag']."\">".strtoken($item['info'],"*")." ".$itid."</a> ".$item['options']."<br>";
     $wishn=strtoken($item['info'],"*");
      }
     if (!isset($wishm[$wishn])){$wishm[$wishn]="";}

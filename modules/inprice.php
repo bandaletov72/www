@@ -76,12 +76,13 @@ $curstatus=trim($sp[0]);
 
 
 if ($curstatus==trim($statuses[0])) { $sty=" style=\"color:green;\""; } else {
-
+if ($curstatus==""){ $curstatus=trim($statuses[0]); $sty=" style=\"color:green;\"";} else {
 $view_buybut=0; $price=0;
 if ($curstatus==trim($statuses[1])){ $sty=" style=\"color:orange;\"";} else {
 if ($curstatus==trim($statuses[2])){ $sty=" style=\"color:red;\"";} else {
 if (($curstatus==trim($statuses[3]))&&(trim(@$statuses[3]!=""))){ $sty=" style=\"color:blue;\"";} else {
 if (($curstatus==trim(@$statuses[4]))&&(trim(@$statuses[4]!=""))){ $sty=" style=\"color:grey;\"";}
+}
 }
 }
 }

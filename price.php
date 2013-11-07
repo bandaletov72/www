@@ -61,7 +61,7 @@ $speek=$language;
 require ("./templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nls);
 if ($view_price==0) {echo "Restricted area"; exit;}
 require ("./templates/$template/$speek/config.inc");
-require("./modules/translit.php"); 
+require("./modules/translit.php");
 header("Content-type: text/html; charset=$codepage");
 require("./modules/webcart.php");
 $oldanguage=$language;
@@ -299,12 +299,13 @@ $curstatus=trim($sp[0]);
 
 
 if ($curstatus==trim($statuses[0])) { $sty=" style=\"color:green;\""; } else {
-
+if ($curstatus==""){ $curstatus=trim($statuses[0]); $sty=" style=\"color:green;\"";} else {
 $view_buybut=0; $price=0;
 if ($curstatus==trim($statuses[1])){ $sty=" style=\"color:orange;\"";} else {
 if ($curstatus==trim($statuses[2])){ $sty=" style=\"color:red;\"";} else {
 if (($curstatus==trim($statuses[3]))&&(trim(@$statuses[3]!=""))){ $sty=" style=\"color:blue;\"";} else {
 if (($curstatus==trim(@$statuses[4]))&&(trim(@$statuses[4]!=""))){ $sty=" style=\"color:grey;\"";}
+}
 }
 }
 }

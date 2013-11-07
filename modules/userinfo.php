@@ -52,7 +52,7 @@ $userinfo.="<br><i>". $tmp[17]."</i><br><br>
 <b>$lang[337]:</b> ". strtoken($tmp[6]," ");
 
 if ($valid=="1") {
-$userinfo.="<br><br><a href=\"#Send Private Message\" onClick=\"javascript:window.open('chat.php?ch=main&privat=".rawurlencode($usernik)."&speek=$speek','".md5($usernik."chat")."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"$lang[1075]\" border=0 align=absmiddle></a> &nbsp; <a href=\"$htpath/index.php?query=forum&f_user=".rawurlencode($usernik)."&onlyforum=1\"><img src=\"$image_path/sf.png\" border=0 title=\"$lang[1089]\" align=absmiddle></a>";
+$userinfo.="<br><br><a href=\"#Send Private Message\" onClick=\"javascript:window.open('chat.php?ch=main&privat=".rawurlencode($usernik)."&amp;speek=$speek','".md5($usernik."chat")."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"$lang[1075]\" border=0 align=absmiddle></a> &nbsp; <a href=\"$htpath/index.php?query=forum&f_user=".rawurlencode($usernik)."&onlyforum=1\"><img src=\"$image_path/sf.png\" border=0 title=\"$lang[1089]\" align=absmiddle></a>";
 }
 
 $userinfo.="</td><td valign=top>";

@@ -337,7 +337,7 @@ if ($wh!="") {$foto1=str_replace("<img ", "<img". $wh ." vspace=3 hspace=10 titl
 
 $qty=doubleval($qty);
 if($qty!=0){ $shtuk=$lang['pcs'];
-if (($s==$buy_row)&&($sss=="")){ $kupleno=1; $kupil="<div align=center><font color=$nc3><b>".$lang['buyes']." $qty $shtuk</b></font></div>"; if ($view_basketalert==1) { $kupil.="<script language=\"javascript\">window.open('$htpath/minibasket.php?unifid=$unifid&qty=$qty&speek=$speek','buy','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=540,height=180,left=220,top=200')</script>"; }} else { $kupil=""; }}
+if (($s==$buy_row)&&($sss=="")){ $kupleno=1; $kupil="<div align=center><font color=$nc3><b>".$lang['buyes']." $qty $shtuk</b></font></div>"; if ($view_basketalert==1) { $kupil.="<script language=\"javascript\">window.open('$htpath/minibasket.php?unifid=$unifid&amp;qty=$qty&amp;speek=$speek','buy','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=540,height=180,left=220,top=200')</script>"; }} else { $kupil=""; }}
 $link="<a href=\"" . $htpath . "/index.php?view=$file\">" . $nazv . "</a>";/* Для сортировки правильной давай переведем номер из представления 1 в представление 000001*/
 $sortby="";
 if ($sorting=="price") {
@@ -499,10 +499,10 @@ if ($end > $total): $end=$total-1 + $gt; endif;
 if (($catid!="")&&($catid!="_")) {$queryed="&catid=".rawurlencode($catid);} else {$queryed="";}
 $stat= "<center><small><br>".$lang[203]." <b>$numberpages</b> <img src=\"$image_path/a.gif\"> ".$lang[206]." <b>$total</b> ".$lang[207]." <img src=\"$image_path/a.gif\"> ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"$htpath/index.php?action=ext_search&start=" . ($start+$perpage) . "&perpage=$perpage$params$queryed\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"$htpath/index.php?action=ext_search&start=0&perpage=$params$queryed\"><!--homee--></a>";
+$nextpage="<a href=\"$htpath/index.php?action=ext_search&amp;start=" . ($start+$perpage) . "&amp;perpage=$perpage$params$queryed\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"$htpath/index.php?action=ext_search&amp;start=0&amp;perpage=$params$queryed\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"$htpath/index.php?action=ext_search&start=" . ($start-$perpage) . "&perpage=$perpage$params$queryed\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"$htpath/index.php?action=ext_search&amp;start=" . ($start-$perpage) . "&amp;perpage=$perpage$params$queryed\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>=$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -524,16 +524,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"$htpath/index.php?action=ext_search&start=" . ($s*$perpage) . "&perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"$htpath/index.php?action=ext_search&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"$htpath/index.php?action=ext_search&start=" . ($s*$perpage) . "&perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"$htpath/index.php?action=ext_search&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=ext_search&start=0&perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=ext_search&start=0&perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=ext_search&start=" . ($perpage*($numberpages-1)) . "&perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=ext_search&amp;start=0&amp;perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=ext_search&amp;start=0&amp;perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=ext_search&amp;start=" . ($perpage*($numberpages-1)) . "&amp;perpage=$perpage$params$queryed\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 if (!isset($view_compact)){} else { if($view_compact==1) { $poisks="";} else {$poisks="$ppages";}}

@@ -207,6 +207,12 @@ fclose($f);
 
 
 if (( @$_SESSION["user_login"]!="")&&( @$_SESSION["user_password"]!="")): $login=$_SESSION["user_login"]; $password=$_SESSION["user_password"]; endif;
+
+$servername=str_replace("http://", "", str_replace("www.", "", str_replace($_SERVER['SERVER_NAME'], "", $htpath)))."/";
+$cookiedir=$servername;
+if ($cookiedir=="/") {$cookiedir="";}
+if ($cookiedir=="//") {$cookiedir="";}
+
 if (($valid=="0")&&($login!="")&&($password!="")){
 $valid=$cart->authorize("$login","$password"); SetCookie("user_name", substr($login, 0, 40), time()+1003600,$cookiedir,$_SERVER['SERVER_NAME']); SetCookie("user_pass", md5(substr($artrnd.$password.$secret_salt, 0, 128)), time()+1003600,$cookiedir,$_SERVER['SERVER_NAME']);
 
@@ -252,8 +258,8 @@ require ("./modules/functions.php");
 include ("./templates/$template/meta.inc");
 require ("./templates/$template/title.inc");
 $fold=".";
-echo "</head>
-$css<body>";
+echo "
+$css</head><body>";
 $dnam=Array();
 $dtyp=Array();
 $dtop=Array();
@@ -264,10 +270,10 @@ while (list ($kcc, $vcc) = each ($cc)) {
 $vcc=trim($vcc);
 if ($vcc!="") {
 $ou=explode("|", $vcc);
-$dnam[(17+$kcc)]=$ou[1];
-$dtyp[(17+$kcc)]=$ou[3];
-$dtop[(17+$kcc)]=$ou[4];
-$dhid[(17+$kcc)]=$ou[5];
+$dnam[(17+$kcc)]=@$ou[1];
+$dtyp[(17+$kcc)]=@$ou[3];
+$dtop[(17+$kcc)]=@$ou[4];
+$dhid[(17+$kcc)]=@$ou[5];
 //echo (17+$kcc)." ". $dtyp[(17+$kcc)]."<br>";
 unset($ou);
 }
@@ -286,7 +292,7 @@ while (list ($kcpf, $vcpf) = each ($cpf)) {
 $vcpf=trim($vcpf);
 if ($vcpf!="") {
 $tmpv=explode(":",$vcpf);
-if (trim($tmpv[1])!="") {
+if (trim(@$tmpv[1])!="") {
 $cpf_t.="<td bgcolor=\"#f2f2f2\">".$tmpv[0]."</td>";
 $j++;
 }
@@ -377,14 +383,15 @@ if (($curstatus==trim(@$statuses[4]))&&(trim(@$statuses[4]!=""))){ $sty=" style=
 }
 }
 
-if (($curstatus=="")||($curstatus==trim($statuses[0]))) {if ($price!=0) { $prprpr="<br>"."<span class='label label-success'>".number_format($price, 0, ',', ' ')." ".substr($outc[12],1)."</span>"; } }
+if (($curstatus=="")||($curstatus==trim($statuses[0]))) {if ($price!=0) { $prprpr="<br>"."<span class='label label-success'>".str_replace(" ", "&nbsp;", number_format($price, 0, ',', ' '))." ".substr($outc[12],1)."</span>"; } }
 
 $curstats="<b class=pull-right"."$sty>$curstatus</b>";
 }
+$strto=0;
 if (($price==0)||($price=="")){$prem1="<!-- "; $prem2=" -->"; $prbuy="<span class=muted>".$lang['prebuy']."</span>";} else {$prem1="";$prem2="";$prbuy=""; }
 if(substr($details[7],0,3)!="OPT") {
-if ((@$podstavas["$dir|$subdir|"]!="")||(preg_match("/\%/", @$outc[8])==TRUE)) { $strto=strtoken(@$outc[8],"%"); $skid=$lang[233]." $strto%"; $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike></font> "; if ((preg_match("/\%/", @$outc[8])==TRUE)&&(doubleval($strto)>0)) {$ueprice=@$ueprice-(@$ueprice*(doubleval($strto))/100); $price=$okr*(round((@$price-(@$price*(doubleval($strto))/100))/$okr)); $skid=$lang[233]." $strto%";} else { $strto=doubleval($podstavas["$dir|$subdir|"]);  @$ueprice=@$ueprice-(@$ueprice*((double)$podstavas["$dir|$subdir|"])/100); $skid=$lang[233]." ".$podstavas["$dir|$subdir|"]."%"; $price=$okr*(round((@$price-(@$price*((double)$podstavas["$dir|$subdir|"])/100))/$okr));} } else {
-if (($valid=="1")&&($details[7]=="VIP")): $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike><small>".$currencies_sign[$_SESSION["user_currency"]]."</small></font> / <b>".$lang[176]."</b> "; $skid="VIP ".$lang[233]." $vipprocent"."%"; @$price=$okr*round((@$price-@$price*$vipprocent)/$okr); endif;
+if ((@$podstavas["$dir|$subdir|"]!="")||(preg_match("/\%/", @$outc[8])==TRUE)) { $strto=strtoken(@$outc[8],"%"); $skid=$lang[233]." $strto%"; $vipold="<strike>".str_replace(" ", "&nbsp;", number_format(($okr*round(@$price/$okr)), 0, ',', ' '))."</strike> <font color=#b94a48>"; if ((preg_match("/\%/", @$outc[8])==TRUE)&&(doubleval($strto)>0)) {$ueprice=@$ueprice-(@$ueprice*(doubleval($strto))/100); $price=$okr*(round((@$price-(@$price*(doubleval($strto))/100))/$okr)); $skid=$lang[233]." $strto%";} else { $strto=doubleval($podstavas["$dir|$subdir|"]);  @$ueprice=@$ueprice-(@$ueprice*((double)$podstavas["$dir|$subdir|"])/100); $skid=$lang[233]." ".$podstavas["$dir|$subdir|"]."%"; $price=$okr*(round((@$price-(@$price*((double)$podstavas["$dir|$subdir|"])/100))/$okr));} } else {
+if (($valid=="1")&&($details[7]=="VIP")): $vipold="<strike>".str_replace(" ", "&nbsp;", number_format(($okr*round(@$price/$okr)), 0, ',', ' '))."</strike><small>".$currencies_sign[$_SESSION["user_currency"]]."</small></font> / <b>".$lang[176]."</b> <font color=#b94a48>"; $skid="VIP ".$lang[233]." $vipprocent"."%"; @$price=$okr*round((@$price-@$price*$vipprocent)/$okr); endif;
 } }
 if (($valid=="1")&&($details[7]=="ADMIN")): @$description=@$description . "<br><small>(".$lang[148].": <b>".@$opt."</b>".$currencies_sign[$_SESSION["user_currency"]].") <font color=\"#a0a0a0\">[&#36;$ueopt]</font></small>"; endif;
 //if (($valid=="1")&&($details[7]=="ADMIN")): $admin_functions = "<br><br><small><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/".$scriptprefix."edit.php?speek=".$speek."&id=$fid&view=no','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=760,height=580,left=10,top=10')> <input type=button value=\"Cc&nbsp;&nbsp;&nbsp;".$lang[137]."\" onClick=javascript:window.open('$htpath/admin/".$scriptprefix."clone.php?speek=".$speek."&id=$fid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')> <input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('$htpath/admin/".$scriptprefix."del.php?speek=".$speek."&id=$fid','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10')></small><br><br>"; endif;
@@ -414,7 +421,7 @@ while (list ($kcpf, $vcpf) = each ($cpf)) {
 $vcpf=trim($vcpf);
 if ($vcpf!="") {
 $tmpv=explode(":",$vcpf);
-if (trim($tmpv[1])!="") {
+if (trim(@$tmpv[1])!="") {
 $tmpv2=explode(",",$tmpv[1]);
 if (count($tmpv2)>1) {
 reset ($tmpv2);
@@ -442,7 +449,11 @@ $tmz2=explode(";", $vz);
 $ttm.="<tr>";
 while (list ($kz2, $vz2) = each ($tmz2)) {
 if (trim($vz2)!="") {
+if (($kz2==2)&&($strto>0)) {
+$ttm.="<td><strike>".$vz2."</strike> <font color=#b94a48>".(0.01*round(($vz2*(1-$strto/100))/0.01)) ."</font></td>";
+} else {
 $ttm.="<td>".$vz2."</td>";
+}
 }
 }
 $ttm.="</tr>";
@@ -482,7 +493,11 @@ $tmz2=explode(";", $vz);
 $ttm.="<tr>";
 while (list ($kz2, $vz2) = each ($tmz2)) {
 if (trim($vz2)!="") {
+if (($kz2==2)&&($strto>0)) {
+$ttm.="<td><strike>".$vz2."</strike> <font color=#b94a48>".(0.01*round(($vz2*(1-$strto/100))/0.01)) ."</font></td>";
+} else {
 $ttm.="<td>".$vz2."</td>";
+}
 }
 }
 $ttm.="</tr>";
@@ -506,7 +521,7 @@ if ($friendly_url==1) { $llink="item_id=".translit(@$outc[3])."-".translit(@$out
 if ($dir!="") {
 $tmp_dirsub["$dir|$subdir"]="$dir|$subdir";
 if ($dir==$lang[418]) {unset($tmp_dirsub["$dir|$subdir"]);}
-@$tmp_massive["$dir|$subdir"].=number_format(($okr*round(@$price/$okr)), 0, ',', ' ')."|$nazv|$unifid|$vipold|$skid|".number_format($pricetax, 0, ',', ' ')."|$tax|$ext_id|$curstats|$llink|$cpf_v|\n";
+@$tmp_massive["$dir|$subdir"].=str_replace(" ", "&nbsp;",number_format(($okr*round(@$price/$okr)), 0, ',', ' '))."|$nazv|$unifid|$vipold|$skid|".str_replace(" ", "&nbsp;",number_format($pricetax, 0, ',', ' '))."|$tax|$ext_id|$curstats|$llink|$cpf_v|\n";
 if ($dir==$lang[418]) {unset($tmp_massive["$dir|$subdir"]);}
 $sc+=1;
  }
@@ -547,9 +562,9 @@ $cpf_s="<td align=\"center\">".@$stnew[$ind]."</td>".$cpf_s;
 
 }
 }
-echo "<tr><td align=\"center\">$ktov.&nbsp;</td><td><a href=\"$htpath/index.php?".@$stnew[9]."\">".@$stnew[1]."</a> ".@$stnew[8]." ".@$stnew[7]."</td>$cpf_s<td align=\"center\">".@$stnew[4]."&nbsp;</td>";
+echo "<tr><td align=\"center\">$ktov.&nbsp;</td><td><a href=\"$htpath/index.php?".@$stnew[9]."\">".@$stnew[1]."</a> ".@$stnew[8]." ".@$stnew[7]."</td>$cpf_s<td align=\"center\"><font color=#b94a48>".@$stnew[4]."</font>&nbsp;</td>";
 if ($tax_function==1) { if (@$stnew[5]==0) {@$stnew[5]="";} echo "<td align=\"center\">".@$stnew[6]."&nbsp;</td><td align=\"center\">".@$stnew[5]."&nbsp;</td>"; }
-echo "<td align=\"center\">".@$stnew[3]."<b>".@$stnew[0]."</b>&nbsp;</td></tr>\n";
+echo "<td align=\"center\">".@$stnew[3]."<b>".@$stnew[0]."</b></font>&nbsp;</td></tr>\n";
 $ktov+=1;
 }
 }

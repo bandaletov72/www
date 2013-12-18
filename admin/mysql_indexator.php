@@ -131,7 +131,7 @@ if ($carat=="") { $carat="›"; }
 $fold="..";
 require "../modules/functions.php";
 require "../templates/$template/css.inc";
-$fp = fopen ("../style.css" , "w"); flock ($fp, LOCK_EX);
+$fp = fopen ("../style_".$speek.".css" , "w"); flock ($fp, LOCK_EX);
 fputs($fp, str_replace("{nc10}", "[nc10]", str_replace("{lnc10}", "[lnc10]", $cssflush)));flock ($fp, LOCK_UN);
 fclose($fp);
 //echo $css;
@@ -440,9 +440,9 @@ if (!isset($brandname[$indexbr])) {$brandname[$indexbr]=trim($out[13]);}
 //if ($view_brands==1){
 
 if ($out[13]!=""){
-@$tmpbrands[$st] = $out[2]."|<!--".$out[13]."-->&nbsp;&nbsp;<font class=small face=\"Verdana\" color=\"".$nc4."\">$sym</font>&nbsp;<b><a href = \"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=".rawurlencode($out[13])."\"><font class=small color=\"".$nc9."\">".$out[13]."</font></a></b><br>|".$out[1]."|".$out[13]."|";
+@$tmpbrands[$st] = $out[2]."|<!--".$out[13]."-->&nbsp;&nbsp;<font class=small face=\"Verdana\" color=\"".$nc4."\">$sym</font>&nbsp;<b><a href = \"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&brand=".rawurlencode($out[13])."\"><font class=small color=\"".$nc9."\">".$out[13]."</font></a></b><br>|".$out[1]."|".$out[13]."|";
 } else {
-$tmpbrands[$st] = $out[2]."|<!--zzzzz-->&nbsp;&nbsp;<font class=small face=\"Verdana\" color=\"".$nc4 ."\">$sym</font>&nbsp;<b><a href = \"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=nobrand\"><font class=small color=\"".$nc9."\">".$lang[417]."</font></a></b><br>|".$out[1]."|".$lang[417]."|";
+$tmpbrands[$st] = $out[2]."|<!--zzzzz-->&nbsp;&nbsp;<font class=small face=\"Verdana\" color=\"".$nc4 ."\">$sym</font>&nbsp;<b><a href = \"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&brand=nobrand\"><font class=small color=\"".$nc9."\">".$lang[417]."</font></a></b><br>|".$out[1]."|".$lang[417]."|";
 
 }
 //}
@@ -528,7 +528,7 @@ $subrcount[$ra] = $line;
 $count_sub=@substr_count($subbr[$ra."|".$out[1]], "$sym");
 //echo $subbr[$ra."|".$out[1]]. " $count_sub " . $subrcount[$ra]. " " .@$subbrcount[$ra."|".$out[1]]."<br>";
 if ($count_sub==1){ $subbr[$ra."|".$out[1]]=""; }
-//if ((@$subbrcount[$ra."|".$out[1]]!="")&&($subrcount[$ra]!=@$subbrcount[$ra."|".$out[1]])): $subbr[$ra."|".$out[1]]=@$subbr[$ra."|".$out[1]]."<br>&nbsp;&nbsp;<font class=small face=\"Verdana\">$sym</font>&nbsp;<a href = \"index.php?catid=".$tablenum[$ra."|".$out[1]. "|"]."&amp;brand=nobrand\"><font color=\"".lighter($nc5,0)."\">".$lang[417]."</font></a> <font color=\"".lighter($nc5,0)."\"><sup>".(@$subbrcount[$ra."|".$out[1]]-$subrcount[$ra])."</sup></font>"; endif;
+//if ((@$subbrcount[$ra."|".$out[1]]!="")&&($subrcount[$ra]!=@$subbrcount[$ra."|".$out[1]])): $subbr[$ra."|".$out[1]]=@$subbr[$ra."|".$out[1]]."<br>&nbsp;&nbsp;<font class=small face=\"Verdana\">$sym</font>&nbsp;<a href = \"index.php?catid=".$tablenum[$ra."|".$out[1]. "|"]."&brand=nobrand\"><font color=\"".lighter($nc5,0)."\">".$lang[417]."</font></a> <font color=\"".lighter($nc5,0)."\"><sup>".(@$subbrcount[$ra."|".$out[1]]-$subrcount[$ra])."</sup></font>"; endif;
 $tmy=$tablenum[$ra."|".$out[1]. "|"];
 $sk="";
 if (@$catidys[$tmy]!="") {
@@ -579,7 +579,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/dirs.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 fputs ($file, str_replace("</sup></font><!-- br --><br>", "</sup></font><br><img src=\"$htpath/pix.gif\" width=1 height=25>","$razdel"));
 
 fclose ($file);
@@ -619,7 +619,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/dirs_h.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 
 fputs ($file, "$razdel");
 fclose ($file);
@@ -672,7 +672,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/dirs_j.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 
 fputs ($file, str_replace("</sup></font><!-- br --><br>", "</sup></font><br><img src=\"$htpath/pix.gif\" width=1 height=25>","$razdel"));
 fclose ($file);
@@ -710,7 +710,7 @@ echo "\n";
 $out=explode("|",$line_num);
 $ra=$out[0];
 if ((!@$subr[$ra]) || (@$subr[$ra]=="")): $subr[$ra]=""; endif;
-$subr[$ra] .= "<br><font color=\"".lighter($nc5,0)."\">$carat</font> <a href = \"index.php?action=links&amp;linksub=".($ll+1)."\ style=\"color:".lighter($nc2,-40)."\">".str_replace (" NEW" , "</a> <a><font color=\"".$nc2."\"><sup><b>NEW</b></sup></font>", $out[1])."</a> (<b>$line</b>)";
+$subr[$ra] .= "<br><font color=\"".lighter($nc5,0)."\">$carat</font> <a href = \"index.php?action=links&linksub=".($ll+1)."\ style=\"color:".lighter($nc2,-40)."\">".str_replace (" NEW" , "</a> <a><font color=\"".$nc2."\"><sup><b>NEW</b></sup></font>", $out[1])."</a> (<b>$line</b>)";
 $razdeli.=($ll+1)."|".$out[1]."|\n";
 $ll+=1;
 }
@@ -722,7 +722,7 @@ reset ($subr);
 //unset($subr);
 //$subr=$tmparrs;
 //unset($tmarrs);
-$razdel="<b><font color=\"".lighter($nc5,0)."\">$carat</font> <a href='index.php?action=links&amp;linksub=index'>Все ссылки</a></b> (<b>$tot_tov</b>)<br>";
+$razdel="<b><font color=\"".lighter($nc5,0)."\">$carat</font> <a href='index.php?action=links&linksub=index'>Все ссылки</a></b> (<b>$tot_tov</b>)<br>";
 while (list ($line_num, $line) = each ($subr)) {
 echo "\n";
 $razdel .= "$line<br>\n";
@@ -734,7 +734,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/link_index.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 
 fputs ($file, "$razdel");
 fclose ($file);
@@ -744,7 +744,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/link_razdels.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 
 fputs ($file, "$razdeli");
 fclose ($file);
@@ -803,7 +803,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/cmenu_index.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 
 fputs ($file, "$razdel");
 fclose ($file);
@@ -996,7 +996,7 @@ $line=str_replace("[comm]".$comm."[/comm]", "", $line);
 $purl="";
 $purl=ExtractString($line,"[url]","[/url]");
 $line=str_replace("[url]".$comm."[/url]", "", $line);
-if ($friendly_url==1) { $flafsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flafsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
 if (@$mod_rw_enable==1){ $llink="$manc.html"; $llinks="$manc.html";}  else {$llink="index.php?page=$manc&z=".rawurlencode($subline)."[jstart]"; $llinks="index.php?page=$manc";}
 if ($purl!="") {$llink="$purl";}
 if (preg_match("/<img/i", $linet)) {
@@ -1011,7 +1011,7 @@ if (preg_match("/<img/i", $linet)) {
 if (substr($c,0,1)!=$wiki_rubric) {
 if (strlen($c)==1) {
 $flagsy="";
-if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
 if (@$mod_rw_enable==1){ $llink="$manc.html";}  else {$llink="index.php?page=$manc".$flagsy."";}
 if (substr($c,0,1)==$wiki_content) {
 if ($view_wikicat==1) {

@@ -20,7 +20,7 @@ function baskon() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?sw=on&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?sw=on&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -28,7 +28,7 @@ function baskoff() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?sw=off&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?sw=off&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -36,7 +36,7 @@ function baskonoff() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?sw=onoff&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?sw=onoff&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -44,7 +44,7 @@ function baskoffon() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?sw=offon&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?sw=offon&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -53,7 +53,7 @@ floading (arg);
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?del='+arg+'&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?del='+arg+'&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -62,7 +62,7 @@ floading (arg);
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?plus='+arg+'&qt='+arg2+'&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?plus='+arg+'&qt='+arg2+'&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -71,7 +71,7 @@ floading (arg);
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?minus='+arg+'&qt='+arg2+'&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?minus='+arg+'&qt='+arg2+'&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }

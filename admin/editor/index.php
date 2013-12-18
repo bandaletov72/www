@@ -18,7 +18,10 @@ extract($_GET, EXTR_SKIP);
 extract($_POST, EXTR_SKIP);
 extract($_COOKIE, EXTR_SKIP);
 }
-echo "<html>\n<head>\n";
+echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
+<html xmlns=\"http://www.w3.org/1999/xhtml\">
+<head>
+";
 $fold="../.."; require ("../../templates/lang.inc");
 if (!isset($speek)) {
 $speek=$language;
@@ -38,11 +41,14 @@ require ("../../templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $sit
 $fold="../..";
 require ("../../templates/$template/css.inc");
 require ("../../templates/$template/title.inc");
-
+if (file_exists("../.$base_loc/raz.inc")){
+require ("../.$base_loc/raz.inc");
+}
 echo $css;
+echo "<div class=pcont>";
 require("./header.inc");
 $st=0;
-echo "<form class=form-inline action='rename.php' method='POST'><input type=hidden name=\"speek\" value=\"$speek\"><font face='Verdana, Arial, Helvetica, sans-serif' size='2' color='$nc5'><b>".$lang[382]."</b></font><br>";
+echo "<form class=form-inline action='rename.php' method='POST'><input type=hidden name=\"speek\" value=\"$speek\"><h3 class=ml>".$lang[382]."</h3>";
 $handle=opendir("../.$base_loc/content/");
 while (($file = readdir($handle))!==FALSE) {
 If (($file == '.') || ($file == '..') || ($file == 'config.inc')|| (substr($file,0,2) == 'z_')) {
@@ -62,16 +68,24 @@ $out=explode(".",$file);
 $c = $out[0];
 if (strlen($c)==1) {
 if ($c=="z") {
-$klon ="<font face='Verdana, Arial, Helvetica, sans-serif' size='1' color='$nc5'>&nbsp;&nbsp;<a href='../edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$c.txt'><img src='./edit.gif' border='0' title=\"".$lang[385]."\"></a></font>";
-$name="<!--$c--><input type='hidden' name='type[$st]' value='txt'><img src='./folder.gif' border='0' title=\"Раздел\" align=\"absbottom\">&nbsp;<input type='hidden' name='old[$st]' value='$c'><input type='text' name='new[$st]' size='40' value='$c'>&nbsp;$klon&nbsp;&nbsp;<font face='Verdana, Arial, Helvetica, sans-serif' size='2' color='$nc5'><a href='../../index.php?page=$c'><b>".strip_tags($line)."</b></a></font>";
+$klon ="<a class=btn href='../edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$c.txt'><b class=icon-edit title=\"".$lang[385]."\"></b></a><td>&nbsp;</td><td>&nbsp;</td>";
+$name="<!--$c--><tr class=\"info panel\"><td><input type='hidden' name='type[$st]' value='txt'><img src='./folder.gif' border='0' title=\"Раздел\" align=\"absbottom\"></td><td><input type='text' class=input-mini name=\"raz['".$c."']\" size='5' value='".@$raz[$c]."'></td><td><input type='hidden' name='old[$st]' value='$c'><input class=input-mini type='text' name='new[$st]' size='40' value='$c'></td><td>$klon</td><td width=100%><a href='../../index.php?page=$c'><b>".strtoken(strip_tags($line),"[")."</b></a></td></tr>";
 } else {
-$klon ="<font face='Verdana, Arial, Helvetica, sans-serif' size='1' color='$nc5'>&nbsp;&nbsp;<a href='../edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$c.txt'><img src='./edit.gif' border='0' title=\"".$lang[385]."\"></a>&nbsp;&nbsp;<a href='edit.php?speek=".$speek."&amp;c=$c&klon=1'><img src='./new.gif' border='0' title=\"".$lang[384]."\"></a>&nbsp;&nbsp;<a href='unlinkr.php?speek=$speek&file=$c'><img src='./kill.gif' border='0' title=\"".$lang[383]."\"></a></font>";
-$name="<!--$c--><input type='hidden' name='type[$st]' value='txt'><img src='./folder.gif' border='0' title=\"Раздел\" align=\"absbottom\">&nbsp;<input type='hidden' name='old[$st]' value='$c'><input type='text' name='new[$st]' size='40' value='$c'>&nbsp;$klon&nbsp;&nbsp;<font face='Verdana, Arial, Helvetica, sans-serif' size='2' color='$nc5'><a href='../../index.php?page=$c'><b>$line</b></a></font>";
+$klon ="<a class=btn href='../edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$c.txt'><b class=icon-edit title=\"".$lang[385]."\"></b></a></td><td><a href='edit.php?speek=".$speek."&amp;c=$c&klon=1' class=btn><b class=icon-chevron-down title=\"".$lang[384]."\"></b></a></td><td><a class=btn href='edit.php?speek=".$speek."&amp;c=$c&amp;del=$c'><b class=icon-remove title=\"".$lang[386]."\"></b></a>";
+$name="<!--$c--><tr class=\"info panel\"><td><input type='hidden' name='type[$st]' value='txt'><img src='./folder.gif' border='0' title=\"Раздел\" align=\"absbottom\"></td><td><input type='text' class=input-mini name=\"raz['".$c."']\" size='5' value='".@$raz[$c]."'></td><td><input type='hidden' name='old[$st]' value='$c'><input class=input-mini type='text' name='new[$st]' size='40' value='$c'></td><td>$klon</td><td width=100%><a href='../../index.php?page=$c'><b>".strtoken(strip_tags($line),"[")."</b></a></td></tr>";
+if (substr($file, -4)==".del") {
+$klon ="<a class=\"btn btn-danger\" href='edit.php?speek=".$speek."&amp;c=$c&rest=$c'><b class=\"icon-share-alt icon-white\" title=\"".$lang[387]."\"></b></a></td><td>&nbsp;</td><td><a class=btn href='unlink.php?speek=$speek&file=$c'><b class=icon-remove title=\"".$lang[383]."\"></b></a>";
+$name = "<!--$c--><tr class=error><td><img src='./deleted.gif' border='0' title=\"".$lang[388]."\" align=\"absbottom\"></td><td><input type='text' class=input-mini name=\"raz['".$c."']\" size='5' value='".@$raz[$c]."'></td><td class=error><input type='hidden' name='type[$st]' value='del'><input type='hidden' name='old[$st]' value='$c'><input class=input-mini type='text' name='new[$st]' size='40' value='$c'></td><td>$klon</td><td width=100%>$line <b class=\"label label-important\">".$lang[388]."</b></td></tr>";
+}
+
 }
 } else {
-$klon ="<font face='Verdana, Arial, Helvetica, sans-serif' size='1' color='$nc5'>&nbsp;&nbsp;<a href='../edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$c.txt'><img src='./edit.gif' border='0' title=\"".$lang[385]."\"></a>&nbsp;&nbsp;<a href='edit.php?speek=".$speek."&amp;c=$c&amp;del=$c'><img src='./del.gif' border='0' title=\"".$lang[386]."\"></a></font>";
-$name = "<!--$c--><a href=#copy onclick=copy('~~$c.txt~~')><img src='./file.gif' border='0' title=\"".$lang[389]." ~~$c.txt~~\" align=\"absbottom\"></a>&nbsp;<input type='hidden' name='type[$st]' value='txt'><input type='hidden' name='old[$st]' value='$c'><input type='text' name='new[$st]' size='40' value='$c'>&nbsp;$klon&nbsp;&nbsp<font face='Verdana, Arial, Helvetica, sans-serif' size='1' color='$nc5'><a href='../../index.php?page=$c'><b>$line</b></a></font>";
-if (substr($file, -4)==".del"): $klon ="<font face='Verdana, Arial, Helvetica, sans-serif' size='1' color='$nc5'>&nbsp;<a href='edit.php?speek=".$speek."&amp;c=$c&rest=$c'><img src='./undel.gif' border='0' title=\"".$lang[387]."\"></a>&nbsp;&nbsp;<a href='unlink.php?speek=$speek&file=$c'><img src='./kill.gif' border='0' title=\"".$lang[383]."\"></a></font>"; $name = "<!--$c--><img src='./deleted.gif' border='0' title=\"".$lang[388]."\" align=\"absbottom\">&nbsp;<input type='hidden' name='type[$st]' value='del'><input type='hidden' name='old[$st]' value='$c'><input type='text' name='new[$st]' size='40' value='$c'>&nbsp;&nbsp;$klon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;<font face='Verdana, Arial, Helvetica, sans-serif' size='1' color='$nc5'>$line <font color='red'>".$lang[388]."!</font></font>"; endif;
+$klon ="<a class=btn href='../edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$c.txt'><b class=icon-edit title=\"".$lang[385]."\"></b></a></td><td>&nbsp;</td><td><a class=btn href='edit.php?speek=".$speek."&amp;c=$c&amp;del=$c'><b class=icon-remove title=\"".$lang[386]."\"></b></a>";
+$name = "<!--$c--><tr><td><a href=#copy onclick=copy('~~$c.txt~~')><img src='./file.gif' border='0' title=\"".$lang[389]." ~~$c.txt~~\" align=\"absbottom\"></a></td><td><input type='text' class=input-mini name=\"raz['".$c."']\" size='5' value='".@$raz[$c]."'></td><td><input type='hidden' name='type[$st]' value='txt'><input type='hidden' name='old[$st]' value='$c'><input type='text' class=input-mini name='new[$st]' size='40' value='$c'></td><td>$klon</td><td><a href='../../index.php?page=$c'><b>".strtoken(strip_tags($line),"[")."</b></a></td></tr>";
+if (substr($file, -4)==".del") {
+$klon ="<a class=\"btn btn-danger\" href='edit.php?speek=".$speek."&amp;c=$c&rest=$c'><b class=\"icon-share-alt icon-white\" title=\"".$lang[387]."\"></b></a></td><td>&nbsp;</td><td><a class=btn href='unlink.php?speek=$speek&file=$c'><b class=icon-remove title=\"".$lang[383]."\"></b></a>";
+$name = "<!--$c--><tr class=error><td><img src='./deleted.gif' border='0' title=\"".$lang[388]."\" align=\"absbottom\"></td><td><input type='text' class=input-mini name=\"raz['".$c."']\" size='5' value='".@$raz[$c]."'></td><td class=error><input type='hidden' name='type[$st]' value='del'><input type='hidden' name='old[$st]' value='$c'><input class=input-mini type='text' name='new[$st]' size='40' value='$c'></td><td>$klon</td><td width=100%>".strtoken(strip_tags($line),"[")." <b class=\"label label-important\">".$lang[388]."</b></td></tr>";
+}
 }
 
 
@@ -83,12 +97,16 @@ closedir ($handle);
 //сортировка по алфавиту//
 sort ($files);
 reset ($files);
-
+echo "<small class=ml>".$lang[686]."</small>
+<table class=\"table table-striped mr ml\" style=\"width:96%;\"><tbody>
+<tr><td>&nbsp;</td><td><small>".$lang[687]."</small></td><td><small>".$lang[430]."</small></td><td><small>".$lang['edits']."</small></td><td><small>".$lang['add']."</small></td><td><small>".$lang[386]."</small></td><td>&nbsp;</td></tr>
+";
 while (list ($key, $val) = each ($files)) {
-echo "$val<br>\n";
+echo "$val\n";
 }
-echo "<br><br><input type=hidden name=\"speek\" value=\"$speek\"><input type=\"submit\" class=\"btn btn-primary\" value=\"".$lang[390]."\"><br><br></form>";
+echo "</tbody></table>";
+echo "<div class=\"mr ml\" align=center><input type=hidden name=\"speek\" value=\"$speek\"><input type=\"submit\" class=\"btn btn-large btn-primary\" value=\"".$lang[527]."\"></div></form>";
 require("./footer.inc");
-echo "</body>
+echo "</div></body>
 </html>";
 ?>

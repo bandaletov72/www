@@ -1,26 +1,19 @@
-<table width=100% border=0 cellpadding=0 cellspacing=0 style="-moz-border-radius: 10px; background: #c9cbcd; border: 1px solid #c9cbcd; width:100%; padding: 5px 5px;"><tr><td align=center width=3% ><font color=#075fad>А</font></td><td align=center width=3%><font color=#075fad>Б</font></td><td align=center width=3%><font color=#075fad>В</font></td><td align=center width=3%><font color=#075fad>Г</font></td><td align=center width=3%><font color=#075fad>Д</font></td><td align=center width=3%><font color=#075fad>Е</font></td><td align=center width=3%><font color=#075fad>Ё</font></td><td align=center width=3%><font color=#075fad>Ж</font></td><td align=center width=3%><font color=#075fad>З</font></td><td align=center width=3%><font color=#075fad>И</font></td><td align=center width=3%><font color=#075fad>Й</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_86277f690350a08d08055cbdda225e0a" onclick="javascript:js_86277f690350a08d08055cbdda225e0a()" width=3%><b><font color=#222222>К</font></b></td></font></td><td align=center width=3%><font color=#075fad>Л</font></td><td align=center width=3%><font color=#075fad>М</font></td><td align=center width=3%><font color=#075fad>Н</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_fc1262746424402278e88f6c1f02f581" onclick="javascript:js_fc1262746424402278e88f6c1f02f581()" width=3%><b><font color=#222222>О</font></b></td></font></td><td align=center width=3%><font color=#075fad>П</font></td><td align=center width=3%><font color=#075fad>Р</font></td><td align=center width=3%><font color=#075fad>С</font></td><td align=center width=3%><font color=#075fad>Т</font></td><td align=center width=3%><font color=#075fad>У</font></td><td align=center width=3%><font color=#075fad>Ф</font></td><td align=center width=3%><font color=#075fad>Х</font></td><td align=center width=3%><font color=#075fad>Ц</font></td><td align=center width=3%><font color=#075fad>Ч</font></td><td align=center width=3%><font color=#075fad>Ш</font></td><td align=center width=3%><font color=#075fad>Щ</font></td><td align=center width=3%><font color=#075fad>Ь</font></td><td align=center width=3%><font color=#075fad>Э</font></td><td align=center width=3%><font color=#075fad>Ю</font></td><td align=center width=3%><font color=#075fad>Я</font></td><td align=center width=3%><font color=#075fad></td></tr><tr><td></font></td><td align=center width=3%><font color=#075fad>A</font></td><td align=center width=3%><font color=#075fad>B</font></td><td align=center width=3%><font color=#075fad>C</font></td><td width=3% style="background: #b5b7b8; border: 1px solid #c9cbcd; padding: 3px 3px; cursor: pointer; cursor: hand;" align=center id="divd_8277e0910d750195b448797616e091ad" onclick="javascript:js_8277e0910d750195b448797616e091ad()" width=3%><b><font color=#222222>D</font></b></td></font></td><td align=center width=3%><font color=#075fad>E</font></td><td align=center width=3%><font color=#075fad>F</font></td><td align=center width=3%><font color=#075fad>G</font></td><td align=center width=3%><font color=#075fad>H</font></td><td align=center width=3%><font color=#075fad>I</font></td><td align=center width=3%><font color=#075fad>J</font></td><td align=center width=3%><font color=#075fad>K</font></td><td align=center width=3%><font color=#075fad>L</font></td><td align=center width=3%><font color=#075fad>M</font></td><td align=center width=3%><font color=#075fad>N</font></td><td align=center width=3%><font color=#075fad>O</font></td><td align=center width=3%><font color=#075fad>P</font></td><td align=center width=3%><font color=#075fad>Q</font></td><td align=center width=3%><font color=#075fad>R</font></td><td align=center width=3%><font color=#075fad>S</font></td><td align=center width=3%><font color=#075fad>T</font></td><td align=center width=3%><font color=#075fad>U</font></td><td align=center width=3%><font color=#075fad>V</font></td><td align=center width=3%><font color=#075fad>W</font></td><td align=center width=3%><font color=#075fad>X</font></td><td align=center width=3%><font color=#075fad>Y</font></td><td align=center width=3%><font color=#075fad>Z</font></td><td align=center width=3%><font color=#075fad>0</font></td><td align=center width=3%><font color=#075fad>1</font></td><td align=center width=3%><font color=#075fad>2</font></td><td align=center width=3%><font color=#075fad>3</font></td><td align=center width=3%><font color=#075fad>4</font></td><td align=center width=3%><font color=#075fad></font></td></tr></table><table width=100% border=0><tr><td align=left><a href="http://localhost/index.php?page=r">Словарь</a></td><td align=right><small><a href=#all_articles onclick="javascript:jsall()"><nobr><span id=viewjsall>Скрыть</span></nobr></a></small></td></tr></table>
-<script language=javascript>
+<div class=dotted2><div class="table2" style="padding:10px;"><div class=wikiitem>А</div><div class=wikiitem>Б</div><div class=wikiitem>В</div><div class=wikiitem>Г</div><div class=wikiitem>Д</div><div class=wikiitem>Е</div><div class=wikiitem>Ё</div><div class=wikiitem>Ж</div><div class=wikiitem>З</div><div class=wikiitem>И</div><div class=wikiitem>Й</div><div class=wikiitem><div class="wikiactive label label-info" align=center id="divd_86277f690350a08d08055cbdda225e0a" onclick="javascript:js_86277f690350a08d08055cbdda225e0a()"><b>К</b></div></div><div class=wikiitem>Л</div><div class=wikiitem>М</div><div class=wikiitem>Н</div><div class=wikiitem><div class="wikiactive label label-info" align=center id="divd_fc1262746424402278e88f6c1f02f581" onclick="javascript:js_fc1262746424402278e88f6c1f02f581()"><b>О</b></div></div><div class=wikiitem>П</div><div class=wikiitem>Р</div><div class=wikiitem>С</div><div class=wikiitem>Т</div><div class=wikiitem>У</div><div class=wikiitem>Ф</div><div class=wikiitem>Х</div><div class=wikiitem>Ц</div><div class=wikiitem>Ч</div><div class=wikiitem>Ш</div><div class=wikiitem>Щ</div><div class=wikiitem>Ь</div><div class=wikiitem>Э</div><div class=wikiitem>Ю</div><div class=wikiitem>Я</div><div class=wikiitem>-</div><div class=wikiitem>A</div><div class=wikiitem>B</div><div class=wikiitem>C</div><div class=wikiitem>D</div><div class=wikiitem>E</div><div class=wikiitem>F</div><div class=wikiitem>G</div><div class=wikiitem>H</div><div class=wikiitem>I</div><div class=wikiitem>J</div><div class=wikiitem>K</div><div class=wikiitem>L</div><div class=wikiitem>M</div><div class=wikiitem>N</div><div class=wikiitem>O</div><div class=wikiitem>P</div><div class=wikiitem>Q</div><div class=wikiitem>R</div><div class=wikiitem>S</div><div class=wikiitem>T</div><div class=wikiitem>U</div><div class=wikiitem>V</div><div class=wikiitem>W</div><div class=wikiitem>X</div><div class=wikiitem>Y</div><div class=wikiitem>Z</div><div class=wikiitem>0</div><div class=wikiitem>1</div><div class=wikiitem>2</div><div class=wikiitem>3</div><div class=wikiitem>4</div><div class=clearfix></div><hr><table width=100% border=0><tr><td align=left><a href="http://localhost/index.php?page=r">Словарь</a></td><td align=right><a href="#all_articles" onclick="javascript:jsall()"><nobr><span id=viewjsall>Скрыть</span></nobr></a></td></tr></table></div></div><script language=javascript>
 function jsall () {
 if (document.getElementById('viewjsall').innerHTML=='Показать ВСЕ'){
-document.getElementById('div_8277e0910d750195b448797616e091ad').style.visibility = 'visible';
-document.getElementById('div_8277e0910d750195b448797616e091ad').style.display = 'inline';
-//document.getElementById('divd_8277e0910d750195b448797616e091ad').style.backgroundColor = '#075fad';
 document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'visible';
 document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'inline';
-//document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#075fad';
+//document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#39647a';
 document.getElementById('div_fc1262746424402278e88f6c1f02f581').style.visibility = 'visible';
 document.getElementById('div_fc1262746424402278e88f6c1f02f581').style.display = 'inline';
-//document.getElementById('divd_fc1262746424402278e88f6c1f02f581').style.backgroundColor = '#075fad';
+//document.getElementById('divd_fc1262746424402278e88f6c1f02f581').style.backgroundColor = '#39647a';
 
 document.getElementById('viewjsall').innerHTML='Скрыть';
 } else {
-document.getElementById('divd_8277e0910d750195b448797616e091ad').style.backgroundColor = '#b5b7b8';
-document.getElementById('div_8277e0910d750195b448797616e091ad').style.display = 'none';
-document.getElementById('div_8277e0910d750195b448797616e091ad').style.visibility = 'hidden';
-document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#b5b7b8';
+document.getElementById('divd_86277f690350a08d08055cbdda225e0a').className = 'wikiactive label label-info';
 document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'none';
 document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'hidden';
-document.getElementById('divd_fc1262746424402278e88f6c1f02f581').style.backgroundColor = '#b5b7b8';
+document.getElementById('divd_fc1262746424402278e88f6c1f02f581').className = 'wikiactive label label-info';
 document.getElementById('div_fc1262746424402278e88f6c1f02f581').style.display = 'none';
 document.getElementById('div_fc1262746424402278e88f6c1f02f581').style.visibility = 'hidden';
 
@@ -28,63 +21,45 @@ document.getElementById('viewjsall').innerHTML='Показать ВСЕ';
 }
 }
 function jsallcl() {
-document.getElementById('divd_8277e0910d750195b448797616e091ad').style.backgroundColor = '#b5b7b8';
-document.getElementById('div_8277e0910d750195b448797616e091ad').style.display = 'none';
-document.getElementById('div_8277e0910d750195b448797616e091ad').style.visibility = 'hidden';
-document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#b5b7b8';
+document.getElementById('divd_86277f690350a08d08055cbdda225e0a').className = 'wikiactive label label-info';
 document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'none';
 document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'hidden';
-document.getElementById('divd_fc1262746424402278e88f6c1f02f581').style.backgroundColor = '#b5b7b8';
+document.getElementById('divd_fc1262746424402278e88f6c1f02f581').className = 'wikiactive label label-info';
 document.getElementById('div_fc1262746424402278e88f6c1f02f581').style.display = 'none';
 document.getElementById('div_fc1262746424402278e88f6c1f02f581').style.visibility = 'hidden';
 
 }
 </script>
 <br><br><script language=javascript>
-function js_8277e0910d750195b448797616e091ad() {
-jsallcl()
-document.getElementById('divd_8277e0910d750195b448797616e091ad').style.backgroundColor = '#075fad';
-document.getElementById('div_8277e0910d750195b448797616e091ad').style.visibility = 'visible';
-document.getElementById('div_8277e0910d750195b448797616e091ad').style.display = 'inline';
-
-document.getElementById('viewjsall').innerHTML='Показать ВСЕ';
-}
-</script>
-<div id="div_8277e0910d750195b448797616e091ad"><a name="f623e75af30e62bbd73d6df5b50bb7b5"></a><br><font size=3>D</font><br><br><!-- d0005 --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=d0005&z=d';"><a href="index.php?page=d0005&z=d" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">d0005</a><br><i></i></div><br><!--end-->
-<!-- d0006 --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=d0006&z=d';"><a href="index.php?page=d0006&z=d" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">d0006</a><br><i></i></div><br><!--end-->
-<!-- d0007 --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=d0007&z=d';"><a href="index.php?page=d0007&z=d" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">d0007</a><br><i></i></div><br><!--end-->
-<!-- d0008 --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=d0008&z=d';"><a href="index.php?page=d0008&z=d" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">d0008</a><br><i></i></div><br><!--end-->
-<br></div>
-<script language=javascript>
 function js_86277f690350a08d08055cbdda225e0a() {
 jsallcl()
-document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#075fad';
+document.getElementById('divd_86277f690350a08d08055cbdda225e0a').className = 'wikiactive label label-inverse';
 document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'visible';
 document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'inline';
 
 document.getElementById('viewjsall').innerHTML='Показать ВСЕ';
 }
 </script>
-<div id="div_86277f690350a08d08055cbdda225e0a"><a name="ceb1e7db7df6a7005fb5b80ba6e370fe"></a><br><font size=3>К</font><br><br><!-- Контакты --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?action=sendmail';"><a href="index.php?action=sendmail" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Контакты</a><br><i></i></div><br><!--end-->
+<div id="div_86277f690350a08d08055cbdda225e0a"><a name="ceb1e7db7df6a7005fb5b80ba6e370fe"></a><br><span class="label label-inverse" style="padding:5px;"><font size=5>К</font></span><br><br><!-- Контакты --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=kontaktyi&z=%EA';"><a href="index.php?page=kontaktyi&z=%EA" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Контакты</a><br><i></i></div><br><!--end-->
 <br></div>
 <script language=javascript>
 function js_fc1262746424402278e88f6c1f02f581() {
 jsallcl()
-document.getElementById('divd_fc1262746424402278e88f6c1f02f581').style.backgroundColor = '#075fad';
+document.getElementById('divd_fc1262746424402278e88f6c1f02f581').className = 'wikiactive label label-inverse';
 document.getElementById('div_fc1262746424402278e88f6c1f02f581').style.visibility = 'visible';
 document.getElementById('div_fc1262746424402278e88f6c1f02f581').style.display = 'inline';
 
 document.getElementById('viewjsall').innerHTML='Показать ВСЕ';
 }
 </script>
-<div id="div_fc1262746424402278e88f6c1f02f581"><a name="bda95b04f2968764a28200e468c77a17"></a><br><font size=3>О</font><br><br><!-- О нас --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=o_nas&z=%EE';"><a href="index.php?page=o_nas&z=%EE" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">О нас</a><br><i></i></div><br><!--end-->
-<!-- Оплата и доставка --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=oplata_i_dostavka&z=%EE';"><a href="index.php?page=oplata_i_dostavka&z=%EE" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Оплата и доставка</a><br><i></i></div><br><!--end-->
-<!-- Оптовым покупателям --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; border: 1px solid #c9cbcd; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=optovyim_pokupatelyam&z=%EE';"><a href="index.php?page=optovyim_pokupatelyam&z=%EE" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Оптовым покупателям</a><br><i></i></div><br><!--end-->
+<div id="div_fc1262746424402278e88f6c1f02f581"><a name="bda95b04f2968764a28200e468c77a17"></a><br><span class="label label-inverse" style="padding:5px;"><font size=5>О</font></span><br><br><!-- О нас --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=o_nas&z=%EE';"><a href="index.php?page=o_nas&z=%EE" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">О нас</a><br><i></i></div><br><!--end-->
+<!-- Оплата и доставка --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=oplata_i_dostavka&z=%EE';"><a href="index.php?page=oplata_i_dostavka&z=%EE" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Оплата и доставка</a><br><i></i></div><br><!--end-->
+<!-- Оптовым покупателям --><div onMouseOver="this.style.backgroundColor='#c9cbcd';" onMouseOut="this.style.backgroundColor='#f2f2f2';" style="-moz-border-radius: 10px; background: #f2f2f2; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;" onclick="location.href='index.php?page=optovyim_pokupatelyam&z=%EE';"><a href="index.php?page=optovyim_pokupatelyam&z=%EE" style="border-bottom: #b94a48 1px dashed; text-decoration:none;">Оптовым покупателям</a><br><i></i></div><br><!--end-->
 <br></div>
 <script language=javascript>
 //start
-//document.getElementById('div_8277e0910d750195b448797616e091ad').style.visibility = 'visible';
-//document.getElementById('div_8277e0910d750195b448797616e091ad').style.display = 'inline';
-//document.getElementById('divd_8277e0910d750195b448797616e091ad').style.backgroundColor = '#075fad';
+//document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.visibility = 'visible';
+//document.getElementById('div_86277f690350a08d08055cbdda225e0a').style.display = 'inline';
+//document.getElementById('divd_86277f690350a08d08055cbdda225e0a').style.backgroundColor = '#39647a';
 
 </script>

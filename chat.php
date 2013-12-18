@@ -56,6 +56,7 @@ $speek=$language;
 //var_dump($details);
 require ("./templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nls);  require ("./templates/$template/$speek/config.inc");
 require ("./templates/$template/css.inc");
+if ($privat!="") { if (file_exists("./admin/userstat/$privat".".txt")) { $chat_enable=1;} }
 if ($chat_enable==1) {
 $bir=Array();
 if (file_exists("./admin/birthday.txt")==TRUE) {
@@ -160,7 +161,7 @@ if ($val!="") {
 $tmpch=explode("|", $val);
 if (trim($tmpch[0])!="") {
 if ($tmpch[3]==1) {$uregs=$lang[1019]; } else {$uregs=$lang[1020];}
-echo "<div align=center class=round2 style=\"cursor:pointer; cursor:hand;\" onmouseover=\"this.style.backgroundColor='".lighter($nc2,0)."';\" onmouseout=\"this.style.backgroundColor='';\" onclick=\"document.location.href='chat.php?ch=".$tmpch[0]."&amp;speek=$speek';\"><font size=4><a href=chat.php?ch=".$tmpch[0]."&amp;speek=$speek>".$tmpch[1]."</a></font><br><font color=$nc10>".$tmpch[2]."</font><br><small>$uregs</small></div>";
+echo "<div align=center class=round2 style=\"cursor:pointer; cursor:hand;\" onmouseover=\"this.style.backgroundColor='".lighter($nc2,0)."';\" onmouseout=\"this.style.backgroundColor='';\" onclick=\"document.location.href='chat.php?ch=".$tmpch[0]."&speek=$speek';\"><font size=4><a href=chat.php?ch=".$tmpch[0]."&speek=$speek>".$tmpch[1]."</a></font><br><font color=$nc10>".$tmpch[2]."</font><br><small>$uregs</small></div>";
 $fch+=1;
 }
 
@@ -229,7 +230,7 @@ $data="<font color=#468847>".$lang[1013]."</font>";
 if (($privat!=$details[1])&&(is_dir("./admin/userstat/".$privat))) {
 $u_mesff="./admin/userstat/".$privat."/inbox.txt";
 $fp=fopen($u_mesff, "a");
-fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br>".date("d-m-Y H:i",time())."<br><b>".$chatname."</b>: ".$data."<br><br><a href=chat.php?ch=$ch&privat=".rawurlencode($chatname)."&amp;speek=$speek target=".md5($chatname."chat").">".$lang[1017]."</a></td></tr></table>");
+fputs($fp,"<table border=0><tr><td valign=top align=left>$adava</td><td valign=top align=left><img src=$image_path/pix.gif height=1 width=400><br>".date("d-m-Y H:i",time())."<br><b>".$chatname."</b>: ".$data."<br><br><a href=chat.php?ch=$ch&privat=".rawurlencode($chatname)."&speek=$speek target=".md5($chatname."chat").">".$lang[1017]."</a></td></tr></table>");
 fclose($fp);
 }
 $data=$chatname."|||".time()."|$speek|||||$data|\n";
@@ -271,7 +272,7 @@ $data="<font color=#b94a48>".$lang[1014]."</font>";
 if (($privat!=$details[1])&&(is_dir("./admin/userstat/".$privat))) {
 $u_mesff="./admin/userstat/".$privat."/inbox.txt";
 $fp=fopen($u_mesff, "a");
-fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br>".date("d-m-Y H:i",time())."<br><b>".$chatname."</b>: ".$data."<br><br><a href=chat.php?ch=main&privat=".rawurlencode($chatname)."&amp;speek=$speek target=".md5($chatname."chat").">".$lang[1017]."</a></td></tr></table>");
+fputs($fp,"<table border=0><tr><td valign=top align=left>$adava</td><td valign=top align=left><img src=$image_path/pix.gif height=1 width=400><br>".date("d-m-Y H:i",time())."<br><b>".$chatname."</b>: ".$data."<br><br><a href=chat.php?ch=main&privat=".rawurlencode($chatname)."&speek=$speek target=".md5($chatname."chat").">".$lang[1017]."</a></td></tr></table>");
 fclose ($fp);
 }
 $privat="";
@@ -290,7 +291,7 @@ if ($privat!="") {
 if (($privat!=$details[1])&&(is_dir("./admin/userstat/".$privat))) {
 $u_mesff="./admin/userstat/".$privat."/inbox.txt";
 $fp=fopen($u_mesff, "a");
-fputs($fp,"<table border=0><tr><td valign=top>$adava</td><td valign=top><img src=$image_path/pix.gif height=1 width=400><br>".date("d-m-Y H:i",time())."<br><b>".$chatname."</b>: ".$data."<br><br><a href=chat.php?ch=main&privat=".rawurlencode($chatname)."&amp;speek=$speek target=".md5($chatname."chat").">".$lang[1017]."</a></td></tr></table>");
+fputs($fp,"<table border=0><tr><td valign=top align=left>$adava</td><td valign=top align=left><img src=$image_path/pix.gif height=1 width=400><br>".date("d-m-Y H:i",time())."<br><b>".$chatname."</b>: ".$data."<br><br><a href=chat.php?ch=main&privat=".rawurlencode($chatname)."&speek=$speek target=".md5($chatname."chat").">".$lang[1017]."</a></td></tr></table>");
 fclose ($fp);
 }
 }
@@ -375,16 +376,16 @@ if (!isset($bir[$idx])) { $birtc=""; $birti="";} else { $birtc=" class=round2"; 
 
 if ($read==22) {
 if ($portal==1) {
-$online.="<tr><td".$birtc."><a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&amp;speek=$speek target=_blank><img class=shadow src=$ava align=left width=26 height=26 border=0 style=\"border: 2px solid $nc0; width: 26px; height: 26px; -webkit-border-radius: 3px; border-radius: 3px;\"><font color=$font size=1><b>$tmp[3]</b></a></font>$birti<br><font class=small>".$tmp[5]."</font><br><font class=small>".$tmp[4]." <b>".date("H:i:s", $tmp[0])."</b></font></td></tr>\n";
+$online.="<tr><td".$birtc."><div align=left><a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek target=_blank><img class=shadow src=$ava align=left width=26 height=26 border=0 style=\"border: 2px solid $nc0; width: 26px; height: 26px; -webkit-border-radius: 3px; border-radius: 3px;\"><font color=$font size=1><b>$tmp[3]</b></a></font>$birti<br><font class=small>".$tmp[5]."</font><br><font class=small>".$tmp[4]." <b>".date("H:i:s", $tmp[0])."</b></font></div></td></tr>\n";
 } else {
-$online.="<tr><td".$birtc."><a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&amp;speek=$speek><img src=$ava align=absmiddle width=20 height=20 hspace=5 vspace=2 border=0><font color=$font>$tmp[1]</a></font>$birti</td></tr>";
+$online.="<tr><td".$birtc."><div align=left><a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek><img src=$ava align=absmiddle width=20 height=20 hspace=5 vspace=2 border=0><font color=$font>$tmp[1]</a></font>$birti</div></td></tr>";
 }
 } else {
 if ($portal==1) {
-$online.="<a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&amp;speek=$speek><img class=shadow src=$ava align=left width=26 height=26 border=0 class=shadow hspace=10><font color=$font size=1><b>$tmp[3]</b></a></font>$birti<br><font class=small>".$tmp[5]."</font><br><font class=small>".$tmp[4]." <b>".date("H:i:s", $tmp[0])."</b></font><br><br>";
+$online.="<a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek><img class=shadow src=$ava align=left width=26 height=26 border=0 class=shadow hspace=10><font color=$font size=1><b>$tmp[3]</b></a></font>$birti<br><font class=small>".$tmp[5]."</font><br><font class=small>".$tmp[4]." <b>".date("H:i:s", $tmp[0])."</b></font><br><br>";
 
 } else {
-$online.="<a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&amp;speek=$speek><img src=$ava align=absmiddle width=20 height=20 hspace=5 vspace=2 border=0><font color=$font>$tmp[1]</a></font>$birti<br>";
+$online.="<a href=chat.php?ch=$ch&privat=".rawurlencode($tmp[1])."&speek=$speek><img src=$ava align=absmiddle width=20 height=20 hspace=5 vspace=2 border=0><font color=$font>$tmp[1]</a></font>$birti<br>";
 }
 }
 
@@ -402,7 +403,7 @@ echo $chat;
 if (($read==2)||($read==22)) {
 if ($read==22) {
 echo "<!DOCTYPE html><html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=$codepage\">
-<META HTTP-EQUIV=\"REFRESH\" CONTENT=\"10;URL=chat.php?ch=main&amp;speek=$speek&privat=&read=22\">
+<META HTTP-EQUIV=\"REFRESH\" CONTENT=\"10;URL=chat.php?ch=main&speek=$speek&privat=&read=22\">
 <title>Online users</title><style type=\"text/css\">
 body{
 	font: 8pt/140% $main_fontface,Arial, Helvetica, Geneva, sans-serif;
@@ -427,6 +428,7 @@ echo $online;
 }
 } else {
 echo "<center><br><div align=center><div class=round3 style=\"width:90%;\">
+<form class=form-inline onsubmit=\"return false;\">
 <table border=0 width=100% cellpadding=0 cellspacing=5>
 <tr>
 <td colspan>
@@ -438,7 +440,7 @@ function showmessage() {
 $.ajax({
   type: \"POST\",
   url: \"chat.php\",
-  data: \"ch=$ch&amp;speek=$speek&privat=$privat&read=1&session=$sid\",
+  data: \"ch=$ch&speek=$speek&privat=$privat&read=1&session=$sid\",
   success: function(msg){
    $(document).ready(function() {
     document.getElementById('chatwindow').innerHTML=msg;
@@ -450,7 +452,7 @@ $.ajax({
 $.ajax({
   type: \"POST\",
   url: \"chat.php\",
-  data: \"ch=$ch&amp;speek=$speek&privat=$privat&read=2&session=$sid\",
+  data: \"ch=$ch&speek=$speek&privat=$privat&read=2&session=$sid\",
   success: function(msg){
     $(document).ready(function() {
     document.getElementById('onlinewindow').innerHTML=msg;
@@ -487,7 +489,7 @@ if (data!='') {
        $.ajax({
                 type: \"POST\",
                 url: \"chat.php\",
-                data: \"ch=$ch&session=$sid&amp;speek=$speek&privat=$privat&data=\"+data,
+                data: \"ch=$ch&session=$sid&speek=$speek&privat=$privat&data=\"+data,
                 success: function(html) {
                 document.getElementById('mydata').value='';
                         $(\"#chatwindow\").empty();
@@ -506,7 +508,7 @@ function clearchat()
        $.ajax({
                 type: \"POST\",
                 url: \"chat.php\",
-                data: \"ch=$ch&amp;speek=$speek&privat=$privat&data=clear&session=$sid\",
+                data: \"ch=$ch&speek=$speek&privat=$privat&data=clear&session=$sid\",
                 success: function(html) {
                 document.getElementById('mydata').value='';
                         $(\"#chatwindow\").empty();
@@ -529,7 +531,7 @@ function exit()
        $.ajax({
                 type: \"POST\",
                 url: \"chat.php\",
-                data: \"ch=$ch&amp;speek=$speek&privat=$privat&data=exit&session=$sid\",
+                data: \"ch=$ch&speek=$speek&privat=$privat&data=exit&session=$sid\",
                 success: function(html) {
                 document.getElementById('mydata').value='';
                         $(\"#chatwindow\").empty();
@@ -542,22 +544,19 @@ function exit()
 
 function sendtext(e)
 {
-    if (e.keyCode == 13)
-    {
-        send();
-        return false;
-    }
+ send();
+return false;
 }
 --></script></td><td align=center colspan=3>$priva</td></tr><tr><td width=80% valign=top>
-<div id=chatwindow style=\"padding:10px; width:auto; height:300px; overflow-y:auto; overflow-x:hidden;\">$chat</div></td>
-<td valign=top width=20% colspan=3>$privc<div id=onlinewindow style=\"padding:10px; width:auto; height:280px; overflow:auto;\">$online</div></td></tr>
+<div id=chatwindow style=\"padding:10px; width:auto; height:300px; overflow-y:auto; overflow-x:hidden; text-align: left;\">$chat</div></td>
+<td valign=top width=20% colspan=3>$privc<div id=onlinewindow style=\"padding:10px; width:auto; height:280px; overflow:auto; text-align: left;\">$online</div></td></tr>
 
-<tr><td><input type=text style=\"width:96%; height:38px; font-size: 15pt;\" id=mydata value=\"\" onkeyup=\"sendtext(event);\"></td><td valign=top><button type=button class=\"btn btn-primary btn-large\" onclick=send();><img src=$image_path/send_icon.png></button></td><td align=right>";
+<tr><td align=left><input type=text class=input-xlarge style=\"height: 38px;\" id=mydata value=\"\" onkeydown=\"if(event.keyCode==13){sendtext(event); }\"><button type=button class=\"btn btn-success btn-large\" onclick=send();><img src=$image_path/send_icon.png></button></td><td align=right>";
 
-if (($details[7]=="ADMIN")||($details[7]=="MODER")) { echo "<button type=button onclick=clearchat(); class=submit style=\"height:35px;\">".$lang['clear']."</button>";
+if (($details[7]=="ADMIN")||($details[7]=="MODER")) { echo "<button type=button onclick=clearchat(); class=\"btn btn-danger btn-large\">".$lang['clear']."</button>";
 }
-echo "</td><td><button type=button onclick=exit(); class=submit style=\"height:35px;\">".$lang['exit']."</button></td></tr>
-</table>
+echo "</td><td><button type=button onclick=exit(); class=\"btn btn-large\">".$lang['exit']."</button></td></tr>
+</table></form>
 </div>
 </div></center>";
 echo "</body></html>";

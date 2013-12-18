@@ -1,6 +1,6 @@
 <?php
 $flaglinks=Array();
-//$flaglinks['rus']="http://www.24ok.ru/index.php?action=forum|Techsupport";
+//$flaglinks['rus']="http://www.eurowebcart.ru/index.php?action=forum|Techsupport";
 $lngv="<table border=0 cellpadding=0 cellspacing=0><tr>";
 $image_path="images";$curlan="";
 if (count($langs)>1){

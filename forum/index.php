@@ -1,4 +1,6 @@
 <?php
+$avas=Array();
+$avatar="<img src=".$_SESSION["avatar"]." class=\"span14 mr\">";
 function getRealIP()
 {
    if (!isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {$_SERVER['HTTP_X_FORWARDED_FOR']="";}
@@ -320,18 +322,20 @@ $temp=str_replace("<br>","<br>\n", $temp);
         if (($codecounts>1)&&($codecounts==$codecounts2)) {
         while ($codecounts>1) {
         $repst=ExtractString($temp, "[img]", "[/img]");
-        $img = @getimagesize($repst);
-        if (doubleval($img[0])==0) {
-        $repto="<div class=img style=\"width:550px; height:auto; overflow:auto;\" title=\"".$lang[139]." $img[0]x$img[1]\"><a rel=forum_group href=\"$repst\"><img src=\"".$repst."\" border=0></a></div>";
-        } else {
-        $iheight=round($forum_imgwidth*$img[1]/$img[0]);
-        if ($img[1]<=$forum_imgwidth) {
-        $repto="<img src=".$repst." title=\"$img[0]x$img[1]\" class=img hspace=10 vspace=10>";
+        //$img = @getimagesize($repst);
+   $replen=strlen($repst);
+   if ($replen>64) {
+   $repname=substr($repst, 0 , 51)."...". substr($repst, -10);
+   } else {
+   $repname=$repst;
+   }
+$repto="<ul class=\"thumbnails\">
+<li class=\"span4\">
+<a rel=forum_group href=\"$repst\" class=\"thumbnail\"><img src=".$repst." border=0 title=\"".$lang[139]."\"></a>
+<p><a href=\"$repst\" class=small><i class=icon-picture></i> ".$repname."</a></p></li>
+</ul>";
 
-        } else {
-        $repto="<div class=img style=\"width:".$forum_imgwidth."px;\" title=\"".$lang[139]." $img[0]x$img[1]\"><a rel=forum_group href=\"$repst\"><div style=\"display: block; position: relative; width:".$forum_imgwidth."px;\" align=\"center\"><span style=\"width:100%; position: absolute; top: ".($iheight-38)."px; right: 0px; background-image: url('".$image_path."/50w.png');\"><img src=$image_path/pix.gif width=32 height=32 align=absmiddle hspace=10 vspace=4 border=0><font face=Arial color=$nc5 size=1>$img[0]"."x"."$img[1]</font><img src=$image_path/zoomicon.png align=absmiddle hspace=10 vspace=4 border=0></span></div><img src=".$repst." width=$forum_imgwidth height=$iheight border=0><div style=\"clear: both;\" align=\"center\"></div></a></div>";
-        }
-        }
+
         //$repto="<img src=".$repst." class=thumb border=0>";
 
         $temp = str_replace("["."img"."]"."$repst"."["."/img"."]","$repto", $temp);
@@ -498,7 +502,7 @@ if ($details[7]=="ADMIN"){$validmoder=1;}
 if ($details[7]=="MODER"){$validmoder=1;}
 }
 if ($validmoder==1) {
-$forum_list.="<tr class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><font size=3><b><a href=\"index.php?action=forum&fr=".$out[1]."&act=list\">".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=center>".$topn." / ".$popn."</td><td align=left><span class=muted><small>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</small></span></td><td align=left onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" style=\"white-space:nowrap;\"><a href=\"index.php?action=userinfo&usernik=".rawurlencode(@$lp[1])."\">$onlinestatus".@$lp[1]."</a></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><span><a href=\"index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3]."\">".@$lp[2]."</a></span></td><td align=left><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=".$out[1]."&act=list';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td></tr>";
+$forum_list.="<tr class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><font size=3><b><a href=\"index.php?action=forum&fr=".$out[1]."&act=list\">".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=center>".$topn." / ".$popn."</td><td align=left><span class=muted><small>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</small></span></td><td align=left onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" style=\"white-space:nowrap;\"><a href=\"index.php?action=userinfo&usernik=".rawurlencode(@$lp[1])."\">$onlinestatus".@$lp[1]."</a></td><td onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" align=left class=pcont><span><a href=\"index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3]."\">".@$lp[2]."</a></span></td><td align=left><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=".$out[1]."&act=list';\" class=btn>MOD</button></td></tr>";
 } else {
 $forum_list.="<tr onclick=\"location.href='".$htpath."/index.php?action=forum&fr=".$out[1]."&act=list';\" class=searchitem style=\"cursor: pointer; cursor: hand; text-decoration: none;\"><td align=left><img src=".$out[9]." border=0></td><td align=left class=pcont><font size=3><b><a href=\"index.php?action=forum&fr=".$out[1]."&act=list\">".$out[2]."</a></b></font><br><span>".$out[3]."</span></td><td align=center>".$topn." / ".$popn."</td><td align=left><span class=muted><small>".date("d.m.Y H:i",filemtime($datadir.$out[1]."/topics.txt"))."</small></span></td><td align=left style=\"white-space:nowrap;\"><a href=\"index.php?action=userinfo&usernik=".rawurlencode(@$lp[1])."\">$onlinestatus".@$lp[1]."</a></td><td align=left colspan=2><span class=lnk><a href=\"index.php?action=forum&fr=".$out[1]."&act=show&nr=".@$lp[3]."\">".@$lp[2]."</a></span></td></tr>";
 }
@@ -612,6 +616,7 @@ global $f_ico;
 global $f_tre;
 global $dir_smiles;
 global $stikytreads;
+global $avatar;
 $cti="";
 
     $list = array();
@@ -659,7 +664,7 @@ if ($details[7]=="ADMIN"){$validmoder=1;}
 if ($details[7]=="MODER"){$validmoder=1;}
 }
 if ($validmoder==1) {
-$modbutton="<td align=right><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=$fr&act=list';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td>";
+$modbutton="<td align=right><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=$fr&act=list';\" class=btn>MOD</button></td>";
 }
 $forum_list.="<script language=\"javascript\">
         function checkform () {
@@ -765,7 +770,7 @@ $co=""; $cti="";
 if (!isset($online_users[$list[$i][1]])) {$onlinestatus=""; } else {$onlinestatus="<font color=#57ae57><i class=icon-ok title=Online></i></font>&nbsp;";}
 
                 $forum_list.="        <td  onclick=\"location.href='".$htpath."/index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."';\"align=center><a href=\"index.php?action=userinfo&usernik=".rawurlencode($list[$i][1])."\">$onlinestatus".$list[$i][1]."</a></td>\n";
-                 $modbutton="<td align=right><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=$fr&act=show&nr=".$list[$i][3]."';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td>";
+                 $modbutton="<td align=right><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=$fr&act=show&nr=".$list[$i][3]."';\" class=btn>MOD</button></td>";
 if ($tname!="") { $ttname=$tname."<br>"; } else {$ttname=""; }
  $forum_list.= "        <td align=center onclick=\"location.href='".$htpath."/index.php?action=forum&fr=$fr&act=show&nr=".$list[$i][3]."';\">".$list[$i][4]."</td><td align=center><img src=$image_path/pix.gif width=100 height=1 border=0><br><span>".$ttname."<small class=muted>".date("d.m.Y", $list[$i][6])." ".date("H:i", $list[$i][6])."</small></span></td>$modbutton</tr>\n\n";
 
@@ -819,7 +824,7 @@ $forum_list.="</table><table width=100% border=0><tr><td align=left colspan=5 st
                $forum_list.= "<tr><td align=left></td><td colspan=4 align=left>\n";
                reset ($dir_smiles);
                while (list($skey,$sval)=each($dir_smiles)) {
-        $forum_list.="<a href=\"#null\"><img src=smileys/".$skey." hspace=2 border=0 onClick=\"click_bb('textarea',' ".$sval." ');\" title=\"".strtoken($sval,".")."\"></a> ";
+        $forum_list.="<a href=\"#null\"><img class=\"img span25\" src=smileys/".$skey." hspace=2 border=0 onClick=\"click_bb('textarea',' ".$sval." ');\" title=\"".strtoken($sval,".")."\"></a> ";
         }
         /* $forum_list.="
 
@@ -838,7 +843,7 @@ $forum_list.="</table><table width=100% border=0><tr><td align=left colspan=5 st
         */
                 $forum_list.= "</td></tr>\n";
 //include ("antispam.php");
- $forum_list.="<tr><td style=\"padding-top:8px\" valign=top align=left>".$lang[85].":<br><br><span>(Max <b>$mmax</b>)</span></td>
+ $forum_list.="<tr><td style=\"padding-top:8px\" valign=top align=left>$avatar<br>".$lang[85].":<br><br><span>(Max <b>$mmax</b>)</span></td>
         <td colspan=3 align=left><input type=hidden name=\"fpage\" value=$fpage><textarea rows=\"10\" cols=\"50\" name=\"txt\" maxlength=$mmax style=\"width:90%\" id=\"textarea\"></textarea>
         </td></tr>
         <tr><td align=left></td><td colspan=3 align=left>";
@@ -864,35 +869,35 @@ $forum_list.="<fieldset>
   </table><br></fieldset>";
  }
  $forum_list.="</form><table border=0><tr><td colspan=2 align=left class=pcont>";
-if (@$valid=="1"){ if ((@$details[7]=="ADMIN")||(@$details[7]=="MODER")) { $forum_list.="<br><span onclick=\"click_bb('textarea','a')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','img')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\"></span>&nbsp;
-<span onClick=\"javascript:window.open('$htpath/admin/newgal.php?speek=$speek&gtype=4&dest=textar','gal','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=400,left=10,top=10')\" title=\"$lang[938]\"><img src=\"$image_path/picture.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','b', '')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','center','')\" title=\"$lang[936]\"><img src=\"$image_path/align_center.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\"></span>&nbsp;
-<span onClick=\"javascript:window.open('$htpath/admin/attachments.php?speek=$speek&gtype=4&dest=textar','att','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=400,left=10,top=10')\" title=\"$lang[741]: ZIP, RAR, PDF, DOC, XLS\"><img src=\"$image_path/mini_zip.png\"></span>&nbsp;
+if (@$valid=="1"){ if ((@$details[7]=="ADMIN")||(@$details[7]=="MODER")) { $forum_list.="<br><span onclick=\"click_bb('textarea','a')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','img')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onClick=\"javascript:window.open('$htpath/admin/newgal.php?speek=$speek&gtype=4&dest=textar','gal','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=400,left=10,top=10')\" title=\"$lang[938]\"><img src=\"$image_path/picture.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','b', '')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','center','')\" title=\"$lang[936]\"><img src=\"$image_path/align_center.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\" class=\"wikiactive img\"></span>&nbsp;
+<span onClick=\"javascript:window.open('$htpath/admin/attachments.php?speek=$speek&gtype=4&dest=textar','att','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=400,left=10,top=10')\" title=\"$lang[741]: ZIP, RAR, PDF, DOC, XLS\"><img src=\"$image_path/mini_zip.png\" class=\"wikiactive img\"></span>&nbsp;
 ";} else {
-$forum_list.="<br><span onclick=\"click_bb('textarea','a','')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','img','')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\"></span>";}
+$forum_list.="<br><span onclick=\"click_bb('textarea','a','')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','img','')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\" class=\"wikiactive img\"></span>";}
 } else {
-$forum_list.="<br><span onclick=\"click_bb('textarea','a','')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','img','')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\"></span>";
+$forum_list.="<br><span onclick=\"click_bb('textarea','a','')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','img','')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\" class=\"wikiactive img\"></span>";
 }
 $forum_list.="</td></tr>
           </table><p><br><input class=\"btn btn-large btn-primary\" type=\"button\" onclick=\"checkform();\" value=\"".$lang[367]."\"></td>
@@ -1028,6 +1033,7 @@ global $f_reg;
 global $f_ico;
 global $f_adm;
 global $me;
+global $avatar;
 $onlinestatus="";
 $fppages="";
 $fppages="<br><br><center><div align=center><b>$lang[105]:</b> <font size=2>";
@@ -1086,7 +1092,7 @@ if ($details[7]=="ADMIN"){$validmoder=1;}
 if ($details[7]=="MODER"){$validmoder=1;}
 }
 if ($validmoder==1) {
-$modbutton="<td align=right><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=$fr&nr=$nr&act=show';\" onmouseover=\"this.style.backgroundColor='$nc10';\" onmouseout=\"this.style.backgroundColor='';\">MOD</button></td>";
+$modbutton="<td align=right><button onclick=\"location.href='".$htpath."/index.php?action=forum_admin&fr=$fr&nr=$nr&act=show';\" class=btn>MOD</button></td>";
 }
 $forum_list.="<script language=\"javascript\">
     function checkform () {
@@ -1153,7 +1159,7 @@ if ($unum<=1) {$unums=""; }
 if(doubleval($userdetails[1])!=0) {
 if ($unum>=1) {$unums="<div title=\"".$lang[1001].": $unum\"><font color=$nc6><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></font></div><br>$lang[1063]";
 if ($valid=="1") {
-$senduser="<br><a href=\"#Send Private Message\" onClick=\"javascript:window.open('chat.php?ch=main&privat=".rawurlencode($login)."&amp;speek=$speek','".md5($login."chat")."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"$lang[1075]\" border=0 align=absmiddle></a> &nbsp; <a href=\"$htpath/index.php?query=forum&f_user=".rawurlencode($login)."&onlyforum=1\"><img src=\"$image_path/sf.png\" border=0 title=\"$lang[1089]\" align=absmiddle></a>";
+$senduser="<br><a href=\"#Send Private Message\" onClick=\"javascript:window.open('chat.php?ch=main&privat=".rawurlencode($login)."&speek=$speek','".md5($login."chat")."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10')\"><img src=\"$image_path/sm.png\" title=\"$lang[1075]\" border=0 align=absmiddle></a> &nbsp; <a href=\"$htpath/index.php?query=forum&f_user=".rawurlencode($login)."&onlyforum=1\"><img src=\"$image_path/sf.png\" border=0 title=\"$lang[1089]\" align=absmiddle></a>";
 }
 }
 if ($unum>=$lang[1064]) {$unums="<div title=\"".$lang[1001].": $unum\"><font color=#f9a42c><i class=icon-star></font></i><font color=$nc6><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i><i class=\"icon-star-empty icon-white\"></i></font></div>$lang[1065]";}
@@ -1195,8 +1201,8 @@ $avas[$idx]=$ava_image;
 } else {
 $ava_image=$avas[$idx];
 }
-if ($ava_image!="") {$ava_image="<br><a href=\"$htpath/index.php?action=userinfo&usernik=".rawurlencode($login)."\"><img src=\"gallery/avatars/$ava_image\" border=0 title=\"$login\" class=img></a><br>";} else {
-$ava_image="<br><a href=\"$htpath/index.php?action=userinfo&usernik=".rawurlencode($login)."\"><img src=\"images/default_user.png\" border=0 title=\"$login\" class=img></a><br>";
+if ($ava_image!="") {$ava_image="<br><a href=\"$htpath/index.php?action=userinfo&usernik=".rawurlencode($login)."\"><img src=\"gallery/avatars/$ava_image\" border=0 title=\"$login\" class=avabig></a><br>";} else {
+$ava_image="<br><a href=\"$htpath/index.php?action=userinfo&usernik=".rawurlencode($login)."\"><img src=\"images/default_user.png\" border=0 title=\"$login\" class=avabig></a><br>";
 }
 $editbut="";
 if ($validmoder==1) {$editbut="<div id=\"button".$nr."_".$i."\"><button type=button class=btn onclick=\"javascript:js".$nr."_".$i."();\" title=\"".$lang['ch']."\"><font color=#468847>V</font>&nbsp;&nbsp;".$lang['edits']."</button> <button type=button class=btn onclick=\"javascript:jss".$nr."_".$i."();\" title=\"".$lang['del']."\"><font color=#b94a48>X</font>&nbsp;&nbsp;".$lang['del']."</button></div>
@@ -1274,7 +1280,7 @@ if ($login==$details[1]){$senduser="";}
 if ($me=="") {
         $forum_list.="<td valign=top width=10% align=middle><a name=\"me$i\"></a><img src=$image_path/pix.gif width=128 height=1 border=0>$ava_image<b class=lnk>$onlinestatus<a href=#null onClick=\"click_bb('textarea','quote','".$topic[$i][1]."');\" title=\"$lang[1039]\">".$topic[$i][1]." <i class=\"icon-share-alt\"></i></a></b><br><span>$unums</span>$senduser</td>\n";
         $unums="";
-        $forum_list.= "<td colspan=\"2\" valign=top align=left class=pcont>$editbut<div align=right><span class=muted><small>".date("d.m.Y", $topic[$i][0])." <b>".date("H:i", $topic[$i][0])."</b></small></span></div>\n<div id=\"tx".$nr."_".$i."\">".$topic[$i][2]."</div>\n\n<div align=right><span class=lnk><a href=\"$htpath/index.php?action=forum&fr=$fr&act=show&nr=$nr&me=".$i."\" title=\"$lang[106]\">$lang[85] #".$fr."-".$nr."-".$i."</a> <a href=\"#top\"><i class=\"icon-chevron-up\" title=\"$lang[1076]\"></i></a></span></div></td></tr>\n\n";
+        $forum_list.= "<td colspan=\"2\" valign=top align=left class=pcont>$editbut<div align=right><span class=muted><small>".date("d.m.Y", $topic[$i][0])." <b>".date("H:i", $topic[$i][0])."</b></small></span></div>\n<div id=\"tx".$nr."_".$i."\">".$topic[$i][2]."</div>\n\n<div align=right><span class=lnk><a href=\"$htpath/index.php?action=forum&fr=$fr&act=show&nr=$nr&fpage=$fpage&me=".$i."\" title=\"$lang[106]\">$lang[85] #".$fr."-".$nr."-".$i."</a> <a href=\"#top\"><i class=\"icon-chevron-up\" title=\"$lang[1076]\"></i></a></span></div></td></tr>\n\n";
 } else {
 if ($me==$i) {
         $forum_list.="<td valign=top width=10% align=middle class=pcont><a name=\"me$i\"></a><img src=$image_path/pix.gif width=128 height=1 border=0>$ava_image<b class=lnk>$onlinestatus<a href=#null onClick=\"click_bb('textarea','quote','".$topic[$i][1]."');\" title=\"$lang[1039]\">".$topic[$i][1]." <i class=\"icon-share-alt\"></i></a></b><br><span>$unums</span>$senduser</td>\n";
@@ -1305,7 +1311,7 @@ $forum_list.="<tr><td colspan=3 align=right style=\"white-space: nowrap;\" class
         $forum_list.= "    <tr><td align=left></td><td colspan=3 align=left>\n";
         reset ($dir_smiles);
         while (list($skey,$sval)=each($dir_smiles)) {
-        $forum_list.="<a href=\"#null\"><img src=smileys/".$skey." hspace=2 border=0 onClick=\"click_bb('textarea',' ".$sval." ');\" title=\"".strtoken($sval,".")."\"></a> ";
+        $forum_list.="<a href=\"#null\"><img class=\"img span25\" src=smileys/".$skey." hspace=2 border=0 onClick=\"click_bb('textarea',' ".$sval." ');\" title=\"".strtoken($sval,".")."\"></a> ";
         }
     /* $forum_list.="
 
@@ -1323,7 +1329,7 @@ $forum_list.="<tr><td colspan=3 align=right style=\"white-space: nowrap;\" class
     ";
     */
         $forum_list.= "    </td></tr>\n";
-$forum_list.="    <tr><td style=\"padding-top:8px\" valign=top align=left>".$lang[85].":<br><br><span>(Max <b>$mmax</b>)</span></td>
+$forum_list.="    <tr><td style=\"padding-top:8px\" valign=top align=left>$avatar<br>".$lang[85].":<br><br><span>(Max <b>$mmax</b>)</span></td>
     <td colspan=2 align=left><input type=hidden name=\"fpage\" value=$fpage><textarea rows=\"10\" cols=\"50\" name=\"txt\" maxlength=$mmax style=\"width:90%\" id=\"textarea\"></textarea>
     </td></tr>
     <tr><td align=left></td><td align=left>";
@@ -1348,35 +1354,35 @@ $forum_list.="<fieldset>
   </table><br></fieldset>";
  }
  $forum_list.="</form><table border=0><tr><td colspan=2 align=left class=pcont>";
-if (@$valid=="1"){ if ((@$details[7]=="ADMIN")||(@$details[7]=="MODER")) {$forum_list.="<br><span onclick=\"click_bb('textarea','a')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','img')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\"></span>&nbsp;
-<span onClick=\"javascript:window.open('$htpath/admin/newgal.php?speek=$speek&gtype=4&dest=textar','gal','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=400,left=10,top=10')\" title=\"$lang[938]\"><img src=\"$image_path/picture.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','center','')\" title=\"$lang[936]\"><img src=\"$image_path/align_center.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\"></span>&nbsp;
-<span onClick=\"javascript:window.open('$htpath/admin/attachments.php?speek=$speek&gtype=4&dest=textar','att','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=400,left=10,top=10')\" title=\"$lang[741]: ZIP, RAR, PDF, DOC, XLS\"><img src=\"$image_path/mini_zip.png\"></span>";} else {
-$forum_list.="<br><span onclick=\"click_bb('textarea','a','')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','img','')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\"></span>";
+if (@$valid=="1"){ if ((@$details[7]=="ADMIN")||(@$details[7]=="MODER")) {$forum_list.="<br><span onclick=\"click_bb('textarea','a')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','img')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onClick=\"javascript:window.open('$htpath/admin/newgal.php?speek=$speek&gtype=4&dest=textar','gal','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=400,left=10,top=10')\" title=\"$lang[938]\"><img src=\"$image_path/picture.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','center','')\" title=\"$lang[936]\"><img src=\"$image_path/align_center.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\" class=\"wikiactive img\"></span>&nbsp;
+<span onClick=\"javascript:window.open('$htpath/admin/attachments.php?speek=$speek&gtype=4&dest=textar','att','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=400,left=10,top=10')\" title=\"$lang[741]: ZIP, RAR, PDF, DOC, XLS\"><img src=\"$image_path/mini_zip.png\" class=\"wikiactive img\"></span>";} else {
+$forum_list.="<br><span onclick=\"click_bb('textarea','a','')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','img','')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\" class=\"wikiactive img\"></span>";
 }
 } else {
-$forum_list.="<br><span onclick=\"click_bb('textarea','a','')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','img','')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\"></span>&nbsp;
-<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\"></span>";}
+$forum_list.="<br><span onclick=\"click_bb('textarea','a','')\" title=\"$lang[810]\"><img src=\"$image_path/link.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','img','')\" title=\"$lang[925]\"><img src=\"$image_path/thumb.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','b','')\" title=\"$lang[930]\"><img src=\"$image_path/bold.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','i','')\" title=\"$lang[931]\"><img src=\"$image_path/italic.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','u','')\" title=\"$lang[932]\"><img src=\"$image_path/underline.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','sup','')\" title=\"$lang[933]\"><img src=\"$image_path/superscript.png\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','code','')\" title=\"$lang[927]\"><img src=\"$image_path/code.png\" title=\"$lang[927]\" class=\"wikiactive img\"></span>&nbsp;
+<span onclick=\"click_bb('textarea','q','')\" title=\"$lang[1039]\"><img src=\"$image_path/quote.png\" title=\"$lang[1039]\" class=\"wikiactive img\"></span>";}
 $forum_list.="</td></tr></table><p><br><input class=\"btn btn-large btn-primary\" type=\"button\" onclick=\"checkform();\" value=\"".$lang[359]."\"></td>
     </tr></table>
 </td></tr></table>
@@ -1417,6 +1423,10 @@ global $f_ico;
 global $f_tre;
 global $_SERVER;
 global $fpage;
+global $f_live;
+global $qty_last_events;
+global $base_loc;
+global $avatar;
 //echo $f_reg." ".$f_asp." ".$answer_ok;
 $forum_list="";
 
@@ -1510,6 +1520,22 @@ return $forum_list;
   fputs($fp, time()."|".stripslashes($nickname)."|".stripslashes($description)."|".stripslashes($filename)."|"."\n");
   fclose($fp);
 
+  //save events
+if (($f_live==1) &&(@$details[1]!=="")){
+$last_events_file="$base_loc/last_fevents.txt";
+$last_events=Array();
+if (file_exists($last_events_file)) {
+$last_events=file($last_events_file);
+if (count($last_events)>=$qty_last_events) {
+$last_events=array_shift($last_events);
+}
+}
+$fple=fopen($last_events_file,"w");
+fputs($fple, implode("",$last_events).time()."|index.php?action=forum&fr=$fr&act=list&fpage=$fpage|".$details[1]."|$description|$avatar|".strtoken(str_replace("\n"," ",str_replace("\r", "",substr(strip_tags($text),0,1000))),"[cut]")."\n");
+fclose ($fple);
+}
+//end
+
   $fp = fopen($datadir."$fr/topics.txt", "a");
   fputs($fp, time()."\n");
   fputs($fp, stripslashes($nickname)."\n");
@@ -1566,6 +1592,9 @@ global $f_rules_text;
 global $f_rusel_link;
 global $f_rules_link;
 global $fpage;
+global $f_live;
+global $base_loc;
+global $qty_last_events;
 //global $forum_list;
 //$forum_list.="<tr><td colspan=3 align=right style=\"white-space: nowrap;\">";
 //    if ($f_rules_link!="") {$forum_list.="<a href=\"$f_rules_link\"><b><font color=$nc3 size=3>$f_rules_text</font></b> <i class=\"icon-warning-sign\"></i></a>"; }
@@ -1575,6 +1604,7 @@ global $f_asp;
 global $f_reg;
 global $f_ico;
 global $_SERVER;
+global $avatar;
 //echo $f_reg." ".$f_asp." ".$answer_ok;
 $mmax=2000;
 if (@$valid=="1") { $mmax=5000;}
@@ -1705,7 +1735,21 @@ $fp=fopen($ufile,"w"); fputs($fp,($unum+1)); fclose($fp);
   $fps = fopen($datadir."$fr/lastpost.txt", "w");
   fputs($fps, time()."|". trim(stripslashes($nick))."|". trim(stripslashes($description))."|". trim(stripslashes($file))."|". "\n");
   fclose($fps);
-
+  //save events
+if (($f_live==1) &&(@$details[1]!=="")){
+$last_events_file="$base_loc/last_fevents.txt";
+$last_events=Array();
+if (file_exists($last_events_file)) {
+$last_events=file($last_events_file);
+if (count($last_events)>=$qty_last_events) {
+$last_events=array_shift($last_events);
+}
+}
+$fple=fopen($last_events_file,"w");
+fputs($fple, implode("",$last_events).time().str_replace("\n"," ",str_replace("\r", "","|index.php?action=forum&fr=$fr&act=show&nr=".$number."&fpage=$fpage#me".(doubleval($ans)+1)."|".$details[1]."|".$description."|$avatar|".strtoken(substr(strip_tags($text),0,1000),"[cut]")))."\n");
+fclose ($fple);
+}
+//end
 $popn = 0;
 $file=$datadir."$fr/answers.txt";
 $fpopn=@fopen($file,"r");

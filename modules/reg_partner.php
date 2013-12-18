@@ -36,7 +36,7 @@ $page_title = $lang[221];
 }
 fclose ($pageopen);
 $x0005="<div style=\"width:100%; height:300px; overflow:scroll\">".str_replace("==$page_title==", "" , $page_content)."</div><br>";
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")): $x0005="<p align=right><b>".$mpz['file'].":</b> x0005<input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/x0005.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>&nbsp;<input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=x0005&amp;del=x0005','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></p>".$x0005; endif; }
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")): $x0005="<p align=right><b>".$mpz['file'].":</b> x0005<input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/x0005.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>&nbsp;<input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=x0005&del=x0005','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></p>".$x0005; endif; }
 
 unset ($page_content, $page_title, $pageopen);
 }
@@ -175,7 +175,7 @@ $regp_list="<b>".$lang[323]."!</b><br><br><b>".$lang[634]."</b>
 &lt;b id=\"jsphp\"&gt;&lt;br&gt;Loading ...&lt;/b&gt;
 &lt;script&gt;
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta=0&pid=$partnerid&catid=&unifid=1&amp;speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta=0&pid=$partnerid&catid=&unifid=1&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 &lt;/script&gt;
@@ -188,7 +188,7 @@ var j=document.getElementById('jsmax');
 var s=document.getElementById('jscatid');
 j.value=(5+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&pid=$partnerid&catid='+s.value+'&unifid=1&amp;speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&pid=$partnerid&catid='+s.value+'&unifid=1&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -199,7 +199,7 @@ if (Math.round(j.value)&gt;=5) {
 j.value=(Math.round(j.value)-5);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=1&amp;speek=$speek';
+scriptNode.src = '$htpath/js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=1&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }

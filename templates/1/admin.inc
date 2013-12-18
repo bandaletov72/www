@@ -2,9 +2,9 @@
 $shabl="";
 $shabl2="";
 $shabl.="<li><a href=\"index.php?action=template&nt=templates/$template/$speek&t=config\">
-".$lang['adm9']." [$speek]</a></li>";
+".$lang['adm9']." [ $speek ]</a></li>";
 $shabl2.="<li><a href=\"index.php?speeks=$speek&action=vars&mod=admin\">
-".$lang[135]." [$speek]</a> </li>";
+".$lang[135]." [ $speek ]</a> </li>";
 
 $moderem1="<!-- ";$moderem2=" -->";
 if (($details[7]=="ADMIN")&&($valid=="1")) {$moderem1="";$moderem2="";}
@@ -37,14 +37,22 @@ if ($smod=="shop") {$admin_url.="<li><a href=\"index.php?action=view_cmenu\">
 ".$lang[130]."</a></li><li><a href=\"index.php?action=topindex\">
 ".$lang[131]."</a></li><li><a href=\"index.php?action=dircolors\">
 ".$lang[521]."</a></li><li><a href=\"#kvit\" onClick=\"javascript:window.open('admin/currency_parser.php?speek=$speek','frc','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=520,height=560,left=10,top=10')\">
-".$lang[1144]."</a></li>";
+".$lang[1144]."</a></li><li><a href=\"index.php?action=setsales\">
+".$lang[1621]."</a></li>";
 }
 $admin_url.="<li><a href=\"index.php?action=template&nt=robots\">
 ".$lang['edits']." robots.txt</a></li>
 <li><a href=\"index.php?action=template&nt=htaccess\">
 ".$lang['edits']." .htaccess</a></li>
 <li><a href=\"index.php?action=template&nt=widgetlist\">
-Widgets</a></li>";
+Widgets</a></li><li><a href=\"#phpinfo\" onClick=\"javascript:window.open('admin/phpinfo.php?speek=$speek','frc','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=720,height=560,left=10,top=10')\">
+Php info</a></li>";
+if ($collect_stat==1) {
+$hashdir=md5("1".$secret_salt.str_replace("www.","", $htpath));
+$admin_url.="<li><a href=\"index.php?action=arch&i=%2F".$hashdir."\">
+".$lang[13]."</a></li>";
+unset($hashdir);
+}
 
 $admin_url.="<br><br><b>
 ".$lang[1011].":</b> <br>
@@ -86,9 +94,9 @@ $admin_url.="<br><br>$moderem1<b>
 ".$lang['adm8']."</a></li>$shabl<li><a href=\"index.php?action=template&nt=templates/$template\">
 ".$lang['adm7']."</a></li>";
 if ($smod=="shop") {
-$admin_url.="<li><a href=\"#kvit\" onClick=\"javascript:window.open('admin/edit/index.php?speek=$speek&amp;working_file=../../templates/$template/$speek/ticket.inc','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\">
+$admin_url.="<li><a href=\"#kvit\" onClick=\"javascript:window.open('admin/edit/index.php?speek=$speek&working_file=../../templates/$template/$speek/ticket.inc','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\">
 ".$lang[134]."</a></li>
-<li><a href=\"#kvit\" onClick=\"javascript:window.open('admin/edit/index.php?speek=$speek&amp;working_file=../../templates/$template/$speek/invoice.inc','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\">
+<li><a href=\"#kvit\" onClick=\"javascript:window.open('admin/edit/index.php?speek=$speek&working_file=../../templates/$template/$speek/invoice.inc','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\">
 ".$lang[871]."</a></li>";
 }
 $admin_url.="<li><a href=\"index.php?action=thtml&mod=admin\">
@@ -103,7 +111,7 @@ if ($show_statip==1) {
 $admin_url.="<b>
 ".$lang[13].":</b> <br><li><a href=\"index.php?action=userip\">
 ".$lang[13]." IP</a></li><li><a href=\"index.php?action=template&nt=$base_loc&t=banlist\">
-".$lang[14]." IP</a></li><li><a href=\"index.php?action=userip&delip=1&amp;start=0&amp;perpage=10&ipsort=\">
+".$lang[14]." IP</a></li><li><a href=\"index.php?action=userip&delip=1&start=0&perpage=10&ipsort=\">
 ".$lang[15]."</a></li><br><br>";
 }
 if ($smod=="shop") {
@@ -122,7 +130,7 @@ $admin_url.="<br><br>";
 $admin_url.="$moderem1<b>
 ".$lang[19].":</b> <br><li><a href=\"index.php?action=partners&mod=admin\">
 ".$lang[872]."</a></li><li><a href=\"#obmen\" onClick=\"javascript:window.open('admin/obmen.php?speek=$speek','fr1','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=560,left=10,top=10')\">
-".$lang[20]."</a></li><li><a href=\"#htmlcode\" onClick=\"javascript:window.open('admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/s0001.txt','fr2','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\">
+".$lang[20]."</a></li><li><a href=\"#htmlcode\" onClick=\"javascript:window.open('admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/s0001.txt','fr2','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\">
 ".$lang[21]."</a></li><li><a href=\"#obmen\" onClick=\"javascript:window.open('admin/gen_editor.php?speek=$speek','fr1','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=560,left=10,top=10')\">
 ".$lang[22]."</a></li><li><a href=\"#obmen\" onClick=\"javascript:window.open('admin/generator.php?speek=$speek','fr1','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=560,left=10,top=10')\">
 ".$lang[23]."</a></li>$moderem2<br><br><b>

@@ -1,29 +1,17 @@
-==Carousel==
-<br>
-<br>
-<br>
-<div class="carousel slide" id="myCarousel">
-<script>    $('.carousel').carousel({
+==Carousel==<p><br /> <br /> </p>
+<div id="myCarousel" class="carousel slide">
+<script>// <![CDATA[
+    $('.carousel').carousel({
 interval: 5000
 })
-</script>
+// ]]></script>
 <div class="carousel-inner">
-<div class="item active">
-<a href="index.php?catid=apparel"><img width="756" height="233" border="0" src="uploads/drinkware-items.jpg"></a>
-<div class="carousel-caption">
-<h4>Welcome to Eurowebcart</h4>
-<font color=white>Freeware CMS for your home and business<br></font>
-</div></div>
-<div class="item">
-<a href="index.php?catid=glassware"><img width="756" height="233" border="0" src="uploads/eventfavors.jpg"></a>
-<div class="carousel-caption">
-<h4>All-in-one</h4>
-<font color=white>Website | Online Store | Blog |Gallery | Wiki | File Archive | Craigslist | Support | and more...<br></font>
-</div></div>
-<div class="item">
-<a href="index.php?catid=sport_bottles"><img width="756" height="233" border="0" src="uploads/office-promo-items.jpg"></a>
-<div class="carousel-caption">
-<h4>7 language packs included!</h4>
-<font color=white>RRU EN BRA GER LAT CZK UKR<br></font>
-</div></div>
+<div class="item active"><a href="index.php?catid=apparel"><img src="uploads/drinkware-items.jpg" alt="" width="756" height="233" border="0" /></a>
+<div class="carousel-caption"><span style="color: white;">&nbsp;</span></div>
+</div>
+<div class="item"><a href="index.php?catid=glassware"><img src="uploads/eventfavors.jpg" alt="" width="756" height="233" border="0" /></a>
+<div class="carousel-caption"><span style="color: white;">&nbsp;</span></div>
+</div>
+<div class="item"><a href="index.php?catid=sport_bottles"><img src="uploads/office-promo-items.jpg" alt="" width="756" height="233" border="0" /><span style="color: white;"><br /></span></a></div>
+</div>
 </div>

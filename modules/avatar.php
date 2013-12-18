@@ -205,6 +205,7 @@ $av_img=up_img($avatar_url);
 if ($av_img!="") {
 if (is_dir("./admin/userstat/".$details[1])==FALSE) { mkdir("./admin/userstat/".$details[1],0755); }
 $afp=fopen("./admin/userstat/".$details[1]."/".$details[1].".ava", "w");
+$_SESSION["avatar"]="gallery/avatars/".$av_img;
 fputs($afp,$av_img);
 fclose ($afp);
 unset($av_img);
@@ -218,9 +219,9 @@ $avatarsres="<br><div><font color=#b94a48><h4>$lang[42]!</h4>Error upload image.
 <form class=form-inline action=index.php method=POST>
 <table border=0 width=100%><tr>
 <td style=\"white-space:nowrap;\"><b>$lang[926]:</b></td><td width=100%><input type=hidden name=action value=avatar>
-<input type=text size=20 style=\"width:100%\" name=\"avatar_url\" value=\"http://\"></td>
+<input type=text size=20 style=\"width:96%\" name=\"avatar_url\" value=\"\" placeholder=\"http://\"></td>
 <td>
-<input type=submit value=\"$lang[1113]\">
+<input class=\"btn btn-primary ml\" type=submit value=\"$lang[1113]\">
 </td></tr></table></form><br>
 </div></div>";
 }
@@ -429,10 +430,10 @@ $end=$startnew + $perpage - 1 + $gt;
 if ($end > $total): $end=$total-1 + $gt; endif;
 $stat= "<center><small><br>".$lang[203]." <b>$numberpages</b> <img src=\"$image_path/a.gif\"> ".$lang[206]." <b>$total</b> ".$lang[207]." <img src=\"$image_path/a.gif\"> ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"$htpath/index.php?action=avatar&isort=$isort&amp;start=" . ($start+$perpage) . "&amp;perpage=$perpage\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"$htpath/index.php?action=avatar&isort=$isort&amp;start=0&amp;perpage=\"><!--homee--></a>";
+$nextpage="<a href=\"$htpath/index.php?action=avatar&isort=$isort&start=" . ($start+$perpage) . "&perpage=$perpage\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"$htpath/index.php?action=avatar&isort=$isort&start=0&perpage=\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"$htpath/index.php?action=avatar&isort=$isort&amp;start=" . ($start-$perpage) . "&amp;perpage=$perpage\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"$htpath/index.php?action=avatar&isort=$isort&start=" . ($start-$perpage) . "&perpage=$perpage\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>=$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -455,16 +456,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"$htpath/index.php?action=avatar&isort=$isort&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"$htpath/index.php?action=avatar&isort=$isort&start=" . ($s*$perpage) . "&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"$htpath/index.php?action=avatar&isort=$isort&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"$htpath/index.php?action=avatar&isort=$isort&start=" . ($s*$perpage) . "&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=avatar&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=avatar&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=avatar&isort=$isort&amp;start=" . ($perpage*($numberpages-1)) . "&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=avatar&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=avatar&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=avatar&isort=$isort&start=" . ($perpage*($numberpages-1)) . "&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 
@@ -480,12 +481,12 @@ $avatars="<br>
 <form class=form-inline action=index.php method=POST>
 <table border=0 width=100%><tr>
 <td style=\"white-space:nowrap;\"><b>$lang[926]:</b></td><td width=100%><input type=hidden name=action value=avatar>
-<input type=text size=20 style=\"width:100%\" name=\"avatar_url\" value=\"http://\"></td>
+<input type=text size=20 style=\"width:96%\" name=\"avatar_url\" value=\"\" placeholder=\"http://\"></td>
 <td>
-<input type=submit value=\"$lang[1113]\">
+<input class=\"btn btn-primary ml\" type=submit value=\"$lang[1113]\">
 </td></tr></table></form><br>
 </div>
-$aav<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=avatar&isort=&amp;start=$start&i=".rawurlencode($i)."&amp;perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=avatar&isort=date&amp;start=$start&i=".rawurlencode($i)."&amp;perpage=$perpage\">".$lang['by_date']."</a></small></div>$hear</center><table border=0 cellspacing=10 cellpadding=0 width=100%>
+$aav<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=avatar&isort=&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=avatar&isort=date&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_date']."</a></small></div>$hear</center><table border=0 cellspacing=10 cellpadding=0 width=100%>
 <tr>
 $gal
 </tr>

@@ -1079,7 +1079,7 @@ $show=0;
 $editblog="";
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){
 $editblog="<div style=\"float:right;margin-left: 10px;margin-right: 10px;\"><br>
-<a href=\"#edit\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../."."$fold/$tmp[0]/$tmp[1]/$tmp[2]/$tmp[3]".".txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=560,left=10,top=10')><font color=#468847>V</font>&nbsp;".$lang[385]."</a>
+<a href=\"#edit\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../."."$fold/$tmp[0]/$tmp[1]/$tmp[2]/$tmp[3]".".txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=560,left=10,top=10')><font color=#468847>V</font>&nbsp;".$lang[385]."</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href=\"index.php?action=blog&topic_del=$tmp[0]/$tmp[1]/$tmp[2]/$tmp[3]\"><font color=#b94a48>X</font>&nbsp;".$lang[744]."</a></div>";
 if ($tmp[9]=="YES" ) {$blogchecked=" checked";} else {$blogchecked="";}
@@ -1197,15 +1197,15 @@ $ff+=1;
 if ($blog_perpage<=$fff) {
 //echo ($blog_perpage+$start)."<=$fff ". count($list);
 if ($yok==0) {
-$blog_list.="<div style=\"clear:both; background-color:$nc6; padding:10px\" align=center>&lt;&lt; <a href=\"index.php?action=blog&month=$month&year=$year&amp;start=".($start+$blog_perpage)."&tag=$tag\">$lang[923] $blog_perpage</a> ";
+$blog_list.="<div style=\"clear:both; background-color:$nc6; padding:10px\" align=center>&lt;&lt; <a href=\"index.php?action=blog&month=$month&year=$year&start=".($start+$blog_perpage)."&tag=$tag\">$lang[923] $blog_perpage</a> ";
 } else {
-$blog_list.="<div style=\"clear:both; background-color:$nc6; padding:10px\" align=center>&lt;&lt; <a href=\"index.php?action=blog&amp;start=".($start+$blog_perpage)."&tag=$tag\">$lang[923] $blog_perpage</a> ";
+$blog_list.="<div style=\"clear:both; background-color:$nc6; padding:10px\" align=center>&lt;&lt; <a href=\"index.php?action=blog&start=".($start+$blog_perpage)."&tag=$tag\">$lang[923] $blog_perpage</a> ";
 }
 if ($start!=0) {
 if ($yok==0) {
-$blog_list.="&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"index.php?action=blog&month=$month&year=$year&amp;start=".($start-$blog_perpage)."\">$lang[924] $blog_perpage</a> &gt;&gt";
+$blog_list.="&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"index.php?action=blog&month=$month&year=$year&start=".($start-$blog_perpage)."\">$lang[924] $blog_perpage</a> &gt;&gt";
 } else {
-$blog_list.="&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"index.php?action=blog&amp;start=".($start-$blog_perpage)."\">$lang[924] $blog_perpage</a> &gt;&gt";
+$blog_list.="&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"index.php?action=blog&start=".($start-$blog_perpage)."\">$lang[924] $blog_perpage</a> &gt;&gt";
 }
 }
 $blog_list.="</div><br><br>";
@@ -1214,9 +1214,9 @@ $blog_list.="<div  align=center style=\"clear:both; background-color:$nc6; paddi
 if ($blog_perpage>$fff) {if (($start-$blog_perpage)>=0) {
 
 if ($yok==0) {
-$blog_list.="<a href=\"index.php?action=blog&month=$month&year=$year&amp;start=".($start-$blog_perpage)."&tag=$tag\">$lang[924] $blog_perpage</a> &gt;&gt";
+$blog_list.="<a href=\"index.php?action=blog&month=$month&year=$year&start=".($start-$blog_perpage)."&tag=$tag\">$lang[924] $blog_perpage</a> &gt;&gt";
 } else {
-$blog_list.="<a href=\"index.php?action=blog&amp;start=".($start-$blog_perpage)."&tag=$tag\">$lang[924] $blog_perpage</a> &gt;&gt";
+$blog_list.="<a href=\"index.php?action=blog&start=".($start-$blog_perpage)."&tag=$tag\">$lang[924] $blog_perpage</a> &gt;&gt";
 }
 }}
 $blog_list.="</div><br><br>";

@@ -493,7 +493,9 @@ if ($validmoder==1) {
                 }
         }
     fclose($fp);
-
+$fp = fopen($datadir."$fr/lastpost.txt", "w");
+fputs ($fp, time()."|".$details[1]."||0|");
+fclose ($fp);
         $fp = fopen($datadir."$fr/topics.txt", "w");
         for ($i=0; $i < sizeof($list); $i++) {
                 if (trim($list[$i][3]) != $nr) {

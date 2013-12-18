@@ -203,7 +203,7 @@ $ef=fopen("./admin/comments/$unifmd.txt" , "r");
 $commread=str_replace("<br><br>", "<br>",str_replace("<br><br>", "<br>",str_replace("<br><br>", "<br>",str_replace("'", "", str_replace("\"", "", str_replace("\n","<br>",str_replace("\r","<br>",str_replace(chr(10),"<br>", fread($ef, filesize("./admin/comments/$unifmd.txt"))))))))));
 fclose($ef);
 $comm_book=str_replace("\n", "", str_replace ("\"", "", str_replace ("'", "&quot;", str_replace("[adm]","<font color=$nc2>",str_replace("[/adm]","</font>", str_replace("[vote]","<img src=\"$image_path/vote",str_replace("[/vote]",".png\">",str_replace("[hr]", "<div class=clear><br></div>", str_replace("[i]", "<i class=muted>", str_replace("[/i]", "</i>", str_replace("[b]", "<b>", str_replace ("[/b]", "</b>", str_replace ("[br]", "<br>", str_replace("[amp]", "&", $commread))))))))))))));
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){$comm_book= str_replace("[ip]", "<a href=$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&amp;start=0&amp;perpage=10&ipsort=>".$lang[186]."</a>", $comm_book));} else {$comm_book=str_replace("[ip]", " <a href=#", str_replace("[/ip]", "></a>", $comm_book));} } else {$comm_book=str_replace("[ip]", " <a href=#", str_replace("[/ip]", "></a>", $comm_book));}
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){$comm_book= str_replace("[ip]", "<a href=$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&start=0&perpage=10&ipsort=>".$lang[186]."</a>", $comm_book));} else {$comm_book=str_replace("[ip]", " <a href=#", str_replace("[/ip]", "></a>", $comm_book));} } else {$comm_book=str_replace("[ip]", " <a href=#", str_replace("[/ip]", "></a>", $comm_book));}
 }
 //end comments editor
 

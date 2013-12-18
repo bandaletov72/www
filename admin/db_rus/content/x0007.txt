@@ -1,16 +1,17 @@
-==x0007==
-<table style="border-collapse: separate;" width="90%" cellspacing="0" cellpadding="3" border="0" align="center"><tbody><tr><td width="33%" valign="middle">
+==x0007==<table style="border-collapse: separate;" border="0" width="90%" cellspacing="0" cellpadding="3" align="center">
+<tbody>
+<tr>
+<td valign="middle" width="33%">
 <div>
-<div align="left"><font size="6" face="Georgia" color="#ffffff">Вас приветствует Eurowebcart!</font></div><font size="2"><br>
-Уникальная <strong>Бесплатная CMS</strong> для дома или Вашей компании.<br>
-<br>
-<font color="#ffffff">Сайт | Интернет-магазин | Блог | Фотогалерея | Википедия | Архив файлов| Доска объявлений | Форум | и еще...</font><font style="background-color: rgb(102, 102, 102);" color="#ffffff"><br>
-</font></font><br>
-</div></td><td width="34%" valign="top">
-<div align="center"><a href="http://www.24ok.ru"><img border="0" src="eurowebcart.png" alt="Сайт разработчиков Eurowebcart"></a></div></td><td width="33%" valign="middle" align="center">
-<div>
-<a href="http://www.24ok.ru/index.php?flag=rus&page=skachat"><img src="images/download_ru.png" border=0 title="Скачать Eurowebcart - абсолютно бесплатный движок для сайта"></a><br>
-&nbsp;<br>
-<img style="margin: 0px;" width="24" height="24" src="images/flag_eng.png" alt="" title=""> <img style="margin: 0px;" width="24" height="24" src="images/flag_rus.png" alt="" title=""> <img style="margin: 0px;" width="24" height="24" src="images/flag_uam.png" alt="" title=""> <img style="margin: 0px;" width="24" height="24" src="images/flag_ger.png" alt="" title=""> <img style="margin: 0px;" width="24" height="24" src="images/flag_lat.png" alt="" title=""> <img style="margin: 0px;" width="24" height="24" title="" alt="" src="images/flag_ces.png"> <img style="margin: 0px;" width="24" height="24" src="images/flag_bra.png" alt="" title=""><br>
-<font size="2">7 языков в комплекте!</font><br>
-</div></td></tr></tbody></table>
+<div align="left"><span style="color: #ffffff; font-size: xx-large;">Eurowebcart</span></div>
+<span style="font-size: small;"><span style="color: #ffffff;"><strong>Бесплатная CMS</strong> для дома или Вашей компании.</span><br /> <br /> <span style="font-size: 8pt;"><span style="color: #ffffff;">Сайт | Интернет-магазин | Блог | Фотогалерея | Википедия | Архив файлов| Доска объявлений | Форум | и еще...</span><span style="background-color: #666666; color: #ffffff;"><br /> </span></span></span></div>
+</td>
+<td valign="top" width="34%">
+<div align="center"><a href="http://www.eurowebcart.ru"><img src="eurowebcart.png" alt="Сайт разработчиков Eurowebcart" border="0" /></a></div>
+</td>
+<td align="center" valign="middle" width="33%">
+<div><a href="http://www.eurowebcart.ru/index.php?flag=rus&amp;page=skachat"><img title="Скачать Eurowebcart - абсолютно бесплатный движок для сайта" src="images/download_ru.png" alt="" border="0" /></a><br /> &nbsp;<br /> <img style="margin: 0px;" src="images/flag_eng.png" alt="" width="24" height="24" /> <img style="margin: 0px;" src="images/flag_rus.png" alt="" width="24" height="24" /> <img style="margin: 0px;" src="images/flag_uam.png" alt="" width="24" height="24" /> <img style="margin: 0px;" src="images/flag_ger.png" alt="" width="24" height="24" /> <img style="margin: 0px;" src="images/flag_lat.png" alt="" width="24" height="24" /> <img style="margin: 0px;" src="images/flag_ces.png" alt="" width="24" height="24" /> <img style="margin: 0px;" src="images/flag_bra.png" alt="" width="24" height="24" /><br /> <span style="font-size: small; color: #ffffff;">7 языков в комплекте!</span></div>
+</td>
+</tr>
+</tbody>
+</table>

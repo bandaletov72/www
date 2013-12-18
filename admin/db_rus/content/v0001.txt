@@ -1,2 +1,0 @@
-==Point1[coord]100:100[/coord]==
-Point 1 description

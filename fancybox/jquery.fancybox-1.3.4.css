@@ -312,7 +312,7 @@
 #fancybox-title-float-main {
 	color: #FFF;
 	line-height: 29px;
-	font-weight:400;
+	font-weight: bold;
 	padding: 0 0 3px 0;
 	background: url('fancybox-x.png') 0px -40px;
 }

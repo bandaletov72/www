@@ -77,7 +77,7 @@ fputs($fp, "./$nt/$file");
 flock ($fp, LOCK_UN);
 fclose($fp);
 if ($file=="css.inc") {
-$fp = fopen ("./style.css" , "w"); flock ($fp, LOCK_EX);
+$fp = fopen ("./style_".$speek.".css" , "w"); flock ($fp, LOCK_EX);
 fputs($fp, str_replace("{nc10}", "[nc10]", str_replace("{lnc10}", "[lnc10]", $cssflush)));flock ($fp, LOCK_UN);
 fclose($fp);
 
@@ -105,13 +105,14 @@ if (@file_exists("./help/$speek/lang.html")) {$hhelp="<div align=right><img src=
 
 $template_list .= "$template_list2<br>$hhelp";
 
-if (($t=="custom_cart")||(substr($t,0,3)=="cc_")) {
-if (substr($t,0,3)=="cc_") {
+if (($t=="custom_cart")||(substr($t,0,3)=="cc_")||(substr($t,0,14)=="custom_column_")) {
+if ((substr($t,0,3)=="cc_") || (substr($t,0,14)=="custom_column_")){
 if (@!file_exists("./templates/$template/$speek/".$t.".inc")) {
 $ffp=fopen("./templates/$template/$speek/".$t.".inc","w");
 fclose ($ffp);
 }
 }
+if (substr($t,0,14)!="custom_column_") {
 $template_list .= "<b>$lang[691]:</b><br>
 <pre><small>Default text input|Input power|A||
 Hidden Input|Qty of inputs|pcs|hidden||
@@ -121,6 +122,12 @@ Any qty of cols lot|Specify item content||kit|name;qty;weight;voltage;power;|
 Auto score lot - only 3 cols required|Specify item content||kit2|name;qty;price|
 Country select input|Country||countries||
 Tips input|City|||New York;Moscow;Paris;Berlin;Tokyo;Pekin;|</small></pre><br>\n";
+} else {
+$template_list .= "<b>$lang[691]:</b><br>
+<pre><small>United States
+China
+Russian Federation</small></pre><br>\n";
+}
 }
 
 

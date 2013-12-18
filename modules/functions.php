@@ -22,13 +22,13 @@ while (list ($keywiki2, $valwiki2) = @each ($tmpwiki2)) {
 $valwiki2=str_replace("/","", stripslashes($valwiki2));
 if (strlen($valwiki2)>=3) {
 if ($full_wiki_repl==1) {
-$text=str_replace($valwiki2, "<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\">".$valwiki2."</a>", $text);
+$text=str_replace($valwiki2, "<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\" target=_blank>".$valwiki2."</a>", $text);
 $upwiki=strtoupper(toUpper(substr($valwiki2,0,1))).substr($valwiki2,1,(strlen($valwiki2)-1));
-$text=str_replace($upwiki, "<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\">".$upwiki."</a>", $text);
+$text=str_replace($upwiki, "<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\" target=_blank>".$upwiki."</a>", $text);
 } else {
-$text=str_replace($valwiki2." ", "<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\">".$valwiki2."</a> ", $text);
+$text=str_replace($valwiki2." ", "<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\" target=_blank>".$valwiki2."</a> ", $text);
 $upwiki=strtoupper(toUpper(substr($valwiki2,0,1))).substr($valwiki2,1,(strlen($valwiki2)-1));
-$text=str_replace($upwiki." ", "<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\">".$upwiki."</a> ", $text);
+$text=str_replace($upwiki." ", "<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\" target=_blank>".$upwiki."</a> ", $text);
 }
 //echo strlen($valwiki2)." ".$valwiki2."<br>";
 }
@@ -57,7 +57,7 @@ function baskv() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&amp;speek=$speek".$sw."';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&speek=$speek".$sw."';
 scriptNode.type = 'text/javascript';
 
 }
@@ -65,7 +65,7 @@ function baskon() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=on&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=on&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -73,7 +73,7 @@ function baskoff() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=off&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=off&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -81,7 +81,7 @@ function baskonoff() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=onoff&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=onoff&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -89,7 +89,7 @@ function baskoffon() {
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=offon&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&sw=offon&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -98,16 +98,15 @@ floading (arg);
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&amp;del='+arg+'&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&del='+arg+'&speek=$speek';
 scriptNode.type = 'text/javascript';
-
 }
 function bplus(arg,arg2) {
 floading (arg);
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&plus='+arg+'&qt='+arg2+'&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&plus='+arg+'&qt='+arg2+'&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -116,7 +115,7 @@ floading (arg);
 var scriptNode = document.createElement('script');
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 scriptNode.language='javascript';
-scriptNode.src = '$htpath/$bscript.php?session=$sid&minus='+arg+'&qt='+arg2+'&amp;speek=$speek';
+scriptNode.src = '$htpath/$bscript.php?session=$sid&minus='+arg+'&qt='+arg2+'&speek=$speek';
 scriptNode.type = 'text/javascript';
 
 }
@@ -168,7 +167,7 @@ $retr.= "<div class=\"onav2\" align=left style=\"background: $var02 url(grad.php
 </div>";
 }
 
-$retr.= "<div class=\"content\" align=left>$var00</div>
+$retr.= "<div class=\"content\">$var00</div>
 </div>
 <div class=clear></div>";
 if ($ret==true) {
@@ -222,7 +221,7 @@ echo " align=left style=\"background: $var02 url(grad.php?h=50&w=20&s=".str_repl
 </div>";
 }
 
-echo "<div class=\"content\" align=left>$var00</div>
+echo "<div class=\"content\">$var00</div>
 <div class=clear></div></div>
 ";
 }

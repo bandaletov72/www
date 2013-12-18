@@ -302,7 +302,7 @@ if (("$out_c[11]"=="0")||($out_c[11]=="")) {$out_c[11]=$lang['pcs'];$sqrp="";}
 if (@$out_c[9]==""): $out_c[9]=""; endif;
 
 $lid=md5(@$out_c[3]." ID:".@$out_c[6]);
-$llid="<a href=~~~$htpath/index.php?unifid=".$lid."&amp;flag=$speek~~~>";
+$llid="<a href=~~~$htpath/index.php?unifid=".$lid."&flag=$speek~~~>";
 if ($friendly_url==1) {
 if($hidart!=1) {
 $man=translit(@$out_c[3])."-".translit(@$out_c[6]);
@@ -310,9 +310,9 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
 }
 }
     if (($view_img_minibasket==1)&&(@$out_c[9]!="")) {
-    $full_baskets[$ss] .="<table border=0 cellspacing=0 cellpadding=3 width=".$style['right_width']."><tr><td valign=top align=center>$llid".str_replace(" hspace=10","",str_replace(" vspace=3","", @$out_c[9]))."</a></td><td valign=top align=left>";
+    $full_baskets[$ss] .="<table border=0 cellspacing=0 cellpadding=3 width=100%><tr><td valign=top align=center>$llid".str_replace(" hspace=10","",str_replace(" vspace=3","", @$out_c[9]))."</a></td><td valign=top align=left>";
     } else {
-    $full_baskets[$ss] .="<table border=0 cellspacing=0 cellpadding=3 width=".$style['right_width']."><tr><td valign=top align=left>";
+    $full_baskets[$ss] .="<table border=0 cellspacing=0 cellpadding=3 width=100%><tr><td valign=top align=left>";
     }
     $bdelb="<a href=#del class=ml onclick=baskodel(~~~". md5($item['id']) ."~~~) title='".$lang['del']."'><i class=icon-remove></i></a>";
     if ($hidart==1) {
@@ -377,8 +377,16 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
   }
   if ($_SESSION["maxin"]>$maxinb) { $printmax="<div align=center><a href=#hide onclick=baskoffon()><img src=$image_path/handup.png border=0><br>$lang[386]</a></div><br>";  }
   $full_basket.="$printmax";
-  if ($summa>0) {$full_basket.="<div align=center>".$lang[33].": <b>".$summa."".$currencies_sign[$_SESSION["user_currency"]]."</b></div>";}
-  if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSION["user_currency"]])) {$full_basket.= "<br><div style=width:".($style['right_width']-10)."px;>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>"; } else { $full_basket.="<br><br><div align=center><button onclick=javascript:document.location.href=~~~$htpath/index.php?action=zakaz~~~ type=button class=~~~btn btn-primary btn-large~~~><i class=icon-ok></i> ".$lang[59]."</b></button></div>"; }
+
+
+  if ($summa>0) {
+  require "./modules/mod_sales.php";
+  $ssumma=ssale($summa , $currencies_sign[$_SESSION["user_currency"]]);
+  if ($ssumma<$summa) { $full_basket.="<div align=center>".$lang[33].": <b><strike><font color=$nc3>".$summa."</font></strike> $ssumma ".$currencies_sign[$_SESSION["user_currency"]]."</b></div>"; $summa=$ssumma;} else {
+  $full_basket.="<div align=center>".$lang[33].": <b>".$summa."".$currencies_sign[$_SESSION["user_currency"]]."</b></div>";
+  }
+  }
+  if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSION["user_currency"]])) {$full_basket.= "<br><div>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>"; } else { $full_basket.="<br><br><div align=center><button onclick=javascript:document.location.href=~~~$htpath/index.php?action=zakaz~~~ type=button class=~~~btn btn-primary btn-large~~~><i class=icon-ok></i> ".$lang[59]."</b></button></div>"; }
   $full_basket.="</form>";
 $js_spisok ="var jsbasks=document.getElementById('jsbask');
 ";

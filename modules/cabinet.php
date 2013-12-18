@@ -194,6 +194,7 @@ $errs.="<br>Avatar not found! Please choose another avatar!<br>";
 if (is_dir("./admin/userstat/$login")==FALSE) { mkdir("./admin/userstat/$login",0755); }
 $afp=fopen("./admin/userstat/$login/$login.ava", "w");
 fputs($afp,$_GET['ch_avatar'].".$typ");
+$_SESSION["avatar"]="gallery/avatars/".$_GET['ch_avatar'].".$typ";
 fclose ($afp);
 }
 }
@@ -211,7 +212,7 @@ $step=2;
 require ("./modules/form.php");
 $cabinet.="$errs<form class=form-inline action=\"index.php\" method=\"POST\">
 <input type=\"hidden\" name=\"action\" value=\"cabinet\">
-<div class=shadow><div class=ocat1 align=center><b><font size=2 color=\"$nc5\">".$lang[108].":</font></b></div></div>
+<div class=shadow><div align=center><h4 class=mu>".$lang[108].":</h4><hr></div></div>
   <table width=100% border=0 cellspacing=0 cellpdadding=0>
   <tr><td valign=top>
   <table class=table border=0 width=100% cellspacing=10 cellpadding=3>";
@@ -310,7 +311,7 @@ $lang[217]: <input type=text name=payment_sum size=10 value=\"$sump\" class=inpu
 </form>
 </td></tr>
 $avasel
-<tr><td><br><div class=well><span class=\"label label-important\">$lang[211]</span> $lang[1123]</div></td></table>";
+<tr><td><br><div class=well><span class=\"label label-important\">$lang[211]</span> $lang[1123]</div></td><tr></table>";
 
 } else {
 if ($sub=="payment") {
@@ -358,7 +359,7 @@ $cabinet="<table border=0 width=100% cellspacing=0 cellpadding=0><td valign=top 
 $verifylist
 </td></tr>
 $avasel
-<tr><td><br><div class=well><span class=\"label label-important\">$lang[211]</span> $lang[1123]</div></td></table>";
+<tr><td><br><div class=well><span class=\"label label-important\">$lang[211]</span> $lang[1123]</div></td><tr></table>";
 $cart->itemcount=0;
 } else {
 $cabinet="<table border=0 width=100% cellspacing=0 cellpadding=0><td valign=top><a href=$htpath/index.php?action=cabinet&sub=transaction><img src=$image_path/ofb.png align=absmiddle border=0 hspace=10>".$lang['back']."</a>
@@ -373,7 +374,7 @@ if ($payment_sum>0) {} else { $cabinet.="<div class=\"alert alert-error\">$lang[
 
 $cabinet.="</td></tr>
 $avasel
-<tr><td><br><div class=well><span class=\"label label-important\">$lang[211]</span> $lang[1123]</div></td></table>";
+<tr><td><br><div class=well><span class=\"label label-important\">$lang[211]</span> $lang[1123]</div></td><tr></table>";
 }
 } else {
 $cabinet=$cabstat.$cabinet.$cabus.$cabform;

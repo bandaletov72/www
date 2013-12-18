@@ -8,12 +8,12 @@ $widget= "<div class=\"dropdown\"><a href=\"#\" class=shadow data-toggle=\"dropd
 if ("$catid"=="0") {$scatid=""; }else {$scatid="$catid";}
 if ($interface==0) {
 $widget.= "<div width=100% align=left>
-<a href=\"$htpath/index.php?action=interface_on&amp;start=$start&amp;page=$page&catid=$scatid&item_id=$item_id&unifid=$unifid&query=".rawurlencode($query)."&brand=".rawurlencode($brand)."\" title=\"".$lang[968]."\" class=btn><i class=\"icon-eye-open\"></i><small>".$lang[968]."</small></a><div class=clear></div><br><br>
+<a href=\"$htpath/index.php?action=interface_on&start=$start&page=$page&catid=$scatid&item_id=$item_id&unifid=$unifid&query=".rawurlencode($query)."&brand=".rawurlencode($brand)."\" title=\"".$lang[968]."\" class=btn><i class=\"icon-eye-open\"></i><small>".$lang[968]."</small></a><div class=clear></div><br><br>
 </div>
 ";
 } else {
 $widget.= "<div width=100% align=left>
-<a href=\"$htpath/index.php?action=interface_off&amp;start=$start&amp;page=$page&catid=$scatid&item_id=$item_id&unifid=$unifid&query=".rawurlencode($query)."&brand=".rawurlencode($brand)."\" title=\"".$lang[969]."\" class=btn><i class=\"icon-eye-close\"></i><small>".$lang[969]."</small></a><div class=clear></div><br><br>
+<a href=\"$htpath/index.php?action=interface_off&start=$start&page=$page&catid=$scatid&item_id=$item_id&unifid=$unifid&query=".rawurlencode($query)."&brand=".rawurlencode($brand)."\" title=\"".$lang[969]."\" class=btn><i class=\"icon-eye-close\"></i><small>".$lang[969]."</small></a><div class=clear></div><br><br>
 </div>
 ";
 }
@@ -131,7 +131,7 @@ if (file_exists("./admin/userstat/$adminname/lastvisit.time")){ $tmp1=file("./ad
 if ($adminrealstatus=="online") {$abut="<span class=shadow style=\"border: none; width: 26px; height: 26px; -webkit-border-radius: 13px; border-radius: 13px; padding:4px;\"><i class=icon-ok title=\"Online\"></i></span>";} else { $abut="<span class=shadow style=\"border: none; width: 26px; height: 26px; -webkit-border-radius: 13px; border-radius: 13px; padding:4px;\"><i class=icon-remove title=\"Offline\"></i></span>";}
 
 unset($tmp1,$tmp);
-$addiv="<a href=\"chat.php?ch=main&privat=".$adminname."&amp;speek=$speek\">$abut</a>";
+$addiv="<a href=\"chat.php?ch=main&privat=".$adminname."&speek=$speek\">$abut</a>";
 $expos++;
 }
 }
@@ -164,14 +164,14 @@ if ($adminrealstatus=="online") {$abut="<span class=shadow style=\"border: none;
 if ($portal==0) {
 if ($chat_enable==1) {
 if ($adminrealava=="") {$admrava=""; } else { $admrava="<td width=32><img src=\"".$adminrealava."\" style=\"border: none;\" width=\"32\" height=\"32\" title=\"". " ".date("H:i d/m/Y", filemtime("./admin/userstat/$adminname/lastvisit.time"))."\" /></td>"; }
-$addiv="<div class=shadow align=left style=\"background-image: url('grad.php?h=".(40+$popr). "&w=1&e=".str_replace("#","",$nc6)."&s=".str_replace("#","",$nc6)."&d=vertical'); position: fixed; width: ".(54+$popr)."px; height: ".(40+$popr). "px; overflow:hidden; top: ".((40+$popr)+$expos*(40+$popr))."px; right: -20px; z-index:".(1000-$expos)."; padding: 0px; cursor: pointer; cursor: hand;\" onmouseover=\"javascript:this.style.width='400px';\" onmouseout=\"javascript:this.style.width='".(54+$popr)."px';\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$adminname."&amp;speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"><table border=0 cellspacing=5 cellpadding=5 height=".(40+$popr). " width=300><tr><td width=26>$abut</td>$admrava<td style=\"white-space:nowrap;\"><b>".$adminrealname."</b><br><font class=small>".$adminrealtel."</font> <font class=small color=$admcol>$admmes</font></td></tr></table><input type=hidden id=sw1 value=\"\"></div>";
+$addiv="<div class=shadow align=left style=\"background-image: url('grad.php?h=".(40+$popr). "&w=1&e=".str_replace("#","",$nc6)."&s=".str_replace("#","",$nc6)."&d=vertical'); position: fixed; width: ".(54+$popr)."px; height: ".(40+$popr). "px; overflow:hidden; top: ".((40+$popr)+$expos*(40+$popr))."px; right: -20px; z-index:".(1000-$expos)."; padding: 0px; cursor: pointer; cursor: hand;\" onmouseover=\"javascript:this.style.width='400px';\" onmouseout=\"javascript:this.style.width='".(54+$popr)."px';\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$adminname."&speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"><table border=0 cellspacing=5 cellpadding=5 height=".(40+$popr). " width=300><tr><td width=26>$abut</td>$admrava<td style=\"white-space:nowrap;\"><b>".$adminrealname."</b><br><font class=small>".$adminrealtel."</font> <font class=small color=$admcol>$admmes</font></td></tr></table><input type=hidden id=sw1 value=\"\"></div>";
 $expos++;
 }
 } else {
 if ($chat_enable==1) {
-if ($adminrealava=="") {$admrava=""; } else { $admrava="<td width=32><img src=\"".$adminrealava."\" style=\"border: none;\" width=\"32\" height=\"32\" alt=\"".$adminname."\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$adminname."&amp;speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"/></td>"; }
-$addiv="<div class=shadow align=left style=\"background-image: url('grad.php?h=".(40+$popr). "&w=1&e=".str_replace("#","",$nc6)."&s=".str_replace("#","",$nc6)."&d=vertical'); background-repeat: repeat-x; background-color: $nc6; position: fixed; width: ".(54+$popr)."px; height: ".(40+$popr). "px; overflow:hidden; top: ".((40+$popr)+$expos*(40+$popr))."px; right: -20px; z-index:".(1000-$expos)."; padding: 0px; cursor: pointer; cursor: hand;\" onmouseover=\"javascript:this.style.width='400px';this.style.height='400px';\" onmouseout=\"javascript:this.style.width='".(54+$popr)."px';this.style.height='".(40+$popr). "px';\"><table border=0 cellspacing=5 cellpadding=5 height=".(40+$popr). " width=300><tr><td width=26>$abut</td>$admrava<td style=\"white-space:nowrap;\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$adminname."&amp;speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"><b>".$adminrealname."</b><br><font class=small>".$adminrealtel."</font> <font class=small color=$admcol>$admmes</font></td></tr></table><input type=hidden id=sw1 value=\"\"><table border=0 cellpadding=5 width=300><tr><td><small> <b>".str_replace("[min_update]",$min_update, $lang[1010])."</b><small></td></tr><tr><td>
-<div id=onlinewindow style=\"width:320px; height:320px; overflow: auto;\"></div></td></table></div>";
+if ($adminrealava=="") {$admrava=""; } else { $admrava="<td width=32><img src=\"".$adminrealava."\" style=\"border: none;\" width=\"32\" height=\"32\" alt=\"".$adminname."\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$adminname."&speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"/></td>"; }
+$addiv="<div class=shadow align=left style=\"background-image: url('grad.php?h=".(40+$popr). "&w=1&e=".str_replace("#","",$nc6)."&s=".str_replace("#","",$nc6)."&d=vertical'); background-repeat: repeat-x; background-color: $nc6; position: fixed; width: ".(54+$popr)."px; height: ".(40+$popr). "px; overflow:hidden; top: ".((40+$popr)+$expos*(40+$popr))."px; right: -20px; z-index:".(1000-$expos)."; padding: 0px; cursor: pointer; cursor: hand;\" onmouseover=\"javascript:this.style.width='400px';this.style.height='400px';\" onmouseout=\"javascript:this.style.width='".(54+$popr)."px';this.style.height='".(40+$popr). "px';\"><table border=0 cellspacing=5 cellpadding=5 height=".(40+$popr). " width=300><tr><td width=26>$abut</td>$admrava<td style=\"white-space:nowrap;\" onclick=\"javascript:window.open('chat.php?ch=main&privat=".$adminname."&speek=$speek','chatw','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=460,left=10,top=10');\"><b>".$adminrealname."</b><br><font class=small>".$adminrealtel."</font> <font class=small color=$admcol>$admmes</font></td></tr></table><input type=hidden id=sw1 value=\"\"><table border=0 cellpadding=5 width=300><tr><td><small> <b>".str_replace("[min_update]",$min_update, $lang[1010])."</b><small></td></tr><tr><td>
+<div id=onlinewindow style=\"width:320px; height:320px; overflow: auto;\"></div></td><tr></table></div>";
 $expos++;
 }
 }

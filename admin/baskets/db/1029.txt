@@ -1,0 +1,45 @@
+<?php
+$userbd=Array (
+'poluchatel'=>"ООО XXXXXXX",
+'rs'=>"40802810518000000000",
+'bank'=>"ЗАО ВТБанк",
+'bik'=>"044525000",
+'ks'=>"40802810518000000001",
+'fio'=>"ADMIN",
+'adres'=>"ISS - , -  -",
+'nums'=>"1029",
+'summa'=>"30",
+'valut'=>" руб.",
+'gorod'=>"ISS",
+'street'=>"- ",
+'house'=>"-",
+'korp'=>"",
+'ofice'=>"-",
+'country'=>"Planet Earth",
+'countrycode'=>"",
+'telcode'=>"111333",
+'tel'=>"-",
+'totalweight'=>"0.4",
+'totalvolume'=>"0",
+'email'=>"email@nowhere.com",
+'shopname'=>"Eurowebcart Shopping software",
+'shopadress'=>"г.Москва",
+'delivery_type'=>"Курьером по Москве +2.5  руб.",
+'payment_type'=>"Наличный расчет ",
+'prop'=>"",
+'metro'=>"Нет метро",
+'delivery_cost'=>"0",
+'tax'=>"10",
+'taxrate'=>"18%",
+'kg'=>"",
+'stroketab'=>"<tr><td valign=\"top\" align=\"center\">
+1</td><td valign=\"top\" align=\"left\">
+GIRL6</td><td valign=\"top\" align=\"left\">
+Women Apparel</td><td valign=\"top\" align=\"center\">
+1[pcs]</td><td valign=\"top\" align=\"center\">
+30 руб.</td><td valign=\"top\" align=\"center\">
+30 руб.</td><td valign=\"top\" align=\"center\">
+10 руб. (18%)</td></tr>",
+'Индекс'=>"222444",
+);
+?>

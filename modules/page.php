@@ -184,7 +184,7 @@ if (isset($massti[1])){$titles[$i]=$massti[0]; }
 
 $ally = str_replace ("==" . $outy[1] . "==", "" , $ally);
 }
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $ally="<div class=\"round\" align=right width=93%><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">".$lang[810]." ".$matches[1][$i]."</span> <a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/".$matches[1][$i]."','fred','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\"><i class=icon-edit></i> ".$lang['ch']."</a>&nbsp;<a class=\"btn\" href=#del onclick=\"javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=".str_replace(".txt", "", $matches[1][$i])."&amp;del=".str_replace(".txt", "",$matches[1][$i])."','fr".$matches[1][$i]."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a>
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $ally="<div class=\"round\" align=right width=93%><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">".$lang[810]." ".$matches[1][$i]."</span> <a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/".$matches[1][$i]."','fred','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['ch']."\"><i class=icon-edit></i></a>&nbsp;<a class=\"btn\" href=#del onclick=\"javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=".str_replace(".txt", "", $matches[1][$i])."&del=".str_replace(".txt", "",$matches[1][$i])."','fr".$matches[1][$i]."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a>
 </div>".$ally; }}
 $viewpage_content = str_replace ("~~" . $matches[1][$i] . "~~", $ally , $viewpage_content);
 fclose ($fp);
@@ -256,7 +256,7 @@ require ("./modules/citymap.php");
 $viewpage_content=$viewpage_content."<br><br>".$lemap;
 } else {
 if (preg_match("/\[citymap\]/",$viewpage_content)) {
-require ("./modules/citymap.php"); 
+require ("./modules/citymap.php");
 $viewpage_content=str_replace("[citymap]","$lemap", $viewpage_content);
 }
 }
@@ -270,6 +270,14 @@ $pcoord="<tr><td colspan=3><b>Loc:</b><br><input type=text size=20 style=\"width
 
 if (isset($_POST['p_title'])) {
 $viewpage_title=trim($_POST['p_title']);
+}
+
+if ($_SESSION["do1"]=="") {
+$doclass=" style=\"display:block;\"";
+$dopbutton="<a href=#other id=\"divbut\" class=\"btn pull-right ml\" onClick=edits()><i class=icon-arrow-up></i> ".$lang[1550]."</a>";
+} else {
+$dopbutton="<a href=#other id=\"divbut\" class=\"btn pull-right ml\" onClick=edits()><i class=icon-arrow-down></i> ".$lang[1550]."</a>";
+$doclass=" style=\"display:none;\"";
 }
 $viewpage_content="<script language=javascript>
 function replaceButtonText(buttonId, text)
@@ -303,17 +311,16 @@ document.getElementById('divbut').innerHTML='<i class=icon-arrow-up></i> ".$lang
 document.getElementById('div_edit').style.display='none';
 document.getElementById('divbut').innerHTML='<i class=icon-arrow-down></i> ".$lang[1550]."';
 }
+refreshsess(1);
 }
 </script>
-<div class=form-inline style=\"margin-bottom:10px;\">
-<a href=#other id=\"divbut\" class=\"btn pull-right ml\" onClick=edits()><i class=icon-arrow-up></i> ".$lang[1550]."</a>
-<a href=#del onclick=\"javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=$page&amp;del=$page','fr$page','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\" class=\"btn pull-right ml\"><i class=\"icon-remove icon-large\"></i> ".$lang['del']."</a>
-<a href=#add_sub class=\"btn pull-right ml\" onClick=\"javascript:window.open('$htpath/admin/editor/edit.php?speek=$speek&amp;c=".substr($page,0,1)."&klon=1','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\"><i class=icon-arrow-down></i>".$lang[384]."</a>
-<a href=#edit class=\"btn btn-success pull-right ml\" onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$page.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\"><i class=icon-edit></i> ".$lang['ch']."</a>
+<div class=form-inline style=\"margin-bottom:10px;\">".$dopbutton."<a href=#del onclick=\"javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=$page&del=$page','fr$page','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\" class=\"btn pull-right ml\" title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a>
+<a href=#add_sub class=\"btn pull-right ml\" onClick=\"javascript:window.open('$htpath/admin/editor/edit.php?speek=$speek&c=".substr($page,0,1)."&klon=1','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\" title=\"".$lang[384]."\"><i class=icon-arrow-down></i></a>
+<a href=#edit class=\"btn pull-right ml\" onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/$page.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\" title=\"".$lang['ch']."\"><i class=icon-edit></i></a>
 <div class=\"pull-left mr\"><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-top:5px;\">$page</span></div>
 <div class=clearfix></div>
 </div>
-<div id=\"div_edit\">
+<div id=\"div_edit\"".$doclass.">
 <div class=img style=\"width:100%;\">
 <form method=POST action=index.php class=form-inline><input type=\"hidden\" name=\"page\" value=\"$page\"><input type=\"hidden\" name=\"agree\" value=\"".md5(date("d.m.Y",time()).$artrnd)."\">
 <table border=0 cellspacing=5 cellpadding=5 width=100%><tr><td valign=top rowspan=2><table class=table border=0 width=100%>
@@ -571,7 +578,7 @@ $ef=fopen("./admin/comments/$unifmd.txt" , "r");
 $commread=fread($ef, filesize("./admin/comments/$unifmd.txt"));
 fclose($ef);
 //$comm_book=str_replace("[adm]","<font color=$nc2>",str_replace("[/adm]","</font>", str_replace("[vote]","<img src=\"$image_path/vote",str_replace("[/vote]",".png\">",str_replace("[hr]", "<div class=clear><br></div>", str_replace("[i]", "<i class=muted>", str_replace("[/i]", "</i>", str_replace("[b]", "<b>", str_replace ("[/b]", "</b>", str_replace ("[br]", "<br>", str_replace("[amp]", "&", $commread)))))))))));
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){$comm_book= str_replace("[ip]", "<a href=\"$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&amp;start=0&amp;perpage=10&ipsort=\">".$lang[186]."</a>", $comm_book));} else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));} } else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));}
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){$comm_book= str_replace("[ip]", "<a href=\"$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&start=0&perpage=10&ipsort=\">".$lang[186]."</a>", $comm_book));} else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));} } else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));}
 
 //Simple Comments editor    added 16.11.2005
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")) {
@@ -671,7 +678,7 @@ if (document.getElementById('div_commf').style.display == 'none') {
 document.getElementById('div_commf').style.visibility = 'visible';
 document.getElementById('div_commf').style.display = 'inline';
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/loadcomments.php?unifmd=$unifmd&amp;speek=$speek';
+scriptNode.src = '$htpath/loadcomments.php?unifmd=$unifmd&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 
@@ -706,7 +713,7 @@ $jslistv<br>$comment_form".@$admin_book."
 
 $cartlist.= "</div>";
 } else {
-$viewpage_content.="</tr></table>";
+$viewpage_content.="</td></tr></table>";
 }
 $fir=substr($page,0,1);
 
@@ -770,7 +777,7 @@ $wikiallart.="</tr></table>";
 $viewpage_content=str_replace("[wiki_list]", str_replace("</div></div><br>","</div></div>", str_replace(" align=left", " ", str_replace("</a><a href","</a><br><br><a href", str_replace("border-bottom: #b94a48 1px dashed;", "", str_replace("border: 1px solid", "border: 0px solid", str_replace("<div", "<div align=center", str_replace("$carat", "<br>",$wikiallart))))))), $viewpage_content);
 }
 if (($view_wikilist_on_each_pages==1)&&($fir!=$page)) {
-$viewpage_content=str_replace("[wiki_list]","", $viewpage_content)."[wiki_list]";
+$viewpage_content=str_replace("[wiki_list]","", $viewpage_content);
 }
 $viewpage_content=str_replace("[wiki_list]", "<br>".str_replace("decoration:none;\">$viewpage_title</a>","decoration:none; background:$nc2; color:$nc0;\">$viewpage_title</a>", str_replace("padding: 10px 0px;", "padding: 10px 10px;",str_replace("<img", "<img hspace=10",str_replace("$carat", "<br>",$wikiallart)))), $viewpage_content);
 }
@@ -812,7 +819,7 @@ $ttt="";
 if ($view_social==1) {$ttt="<div class=\"yashare-auto-init pull-right\" data-yashareL10n=\"ru\" data-yashareType=\"none\" data-yashareQuickServices=\"facebook,twitter,vkontakte,lj\"><script type=\"text/javascript\" src=\"//yandex.st/share/share.js\" charset=\"utf-8\"></script></div>";
 }
 $rmon = array ($lang[115],$lang[116],$lang[117],$lang[118],$lang[119],$lang[120],$lang[121],$lang[122],$lang[123],$lang[124],$lang[125],$lang[126]);
-if ($tags_s!="") {
+if (($tags_s!="")&&(substr($page,0,1)!=$wiki_rubric)) {
 $ttt.="<div class=\"pull-left lnk mr\">";
 $fcs=1;
 while (list($keyta,$valka)=each($tags_tarr)) {
@@ -827,11 +834,19 @@ $ttt=substr($ttt,0,-2);
 $ttt.="</div>";
 }
 if ($comm!="") {$comm="<div class=\"comnts\">$comm</div>\n\n";}
-$ttt.="<div class=\"pull-left muted\"><i class=\"icon-calendar\"></i> ".date("d",$ts)." ".$rmon[date("m",$ts)-1]." ".date("Y",$ts)." <i>".date("H:i",$ts)."</i></div>\n\n";
+$clnd="";
+$clnd2="";
+if ($cont_tags_pos=="top") {
+$clnd.=$ttt;
+}
+if ($cont_tags_pos=="bottom") {
+$clnd2.="<br>".$ttt;
+}
+$clnd.="<div class=\"pull-left muted\"><i class=\"icon-calendar\"></i> ".date("d",$ts)." ".$rmon[date("m",$ts)-1]." ".date("Y",$ts)." <i>".date("H:i",$ts)."</i></div>\n\n";
+$viewpage_content="<div class=pcont>".str_replace("[cut]", "<a name=\"cut\"></a>", $viewpage_content)."</div>";
+if ($ttt!="") {$viewpage_content=$comm.$clnd."<div class=clearfix></div>".$viewpage_content.$clnd2;}
 
-if ($ttt!="") {$viewpage_content=$comm.$ttt."<div class=clearfix></div>".$viewpage_content;}
 
-$viewpage_content="<div class=pcont>$viewpage_content</div>";
 
 }
 ?>

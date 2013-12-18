@@ -80,15 +80,15 @@ while (list ($line_num, $line) = each ($tmpsub)) {
 $out=explode("|",$line);
 $ra=$out[0];
 if ((!@$subr[$ra]) || (@$subr[$ra]=="")): $subr[$ra]=""; endif;
-$subr[$ra] .= " / <a href = \"index.php?speek=".$speek."&sub=".rawurlencode($out[1])."&r=".rawurlencode($ra)."&view=$view&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=$perpage\">".$out[1]."</a> <a href=\"#del_subdir\" onClick=javascript:window.open('del_subdir.php?speek=".$speek."&sub=".rawurlencode($out[1])."&r=".rawurlencode($ra)."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=400,left=10,top=10') title=\"".$lang[442]." $ra/".$out[1]."\"><b><font color=#b94a48>[x]</font></b></a>";
+$subr[$ra] .= " / <a href = \"index.php?speek=".$speek."&sub=".rawurlencode($out[1])."&r=".rawurlencode($ra)."&view=$view&start=$start&sorting=$sorting&way=$way&perpage=$perpage\">".$out[1]."</a> <a href=\"#del_subdir\" onClick=javascript:window.open('del_subdir.php?speek=".$speek."&sub=".rawurlencode($out[1])."&r=".rawurlencode($ra)."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=400,left=10,top=10') title=\"".$lang[442]." $ra/".$out[1]."\"><b><font color=#b94a48>[x]</font></b></a>";
 }
 
 $st = 1;
 reset ($subr);
 asort ($subr);
-$razdel="<b><a href='index.php?speek=".$speek."&view=$view&amp;start=0&sorting=$sorting&way=$way&amp;perpage=$perpage&r=&sub='><img src=\"".$image_path."/main_folder.gif\" border=0 align=absbottom> ".$lang[201]."</a></b><br>";
+$razdel="<b><a href='index.php?speek=".$speek."&view=$view&start=0&sorting=$sorting&way=$way&perpage=$perpage&r=&sub='><img src=\"".$image_path."/main_folder.gif\" border=0 align=absbottom> ".$lang[201]."</a></b><br>";
 while (list ($line_num, $line) = each ($subr)) {
-$razdel .= "<b><a href = \"index.php?speek=".$speek."&sub=&r=$line_num&view=$view&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=$perpage\"><img src=\"".$image_path."/folder.gif\" border=0 align=absbottom> $line_num</a></b> $line<br>\n";
+$razdel .= "<b><a href = \"index.php?speek=".$speek."&sub=&r=$line_num&view=$view&start=$start&sorting=$sorting&way=$way&perpage=$perpage\"><img src=\"".$image_path."/folder.gif\" border=0 align=absbottom> $line_num</a></b> $line<br>\n";
 $st += 1;
 }
 
@@ -235,24 +235,24 @@ $end=$startnew + $perpage - 1;
 if ($startnew>$total){ $start=0;}
 
 $vivod="<br><table width=100% border=0><tr><td valign=top><small>".$lang['sort_by'].":
-<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=name&way=$way&amp;perpage=$perpage'>".$lang['name']."</a></b> |
-<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=dir&way=$way&amp;perpage=$perpage'>".$lang[430]."</a></b> |
-<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=subdir&way=$way&amp;perpage=$perpage'>".$lang[431]."</a></b> |
-<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=nomer&way=$way&amp;perpage=$perpage'>".$lang[687]."</a></b> |
-<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=kod&way=$way&amp;perpage=$perpage'>".$lang[419]."</a></b> |
-<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=price&way=$way&amp;perpage=$perpage'>".$lang['price']."</a></b>
-</small></td><td valign=top align=right><small><b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=$sorting&way=decr&amp;perpage=$perpage'>".$lang['down']."</a></b> | <b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=$sorting&way=incr&amp;perpage=$perpage'>".$lang['up']."</a></b></small></td></tr>
-<tr><td><small>".$lang['qty'].": <B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=20'>20</a></B> |
-<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=30'>30</a></B> |
-<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=40'>40</a></B> |
-<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=50'>50</a></B> |
-<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=100'>100</a></B> |
-<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=200'>200</a></B> |
-<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=1000'>1000</a></B> |
-</small></td><td align=right><small>".$lang[421].":<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=yes&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=$perpage'>".$lang['yes']."</a></B> | <B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=no&amp;start=$start&sorting=$sorting&way=$way&amp;perpage=$perpage'>".$lang['no']."</a></B></small>
+<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=name&way=$way&perpage=$perpage'>".$lang['name']."</a></b> |
+<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=dir&way=$way&perpage=$perpage'>".$lang[430]."</a></b> |
+<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=subdir&way=$way&perpage=$perpage'>".$lang[431]."</a></b> |
+<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=nomer&way=$way&perpage=$perpage'>".$lang[687]."</a></b> |
+<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=kod&way=$way&perpage=$perpage'>".$lang[419]."</a></b> |
+<b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=price&way=$way&perpage=$perpage'>".$lang['price']."</a></b>
+</small></td><td valign=top align=right><small><b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=$sorting&way=decr&perpage=$perpage'>".$lang['down']."</a></b> | <b><a href ='index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=$sorting&way=incr&perpage=$perpage'>".$lang['up']."</a></b></small></td></tr>
+<tr><td><small>".$lang['qty'].": <B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=$sorting&way=$way&perpage=20'>20</a></B> |
+<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=$sorting&way=$way&perpage=30'>30</a></B> |
+<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=$sorting&way=$way&perpage=40'>40</a></B> |
+<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=$sorting&way=$way&perpage=50'>50</a></B> |
+<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=$sorting&way=$way&perpage=100'>100</a></B> |
+<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=$sorting&way=$way&perpage=200'>200</a></B> |
+<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=$start&sorting=$sorting&way=$way&perpage=1000'>1000</a></B> |
+</small></td><td align=right><small>".$lang[421].":<B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=yes&start=$start&sorting=$sorting&way=$way&perpage=$perpage'>".$lang['yes']."</a></B> | <B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=no&start=$start&sorting=$sorting&way=$way&perpage=$perpage'>".$lang['no']."</a></B></small>
 </tr></table><br><small>
 $razdel</small>
-<p align=center><small>&lt;&lt; <B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&amp;start=0&sorting=$sorting&way=$way&amp;perpage=$perpage'>".$lang[164]."</a></B></small>
+<p align=center><small>&lt;&lt; <B><a href = 'index.php?speek=".$speek."&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&start=0&sorting=$sorting&way=$way&perpage=$perpage'>".$lang[164]."</a></B></small>
 <small> ".$lang[201]." / $r / $sub </small><br><br>";
 $resb="<small> <b><a href='backup.php?speek=$speek'>".$lang[3]."</a></b> | <b><a href='restore.php?speek=$speek'>".$lang[322]."</a></b> | <b><a href='addcart.php'>".$lang[2]."</a></b></small>";
 
@@ -263,7 +263,7 @@ if (($start/$perpage)==$s) {
 $pp.= "<b>" . ($s+1) . "</b> | ";
 } else {
 if ($total>=($s*$perpage)){
-$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?speek=".$speek."&amp;start=" . ($s*$perpage) . "&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&sorting=$sorting&way=$way&amp;perpage=$perpage\">" . ($s+1) . "</a> | ";
+$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?speek=".$speek."&start=" . ($s*$perpage) . "&sub=".rawurlencode($sub)."&r=".rawurlencode($r)."&view=$view&sorting=$sorting&way=$way&perpage=$perpage\">" . ($s+1) . "</a> | ";
 }
 }
 

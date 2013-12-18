@@ -44,6 +44,24 @@ $section3="";
 $section4="";
 $section5="";
 require ("../templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nls);  require ("../templates/$template/$speek/config.inc");
+$handle=opendir("../templates/$template/$speek/");
+unset($k,$v,$tmp);
+while (($file = readdir($handle))!==FALSE) {
+
+if (substr($file,0,14)=="custom_column_") {
+$idx=str_replace(".inc", "", str_replace("custom_column_", "",$file));
+$idx=doubleval($idx);
+$tmp=file("../templates/$template/$speek/$file");
+$typehead[$idx]=" data-provide=\"typeahead\" data-items=\"4\" data-source=\"[";
+while(list($k,$v)=each($tmp)) {
+$typehead[$idx].="&quot;".trim(str_replace("\"","", str_replace("'","",strip_tags($v))))."&quot;,";
+}
+$typehead[$idx].="&quot;-&quot;]\"";
+}
+}
+closedir($handle);
+
+
 header("Content-type: text/html; charset=$codepage");
 echo "<!DOCTYPE html>
 <html>
@@ -137,11 +155,11 @@ exit;
 }
 flock ($fp, LOCK_EX);
 if ($c=="a") {
-$month=date ("d:m:Y",time());
+$month=date ("d:m:Y");
 fwrite ($fp, "==$month==");
 } else {
 if ($c=="c") {
-$curd=date ("d.m.Y",time());
+$curd=date ("d.m.Y");
 
 fwrite ($fp, "==$curd==");
 } else {
@@ -152,7 +170,7 @@ flock ($fp, LOCK_UN);
 fclose ($fp);
 echo "<p>".$lang[447]." <b>../.$base_loc/content/$c$nomer.txt</b>.<br><br><br>
 <a href='./index.php'>".$lang['back']."</a>\n
-<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='edit/index.php?working_file=?speek=$speek&amp;working_file=../.".$base_loc."/content/$c$nomer.txt'\">";
+<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL='edit/index.php?working_file=?speek=$speek&working_file=../.".$base_loc."/content/$c$nomer.txt'\">";
 exit;
 }
 
@@ -262,7 +280,9 @@ $description = str_replace("<br>", chr(10), $description);
 $foto=$foto1;
 $unifid=md5(@$out[3]." ID:".@$out[6]);
 $hist="";
-$statusfile=".$base_loc/status/".substr($unifid,0,2)."/".$unifid."/status.txt.history.txt";
+$baseloc_main=str_replace("/db_index.txt", "", $base_file);
+$baseloc_speek=substr( $baseloc_main,-3);
+$statusfile=".$baseloc_main/status/".substr($unifid,0,2)."/".$unifid."/status.txt.history.txt";
 if (file_exists($statusfile)) {
 $sp=array_reverse(file($statusfile));;
 while (list($kh,$vh)=each($sp)) {
@@ -274,7 +294,7 @@ $hist.=date("d.m.Y H:i:s", $h[1])." ".$h[0]. "<div class=muted>".$h[2]." ". $h[3
 }
 unset ($sp);
 
-$statusfile=".$base_loc/status/".substr($unifid,0,2)."/".$unifid."/status.txt";
+$statusfile=".$baseloc_main/status/".substr($unifid,0,2)."/".$unifid."/status.txt";
 if (file_exists($statusfile)) {
 $sp=file($statusfile);
 $curstatus=trim($sp[0]);
@@ -282,9 +302,9 @@ $curstatus=trim($sp[0]);
 $section1.= "<tr bgcolor='$nc6'>
 <td align='left' valign='top' title=\"COLUMN 6\"><input type=hidden name=status id=sstatus value=\"$curstatus\"><input class=input-small type=text name='ext_id' size='20' value='$ext_id' ><input type='hidden' name='nomer' value='$nomer'> </td>
     <td align='left' valign='top' title=\"COLUMN 4\">$price</td>
-    <td align='left' valign='top' title=\"COLUMN 11\"><input class=input-mini type=text size='3' name='vitrin' value=\"$vitrin\" ></td>
+    <td align='left' valign='top' title=\"COLUMN 11\"><input class=input-mini type=text size='3' name='vitrin' value=\"$vitrin\"".@$typehead[11]."><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_11#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td>
     <td align='left' valign='top' title=\"COLUMN 12\"><select class=input-mini size='1' name='onsale'><option selected value='$onsale'>".substr($onsale,0,1)."</option><option value='1'>".$lang['yes']."</option><option value='0'>".$lang['no']."</option></select></td>
-    <td align='left' valign='top' title=\"COLUMN 13\"><input class=input-small type=text name='brand_name' value='$brand_name' size=20></td>
+    <td align='left' valign='top' title=\"COLUMN 13\"><input class=input-small type=text name='brand_name' value='$brand_name' size=20".@$typehead[13]."><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_13#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td>
     </tr>
     </table>
 ";
@@ -330,9 +350,9 @@ $subdrs.="<li><a href='#' onclick='subdrs(\"".$vsb."\");'>".$vsb."</a></li>";
 unset ($fcontentsac);
 $status="";
 $clr="";
-if (file_exists("../templates/$template/$speek/status.inc")) {
+if (file_exists("../templates/$template/$baseloc_speek/status.inc")) {
 
-$fcontentsac=file("../templates/$template/$speek/status.inc");
+$fcontentsac=file("../templates/$template/$baseloc_speek/status.inc");
 $lln=0;
 while (list ($ln, $linefc) = each ($fcontentsac)) {
 if (trim ($linefc)!="") {
@@ -387,11 +407,11 @@ document.getElementById('isubdir').value=id;
 <table class=table width=100% cellspacing=0 border=0 cellpadding=2>
 <tr>
 <td align='right' valign='top'>3. <b>".$lang['name'].":</b></td>
-<td align='left' valign='top'><input class=input-large type=text name='nazv' size='60' style=\"width:96%\" value='$nazv'></td><td>&nbsp;</td>
+<td align='left' valign='top'><input class=input-large type=text name='nazv' size='60' style=\"width:90%\" value='$nazv'".@$typehead[3]."><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_3#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td><td>&nbsp;</td>
 </tr>
 <tr>
 <td align='right' valign='top'>1. <b>".$lang[430].":</b></td>
-<td align='left' valign='top'><input class=input-large type=text name='dir' id=idir size='60' style=\"width:96%\" value='$dir'></td><td><ul class=\"nav nav-pills\" style=\"margin:0;\">
+<td align='left' valign='top'><input class=input-large type=text name='dir' id=idir size='60' style=\"width:90%\" value='$dir'".@$typehead[1]."><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_1#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td><td><ul class=\"nav nav-pills\" style=\"margin:0;\">
 <li class=\"dropdown pull-right active\">
 <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><b class=\"caret\"></b></a>
 <ul class=\"dropdown-menu\">
@@ -402,7 +422,7 @@ $drs
 </tr>
 <tr>
 <td align='right' valign='top'>2. <b>".$lang[431].":</b></td>
-<td align='left' valign='top'><input class=input-large type=text name='subdir' id=isubdir size='60' style=\"width:96%\" value='$subdir'></td><td><ul class=\"nav nav-pills\" style=\"margin:0;\">
+<td align='left' valign='top'><input class=input-large type=text name='subdir' id=isubdir size='60' style=\"width:90%\" value='$subdir'".@$typehead[2]."><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_2#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td><td><ul class=\"nav nav-pills\" style=\"margin:0;\">
 <li class=\"dropdown pull-right active\">
 <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><b class=\"caret\"></b></a>
 <ul class=\"dropdown-menu\">
@@ -436,7 +456,7 @@ $ncc=17+$cc_num;
 if ((@$ccc[0]!="g:attach")&&(@$ccc[0]!="g:aoption")) {
 if (trim(@$ccc[3])=="hidden") {
 $hhh.="<tr><td align='right' valign='top'>$ncc. <b>".@$ccc[0]."</b>, ".@$ccc[2]."</td>
-<td align='left' valign='top'><input class=input-large type=text id=col".$ncc." name='cc[$cc_num]' size='60' value='".@$out[$ncc]."' style=\"width:90%\"></td></tr>";
+<td align='left' valign='top'><input class=input-large type=text id=col".$ncc." name='cc[$cc_num]' size='60' value='".@$out[$ncc]."' style=\"width:90%\"".@$typehead[$ncc]."><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_".$ncc."#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td></tr>";
 
 } else {
 $cnums++;
@@ -826,7 +846,7 @@ natcasesort($tmp);
 $tip="&quot;".implode("&quot;,&quot;",$tmp)."&quot;";
 
 $dops2[$totaldops]= @$dops2[$totaldops]."<tr><td align='right' valign='top'>$ncc. <b>".@$ccc[0]."</b>, ".@$ccc[2]."</td>
-<td align='left' valign='top'><input class=input-large autocomplete=\"off\" type=text id=col".$ncc." name='cc[$cc_num]' value='".@$out[$ncc]."' style=\"width:90%; margin: 0 auto;\" data-provide=\"typeahead\" data-items=\"4\" data-source=\"[".$tip."]\"></td></tr>";
+<td align='left' valign='top'><input class=input-large autocomplete=\"off\" type=text id=col".$ncc." name='cc[$cc_num]' value='".@$out[$ncc]."' style=\"width:90%; margin: 0 auto;\" data-provide=\"typeahead\" data-items=\"4\" data-source=\"[".$tip."]\"><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_country#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td></tr>";
 
 } else {
 if ((trim(@$ccc[3])=="") &&(trim(@$ccc[4])!="")){
@@ -837,13 +857,13 @@ natcasesort($tmp);
 $tip="&quot;".implode("&quot;,&quot;",$tmp)."&quot;";
 
 $dops2[$totaldops]= @$dops2[$totaldops]."<tr><td align='right' valign='top'>$ncc. <b>".@$ccc[0]."</b>, ".@$ccc[2]."</td>
-<td align='left' valign='top'><input class=input-large type=text id=col".$ncc." autocomplete=\"off\" name='cc[$cc_num]' value='".@$out[$ncc]."' style=\"width:90%; margin: 0 auto;\" data-provide=\"typeahead\" data-items=\"4\" data-source=\"[".$tip."]\"></td></tr>";
+<td align='left' valign='top'><input class=input-large type=text id=col".$ncc." autocomplete=\"off\" name='cc[$cc_num]' value='".@$out[$ncc]."' style=\"width:90%; margin: 0 auto;\" data-provide=\"typeahead\" data-items=\"4\" data-source=\"[".$tip."]\"><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_cart#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td></tr>";
 
 } else {
 //all others
 
 $dops2[$totaldops]= @$dops2[$totaldops]."<tr><td align='right' valign='top'>$ncc. <b>".@$ccc[0]."</b>, ".@$ccc[2]."</td>
-<td align='left' valign='top'><input class=input-large type=text id=col".$ncc." name='cc[$cc_num]' size='60' value='".@$out[$ncc]."' style=\"width:90%\"></td></tr>";
+<td align='left' valign='top'><input class=input-large type=text id=col".$ncc." name='cc[$cc_num]' size='60' value='".@$out[$ncc]."' style=\"width:90%\"".@$typehead[$ncc]."><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_".$ncc."#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td></tr>";
 }
 }
 }
@@ -861,7 +881,7 @@ if ($out[0]=="electron1") {$defaults=$lang[1570];}
 $att=str_replace("<br>", "\n", @$out[$ncc]);
 $att_qty=count(explode("\n",$att))-1;
 $headersect=str_replace("[att_qty]",$att_qty, $headersect);
-$section5.= "<tr><td>0. <b>$lang[1569]:</b> <select class=input-mini name=\"item_type\"><option value=".@$out[0].">".$defaults."</option><option value=\"00000\">".$lang[1572]."</option><option value=\"electron1\">".$lang[1570]."</option><option value=\"electron1000\">".$lang[1571]."</option></select><br><br>$ncc. <a class=\"btn btn-success\" onClick=\"javascript:window.open('attach.php?speek=$speek&gtype=1&amp;perpage=6','gal1','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\"><i class=icon-download-alt></i> ".$lang[1554]."</a>
+$section5.= "<tr><td>0. <b>$lang[1569]:</b> <select class=input-mini name=\"item_type\"><option value=".@$out[0].">".$defaults."</option><option value=\"00000\">".$lang[1572]."</option><option value=\"electron1\">".$lang[1570]."</option><option value=\"electron1000\">".$lang[1571]."</option></select><br><br>$ncc. <a class=\"btn btn-success\" onClick=\"javascript:window.open('attach.php?speek=$speek&gtype=1&perpage=6','gal1','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\"><i class=icon-download-alt></i> ".$lang[1554]."</a>
 </td>
 </tr>
 <tr>
@@ -946,10 +966,10 @@ $section3.= "
 </table>";
 
 $section1.= "
-<tr><td align='left' valign='top' colspan=3>14. <b>".$lang['artlink'].":</b><br><input class=input-large type=text name='ext_lnk' size=40 value='$ext_lnk' style=\"width:90%;\"></td>
+<tr><td align='left' valign='top' colspan=3>14. <b>".$lang['artlink'].":</b><br><input class=input-large type=text name='ext_lnk' size=40 value='$ext_lnk' style=\"width:90%;\"".@$typehead[14]."><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_14#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td>
 </tr>
 <tr>
-<td align='left' valign='top' colspan=3>8. <b>".$lang['kwrds'].":</b><br><textarea rows='1' id=textarea_kwords name='kwords' style=\"width:90%; height:30px;\" cols='60'>$kwords</textarea></td>
+<td align='left' valign='top' colspan=3>8. <b>".$lang['kwrds'].":</b><br><textarea rows='1' id=textarea_kwords name='kwords' style=\"width:90%; height:30px;\" cols='60'".@$typehead[8].">$kwords</textarea><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_8#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a></td>
 </tr></table>
 <table class=table2>
 <tr>
@@ -957,7 +977,7 @@ $section1.= "
 <b title=\"COLUMN 16\">".$lang['qty'].":</b>
 </td>
 <td>
-<input class=input-mini type=text name='kolvo' size='3' value='$kolvo' title=\"COLUMN 16\">
+<input class=input-mini type=text name='kolvo' size='3' value='$kolvo' title=\"COLUMN 16\"".@$typehead[16]."><a href=$htpath/index.php?action=template&nt=templates/$template/$speek&t=custom_column_16#textarea title=\"".$lang['edits']."\" target=_blank><i class=icon-edit></i></a>
 </td>
 <td>
 <b title=\"COLUMN 5\">".$lang['148'].":</b>

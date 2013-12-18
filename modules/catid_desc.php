@@ -161,13 +161,13 @@ $butc2
 }
 
 $catid_content=str_replace("[speed]".$carspeed."[/speed]","",str_replace("[auto]".$cara."[/auto]","",str_replace("[buttons]".$carb."[/buttons]","",str_replace("[carousel]","$carc",str_replace("[carw]".$carw."[/carw]","",str_replace("[carh]".$carh."[/carh]","",$catid_content))))));
-if ($usetheme==0) {if ((!isset($x0007))||(@$x0007=="")) { } else { $catid_content=""; $catid_title="";}}
-if (($valid=="1")&&($details[7]=="ADMIN")): $catid_content="<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">z_$catid</span> <a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/z_".@$desc_file.".txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['edits']."\"><i class=\"icon-edit icon-large\"></i></a>&nbsp;<a class=btn href=\"index.php?page=z_$catid\">".$lang[1550]."</a>&nbsp;<a class=\"btn\" href=#del onClick=\"javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=z_".@$desc_file."&amp;del=z_".@$desc_file."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a></div>".$catid_content; endif;
+
+
+if (($valid=="1")&&($details[7]=="ADMIN")): $catid_content="<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">z_$catid</span> <a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/z_".@$desc_file.".txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['edits']."\"><i class=\"icon-edit icon-large\"></i></a>&nbsp;<a class=btn href=\"index.php?page=z_$catid\">".$lang[1550]."</a>&nbsp;<a class=\"btn\" href=#del onClick=\"javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=z_".@$desc_file."&del=z_".@$desc_file."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a></div>".$catid_content; endif;
 
 $catid_content=str_replace("==$catid_title==", "" , $catid_content);
 
 } else {
-if ($usetheme==0) {if ((!isset($x0007))||(@$x0007=="")) { } else { $catid_content=""; $catid_title="";}}
 if ($desc_file!="0000") {
 if (($valid=="1")&&($details[7]=="ADMIN")){
 $catid_title="$catid"; $catid_content="<div style=\"width:auto;\" align=center><a href=\"#indexator\" class=\"btn pull-left ml\" onClick=\"javascript:window.open('$htpath/admin/".$scriptprefix."indexator.php?speek=".$speek."','fr2','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=520,height=560,left=10,top=10');\" style=\"font-size: 10px;\">".$lang['adm1']."</a><a href=\"#new_description\" class=\"btn pull-left ml\" onClick=\"javascript:window.open('$htpath/admin/editor/edit.php?speek=$speek&create_file=z_".@$desc_file."','fr2','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10');\" style=\"font-size: 10px;\">".$lang[878]."</a><a href=\"#additional_cols\" class=\"btn pull-left ml\" onClick=\"javascript:document.location.href='$htpath/index.php?action=template&nt=templates/$template/$speek&t=cc_".@$desc_file."';\" style=\"font-size: 10px;\">".$lang[1532]."</a><div class=clearfix></div></div>";
@@ -176,5 +176,12 @@ $catid_title="$catid"; $catid_content="<div style=\"width:auto;\" align=center><
 }
 unset ($pageopen, $output);
 //end
+
+
+require "./modules/x0007.php";
+if($usetheme==0) {
+if ("$catid_content"."$x0007"!="") { $catid_content=$catid_content."$x0007"; }
+}
+
 
 ?>

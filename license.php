@@ -123,11 +123,11 @@ input[type="submit"] {
 <body>
 <?php
 
-echo "<div align=center><table border=0 cellpadding=0 width=100% class=round><tr><td style=\"background-image: url('http://www.24ok.ru/banner.png'); background-repeat: no-repeat; background-position: right top\"><h4>Eurowebcart/24OK License Agreement</h4>
+echo "<div align=center><table border=0 cellpadding=0 width=100% class=round><tr><td style=\"background-image: url('http://www.eurowebcart.ru/banner.png'); background-repeat: no-repeat; background-position: right top\"><h4>Eurowebcart/24OK License Agreement</h4>
 Условия использования и лицензионное соглашение<br><br>";
 $license="";
 $fp=@fopen("./LICENSE.TXT","r");
-if (!$fp) { echo ("Not found LICENSE.TXT<br><b>Please read</b> / Пожалуйста прочтите <br><a href=\"http://www.24ok.ru/LICENSE.TXT\">http://www.24ok.ru/LICENSE.TXT</a><br><br><br>"); } else {
+if (!$fp) { echo ("Not found LICENSE.TXT<br><b>Please read</b> / Пожалуйста прочтите <br><a href=\"http://www.eurowebcart.ru/LICENSE.TXT\">http://www.eurowebcart.ru/LICENSE.TXT</a><br><br><br>"); } else {
 $license=str_replace("]","</b><br><small>",str_replace("[","</small><br><b>",str_replace("\n"," ",str_replace("\n\n","<br>",fread($fp,filesize("./LICENSE.TXT"))))));
 fclose($fp);
 }

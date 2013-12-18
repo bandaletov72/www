@@ -8,10 +8,6 @@ return strtoupper($str);
 }
 if(isset($_GET['map'])) {$map=$_GET['map']; }elseif(isset($_POST['map'])){ $map=$_POST['map']; }else {$map="";}
 if (!preg_match('/^[0-9]+$/i',$map)) { $map="";}
-$razn=1;
-if ($map==2) {$razn=4; }
-if(isset($_GET['mid'])) {$mid=$_GET['mid']; }elseif(isset($_POST['mid'])){ $mid=$_POST['mid']; }else {$mid="";}
-if (!preg_match('/^[0-9-]+$/i',$mid)) { $mid="";}
 if(isset($_GET['id'])) {$id=$_GET['id']; }elseif(isset($_POST['id'])){ $id=$_POST['id']; }else {$id="";}
 if (!preg_match('/^[¸¨à-ÿÀ-ßa-zA-Z0-9_\,\.\?\&\#\;\ \%\(\)\/-]+$/i',$id)) { $id="";}
 $fold="."; require ("./templates/lang.inc");
@@ -20,7 +16,9 @@ require ("./templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nl
 require ("./modules/translit.php");
 $basedir="./";
 $statuses=Array();
-$statusfile="./templates/$template/$speek/status.inc";
+$baseloc_main=str_replace("/db_index.txt", "", $base_file);
+$baseloc_speek=substr( $baseloc_main,-3);
+$statusfile="./templates/$template/$baseloc_speek/status.inc";
 if (file_exists($statusfile)) {
 $statuses=file($statusfile);
 }
@@ -29,14 +27,14 @@ $image = $basedir."".$file;
 if (!file_exists($image)) { echo "No map found!"; exit;}
 $imagesz = @getimagesize($image);
 
-$pin1="images/pinrr.png"; //red pin
-$pin2="images/pingg.png"; //green pin
-$pin3="images/pinoo.png"; //orange pin
+$pin1="images/pin.png"; //red pin
+$pin2="images/pin2.png"; //green pin
+$pin3="images/pin3.png"; //orange pin
 $city="images/city.png"; //city pin
 $i20=20;
 $i21=21;
 $ncc=0;
-$cc=file("./templates/$template/$speek/custom_cart.inc");
+$cc=file("./templates/$template/$baseloc_speek/custom_cart.inc");
 
 $dateformat=str_replace("y", "Y", str_replace("dd", "d",str_replace("mm", "m",str_replace("yy", "y", str_replace("yy", "y", $ewc_dateformat)))));
 
@@ -82,12 +80,12 @@ $white=imagecolorallocate($im, 0xff, 0xff, 0xff);
 $grey=imagecolorallocate($im, 0xff, 0xff, 0xff);
 $fontsize=8;
 imagefilledrectangle( $im, 0, $y/2, $x, $y/2, $grey );
-imagefilledrectangle( $im, $x/2-21*$razn, 0, $x/2-21*$razn, $y, $grey );
-imagefilledrectangle( $im, $x-21*$razn, 0, $x-21*$razn, $y, $grey );
+imagefilledrectangle( $im, $x/2-21, 0, $x/2-21, $y, $grey );
+imagefilledrectangle( $im, $x-21, 0, $x-21, $y, $grey );
 //imageTtfText($im, $fontsize-1, 0, $x/2-21+2, 10, $grey,  "./admin/arial.ttf", "0'");
-imagestring($im, 2, $x/2-21*$razn+2, 0, "0'", $grey);
+imagestring($im, 2, $x/2-21+2, 10-10, "0'", $grey);
 //imageTtfText($im, $fontsize-1, 0, $x-21+2, 10, $grey,  "./admin/arial.ttf", "180'");
-imagestring($im, 2, $x-21*$razn+2, 0, "180'", $grey);
+imagestring($im, 2, $x-21+2, 10-10, "180'", $grey);
 
 //Âëàäèâîñòîê 43° 7’ N	131° 55
 //RUSSIA (Murmansk dst)	68° 58’ N	33° 05`’ E
@@ -104,16 +102,16 @@ $w=imagesx($im3);
 
 //imagecopy($im, $im3, $x/2+131.55*$x/360-2-21, $y/2-43.7*$y/180-2, 0, 0, $w, $h);
 //imagecopy($im, $im3, $x/2+33.05*$x/360-2-21, $y/2-68.58*$y/180-2, 0, 0, $w, $h);
-imagecopy($im, $im3, $x/2+37.4*$x/360-2-21*$razn, $y/2-55.46*$y/180-2, 0, 0, $w, $h);
+imagecopy($im, $im3, $x/2+37.4*$x/360-2-21, $y/2-55.46*$y/180-2, 0, 0, $w, $h);
 
 //imagecopy($im, $im3, $x/2+132.52*$x/360-2-21, $y/2-42.47*$y/180-2, 0, 0, $w, $h);
-imagecopy($im, $im3, $x/2+30*$x/360-2-21*$razn, $y/2-60*$y/180-2, 0, 0, $w, $h); //Ïèòåð
+imagecopy($im, $im3, $x/2+30*$x/360-2-21, $y/2-60*$y/180-2, 0, 0, $w, $h); //Ïèòåð
 //imagecopy($im, $im3, $x/2+37.52*$x/360-2-21, $y/2-44.39*$y/180-2, 0, 0, $w, $h);
 //imagecopy($im, $im3, $x/2+4.28*$x/360-2-21, $y/2-51.55*$y/180-2, 0, 0, $w, $h);
 //imageTtfText($im, $fontsize, 0, $x/2+37.4*$x/360-2-10, $y/2-55.46*$y/180+4, $grey, "./admin/arial.ttf", "Moscow");
-imagestring($im, 2, $x/2+37.4*$x/360-2+10-21*$razn, $y/2-55.46*$y/180+4-10, "Moscow", $grey);
+imagestring($im, 2, $x/2+37.4*$x/360-2-10, $y/2-55.46*$y/180+4-10, "Moscow", $grey);
 //imageTtfText($im, $fontsize, 0, $x/2-21+36, $y-10, $grey, "./admin/arial.ttf", "$htpath");
-imagestring($im, 2, $x/2-21*$razn+36, $y-10-10, "$htpath", $grey);
+imagestring($im, 2, $x/2-21+36, $y-10-10, "$htpath", $grey);
 
 
 //green
@@ -127,7 +125,7 @@ if (trim($val)!="") {
 $o=explode("|", $val);
 if ($o[1]==$lang[418]){ continue;}
 $unifid=md5(@$o[3]." ID:".@$o[6]);
-$statusfile="$base_loc/status/".substr($unifid,0,2)."/".$unifid."/status.txt";
+$statusfile="$baseloc_main/status/".substr($unifid,0,2)."/".$unifid."/status.txt";
 $curstatus="";
 if (file_exists($statusfile)) {
 $sp=file($statusfile);
@@ -172,22 +170,43 @@ $strt=0;
 while(list($kc,$kv)=each($shirota)) {
 if ($id!="") {
 if ($strt==0) {$sty=$shirota[$kc]; $stx=$dolgota[$kc];
+$o[$i20]=$sty;
+$o[$i21]=$stx;
 //imagecopy($im, $im3, $x/2+$stx*$x/360-2-21, $y/2-$sty*$y/180-2, 0, 0, $w, $h);
 } else {
 $y11=$shirota[$kc];
 $x11=$dolgota[$kc];
 //echo "$stx , $sty -&gt; $x11 , $y11<br>";
-imageline ($im,$x/2+$stx*$x/360-21*$razn, $y/2-$sty*$y/180, $x/2+$x11*$x/360-21*$razn, $y/2-$y11*$y/180, $line_color);
-imageline ($im,$x/2+$stx*$x/360-21*$razn+1, $y/2-$sty*$y/180, $x/2+$x11*$x/360-21*$razn+1, $y/2-$y11*$y/180, $line_color);
+$ris=1;
+if (($stx>=190) &&($x11<=(0-169.99)) ){ $ris=0; }
+if (($stx<=(0-169.99)) &&($x11>=190) ){ $ris=0; }
+//if (($stx>=183) &&($x11<=(0-177)) ){ $ris=0; }
+//if ($stx<=(0-177)) { $ris=0;}
+//if ($x11>=183) { $ris=0; }
+//if ($x11<=(0-177)) { $ris=0; }
+if ($ris==1) {
+imageline ($im,$x/2+$stx*$x/360-21, $y/2-$sty*$y/180, $x/2+$x11*$x/360-21, $y/2-$y11*$y/180, $line_color);
+imageline ($im,$x/2+$stx*$x/360-20, $y/2-$sty*$y/180, $x/2+$x11*$x/360-20, $y/2-$y11*$y/180, $line_color);
+//imagestring($im, 1, $x/2+$stx*$x/360-20, $y/2-$sty*$y/180, $stx,  $line_color);
+
+}
 $stx=$x11; $sty=$y11;
 }
+$strt++;
+} else {
+if ($strt==0) {
+$o[$i20]=$shirota[$kc];
+$o[$i21]=$dolgota[$kc];
+
+}
+
 $strt++;
 }
 //echo "$ttime>$kc ? $shirota[$kc] $dolgota[$kc]<br>";
 if ($ttime>$kc) {
 $o[$i20]=$kv;
 $o[$i21]=$dolgota[$kc];
-}
+} 
 $ls=$kv;
 $ld=$dolgota[$kc];
 $dp=date($dateformat,$kc);
@@ -206,13 +225,14 @@ $o[3]))))),0,45);
 $h=imagesy($im2);
 $w=imagesx($im2);
 $rand=0;
+$sdvx=0;
 $indx=$o[$i20]."_".$o[$i21];
 $sdvig=10; //pixels
 if (!isset($toch[$indx])) { $toch[$indx]=0; } else { $toch[$indx]+=1;  }
 $sdv=$sdvig*$toch[$indx];
 //if ($id!="") { $sdv=0; }
-
-if ($mid!="") {
+$fontsize=8;
+require("./templates/$template/custom_map.inc");
 if ($curstatus==trim($statuses[2])) {
 
 $rand=0;
@@ -220,12 +240,11 @@ $rand=0;
 if (trim($o[$i20])!="") {
 
 imagecopy($im, $im1, $rand+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h);
-if ($o[$i21]<165) { imagecopy($im, $im1, $rand+$x+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
-if ($o[$i21]>165) { imagecopy($im, $im1, $rand+$x/2+$o[$i21]*$x/360-7-21-$x, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
+if ($o[$i21]<(0-169.99)) { imagecopy($im, $im1, $rand+$x+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
+if ($o[$i21]>169.99) { imagecopy($im, $im1, $rand+$x/2+$o[$i21]*$x/360-7-21-$x, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
 
 //$colofont="af0f0f";
 $colofont="000000";
-$fontsize=8;
 $rrr= (hexdec ("0x" . substr($colofont,0,2)));
 $ggg=(hexdec ("0x" . substr($colofont,2,2)));
 $bbb=(hexdec ("0x" . substr($colofont,4,2)));
@@ -235,15 +254,15 @@ $fontclr=imagecolorallocate($im, $rrr, $ggg, $bbb);
 //imageTtfText($im, $fontsize, 0, $x/2+$o[$i21]*$x/360+7, $y/2-$o[$i20]*$y/180-1, $white,  "arial.ttf",$o[3]);
 //imageTtfText($im, $fontsize, 0, $x/2+$o[$i21]*$x/360+7, $y/2-$o[$i20]*$y/180+1, $white,  "arial.ttf",$o[3]);
 //imageTtfText($im, $fontsize, 0, $rand+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180, $fontclr,  "./admin/arial.ttf", $o[3]);
-imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3],  $fontclr);
+imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$sdvx, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3]." ".$o[6],  $fontclr);
 
-if ($o[$i21]<165) {
+if ($o[$i21]<(0-169.99)) {
 //imageTtfText($im, $fontsize, 0, $rand+$x+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180, $fontclr,  "./admin/arial.ttf", $o[3]);
-imagestring($im, 2, $rand+$x+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3],  $fontclr);
+imagestring($im, 2, $rand+$x+$x/2+$o[$i21]*$x/360+7-28-$sdvx, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3]." ".$o[6],  $fontclr);
 }
-if ($o[$i21]>165) {
+if ($o[$i21]>169.99) {
 //imageTtfText($im, $fontsize, 0, $rand+$x/2+$o[$i21]*$x/360+7-28-$x, $rand+$y/2-$o[$i20]*$y/180, $fontclr,  "./admin/arial.ttf", $o[3]);
-imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$x, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3],  $fontclr);
+imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$x-$sdvx, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3]." ".$o[6],  $fontclr);
  }
 }
 }
@@ -253,12 +272,11 @@ $rand=rand(0,0);
 //$rand=0;
 if (trim($o[$i20])!="") {
 imagecopy($im, $im4, $rand+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h);
-if ($o[$i21]<165) { imagecopy($im, $im4, $rand+$x+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
-if ($o[$i21]>165) { imagecopy($im, $im4, $rand+$x/2+$o[$i21]*$x/360-7-21-$x, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
+if ($o[$i21]<(0-169.99)) { imagecopy($im, $im4, $rand+$x+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
+if ($o[$i21]>169.99) { imagecopy($im, $im4, $rand+$x/2+$o[$i21]*$x/360-7-21-$x, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
 
 //$colofont="ef6633";
 $colofont="000000";
-$fontsize=8;
 $rrr= (hexdec ("0x" . substr($colofont,0,2)));
 $ggg=(hexdec ("0x" . substr($colofont,2,2)));
 $bbb=(hexdec ("0x" . substr($colofont,4,2)));
@@ -269,14 +287,14 @@ $fontclr=imagecolorallocate($im, $rrr, $ggg, $bbb);
 //imageTtfText($im, $fontsize, 0, $x/2+$o[$i21]*$x/360+7, $y/2-$o[$i20]*$y/180+1, $white,  "arial.ttf",$o[3]);
 
 //imageTtfText($im, $fontsize, 0, $rand+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180, $fontclr,  "./admin/arial.ttf",$o[3]);
-imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3],  $fontclr);
-if ($o[$i21]<165) {
+imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$sdvx, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3]." ".$o[6],  $fontclr);
+if ($o[$i21]<(0-169.99)) {
 //imageTtfText($im, $fontsize, 0, $rand+$x+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180, $fontclr,  "./admin/arial.ttf", $o[3]);
-imagestring($im, 2, $rand+$x+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3],  $fontclr);
+imagestring($im, 2, $rand+$x+$x/2+$o[$i21]*$x/360+7-28-$sdvx, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3]." ".$o[6],  $fontclr);
 }
-if ($o[$i21]>165) {
+if ($o[$i21]>169.99) {
 //imageTtfText($im, $fontsize, 0, $rand+$x/2+$o[$i21]*$x/360+7-28-$x, $rand+$y/2-$o[$i20]*$y/180, $fontclr,  "./admin/arial.ttf", $o[3]);
-imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$x, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3],  $fontclr);
+imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$x-$sdvx, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3]." ".$o[6],  $fontclr);
  }
 
 }
@@ -289,8 +307,8 @@ if (trim($o[$i20])!="") {
 //$rand=rand(-1,1);
 $rand=0;
 imagecopy($im, $im2, $rand+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h);
-if ($o[$i21]<165) { imagecopy($im, $im2, $rand+$x+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
-if ($o[$i21]>165) { imagecopy($im, $im2, $rand+$x/2+$o[$i21]*$x/360-7-21-$x, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
+if ($o[$i21]<(0-169.99)) { imagecopy($im, $im2, $rand+$x+$x/2+$o[$i21]*$x/360-7-21, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
+if ($o[$i21]>169.99) { imagecopy($im, $im2, $rand+$x/2+$o[$i21]*$x/360-7-21-$x, $rand+$y/2-$o[$i20]*$y/180-$h+2-$sdv, 0, 0, $w, $h); }
 
 //$colofont="1f5b1f";
 $colofont="000000";
@@ -307,14 +325,14 @@ $o[3]=str_replace("&nbsp;"," ",$o[3]);
 //imageTtfText($im, $fontsize, 0, $x/2+$o[$i21]*$x/360+7, $y/2-$o[$i20]*$y/180-1, $white,  "arial.ttf",$o[3]);
 //imageTtfText($im, $fontsize, 0, $x/2+$o[$i21]*$x/360+7, $y/2-$o[$i20]*$y/180+1, $white,  "arial.ttf",$o[3]);
 //imageTtfText($im, $fontsize, 0, $rand+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180, $fontclr,  "./admin/arial.ttf", $o[3]);
-imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3],  $fontclr);
-if ($o[$i21]<165) {
+imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$sdvx, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3]." ".$o[6],  $fontclr);
+if ($o[$i21]<(0-169.99)) {
 //imageTtfText($im, $fontsize, 0, $rand+$x+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180, $fontclr,  "./admin/arial.ttf",$o[3]);
-imagestring($im, 2, $rand+$x+$x/2+$o[$i21]*$x/360+7-28, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3],  $fontclr);
+imagestring($im, 2, $rand+$x+$x/2+$o[$i21]*$x/360+7-28-$sdvx, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3]." ".$o[6],  $fontclr);
 }
-if ($o[$i21]>165) {
+if ($o[$i21]>169.99) {
 //imageTtfText($im, $fontsize, 0, $rand+$x/2+$o[$i21]*$x/360+7-28-$x, $rand+$y/2-$o[$i20]*$y/180, $fontclr,  "./admin/arial.ttf",$o[3]);
-imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$x, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3],  $fontclr);
+imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$x-$sdvx, $rand+$y/2-$o[$i20]*$y/180-10-$sdv, $o[3]." ".$o[6],  $fontclr);
 }
 
 }
@@ -322,7 +340,7 @@ imagestring($im, 2, $rand+$x/2+$o[$i21]*$x/360+7-28-$x, $rand+$y/2-$o[$i20]*$y/1
 }
 }
 }
-}
+
 
 $last_modified = gmdate('D, d M Y H:i:00 T', filemtime ($image));
 //imageTtfText($im, 7, 0, 4, 10, $grey,  "./admin/arial.ttf", date("d/m/Y H:i", time()));

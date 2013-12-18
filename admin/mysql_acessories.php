@@ -443,10 +443,10 @@ if ($query!="") {$queryed="&query=".rawurlencode($query);} else {$queryed="";}
 
 $sstat= "<center><small><br>".$lang[203]." <b>$numberpages</b> <img src=\"$image_path/a.gif\"> ".$lang[206]." <b>$total</b> ".$lang[207]." <img src=\"$image_path/a.gif\"> ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&amp;start=" . ($start+$perpage) . "&amp;perpage=$perpage&filter=".rawurlencode($filter)."\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&amp;start=0&amp;perpage=&filter=".rawurlencode($filter)."\"><!--homee--></a>";
+$nextpage="<a href=\"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&start=" . ($start+$perpage) . "&perpage=$perpage&filter=".rawurlencode($filter)."\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&start=0&perpage=&filter=".rawurlencode($filter)."\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&amp;start=" . ($start-$perpage) . "&amp;perpage=$perpage&filter=".rawurlencode($filter)."\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&start=" . ($start-$perpage) . "&perpage=$perpage&filter=".rawurlencode($filter)."\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -469,16 +469,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&start=" . ($s*$perpage) . "&perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&start=" . ($s*$perpage) . "&perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href = \"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&amp;start=0&amp;perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&amp;start=0&amp;perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&amp;start=" . ($perpage*($numberpages-1)) . "&amp;perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href = \"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&start=0&perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&start=0&perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"".$PHP_SELF."?catid=".$podstava["$r|$sub|"]."$queryed&start=" . ($perpage*($numberpages-1)) . "&perpage=$perpage&filter=".rawurlencode($filter)."\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 

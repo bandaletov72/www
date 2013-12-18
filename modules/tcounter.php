@@ -1,4 +1,12 @@
 <?php
+
+function requesturl() {
+global $htpath;
+  $result = $htpath;
+  $result .= $_SERVER['REQUEST_URI'];
+  return $result;
+}
+
 //echo "item_id=$item_id page=$page catid=$catid unifid=$unifid query=$query<br>";
 if(isset($_GET['blog_out'])) $blog_out=$_GET['blog_out']; elseif(isset($_POST['blog_out'])) $blog_out=$_POST['blog_out']; else $blog_out="";
 if (!preg_match("/^[yesno]+$/i",$blog_out)) { $blog_out="";}
@@ -113,10 +121,11 @@ $byte2=true;
 return $out;
 }
 if ((!@$_SESSION["stime"]) || (@$_SESSION["stime"]=="")){$_SESSION["stime"]=time();}
-if ($show_searchengines_results==1) {
+if (($show_searchengines_results==1)||($collect_stat==1)) {
 
 //echo "!!!".$refferer."-".$stag."-".$catid."-".$unifid;
-if ((!@$_SESSION["sfrom"]) || (@$_SESSION["sfrom"]=="")){$banc=0;
+if ((!@$_SESSION["sfrom"]) || (@$_SESSION["sfrom"]=="")){
+$banc=0;
 $stag="";
 $refferer="";
 $reffound="";
@@ -142,10 +151,34 @@ $refferer1=@strtoken(@$reffererm1[1], "&");
 $refferer1=str_replace("|", "",strtolower(trim(str_replace("+" , " ", stripslashes(str_replace("\n", "", str_replace(chr(0x0A), "", $refferer1)))))));
 $_SESSION["stag"]=htmlspecialchars($refferer1);
 //echo "00query=$query-$stag-$catid-$reffound";
-if (($stag!="")&&($catid=="_")&&($unifid=="")&&($item_id=="")&&($page=="")) {
+if (($collect_stat==1)&&($fts!="")) {
+$hashdir=md5("1".$secret_salt.str_replace("www.","", $htpath));
+if(is_dir("./archive/".$hashdir)!=true) { mkdir("./archive/".$hashdir,0755); }
+$staty="./archive/".$hashdir."/".date("Y",time());
+if(is_dir($staty)!=true) { mkdir($staty,0755); }
+$staty="./archive/".$hashdir."/".date("Y",time())."/".date("m",time());
+if(is_dir($staty)!=true) { mkdir($staty,0755); }
+unset ($hashdir);
+$file=$staty."/stat.txt";
+$uri=requesturl();
+$filesize=0;
+if (file_exists($file)) {
+$filesize=filesize($file);
+}
+if (filesize>(1024*1024*10)) {
+unlink ($file);
+}
+$fp=fopen($file,"a");
+//fputs($fp, str_replace("www.", "", $uri)."|".$refferer1."|".$fts."|".date("d.m.Y",time())."|".date("H:i", time())."|".$servref."|\n");
+fputs($fp, str_replace("www.", "", $uri)."|".$refferer1."|".$fts."|".date("d.m.Y",time())."|".date("H:i", time())."|\n");
+fclose($fp);
+}
+if (($stag!="")&&("$catid"=="0")&&($unifid=="")&&($item_id=="")&&($page=="")) {
 
 $refferer=$refferer1;
 //ïèøåì
+
+if ($show_searchengines_results==1) {
 $cof="./admin/searchwords/".md5($refferer).".txt";
 if (@file_exists("$cof")==TRUE) {
 $f5=file("$cof");
@@ -180,6 +213,7 @@ if ($page!="") {$stuk=1;}
 } else {
 $scounter=1;
 }
+
 if ($banc==0) {
 $filetagname=@fopen("$cof","w");
 flock ($filetagname, LOCK_EX);
@@ -187,8 +221,9 @@ fputs($filetagname, "$scounter\n$refferer\n".@$f5[2]);
 flock ($filetagname, LOCK_UN);
 fclose ($filetagname);
 unset($f5, $filetagname);
-}
 
+}
+}
 }
 //echo "0query=$query-$stag-$catid-$reffound";
 if (!preg_match("/^[-À-ßà-ÿa-zA-Z0-9_\w\ \x21-\x40]+$/i",$refferer)) { $refferer="";}
@@ -196,11 +231,13 @@ if (!preg_match("/^[-À-ßà-ÿa-zA-Z0-9_\w\ \x21-\x40]+$/i",$refferer)) { $refferer
 if ($reffound=="") {
 if ($query!="") {
 //echo "2query=$query-$stag-$catid";
+if ($show_searchengines_results==1) {
 $query=$refferer;
+}
 $refferer="";
 } else {
 if ($show_searchengines_results==1) {
-if (($catid=="_")&&($unifid=="")&&($item_id=="")&&($page=="")) {
+if (("$catid"=="0")&&($unifid=="")&&($item_id=="")&&($page=="")) {
 $query=$refferer;
 //echo "3query=$query-$stag-$catid";
 }
@@ -213,7 +250,11 @@ $refferer="";
 } else {
 $refferer="";
 }
+$tags_cloud="";
+$tgc=0;
+$mmdtgc="";
 
+if ($view_tag_clouds!="")  {
 $tgc=doubleval(hexdec(substr(md5("".@$page.@$catid.@$unifid.@$brand.@$start.@$nr.@$action.@$i.@$item_id.@$fr.@$level.@$cl_post.@$message.@$tag.@$month.@$year.$htpath),0,2)));
 $mmdtgc="".@$page.@$catid.@$unifid.@$brand.@$start.@$nr.@$action.@$i.@$item_id.@$fr.@$level.@$cl_post.@$message.@$tag.@$month.@$year.$htpath;
 $tagpages=0;
@@ -232,7 +273,6 @@ $tgc=0;
 }
 
 if (($mmdtgc=="0")||($mmdtgc=="")||($mmdtgc=="00x$htpath")) {$tgc="0";}
-if ($view_tag_clouds!="")  {
 if (@file_exists("$base_loc/$tgc.txt")==FALSE) {  $tgc="0"; }
 if (@file_exists("$base_loc/$tgc.txt")==TRUE) {
 $tagfpen = fopen ("$base_loc/$tgc.txt" , "r");
@@ -240,7 +280,5 @@ $tags_cloud = "<b>".$lang[171].":</b><hr color=$nc6 noshade size=1><!-- ".$tgc."
 fclose ($tagfpen);
 }
 }
-} else {
-$tags_cloud="";
 }
 ?>

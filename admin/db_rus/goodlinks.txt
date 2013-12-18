@@ -1,17 +1,13 @@
-<div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
-<font color=#f2f2f2 style="font-size:15pt;"><font style="font-size: 14px"><!--a--><b><a href='index.php?page=pomosch'>Помощь</a></b></font></font>
-</div><div class="content" align=left><!--Lorem--><!--a0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=lorem'>Lorem</a></span><br></div>
+<div class="box2"><div class="onav2" align=left style="background: #39647a url(grad.php?h=50&w=20&s=447892&e=39647a) repeat-x;">
+<font color=#f2f2f2 style="font-size:15pt;"><font style="font-size: 13px"><!--a--><b><a href='index.php?page=pomosch'>Помощь</a></b></font></font>
+</div><div class="content"><!--Lorem--><!--a0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=lorem'>Lorem</a></span><br></div>
 </div>
-<div class=clear></div><div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
-<font color=#f2f2f2 style="font-size:15pt;"><font style="font-size: 14px"><!--b--><b><a href='index.php?page=anonsyi'>Анонсы</a></b></font></font>
-</div><div class="content" align=left><!--Lorem ipsum dolortth--><!--b0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=lorem_ipsum_dolortth'>Lorem ipsum dolortth</a></span><br></div>
+<div class=clear></div><div class="box2"><div class="onav2" align=left style="background: #39647a url(grad.php?h=50&w=20&s=447892&e=39647a) repeat-x;">
+<font color=#f2f2f2 style="font-size:15pt;"><font style="font-size: 13px"><!--b--><b><a href='index.php?page=anonsyi'>Анонсы</a></b></font></font>
+</div><div class="content"><!--Lorem ipsum dolortth--><!--b0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=lorem_ipsum_dolortth'>Lorem ipsum dolortth</a></span><br></div>
 </div>
-<div class=clear></div><div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
-<font color=#f2f2f2 style="font-size:15pt;"><font style="font-size: 14px"><!--d--><b><a href='index.php?action=sendmail'>Информация</a></b></font></font>
-</div><div class="content" align=left><!--Оптовым покупателям--><!--d0004--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=optovyim_pokupatelyam'>Оптовым покупателям</a></span><br><!--Оплата и доставка--><!--d0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=oplata_i_dostavka'>Оплата и доставка</a></span><br><!--О нас--><!--d0002--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=o_nas'>О нас</a></span><br><!--Контакты--><!--d0003--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?action=sendmail'>Контакты</a></span><br><!--d0008--><!--d0008--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=d0008'>d0008</a></span><br><!--d0007--><!--d0007--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=d0007'>d0007</a></span><br><!--d0006--><!--d0006--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=d0006'>d0006</a></span><br><!--d0005--><!--d0005--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=d0005'>d0005</a></span><br></div>
-</div>
-<div class=clear></div><div class="box2"><div class="onav2" align=left style="background: #075fad url(grad.php?h=50&w=20&s=0872d0&e=075fad) repeat-x;">
-<font color=#f2f2f2 style="font-size:15pt;"><font style="font-size: 14px"><!--v--><b><a href='index.php?page=city_map'>City MAP</a></b></font></font>
-</div><div class="content" align=left><!--Point2--><!--v0002--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=point2'>Point2</a></span><br><!--Point1--><!--v0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=point1'>Point1</a></span><br></div>
+<div class=clear></div><div class="box2"><div class="onav2" align=left style="background: #39647a url(grad.php?h=50&w=20&s=447892&e=39647a) repeat-x;">
+<font color=#f2f2f2 style="font-size:15pt;"><font style="font-size: 13px"><!--d--><b><a href='index.php?page=informatziya'>Информация</a></b></font></font>
+</div><div class="content"><!--Контакты--><!--d0003--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=kontaktyi'>Контакты</a></span><br><!--О нас--><!--d0002--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=o_nas'>О нас</a></span><br><!--Оплата и доставка--><!--d0001--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=oplata_i_dostavka'>Оплата и доставка</a></span><br><!--Оптовым покупателям--><!--d0004--><i class='icon-chevron-right'></i>&nbsp;<span class=lnk><a href='index.php?page=optovyim_pokupatelyam'>Оптовым покупателям</a></span><br></div>
 </div>
 <div class=clear></div>

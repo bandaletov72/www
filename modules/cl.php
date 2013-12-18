@@ -580,9 +580,9 @@ $form2="\"><input type=submit value=\"&gt;&gt;\" title=\"".$lang[390]."\"></form
 $txtbutton="";
 $urlink="<a href=\"$htpath/classifieds/base".str_replace("%2F", "/", rawurlencode(str_replace("//","/",str_replace("//","/",$bdi))).rawurlencode($fileopen))."\" target=\"_blank\">";
 if (($typ==".txt")||($typ==".lst")) {
-$urlink="<a href=\"#edit_file\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".str_replace("%2f","/",str_replace("%2F","/",rawurlencode(str_replace("//","/",str_replace("//","/", "./classifieds/base/$i/$fileopen")))))."','edit_".md5($fileopen)."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>";
+$urlink="<a href=\"#edit_file\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".str_replace("%2f","/",str_replace("%2F","/",rawurlencode(str_replace("//","/",str_replace("//","/", "./classifieds/base/$i/$fileopen")))))."','edit_".md5($fileopen)."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>";
 
-$txtbutton=" <button class=btn type=button value=\"".$lang['edits']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".str_replace("%2f","/",str_replace("%2F","/",rawurlencode(str_replace("//","/",str_replace("//","/", "./classifieds/base/$i/$fileopen")))))."','edit_".md5($fileopen)."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>&nbsp;&nbsp;<font color=#3a87ad>E</font>&nbsp;&nbsp;".$lang['edits']."</button> ";
+$txtbutton=" <button class=btn type=button value=\"".$lang['edits']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".str_replace("%2f","/",str_replace("%2F","/",rawurlencode(str_replace("//","/",str_replace("//","/", "./classifieds/base/$i/$fileopen")))))."','edit_".md5($fileopen)."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')>&nbsp;&nbsp;<font color=#3a87ad>E</font>&nbsp;&nbsp;".$lang['edits']."</button> ";
 }
 $ddel="<small><b>CHMOD:</b> ".perms(fileperms(str_replace("//","/",str_replace("//","/", "./classifieds/base/$i/$fileopen"))))."</small><br><br><form class=form-inline action=\"$htpath/index.php\" method=GET id=\"fform".$jsmd."\">
 <div style=\"display:none; visibility:hidden;\" id='ftab".$jsmd."'><script language=javascript><!--
@@ -928,10 +928,10 @@ $end=$startnew + $perpage - 1 + $gt;
 if ($end > $total): $end=$total-1 + $gt; endif;
 $stat= "<center><small><br>".$lang[203]." <b>$numberpages</b> <img src=\"$image_path/a.gif\"> ".$lang[206]." <b>$total</b> ".$lang[207]." <img src=\"$image_path/a.gif\"> ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"$htpath/index.php?action=cladm&isort=$isort&amp;start=" . ($start+$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"$htpath/index.php?action=cladm&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=\"><!--homee--></a>";
+$nextpage="<a href=\"$htpath/index.php?action=cladm&isort=$isort&start=" . ($start+$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"$htpath/index.php?action=cladm&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"$htpath/index.php?action=cladm&isort=$isort&amp;start=" . ($start-$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"$htpath/index.php?action=cladm&isort=$isort&start=" . ($start-$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>=$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -954,16 +954,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"$htpath/index.php?action=cladm&isort=$isort&amp;start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"$htpath/index.php?action=cladm&isort=$isort&start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"$htpath/index.php?action=cladm&isort=$isort&amp;start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"$htpath/index.php?action=cladm&isort=$isort&start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=cladm&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=cladm&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=cladm&isort=$isort&amp;start=" . ($perpage*($numberpages-1)) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=cladm&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=cladm&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=cladm&isort=$isort&start=" . ($perpage*($numberpages-1)) . "&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 
@@ -1036,7 +1036,7 @@ $writer="<br><form class=form-inline action=\"$htpath/index.php\" method=POST>
 
 }
 if ($view_gal_slide!=1) {$jgal="";}
-$gal="$ggal<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=cladm&isort=&amp;start=$start&i=".rawurlencode($i)."&amp;perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=cladm&isort=date&amp;start=$start&i=".rawurlencode($i)."&amp;perpage=$perpage\">".$lang['by_date']."</a></small>
+$gal="$ggal<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=cladm&isort=&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=cladm&isort=date&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_date']."</a></small>
 <br>$writer<br></div>$hear</center><table border=0 cellspacing=10 cellpadding=0 width=100%>
 <tr>
 $gal

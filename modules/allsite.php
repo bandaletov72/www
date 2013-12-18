@@ -1,16 +1,16 @@
 <?php
-if (($catid!="")||($unifid!="")||($item_id!="")) { if ($view_left_menu_items==0) {$view_all_site=0; } else {$links_to_bottom=0; } }
+//if (("$item_id"!=="")||("$unifid"!="")||("$catid"."0"!="0")) { if ($view_left_menu_items==0) { $view_all_site=0; } else {  $links_to_bottom=0; } }
+
 if ($view_all_site==1) {
 if ($usetheme==0) {
-if ($leftmenu==0) {$links_to_bottom=1;}
 if ($affix==1) { $leftmenu=1; $links_to_bottom=0;}
 if ($links_to_bottom==1) {
 $ll = @fopen ("$base_loc/bottomlinks.txt" , "r");
 $ll_cont= (@fread ($ll, @filesize ("$base_loc/bottomlinks.txt")));
 @fclose ($ll);
 
-$ll_cont=str_replace("page=$opage'", "page=$opage' style=\"font-weight:400; background-color: ".$nc5.";\"", $ll_cont);
-$ll_cont=str_replace("page=$page'", "page=$page' style=\"font-weight:400; background-color: ".$nc5.";\"", $ll_cont);
+$ll_cont=str_replace("page=$opage'", "page=$opage' style=\"font-weight:400; background-color: ".$nc5."; color: $nc0;\"", $ll_cont);
+$ll_cont=str_replace("page=$page'", "page=$page' style=\"font-weight:400; background-color: ".$nc5."; color: $nc0;\"", $ll_cont);
 $bottom_links=$ll_cont;
 
 } else {
@@ -19,8 +19,8 @@ $ll = fopen ("$base_loc/links.txt" , "r");
 $ll_cont= (@fread ($ll, @filesize ("$base_loc/links.txt")));
 
 fclose ($ll);
-$ll_cont=str_replace(" href='index.php?page=$opage&", " style=\"font-weight:400; background-color: ".$nc5.";\" href='index.php?page=$opage&", $ll_cont);
-$ll_cont=str_replace(" href='index.php?page=$page&", " style=\"font-weight:400; background-color: ".$nc5.";\" href='index.php?page=$page&", $ll_cont);
+$ll_cont=str_replace(" href='index.php?page=$opage&", " style=\"font-weight:400; background-color: ".$nc5."; color: $nc0;\" href='index.php?page=$opage&", $ll_cont);
+$ll_cont=str_replace(" href='index.php?page=$page&", " style=\"font-weight:400; background-color: ".$nc5."; color: $nc0;\" href='index.php?page=$page&", $ll_cont);
 if ($bb>0) {
 $ll_cont=str_replace(" style=\"display: none;\" id=\"d_".$bb."\""," id=\"d_".$bb."\"", str_replace("id=\"i_".$bb."\" class=\"icon-chevron-right icon-white\"","id=\"i_".$bb."\" class=\"icon-chevron-down icon-white\"",$ll_cont));
 }
@@ -42,8 +42,8 @@ $ll_cont= (@fread ($ll, @filesize ("$base_loc/bottomlinks.txt")));
 if ($repzeme!="") {
 $ll_cont=str_replace("$repzeme","themes/$repzeme",$ll_cont);
 }
-$ll_cont=str_replace("page=$opage'", "page=$opage' style=\"font-weight:400; background-color: ".$nc5.";\"", $ll_cont);
-$ll_cont=str_replace("page=$page'", "page=$page' style=\"font-weight:400; background-color: ".$nc5.";\"", $ll_cont);
+$ll_cont=str_replace("page=$opage'", "page=$opage' style=\"font-weight:400; background-color: ".$nc5."; color: $nc0;\"", $ll_cont);
+$ll_cont=str_replace("page=$page'", "page=$page' style=\"font-weight:400; background-color: ".$nc5."; color: $nc0;\"", $ll_cont);
 $bottom_links=$ll_cont;
 } else {
 
@@ -51,8 +51,8 @@ $ll = fopen ("$base_loc/links.txt" , "r");
 $ll_cont= (@fread ($ll, @filesize ("$base_loc/links.txt")));
 
 fclose ($ll);
-$ll_cont=str_replace(" href='index.php?page=$opage&", " style=\"font-weight:400; background-color: ".$nc5.";\" href='index.php?page=$opage&", $ll_cont);
-$ll_cont=str_replace(" href='index.php?page=$page&", " style=\"font-weight:400; background-color: ".$nc5.";\" href='index.php?page=$page&", $ll_cont);
+$ll_cont=str_replace(" href='index.php?page=$opage&", " style=\"font-weight:400; background-color: ".$nc5."; color: $nc0;\" href='index.php?page=$opage&", $ll_cont);
+$ll_cont=str_replace(" href='index.php?page=$page&", " style=\"font-weight:400; background-color: ".$nc5."; color: $nc0;\" href='index.php?page=$page&", $ll_cont);
 if ($bb>0) {
 $ll_cont=str_replace(" style=\"display: none;\" id=\"d_".$bb."\""," id=\"d_".$bb."\"", str_replace("id=\"i_".$bb."\" class=\"icon-chevron-right icon-white\"","id=\"i_".$bb."\" class=\"icon-chevron-down icon-white\"",$ll_cont));
 }

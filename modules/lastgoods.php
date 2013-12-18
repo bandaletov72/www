@@ -1,5 +1,6 @@
 <?php
 $sqrp="";
+$spprice="";
 $lastgoods_spisok = "";
 if ($varlastgoods!=4) {
 $minorder="";
@@ -99,7 +100,7 @@ $minmax="".$lang[99]." <b>".($okr*round(($minl*$kurs)/$okr))."</b> ".$currencies
 }
 }
 }
-$minmax="<br><small><font color=$nc4>$minmax</font></small>";
+$minmax="<div class=small>$minmax</div>";
 if ($view_goodsprice==0) {$minmax="";}
 if (($onlyopt==1)||(substr($details[7],0,3)=="OPT")) {$minmax=""; }
 @$file=@$out[2];
@@ -147,18 +148,12 @@ if (($valid=="1")&&($details[7]=="VIP")): @$description=@$description . "<br><sm
 
 
 if (($valid=="1")&&($details[7]=="ADMIN")): @$description=@$description . "<br><small>(".$lang[148].": <b>".@$opt."</b>$valut) <font color=\"#a0a0a0\">[&#36;$ueopt]</font></small>"; endif;
-if (($valid=="1")&&($details[7]=="ADMIN")): $admin_functions = "<br><br><small><input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('admin/".$scriptprefix."edit.php?speek=".$speek."&id=$ff&view=no','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=760,height=580,left=10,top=10')> <input type=button value=\"Cc&nbsp;&nbsp;&nbsp;".$lang[137]."\" onClick=javascript:window.open('admin/".$scriptprefix."clone.php?speek=".$speek."&id=$ff','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')> <input type=button value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('admin/".$scriptprefix."del.php?speek=".$speek."&id=$ff','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10')></small><br><br>"; endif;
+if (($valid=="1")&&($details[7]=="ADMIN")): $admin_functions = "<br><br><small><input type=button class=btn value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('admin/".$scriptprefix."edit.php?speek=".$speek."&id=$ff&view=no','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=760,height=580,left=10,top=10')> <input type=button class=btn value=\"Cc&nbsp;&nbsp;&nbsp;".$lang[137]."\" onClick=javascript:window.open('admin/".$scriptprefix."clone.php?speek=".$speek."&id=$ff','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')> <input type=button class=btn value=\"X&nbsp;&nbsp;&nbsp;".$lang['del']."\" onClick=javascript:window.open('admin/".$scriptprefix."del.php?speek=".$speek."&id=$ff','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=500,height=560,left=10,top=10')></small><br><br>"; endif;
 @$kwords=@$out[10];
 $optionselect="";
 $xz=0;
 $fo=0;
 @$out[8]=@$out[8]." ";
-while ($xz<50) {
-if (preg_match("/option".$xz." /", @$out[8])==TRUE) {$fo=1; $optionselect.=@$optio[($xz-1)];}
-$xz+=1;
-}
-if ($fo==1) {$optionselect="<br><table border=0>$optionselect</table>";}
-
 
 @$foto1=@$out[11];
 $inxcd=$out[3]."|".$out[4]."|";
@@ -195,28 +190,11 @@ if (@$logodirsy[$inxcd]=="") {
 //echo "1.Нет картинки подраздела $inxcd <br>";
 
 $wh="";
-$foto1=str_replace("http://www.", "http://", str_replace("\"","'", $foto1));
+@$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span23\" ",  stripslashes(@$foto1));
+
 if ($foto1!="") {
 //echo "Но есть картинка из lastgoods.txt - $foto1 давай ее обработаем<br>";
-@$fi=str_replace($htpat,"",str_replace($htpath,"",strtoken(strtoken(str_replace("'", "", str_replace(strtoken(stripslashes(@$foto1),"src=")."src=","", stripslashes(@$foto1))),">")," ")));
-if (substr($fi,0,1)!="/") { $fi="/$fi";}
-//echo "картинка находится в .$fi<br>";
-$kkd1=$kd1;
-if (@file_exists(".$fi")){
 
-$imagesz = @getimagesize(".$fi");
-if ( $imagesz[1]>doubleval($style['hh'])) {
-//echo "Ой Высота картинки больше ".$style['hh']." !<br>Надо уменьшать, но пропорционально!<br> Ширина ее ".$imagesz[0]." значит ее надо уменьшить в ";
-$kkd1= ($imagesz[1]/doubleval($style['hh']));
-//echo "$kkd1 раз!<br>";
-}
-$wh=" width=\"".ceil(($imagesz[0])/$kkd1)."\" height=\"".ceil(($imagesz[1])/$kkd1)."\"";
-if ($wh==" width=\"\" height=\"\"") {$wh="";}
-if ($wh==" width=\"0\" height=\"0\"") {$wh="";}
-} else {
-if (($style['ww']!="")&&($style['hh']!="")) { $wh=" width=\"".$style['ww_v']."\" height=\"".$style['hh_v']."\"";}
-}
-$foto1=str_replace("width= height= ", "", @$foto1);
 //echo "ее размеры $wh<br>";
 //echo "Проверим есть вообще картинка раздела $inxcd2 ?<br>";
 if (@$logodirsy[$inxcd2]=="") {
@@ -224,6 +202,8 @@ if (@$logodirsy[$inxcd2]=="") {
 $sps3[$inxcd2]=$foto1;
 } else {
 //echo "ЕСТЬ! Давайте тогда ее уменьшим правильно но потом...<br>";
+//$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span23\" ",  stripslashes(@$logodirsy[$inxcd2]));
+$sps3[$inxcd2]=$foto1;
 }
 $sps3[$inxcd]=$foto1;
 
@@ -231,8 +211,12 @@ $sps3[$inxcd]=$foto1;
 } else {
 //echo "5. Не найдено картинки подраздела $inxcd в Lastgoods.txt, что же, ничего не покажем.<br>";
 }
+
 } else {
 //echo "Есть картинка подраздела $inxcd<br>";
+@$logodirsy[$inxcd]=str_replace("<img ", "<img align=left class=\"img thumbnail span23\" ",  stripslashes(@$logodirsy[$inxcd]));
+@$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span23\" ",  stripslashes(@$logodirsy[$inxcd]));
+
 if ($foto1!="") {
 $sps3[$inxcd]=$foto1;
 //echo "2. Картинкой подраздела $inxcd стала $foto1<br>";
@@ -242,42 +226,20 @@ $sps3[$inxcd2]="$foto1";
 //echo "6. Картинка раздела $inxcd2 не найдено, ей стала $foto1<br>";
 }
 }
-}
+
 
 
 if (@$logodirsy[$inxcd2]!="") {
 //echo "55. Есть картинка раздела $inxcd2 $logodirsy[$inxcd2]<br>"; $wh="";
-$htpat=str_replace("http://www.", "http://",$htpath);
-$foto1=str_replace("http://www.", "http://", str_replace("\"","'", $foto1));
-@$fi=str_replace($htpat,"",str_replace($htpath,"",strtoken(strtoken(str_replace("'", "", str_replace(strtoken(stripslashes($logodirsy[$inxcd2]),"src=")."src=","", stripslashes($logodirsy[$inxcd2]))),">")," ")));
+@$logodirsy[$inxcd2]=str_replace("<img ", "<img align=left class=\"img thumbnail span23\" ",  stripslashes(@$logodirsy[$inxcd2]));
 
-if (substr($fi,0,1)!="/") { $fi="/$fi";}
-//echo "Она находится в .$fi<br>";
-$kkd1=$kd1;
-if (@file_exists(".$fi")){
-
-$imagesz = @getimagesize(".$fi");
-if ( $imagesz[1]>doubleval($style['hh'])) {
-//echo "Ой Высота картинки больше ".$style['hh']." !<br>Надо уменьшать, но пропорционально!<br> Ширина ее ".$imagesz[0]." значит ее надо уменьшить в ";
-$kkd1= ($imagesz[1]/doubleval($style['hh']));
-//echo "$kkd1 раз!<br>";
-}
-$wh=" width=\"".ceil(($imagesz[0])/$kkd1)."\" height=\"".ceil(($imagesz[1])/$kkd1)."\"";
-if ($wh==" width=\"\" height=\"\"") {$wh="";}
-if ($wh==" width=\"0\" height=\"0\"") {$wh="";}
-} else {
-if (($style['ww']!="")&&($style['hh']!="")) { $wh=" width=\"".$style['ww_v']."\" height=\"".$style['hh_v']."\"";}
-}
-
-$logodirsy[$inxcd2]=str_replace("width= height= ", "", str_replace("width=0 height=0 ", "",str_replace("width=\"0\" height=\"0\" ", "",str_replace("width=\"\" height=\"\" ", "",@$logodirsy[$inxcd2]))));
-//echo "ее размеры $wh<br>";
-//echo "3. картинкой раздела $inxcd2 стала $logodirsy[$inxcd2]<br>";
 
 } else {
 if ( $sps3[$inxcd]!="") {
 $sps3[$inxcd2]=$sps3[$inxcd];
 }
 //echo "4. $inxcd2 - $logodirsy[$inxcd2] - $foto1 - $sps3[$inxcd] - $sps3[$inxcd2]<br>";
+}
 }
 
 @$kolvo=@$out[16];
@@ -293,7 +255,7 @@ if ($olddir!=$dir) {
 $needcol=@$colordirs["$dir"];
 if ($needcol!="") {$needc=$needcol; } else {$needc=$nc6;}
 
-$sps[$s]="|<!--dir--><td><table border=0 cellspacing=0 cellpadding=0 width=100%><tr><td><img src=\"".$image_path."/pix.gif\" width=8 height=8 border=\"0\" style=\"background-color: $needc\"></td><td>&nbsp;<font size=2><b><a href=\"index.php?catid=".translit($dir)."\"><h4>".str_replace(" ","&nbsp;", "$dir")."</h4></a></b></font>&nbsp;&nbsp;</td><td width=100%><table width=100% border=0 cellpadding=0 cellspacing=0><tr><td bgcolor=$needc><img src=\"".$image_path."/pix.gif\" width=10 height=1 border=\"0\"></td></tr></table></td></tr></table></td>";
+$sps[$s]="|<!--dir--><div class=clearfix></div><div><h4 class=\"lnk mu\"><a href=\"index.php?catid=".translit($dir)."\">".str_replace(" ","&nbsp;", "$dir")."</a></h4><hr></div>";
 $s+=1;
 $files_found += 1;
 }
@@ -335,21 +297,18 @@ while (list ($sps_num, $sps_line2) = each ($sps)) {
 if ($varlastgoods==1) {
 if (substr($sps_line2, 1,10)=="<!--dir-->") {
 $st=0;
-$lastgoods_spisok.="</tr></table></td></tr><tr><td valign=top><table border=0 cellpadding=0 cellspacing=0 width=100%><tr>$explk[1]</tr></table></td></tr><tr><td valign=top><table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";
+$lastgoods_spisok.=$explk[1]."\n";
 
 	}else {
 $st+=1;
-$lastgoods_spisok .= "$explk[0]\n";
-if ($st==$make_col) { $st=0; $lastgoods_spisok.="</tr></table></td></tr><tr><td valign=top><table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";}
-
+$lastgoods_spisok .= $explk[0]."\n";
 }
 }
 if ($varlastgoods==2) {
 if (substr($sps_line2, 1,10)=="<!--dir-->") {
 	}else {
 $st+=1;
-$lastgoods_spisok .= "$explk[0]\n";
-if ($st==$make_col) { $st=0; $lastgoods_spisok.="</tr></table></td></tr><tr><td valign=top><table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";}
+$lastgoods_spisok .= $explk[0]."\n";
 }
 }
 }
@@ -370,62 +329,39 @@ $needcols=@$colordirs[$stsp2];
 if ($needcols!="") {$needcd=$needcols; } else {$needcd=$nc10;}
 if ($mod_rw_enable==0) {$llid="<a href=\"index.php?catid=".translit($stsp2)."\">"; } else { $llid="<a href=\"".translit($stsp2)."\">";}
 if ((!isset($sps3[$keysp2]))||($sps3[$keysp2]=="")) {
-$lastgoods_spisok .= "<div style=\"width: ".$el_width."px; height: ".$el_height."px; overflow:hidden; float: left; display: block; margin-bottom: 10px; margin-left: 10px; padding:10px;\"><img src=\"".$image_path."/pix.gif\" width=14 height=14 border=\"0\" style=\"background-color: $needcd\">&nbsp;<b><a href=\"index.php?catid=".translit($stsp2)."\"><font size=2 color=$nc5>$stsp2</font></a></b>$sps4[$keysp2]<br><font color=$nc5>".substr(str_replace("[","<",str_replace("]",">",@$tmrs[$stsp2])),0,-1)."</a></font><br><img src=\"".$image_path."/pix.gif\" width=".ceil(500/$make_col)." height=1 border=\"0\"></div>\n";
+$lastgoods_spisok .= "<div class=\"lgdiv\" style=\"display:inline-block;\"><b><a href=\"index.php?catid=".translit($stsp2)."\">$stsp2</a></b>$sps4[$keysp2]<br>".substr(str_replace("[","<",str_replace("]",">",@$tmrs[$stsp2])),0,-1)."</a></div>\n";
 	} else {
 
-$lastgoods_spisok .= "<div style=\"width: ".$el_width."px; height: ".$el_height."px; overflow:hidden; float: left; display: block; margin-bottom: 10px; margin-left: 10px; padding:10px;\"><a href=\"index.php?catid=".translit($stsp2)."\" title=\"".strtoken($stsp2,"*")."\">".$sps3[$keysp2]."</a><div align=left>$llid<font color=".$needcd."><h4 style=\"font-size: ".($main_font_size+0)."pt; line-height: 1.1em; margin: 0pt;\">".strtoken($stsp2,"*")."</h4></font></a><font color=$nc5>".str_replace("[","<",str_replace("]",">",@$tmrs[$stsp2]))." ...</font></div><br><img src=\"".$image_path."/pix.gif\" width=".ceil(500/$make_col)." height=1 border=\"0\"></div>\n";
+$lastgoods_spisok .= "<div class=\"lgdiv\" style=\"display:inline-block;\"><div><a href=\"index.php?catid=".translit($stsp2)."\" title=\"".strtoken($stsp2,"*")."\">".$sps3[$keysp2]."</a></div><div align=left class=lnk><h4 style=\"font-size: ".($main_font_size+1)."pt;\">$llid<b>".strtoken($stsp2,"*")."</b></a></h4><div class=nw>".str_replace("[","<",str_replace("]",">",@$tmrs[$stsp2]))." ...</div></font></div></div>\n";
 }
-if ($st==$make_col) { if ($varlastgoods!=3) {$st=0; $lastgoods_spisok.="</tr></table><table border=0 cellspacing=0 cellpadding=0 width=100%><tr>";}}
 
 }
 }
-if ($varlastgoods==3) {
-$lastgoods_spisok ="<center class=lnk>
-  <table border=0>
-    <tr>
-      <td><div style=\"overflow: hidden; width:100%;  padding:10px; margin-left: 10px;\">
-$lastgoods_spisok
-</div>
-</td>
-</tr>
-</table>
-</center>
-";
 
-} else {
-$lastgoods_spisok = "<div align=center class=lnk><table border=0 cellpadding=0 cellspacing=0 width=100%>
-<tr><td valign=top>
-<table border=0 cellspacing=0 cellpadding=0 width=100%>
-<tr>
-$lastgoods_spisok
-</tr>
-</table>
-</td></tr>
-
-</table></div>\n";
-}
 $total-=1;
 } else {$files_found==0; $s==0; $lastgoods_spisok="";}
 
 
 if ($files_found==0): $lastgoods_spisok =""; $error = ""; endif;
 if ($s==0): $lastgoods_spisok=""; endif;
+
+if ($lastgoods_spisok!="" ) { $lastgoods_spisok="<div style=\"text-align:center\" align=center>".$lastgoods_spisok."<div class=clearfix></div></div>"; }
 }
 if (($valid=="1")&&($details[7]=="ADMIN")){
-$lastgoods_spisok="<div class=round align=center><a class=\"btn btn-primary\" onClick=\"javascript:window.open('admin/".$scriptprefix."new_item.php?speek=".$speek."','fr0','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=520,height=560,left=10,top=10');\" href=\"#newItem\"><i class=\"icon-plus icon-white\"></i> <font color=#ffffff>".$lang[875]."</font></a>&nbsp;&nbsp;&nbsp;<a class=btn onClick=\"javascript:window.open('admin/".$scriptprefix."indexator.php?speek=".$speek."','fr2','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=520,height=560,left=10,top=10');\" href=\"#Index\">".$lang['adm1']."</a><br><br>".$lang[879]."<br><b>".$lang[876]."</b></div>$lastgoods_spisok"; }
+$lastgoods_spisok="<div class=clearfix></div><div class=round align=center><a class=\"btn btn-primary\" onClick=\"javascript:window.open('admin/".$scriptprefix."new_item.php?speek=".$speek."','fr0','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=520,height=560,left=10,top=10');\" href=\"#newItem\"><i class=\"icon-plus icon-white\"></i> <font color=#ffffff>".$lang[875]."</font></a>&nbsp;&nbsp;&nbsp;<a class=btn onClick=\"javascript:window.open('admin/".$scriptprefix."indexator.php?speek=".$speek."','fr2','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=520,height=560,left=10,top=10');\" href=\"#Index\">".$lang['adm1']."</a><br><br>".$lang[879]."<br><b>".$lang[876]."</b></div><div class=clearfix></div>$lastgoods_spisok"; }
 if ($interface==1) {if (($valid=="1")&&($details[7]=="ADMIN"))
 { $oldval="varlastgoods";$strnum=115; $oldvalue=$$oldval;
 if (($varlastgoods==4)||($varlastgoods==0)) {
 $lastgoods_spisok.="<div align=center><font color=#b94a48>".$lang[895].": ".$lang[894]."</font></div>";
-$modonoff="<input type=button onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=1"."' value=\"".$lang[890]."\">";
+$modonoff="<input type=button class=btn onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=1"."' value=\"".$lang[890]."\">";
 } else {
-$modonoff="<input type=button onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=4"."' value=\"".$lang[889]."\">";
+$modonoff="<input type=button class=btn onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=4"."' value=\"".$lang[889]."\">";
 }
-$lastgoods_spisok.="<div align=center><img src=\"$image_path/handup.png\"></div><div class=round align=center>
+$lastgoods_spisok.="<div class=clearfix></div><div align=center><img src=\"$image_path/handup.png\"></div><div class=round align=center>
 <b>$lang[887]:</b>
-<input type=button onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=1"."' value=\"".$lang[886]." 1\">&nbsp;
-<input type=button onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=2"."' value=\"".$lang[886]." 2\">&nbsp;
-<input type=button onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=3"."' value=\"".$lang[886]." 3\">&nbsp;
+<input type=button class=btn onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=1"."' value=\"".$lang[886]." 1\">&nbsp;
+<input type=button class=btn onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=2"."' value=\"".$lang[886]." 2\">&nbsp;
+<input type=button class=btn onclick=javascript:location.href='"."index.php?action=vars&mod=admin&chok=ok&en[$strnum]=$oldval&nk[$strnum]=NO&evo[$strnum]=$oldvalue&ev[$strnum]=3"."' value=\"".$lang[886]." 3\">&nbsp;
 $modonoff<br><br>$lang[888]</div>";
 }
 }

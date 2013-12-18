@@ -241,8 +241,9 @@ $titjs="";
 if (!file_exists("$base_loc/items/$catid.txt")) {
 $file="$base_file";
 } else {$file="$base_loc/items/$catid.txt";}
-if (($catid=="")||($catid=="_")||($catid=="0")) {$view_deleted_goods=1; $file="$base_loc/novelty.txt"; $titjs="<div class=ocat1 align=center><font size=3>".$lang[259]."</font></div><br>";}
-$fmasp=array_reverse(file($file));
+if (($catid=="")||($catid=="_")||($catid=="0")) {$view_deleted_goods=1; $file="$base_loc/novelty.txt"; $titjs="<div align=left><h4 class=mu>".$lang[259]."</h4><hr></div><br>";}
+//$fmasp=array_reverse(file($file));
+$fmasp=file($file);
 $vit_qty=0;
 $ff=0;
 $str=0;
@@ -350,7 +351,13 @@ if ($foto1=="") {$foto1="<img src='".$image_path."/no_photo.gif' border=0>";}
 @$foto2=@$out[10];
 if ($js_carousel_use_big_photo==1) { if ($foto2!="") { $foto1=strtoken($foto2,">").">"; } }
 @$vitrin=@$out[11];
-
+if ($foto1=="") {$foto1="<img src=\"$image_path/no_photo.gif\" border=0>";}
+@$foto1=str_replace(">", "><div class=clearfix></div>", @$foto1);
+if ($hidart==1) {
+$foto1=str_replace("<img ", "<img class=\"img thumbnail span23\" ",  stripslashes(@$foto1));
+} else {
+$foto1=str_replace("<img ", "<img class=\"img thumbnail span23\" ",  stripslashes(@$foto1));
+}
 
 reset($cartl);
 
@@ -406,30 +413,7 @@ $hear="";
 unset ($awv1, $awv2);
 
 $wh="";
-if ($js_carousel_use_big_photo==0) { if ($foto1!="") {
 
-$htpat=str_replace("http://www.", "http://",$htpath);
-$htpat2=$htpat=str_replace("http://", "http://www.",$htpat);
-@$fi=str_replace($htpat,"",str_replace($htpath,"",str_replace($htpat2,"",strtoken(strtoken(str_replace("'", "", str_replace(strtoken(stripslashes(@$foto1),"src=")."src=","", stripslashes(@$foto1))),">")," "))));
-
-if (substr($fi,0,1)!="/") { $fi="/$fi";}
-$kkd1=$kd1;
-if (@file_exists(".$fi")){
-
-$imagesz = @getimagesize(".$fi");
-if ( $imagesz[1]>doubleval($style['hh'])) {
-$kkd1= ($imagesz[1]/doubleval($style['hh']));
-}
-$wh=" width=".ceil(($imagesz[0])/$kkd1)." height=".ceil(($imagesz[1])/$kkd1)."";
-} else {
-if (($style['ww']!="")&&($style['hh']!="")) { $wh=" width=".$style['ww_v']." height=".$style['hh_v'];}
-}
-$foto1=str_replace("'", "", str_replace("\"", "", str_replace("<img ", "<img". $wh ." ",stripslashes(@$foto1))));
-
-
-}
-}
-$foto1=str_replace("<img ", "<img class=img ",$foto1);
 //@$foto1.=$sales;
 @$kolvo=@$out[16];
 $ff+=1;
@@ -470,9 +454,9 @@ if ($mod_rw_enable==0) { $llid="<a href=$htpath/index.php?item_id=".$man.">"; }e
 
 $clink2="</a>";
 if ($type=="v") {
-$sps[$s]="<tr><td valign=top align=center width=100%>$llid<small>$nazv$novina</small><br>$foto1$clink2<br>$pricetax<font color=$nc5>$ppr$voting</font><br></td></tr>";
+$sps[$s]="<tr><td valign=top align=center width=100%><div class=\"small nw lnk\">$llid$nazv$novina$clink2</div><div align=center>$llid$foto1$clink2</div>$pricetax<font color=$nc5>$ppr$voting</font><br></td></tr>";
 }else{
-$sps[$s]="<td [ww] valign=top align=center width=".floor(100/$js_max)."%>$llid<small>$nazv$novina</small><br>$foto1$clink2<br>$pricetax<font color=$nc5>$ppr$voting</font></td><td valign=top>&nbsp;</td>";
+$sps[$s]="<td [ww] valign=top align=center width=".floor(100/$js_max)."%><div class=\"small nw lnk\">$llid$nazv$novina$clink2</div><div align=center>$llid$foto1$clink2</div>$pricetax<font color=$nc5>$ppr$voting</font></td><td valign=top>&nbsp;</td>";
 }
 
 //if (($foto1!="")&&($view_vitrin!=0)&&($price!=0)): $vitrin_content[$vit_qty] = "$file|$dir|$subdir|$nazv ID:".@$out[6]."|$price|$opt|$description|$foto1|$ff|"; $vit_qty+=1; endif;
@@ -545,11 +529,11 @@ $js_spisok = "var jsp".$catid."=document.getElementById('jsphp".$catid."'); jsph
 } else {
 if ($type=="v") {
 $js_spisok ="var jsp".$catid."=document.getElementById('jsphp".$catid."');
-jsphp".$catid.".innerHTML='".str_replace("'", "", str_replace("\"", "","<table width=96% border=0 cellspacing=0 cellpadding=0><tr><td bgcolor=$nc6><img src=images/pix.gif ></td><td valign=top align=center>$titjs<table border=0 cellspacing=0 cellpadding=0 width=height=100%><tr><td valign=top align=center><img src=images/pix.gif height=1 width=180><br><a href=$ss1><img src=$image_path/".$bu1."prevcv.png border=0></a><br><br></td></tr>$js_spisok<tr><td valign=top align=center><br><a href=$ss2><img src=$image_path/".$bu2."nextcv.png id=nextb border=0></a></td></tr></table></td></tr></table>"))."';";
+jsphp".$catid.".innerHTML='".str_replace("'", "", str_replace("\"", "\\\"","<table width=96% border=0 cellspacing=0 cellpadding=0><tr><td bgcolor=$nc6><img src=images/pix.gif ></td><td valign=top align=center>$titjs<table border=0 cellspacing=0 cellpadding=0 width=height=100%><tr><td valign=top align=center><img src=images/pix.gif height=1 width=180><br><a href=$ss1><img src=$image_path/".$bu1."prevcv.png border=0></a><br><br></td></tr>$js_spisok<tr><td valign=top align=center><br><a href=$ss2><img src=$image_path/".$bu2."nextcv.png id=nextb border=0></a></td></tr></table></td></tr></table>"))."';";
 
 } else {
 $js_spisok = str_replace("[ww]", "width=\"".round((100/($ddt+0.001)), 2)."%\"", "var jsp".$catid."=document.getElementById('jsphp".$catid."');
-jsphp".$catid.".innerHTML='".str_replace("'", "", str_replace("\"", "","$titjs<center><table width=90% border=0 cellspacing=0 cellpadding=0><tr><td valign=top><br><br><br><a href=$ss1><img src=$image_path/".$bu1."prevc.png border=0></a></td><td align=right valign=top>&nbsp;</td>$js_spisok<td valign=top><br><br><br><a href=$ss2><img src=$image_path/".$bu2."nextc.png id=nextb border=0></a></td></tr></table></center>"))."';");
+jsphp".$catid.".innerHTML='".str_replace("'", "", str_replace("\"", "\\\"","$titjs<center><table width=90% border=0 cellspacing=0 cellpadding=0><tr><td valign=top><br><br><br><a href=$ss1><img src=$image_path/".$bu1."prevc.png border=0></a></td><td align=right valign=top>&nbsp;</td>$js_spisok<td valign=top><br><br><br><a href=$ss2><img src=$image_path/".$bu2."nextc.png id=nextb border=0></a></td></tr></table></center>"))."';");
 }
 }
 /*

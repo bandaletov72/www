@@ -141,13 +141,19 @@ if ($action=="view_links") {
 require ("./admin/links.php");
 top("", "<h4>Links Admin</h4>$links_list", $style ['center_width'], $nc0, $nc0, 1,0,"[content]");
 }
-
+if ($action=="setsales") {
+require ("./admin/set_sales.php");
+top("", "<h4>$lang[1621]</h4>$setsales", $style ['center_width'], $nc0, $nc0, 1,0,"[content]");
+}
 }
 }
 
 
 //all users include guests actions
-
+if ($action=="insales") {
+require ("./modules/insales.php");
+top("", "<h4>$lang[1641]</h4>$insales", $style ['center_width'], $nc0, $nc0, 1,0,"[content]");
+}
 if ($action=="price")  {
 require ("./modules/inprice.php");
 top("", "$inprice", $style ['center_width'], $nc0, $nc0, 1,0,"[content]");

@@ -435,7 +435,7 @@ if ($view_ndir==0) {$ndir="";}
 if ($usetheme==1) {
 topwo ("", "<div class=box3>$ndir<div align=left>".$dir_cont.$cmenu_cont."<img src=$image_path/pix.gif border=0 style=\"width:96%\" height=2></div></div>", "100%", $nc3, strtolower($style ['left_menu']), 2,0, "[categories]");
 } else {
-topwo ($lang['all_items'], "<div class=box3>$ndir<div align=left style=\"padding:5px;\">".$dir_cont.$cmenu_cont."<img src=$image_path/pix.gif border=0 style=\"width:96%\" height=2></div></div>", "100%", $nc3, strtolower($style ['left_menu']), 2,0, "[categories]");
+topwo ($lang['all_items'], "<div class=box3>$ndir<div align=left style=\"padding:5px;\">".$dir_cont.$cmenu_cont."<img src=$image_path/pix.gif border=0 style=\"width:96%\" height=2></div></div></div>", "100%", $nc3, strtolower($style ['left_menu']), 2,0, "[categories]");
 }
 }
 }

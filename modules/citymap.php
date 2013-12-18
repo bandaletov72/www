@@ -31,11 +31,11 @@ $jumpto="setTimeout(function(){
 }, 10);";
 $tarea1[$jo]="<!-- $o[3] --><img id=jons".$jo." src=images/pinoo.png border=0 style=\"margin:0;cursor: pointer; cursor: hand; position: absolute; left:".ceil($o[2]-$x3/2-5)."px; top:".ceil($o[3]-$y3-11)."px;\" rel=\"tooltip\" data-original-title=\"".$o[0]."\">";
 $tarea21[$jo]="<!-- $o[3] --><img id=jjons".$jo." src=images/pinoo.png border=0 style=\"margin:0; cursor: pointer; cursor: hand; position: absolute; left:".ceil(($o[2]*$x2/$x)-$x3/2-3)."px; top:".ceil(($o[3]*$y2/$y)-$y3-10)."px;\" rel=\"tooltip\" data-original-title=\"".$o[0]."\">";
-$map1.="<div class=\"mr mb\"><img src=$image_path/pinoo.png border=0 class=mr><a href=\"index.php?page=$o[1]\" class=mr><b>$o[0]</b></a><font class=small>  $coms</font></div>";
+$map1.="<div class=\"mr mb\"><a href=\"index.php?page=$o[1]\" class=mr><img src=$image_path/pinoo.png border=0 class=mr<b>$o[0]</b></a><font class=small>  $coms</font></div>";
 } else {
 $tarea1[$jo]="<!-- $o[3] --><img id=jons".$jo." onclick=\"location.href='index.php?page=$o[1]';\" src=images/pinrr.png border=0 style=\"margin:0;cursor: pointer; cursor: hand; position: absolute; left:".ceil($o[2]-$x3/2-5)."px; top:".ceil($o[3]-$y3-11)."px;\" rel=\"tooltip\" data-original-title=\"".$o[0]."\" onmouseover=\"this.src='images/pinr.png';\" onmouseout=\"this.src='images/pinrr.png';\">";
 $tarea21[$jo]="<!-- $o[3] --><img id=jjons".$jo." onclick=\"location.href='index.php?page=$o[1]';\" src=images/pinrr.png border=0 style=\"margin:0;cursor: pointer; cursor: hand; position: absolute; left:".ceil(($o[2]*$x2/$x)-$x3/2-3)."px; top:".ceil(($o[3]*$y2/$y)-$y3-10)."px;\" rel=\"tooltip\" data-original-title=\"".$o[0]."\" onmouseover=\"this.src='images/pinr.png';\" onmouseout=\"this.src='images/pinrr.png';\">";
-$map1.="<div class=\"mr mb\"><img src=$image_path/pinrr.png border=0 class=mr><a href=\"index.php?page=$o[1]\" class=mr><b>$o[0]</b></a><font class=small>  $coms</font></div>";
+$map1.="<div class=\"mr mb\"><a href=\"index.php?page=$o[1]\" class=mr><img src=$image_path/pinrr.png border=0 class=mr><b>$o[0]</b></a><font class=small>  $coms</font></div>";
 }
 
 
@@ -541,6 +541,7 @@ var chkm=0;
 (function(\$){
 \$(window).load(function(){
 \$(\"[rel=tooltip]\").tooltip({html:true,placement:'bottom'});
+zoomout();
 ";
 if ($show_bigger_map==1) {
 $lemap.="
@@ -578,13 +579,13 @@ $lemap.=" x=x.toFixed(2);
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){
 $lemap.="
  if (map=='') {
- 
+
  document.getElementById('divxy').innerHTML = x + ':' + y ;
   } else {
   document.getElementById('divxy').innerHTML = (x*kx).toFixed(2) + ':' + (y*ky).toFixed(2);
   }
 ";
-}} 
+}}
 $lemap.="
 }
 ";
@@ -700,5 +701,5 @@ $lemap.="<div style=\"padding: 5px; background:$nc10; width:".($x-8)."px\"><span
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $lemap.="<span class=\"btn ml b1 disabled\" id=biggermap onclick=\"biggermap();\"><b class=\"icon-fullscreen\"></b></span>"; }}
 $lemap.="</div>";
 }
-$lemap.="</div></div><div class=\"pull-left ml\"><div class=\"mb ocat1\" style=\"width: 240px;\" align=center><font class=small>$lang[1619]:</font></div><div class=\"ml box5\" style=\"height:".($y-15)."px; overflow:auto; width: 240px; border-bottom: $nc10 dotted 1px;\">$map1"."$map2"."$map3</div></div><div class=clearfix></div>";
+$lemap.="</div></div><div class=\"pull-left ml\"><div class=\"mb razd\" style=\"width: 200px;\" align=center><font class=small>$lang[1619]:</font></div><div class=\"ml box5\" style=\"height:".($y-15)."px; overflow:auto; width: 200px; border-bottom: $nc10 dotted 1px;\">$map1"."$map2"."$map3</div></div><div class=clearfix></div>";
 ?>

@@ -38,7 +38,7 @@ echo"<td><img src=\"$image_path/pix.gif\" width=10 height=1></td><td align=\"rig
 }
 if ($header_type==0) {
 echo "<table style=\"background: ".$nc10.";\" align=\"center\" border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\">
-<tr><td align=center><table border=0 cellpadding=0 cellspacing=0 style=\"width:$shwid;\">
+<tr><td align=center><table border=0 cellpadding=0 cellspacing=0 style=\"width:100%;\">
   <tr>
     <td><img src=\"".$image_path."/pix.gif\" border=0 width=1 height=$header_height></td>
     <td width=100% valign=bottom>
@@ -84,7 +84,7 @@ if ($action=="basket") { $active=" active"; }
 if ($action=="clear") { $active=" active"; }
 echo "<div class=\"navbar navbar-inverse navbar-fixed-top\">
 <div class=\"navbar-inner\">
-<div class=\"container\" style=\"width:$shwid;\">
+<div class=\"container\">
 <button type=\"button\" class=\"btn btn-navbar\" data-toggle=\"collapse\" data-target=\".nav-collapse\">
 <span class=\"icon-bar\"></span>
 <span class=\"icon-bar\"></span>
@@ -104,7 +104,7 @@ $enter
 </div>
 </div>
 </div>
-</div><img src=\"".$image_path."/pix.gif\" border=0 width=1000 height=41><br>";
+</div>";
 
 }
 
@@ -128,14 +128,15 @@ if ($action=="basket") { $active=" active"; }
 if ($action=="clear") { $active=" active"; }
 echo "<div class=\"navbar navbar-inverse navbar-fixed-top\">
 <div class=\"navbar-inner\" style=\"white-space:nowrap;\">
-<div class=\"container\" style=\"width:$shwid;\">
-";
-if ($affix==0){echo "<a class=pull-left href=\"./\" title=\"".$lang['mainsite']."\" style=\"margin-top:4px;\"><img src=\"logo_mini.png\" border=0></a>"; }
-echo "
+<div class=\"container\" style=\"width: $shwid;\">
 <div class=\"nav-collapse collapse navbar-responsive-collapse nowrap\">
 <ul class=\"nav nowrap\">
 ";
-if ($affix==1) { echo "<li class=\"f1$activeh\"><a class=pull-left href=\"./\" title=\"".$lang['mainsite']."\" style=\"margin-top:4px;\"><i class=\"icon-home icon-white\"></i></a></li>"; }
+if ($affix==0){
+echo "<a class=pull-left href=\"./\" title=\"".$lang['mainsite']."\" style=\"margin-top:4px;\"><img src=\"logo_mini.png\" border=0></a>";
+} else {
+echo "<li class=\"f1$activeh\"><a class=pull-left href=\"./\" title=\"".$lang['mainsite']."\" style=\"margin-top:4px;\"><i class=\"icon-home icon-white\"></i></a></li>";
+}
 echo "$contbuttons
 $enter
 <li class=\"f1 pull-right$active\">$korz</li>
@@ -144,7 +145,7 @@ $enter
 </div>
 </div>
 </div>
-</div><img src=\"".$image_path."/pix.gif\" border=0 width=1000 height=41><br>";
+</div>";
 //echo $page." $opage";
 }
 ?>

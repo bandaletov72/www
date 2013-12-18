@@ -1,6 +1,5 @@
 <?php
-
-$x0007="";
+$reqx0007=1;
 if ($query=="") {
 if (("$catid"=="0")||("$catid"=="_")||("$catid"=="")) {
 if (($item_id=="")&&($unifid=="")) {
@@ -58,21 +57,13 @@ $page_content=str_replace("[map]", "<map name=\"mapmap\">$area1"."$area2"."$area
 $x0007= str_replace("==$page_title==", "" , $page_content);
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if (($valid=="1")){
-$x0007="<div align=right style=\"margin-right: 60px;\"><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0007</span> <a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/x0007.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['edits']."\"><i class=\"icon-edit icon-large\"></i></a>&nbsp;<a class=btn href=\"index.php?page=z_$catid\">".$lang[1550]."</a>&nbsp;<a class=\"btn\" href=#del onClick=\"javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=x0007&amp;del=x0007','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a></div>".$x0007;
+$add_button="&nbsp;<a class=btn href=\"index.php?page=z_$catid\">".$lang[1550]."</a>";
+if ("$catid"=="0") { $add_button="";}
+$x0007="<div align=right style=\"margin-right: 60px; margin-top:20px;\"><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0007</span> <a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/x0007.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['edits']."\"><i class=\"icon-edit icon-large\"></i></a>$add_button&nbsp;<a class=\"btn\" href=#del onClick=\"javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=x0007&del=x0007','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a></div>".$x0007;
 }
 }
 if ($x0007!="") {
-$x0007="<div style=\"border: 0px;
-background: ".$nc10.";
--moz-border-radius: 0px;
--webkit-border-radius: 0px;
-border-radius: 0px;
-padding: 5px 5px 5px 5px;
-margin: 0px 0px 0px 0px;
--webkit-box-shadow: 0 0px 5px ".lighter($nc6,-20).";
--moz-box-shadow:0 0px 5px ".lighter($nc6,-20).";
-box-shadow: 0 0px 5px ".lighter($nc6,-20).";
-background-image: url('images/light.png'); background-repeat: no-repeat;\"><table style=\"width:$shwid\" align=center border=0><tr><td>$x0007</td></tr></table></div>";
+$x0007="<div style=\"border: 0px; background: url('images/light.png') no-repeat center center; width:$shwid; overflow:hidden;\">$x0007</div>";
 }
 unset ($page_content, $page_title, $pageopen);
 
@@ -83,17 +74,7 @@ unset ($page_content, $page_title, $pageopen);
 } else {
 if ($no_x0007==0) {
 if ($catid_content!="") {
-$x0007="<div style=\"border: 0px;
-background: ".$nc10.";
--moz-border-radius: 0px;
--webkit-border-radius: 0px;
-border-radius: 0px;
-padding: 5px 5px 5px 5px;
-margin: 0px 0px 0px 0px;
--webkit-box-shadow: 0 0px 5px ".lighter($nc6,-20).";
--moz-box-shadow:0 0px 5px ".lighter($nc6,-20).";
-box-shadow: 0 0px 5px ".lighter($nc6,-20).";
-background-image: url('images/light.png'); background-repeat: no-repeat;\"><table style=\"width:$shwid\" align=center border=0><tr><td>$catid_content</td></tr></table></div>";
+$x0007="<div style=\"border: 0px;width:$shwid;overflow:hidden;\">$catid_content</div>";
 }
 if ($usetheme==0)  { $catid_content=""; $catid_title="";}
 }
@@ -104,5 +85,4 @@ unset ($pageopen, $output);
 
 }
 }
-
 ?>

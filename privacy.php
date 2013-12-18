@@ -123,11 +123,11 @@ input[type="submit"] {
 <body>
 <?php
 
-echo "<div align=center><table border=0 cellpadding=0 width=100% class=round><tr><td style=\"background-image: url('http://www.24ok.ru/banner.png'); background-repeat: no-repeat; background-position: right top\"><h4>Privacy Policy</h4>
+echo "<div align=center><table border=0 cellpadding=0 width=100% class=round><tr><td style=\"background-image: url('http://www.eurowebcart.ru/banner.png'); background-repeat: no-repeat; background-position: right top\"><h4>Privacy Policy</h4>
 Политика конфиденциальности<br><br>";
 $license="";
 $fp=@fopen("./PRIVACY.TXT","r");
-if (!$fp) { echo ("Not found PRIVACY.TXT<br><b>Please read</b> / Пожалуйста прочтите <br><a href=\"http://www.24ok.ru/PRIVACY.TXT\">http://www.24ok.ru/PRIVACY.TXT</a><br><br><br>"); } else {
+if (!$fp) { echo ("Not found PRIVACY.TXT<br><b>Please read</b> / Пожалуйста прочтите <br><a href=\"http://www.eurowebcart.ru/PRIVACY.TXT\">http://www.eurowebcart.ru/PRIVACY.TXT</a><br><br><br>"); } else {
 $license=str_replace("]","</b><br><small>",str_replace("[","</small><br><b>",str_replace("\n"," ",str_replace("\n\n","<br>",fread($fp,filesize("./PRIVACY.TXT"))))));
 fclose($fp);
 }

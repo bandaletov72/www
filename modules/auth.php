@@ -1,6 +1,8 @@
 <?php
 require ("./modules/birthday.php");
 require ("./modules/mod_birthday.php");
+$avatar2="<img src=".$_SESSION["avatar"]." class=\"ava\">";
+$avatar="<img src=".$_SESSION["avatar"]." align=left class=span15>";
 $viewsite=1;
 if ($portal==1) {if ("$valid"!="1") {  if (($register!=1)&&($action!="restore"))  { $authtype=1; } }}
 if ($header_type>=2) {
@@ -37,23 +39,33 @@ function submit_auth(e)
 <input type=text size=\"12\" name=\"login\" value=\"$login\" onkeyup=\"submit_auth(event);\"><input type=hidden name=\"catid\" value=\"$catid\"><input type=hidden name=\"unifid\" value=\"$unifid\"></td>
 <td>&nbsp;</td></tr><tr><td align=right><nobr><small><b>".$lang['pass'].":</b></small></nobr></td>
 <td align=left><input type=password size=\"12\" name=\"password\" value=\"$password\" onkeyup=\"submit_auth(event);\">
-<td><td><i class=\"icon-chevron-right\" id=\"subm\" title=\"OK\" style=\"cursor: pointer; cursor: hand\" onclick=\"document.ok.submit();\"></i>$a_err</td>
+<td><i class=\"icon-chevron-right\" id=\"subm\" title=\"OK\" style=\"cursor: pointer; cursor: hand\" onclick=\"document.ok.submit();\"></i>$a_err</td>
 </tr></table></form>";
 }
 if ($authtype==2) {
-$auth="<form name=\"ok\" action=\"".$_SERVER['PHP_SELF']."\" method=\"POST\">
+$auth="<script type=\"text/javascript\">
+function submit_auth(e)
+{
+	if (e.keyCode == 13)
+	{
+		document.ok.submit();
+		return false;
+	}
+}
+
+</script><form name=\"ok\" action=\"".$_SERVER['PHP_SELF']."\" method=\"POST\">
 <table border=0 cellspacing=2 cellpadding=0 width=150>
 <tr>
 <td align=right><nobr><small><b>".$lang['login'].":</b></small></nobr>
 </td>
 <td><input type=hidden name=\"au\" value=1><input type=hidden name=\"action\" value=\"$taction\"><input type=hidden name=\"query\" value=\"$query\"><input type=hidden name=\"page\" value=\"$page\"><input type=hidden name=\"logout\" value=\"1\">
-<input style=\"color: $nc5; border: 1px solid ".lighter($nc0,-20)."; padding: 2px; height:20px; font-size: 8pt; background-color: ".lighter($nc0,-10)."; background-image: url('grad.php?h=25&w=1&e=".str_replace("#","",lighter($nc0,0))."&s=".str_replace("#","",lighter($nc0,-10))."&d=crystal'); background-repeat: repeat-x\" type=text size=\"12\" name=\"login\" value=\"$login\"><input type=hidden name=\"catid\" value=\"$catid\"><input type=hidden name=\"unifid\" value=\"$unifid\">
+<input style=\"color: $nc5; border: 1px solid ".lighter($nc0,-20)."; padding: 2px; height:20px; font-size: 8pt; background-color: ".lighter($nc0,-10)."; background-image: url('grad.php?h=25&w=1&e=".str_replace("#","",lighter($nc0,0))."&s=".str_replace("#","",lighter($nc0,-10))."&d=crystal'); background-repeat: repeat-x\" type=text size=\"12\" name=\"login\" value=\"$login\" onkeyup=\"submit_auth(event);\"><input type=hidden name=\"catid\" value=\"$catid\"><input type=hidden name=\"unifid\" value=\"$unifid\">
 </td>
 <td><img src=\"".$image_path."/pix.gif\" border=0 width=10 height=15>
 </td>
 <td align=right><nobr><small><b>".$lang['pass'].":</b></small></nobr>
 </td>
-<td align=left><nobr><input style=\"color: $nc5; border: 1px solid ".lighter($nc0,-20)."; padding: 2px; height:20px; font-size: 8pt; background-color: ".lighter($nc0,-10)."; background-image: url('grad.php?h=25&w=1&e=".str_replace("#","",lighter($nc0,0))."&s=".str_replace("#","",lighter($nc0,-10))."&d=crystal'); background-repeat: repeat-x\" type=password size=\"6\" name=\"password\" value=\"$password\">
+<td align=left><nobr><input style=\"color: $nc5; border: 1px solid ".lighter($nc0,-20)."; padding: 2px; height:20px; font-size: 8pt; background-color: ".lighter($nc0,-10)."; background-image: url('grad.php?h=25&w=1&e=".str_replace("#","",lighter($nc0,0))."&s=".str_replace("#","",lighter($nc0,-10))."&d=crystal'); background-repeat: repeat-x\" type=password size=\"6\" name=\"password\" value=\"$password\" onkeyup=\"submit_auth(event);\">
 <input type=submit id=\"subm\" style=\"color: $nc5; border: 1px solid ".lighter($nc0,-20)."; padding: 2px; font-size: 7pt; background-image: url('grad.php?h=25&w=1&e=".str_replace("#","",lighter($nc0,-20))."&s=".str_replace("#","",$nc0)."&d=vertical'); background-repeat: repeat-x\" value=\"OK\">$a_err</nobr>
 </td>
 </tr>
@@ -108,13 +120,35 @@ if ($authtype==3) {
 $auth="$signbutton";
 if ($header_type>=2) {
 if ($usetheme==1) {
-$enter="<span style=\"white-space: nowrap;\" class=regfont><a href=\"index.php?action=cabinet\" title=\"$lang[380]\"><i class=\"icon-user\"></i>&nbsp;<b>".$details[1]."</b></a>&nbsp;&nbsp;&nbsp;$enter</span>";
+$enter="<span style=\"white-space: nowrap;\" class=regfont><a href=\"index.php?action=cabinet\" title=\"$lang[380]\">$avatar2&nbsp;<b>".$details[1]."</b></a>&nbsp;&nbsp;&nbsp;$enter</span>";
 
 }else {
-$enter="<li class=\"f1 active\"><a href=\"index.php?action=cabinet\" title=\"$lang[380]\"><small>".$details[1]."</small></a></li>$enter";
+if (($action=="cabinet")||($action=="avatar")) { $active="active"; } else { $active="noactive"; }
+
+$zenter="<li class=\"dropdown $active\"><a href=\"index.php?action=cabinet\" title=\"$lang[380]\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">$avatar2<small>".$details[1]." <b class=caret></b></small></a>
+<ul class=\"dropdown-menu\" style=\"text-align:left;\"><div class=\"mr ml\" style=\"white-space:normal; text-align:center;\"><small><i>$details[3]</i></small><div class=clearfix></div></div><hr>
+";
+
+if ($smod=="shop") {
+if ($tovarov>0) {
+$zenter.="<li><a href=\"index.php?action=basket\"><i class=icon-shopping-cart></i> $lang[31]</a></li>
+";
+}
+}
+$zenter.="<li><a href=\"index.php?action=cabinet\"><i class=icon-home></i> $lang[380]</a></li>
+<li><a href=\"index.php?action=avatar\"><i class=icon-user></i> $lang[1124]</a></li>
+";
+if ($user_wallet_enable==1) {
+$zenter.="<li><a href=\"index.php?action=cabinet&sub=transaction\"><i class=icon-upload></i> $lang[1122]</a></li>
+";
+}
+$zenter.="<li><a href=\"index.php?logout=1\"><i class=icon-share></i> ".$lang['exit']."</a></li>
+</ul>
+</li>";
+$enter=$zenter;
 }
 } else {
-$enter="<span style=\"white-space: nowrap;\" class=regfont><a href=\"index.php?action=cabinet\" title=\"$lang[380]\"><i class=\"icon-user\"></i>&nbsp;<b>".$details[1]."</b></a>&nbsp;&nbsp;&nbsp;$enter</span>";
+$enter="<span style=\"white-space: nowrap;\" class=regfont><a href=\"index.php?action=cabinet\" title=\"$lang[380]\">$avatar2&nbsp;<b>".$details[1]."</b></a>&nbsp;&nbsp;&nbsp;$enter</span>";
 }
 }
 $loginout="<table border=0><tr><td colspan=2><span style=\"white-space: nowrap;\" class=regfont><a href=\"index.php?action=cabinet\"><i class=icon-home></i><b>&nbsp;".str_replace(" ", "&nbsp;", $lang[380])."</b></a></span></td></tr></table>";
@@ -123,7 +157,7 @@ if ($usetheme==1) {$signbutton="<a href=\"index.php?logout=1\" class=nowrap><sma
 $signbutton="<li class=f1><a href=\"index.php?logout=1\"><small><i class=\" icon-share\"></i>&nbsp;".$lang['exit']."</small></a></li>";
 }
 } else {
-$signbutton="<a href=\"index.php?logout=1\"><i class=\" icon-share\"></i><font color=$nc2>&nbsp;".$lang['exit']."</font></a>";
+$signbutton="<a href=\"index.php?logout=1\"><i class=\" icon-share\"></i><font color=$nc3>&nbsp;".$lang['exit']."</font></a>";
 }
 }
 $loginout="<table border=0 cellpadding=5 cellspacing=0 style=\"background-image: url($image_path/50w.png);
@@ -160,14 +194,14 @@ function submit_auth(e)
 <td align=center>
 <input type=hidden name=\"logout\" value=\"1\">
 <div class=\"input-prepend\">
-    <span class=\"add-on\"><i class=\"icon-user\"></i></span><input class=\"span2\" id=\"prependedInput\" size=\"16\" type=\"text\" name=login value=\"$login\" placeholder=\"".$lang['login']."\">
+    <span class=\"add-on\"><i class=\"icon-user\"></i></span><input class=\"span2\" id=\"prependedInput\" size=\"16\" type=\"text\" name=login value=\"$login\" placeholder=\"".$lang['login']."\" onkeyup=\"submit_auth(event);\">
     </div>
 </td>
 </tr>
 <tr>
 <td align=center>
 <div class=\"input-prepend\">
-    <span class=\"add-on\"><i class=\"icon-eye-open\"></i></span><input class=\"span2\" id=\"prependedInput\" size=\"16\" type=\"password\" name=password value=\"$password\" placeholder=\"".$lang['pass']."\">
+    <span class=\"add-on\"><i class=\"icon-eye-open\"></i></span><input class=\"span2\" id=\"prependedInput\" size=\"16\" type=\"password\" name=password value=\"$password\" placeholder=\"".$lang['pass']."\" onkeyup=\"submit_auth(event);\">
     </div>
 $a_err
 </td>

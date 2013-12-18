@@ -1,0 +1,7 @@
+RewriteEngine on
+Options +FollowSymlinks
+RewriteRule ^([A-Za-z0-9_]+)\.xml$ /full.php?type=$1
+RewriteRule ^([A-Za-z0-9_]+)\.htm$ /index.php?item_id=$1
+RewriteRule ^([A-Za-z0-9_]+)/([-Р-пр-џa-zA-Z0-9_\w\ \x21-\x40]+)/*$ /index.php?catid=$1&brand=$2
+RewriteRule ^([A-Za-z0-9_]+)/*$ /index.php?catid=$1
+

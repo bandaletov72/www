@@ -97,7 +97,7 @@ $foto1=str_replace("<img ", "<img ". $wh ."  vspace=3 hspace=10 title=\"".str_re
 @$foto1=str_replace("border=0", "border=0", @$foto1);
 
 
-$pic="<table border=0><td><a href=\"index.php?unifid=".$unif."\">$foto1</a></td><td>$sales</td></table>";
+$pic="<table border=0><td><a href=\"index.php?unifid=".$unif."\">$foto1</a></td><td>$sales</td><tr></table>";
 
 $chars=intval(strlen($ift[0]));
 $soritems=@$ift[0];

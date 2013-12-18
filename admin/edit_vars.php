@@ -225,7 +225,7 @@ if ($param=="codepage") {$vopis.=$chrses;}
 $gfonts="";
 $googlefont="";
 if ($param=="main_fontface") { reset ($googlefonts);
-if (count($googlefonts)>0) { 
+if (count($googlefonts)>0) {
 while (list($fontkey, $fontval)=each($googlefonts)) {
 if ($main_fontface=="$fontval") { $googlefont=$fontval; }
 $gfonts.="<option value=\"$fontval\">Google: $fontval</option>";
@@ -256,7 +256,7 @@ $vars_lis[$st].="<tr>
 <td align=center valign=top><small>".($st-$hidd).".</small></td>
 <td valign=top><small><input type=hidden name=\"en[$st]\" value=\"".$param."\"><b>".$vnazv."</b><br>\$$param / $strpar</small><input type=hidden name=\"nk[$st]\" value=\"$kavuse\">";
 if ($param=="logotype") { $vars_lis[$st].="<br>".str_replace("<img ", "<img id=\"img_$st\" ", $vznachen); }
-if ($param=="main_fontface") { 
+if ($param=="main_fontface") {
 $vars_lis[$st].="<table width=100% border=0>";
 if ($googlefont!="") { $vars_lis[$st].="<tr><td>$googlefont: </td><td><font style=\"font-family: '".$googlefont."';\">The quick brown fox jumps over the lazy lilly</font></td></tr>"; }
 $vars_lis[$st].="<tr><td>Verdana: </td><td><font face=Verdana>The quick brown fox jumps over the lazy lilly</font></td></tr>
@@ -265,6 +265,8 @@ if ($param=="main_font_size") { $vars_lis[$st].="<font style=\"font: 6pt $main_f
 $vars_lis[$st].="</td>
 <td valign=top>".$vznachold.$vznach;
 if ($param=="logotype") { $vars_lis[$st].="&nbsp;&nbsp;<a class=\"btn btn-success\" onClick=javascript:window.open('$htpath/admin/newgal.php?speek=$speek&gtype=3&dest=$st','gal','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=400,left=10,top=10')><i class=icon-picture></i> ".$lang['ch']."</a><br>";}
+if ($param=="background_mainpage") { $vars_lis[$st].="&nbsp;&nbsp;<a class=\"btn btn-success\" onClick=javascript:window.open('$htpath/admin/newgal.php?speek=$speek&gtype=99&dest=$st','gal','status=yes,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=400,left=10,top=10')><i class=icon-picture></i> ".$lang['ch']."</a><br>";}
+
 $vars_lis[$st].=" <small>".strtoken($vopis,"^")."&nbsp;</small></td><td>$hhelp</td>
 </tr>";
 
@@ -449,7 +451,7 @@ while ($pages<=$numberpages) {
 if (($pages*$perpages)==$start) {
 $pagelist.="<b>".($pages+1)."</b> | ";
 } else {
-$pagelist.="<a href=\"$htpath/index.php?speeks=$speek&action=vars&mod=admin&amp;start=".($pages*$perpages)."\">".($pages+1)."</a> | ";
+$pagelist.="<a href=\"$htpath/index.php?speeks=$speek&action=vars&mod=admin&start=".($pages*$perpages)."\">".($pages+1)."</a> | ";
 }
 $pages+=1;
 }
@@ -465,8 +467,8 @@ $st+=1;
 }
 
 }
-if ($perpages<100) {$pagelist.=" <b><a href=$htpath/index.php?speek=$speek&action=vars&mod=admin&amp;start=0&perpages=1000>$lang[422]</a></b>"; } else {
-$pagelist.=" <b><a href=$htpath/index.php?speek=$speek&action=vars&mod=admin&amp;start=0&perpages=20>".$lang[734]."</a></b>";
+if ($perpages<100) {$pagelist.=" <b><a href=$htpath/index.php?speek=$speek&action=vars&mod=admin&start=0&perpages=1000>$lang[422]</a></b>"; } else {
+$pagelist.=" <b><a href=$htpath/index.php?speek=$speek&action=vars&mod=admin&start=0&perpages=20>".$lang[734]."</a></b>";
 }
 
 $vars_list.="</tbody></table><p align=center><input type=hidden name=\"start\" value=\"$start\"><input class=\"btn btn-primary btn-large\" type=submit value=\"".$lang['ch']."\"></p></form><br><div align=center><b>".$lang[105].":</b> &nbsp; $pagelist &nbsp;  &nbsp;  &nbsp; </div><br><br>";

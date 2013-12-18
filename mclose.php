@@ -51,10 +51,20 @@ require ("./templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nl
  require ("./templates/$template/css.inc");
 require("./modules/webcart.php");
 session_cache_limiter ('nocache'); session_name(md5($_SERVER['HTTP_HOST'].$shopdir.$secret_salt)); if (isset($_REQUEST['session'])) { if (!preg_match('/^[a-zA-Z0-9_]+$/i',$_REQUEST['session'])) {session_id($_REQUEST['session']);}}  session_start(); $sid=@session_id(); if ((!isset($_SESSION["user_currency"]))||($_SESSION["user_currency"]=="")){$currency=$init_currency; }
+$do=doubleval($_REQUEST['do']);
+if ($do==0) {
 if ($_SESSION["mclosed"]=="1") {
 $_SESSION["mclosed"]="";
 } else {
 $_SESSION["mclosed"]="1";
 }
+}
+if ($do==1) {
+if ($_SESSION["do1"]=="1") {
+$_SESSION["do1"]="";
+} else {
+$_SESSION["do1"]="1";
+}
 
+}
 ?>

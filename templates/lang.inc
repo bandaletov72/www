@@ -3,8 +3,8 @@ $u_mes="";
 unset($details);
 $details=array("","","","","","","","USER","","","","","","","","","","","","","","","","","","");
 
-//error_reporting(0); //switch off error reporting to prevent undefined vars detection
-error_reporting(E_ALL); //switch on error reporting to detet bugs
+error_reporting(0); //switch off error reporting to prevent undefined vars detection
+//error_reporting(E_ALL); //switch on error reporting to detet bugs
 $shopdir=""; //Store Directory: Specify a directory of shops on the main directory, or leave blank if the shop is located in the main directory ex. /shop
 $htpath=$_SERVER['SERVER_NAME'].$shopdir; //URL of index.php ex. $htpath="http://".$_SERVER['SERVER_NAME']."/shop";
 //if (substr($htpath, 0, 4)!="www."){ $htpath= "www.".$htpath;} //add www support
@@ -171,7 +171,7 @@ $sape_id="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 $secret_salt="GpaDxcwN7MjAvH9PWlzJbgSTK328rBty0qOERLZ01dfeFuUIXCYio465snmQVhk"; //hash salt, please enter 50-100 random chars 0-9a-zA-Z to security your cookies
 $hache_salt="UIlzrBOtyu2vbXCVPA890qwNTK34567hjkERLZdfeFGpasnmQ01WgSDxcHJYioM"; //50-100 random chars 0-9a-zA-Z
 $fbmeta="";
-$affix=1;
+$affix=0;
 $affix_ofset=100;
 $bootstrap_theme=""; //leave blank for light theme or for dark design may use -night
 //$bootstrap_theme="-night"; //for dark designs only

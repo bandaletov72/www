@@ -10,6 +10,10 @@ $arch="";
 $hear="";
 $mp3s="";
 $jjarch="";
+if (($view_archive==1)||($details[7]=="ADMIN")) {
+$hashdir=md5("1".$secret_salt.str_replace("www.","", $htpath));  
+if(is_dir("./archive/".$hashdir)!=true) { mkdir("./archive/".$hashdir,0755); }
+
 require("./modules/class.id3.php");
 if(isset($_GET['isort'])) $isort=$_GET['isort']; elseif(isset($_POST['isort'])) $isort=$_POST['isort']; else $isort="";
 if (!preg_match("/^[datenm]+$/i",$isort)) { $isort="date";}
@@ -125,7 +129,7 @@ if ((!@$start) || (@$start=="")): $start=0; endif;
 if (!preg_match("/^[0-9_]+$/",$start)) { $start=0;}
 if ($start>99999) {$start=0;}
 
-if ((substr($i,0,6)=="/users")||(substr($i,0,12)=="/attachments")||(substr($i,0,8)=="/avatars")) {
+if ((substr($i,0,6)=="/users")||(substr($i,0,12)=="/attachments")||(substr($i,0,strlen($hashdir))=="/".$hashdir)||(substr($i,0,8)=="/avatars")) {
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if (($valid=="1")) { } else { $i=""; $bdi="/";}
 } else {  $i=""; $bdi="/";}
@@ -308,7 +312,7 @@ $garch.="<h4>".$lang[987]."</h4><form enctype=\"multipart/form-data\" action='$h
 
                 ".$lang[741].": <input name='" . $upload_file_name . "' type='file'>
                 <input type='hidden' name='language' value='en'>
-<input type='submit' value='OK'>
+<input class=btn type='submit' value='OK'>
         </form>$ipl
 
 ";
@@ -324,7 +328,7 @@ $garch.="<h4>".$lang[987]."</h4><form enctype=\"multipart/form-data\" action='$h
         <input type='hidden' name=\"start\" value=\"$start\">
         <input type='hidden' name=\"isort\" value=\"$isort\">
 ".$lang[749].": <b>/archive$i/</b><input type='text' name=\"mkdir\" value=\"\">
-<input type='submit' value='OK'>
+<input class=btn type='submit' value='OK'>
         </form><br><br><hr noshade width=100% size=1 color=$nc2><br>";
 }
 }
@@ -403,6 +407,12 @@ if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if (($valid=="1")) {
 $jsmd=md5(str_replace("//","/",str_replace("//","/", "$i/$fileopen")));
 if (!isset($lenn)) {$lenn=20;}
+if ($fileopen==$hashdir) {
+$ddir="<br>$lang[13]";
+} else {
+if ($fileopen=="attachments") {
+$ddir="<br>$fileopen";
+} else {
 $ddir="<br><form class=form-inline action=\"$htpath/index.php\" method=GET>
 <input type=hidden name=\"i\" value=\"".str_replace("//","/",str_replace("//","/",$i))."\">
 <input type=hidden name=\"ren\" value=\"".$fileopen."\">
@@ -427,19 +437,20 @@ document.getElementById('tab".$jsmd."').style.visibility = \"hidden\";
 }
 --></script>
 <font color=#b94a48><b>$lang[745]</b></font><br><br>
-<input type=submit value=\"".$lang['yes']."\">&nbsp;&nbsp;&nbsp;<input type=button value=\"".$lang['no']."\" onclick=\"javascript:del".$jsmd."()\"></div>
+<input type=submit class=btn value=\"".$lang['yes']."\">&nbsp;&nbsp;&nbsp;<input type=button class=btn value=\"".$lang['no']."\" onclick=\"javascript:del".$jsmd."()\"></div>
 <input type=hidden name=\"i\" value=\"".$i."\">
 <input type=hidden name=\"deldir\" value=\"".strtoken("$fileopen",".")."\">
 <input type=hidden name=\"action\" value=\"arch\">
 <input type='hidden' name=\"isort\" value=\"$isort\">
 <input type='hidden' name=\"perpage\" value=\"$perpage\">
 <input type='hidden' name=\"start\" value=\"$start\">
-<input style=\"display:inline; visibility:visible;\" id='but".$jsmd."' type=button value=\"&nbsp;&nbsp;X&nbsp;&nbsp;".$lang[744]."\" onclick=\"javascript:js".$jsmd."()\">
+<input class=btn style=\"display:inline; visibility:visible;\" id='but".$jsmd."' type=button value=\"&nbsp;&nbsp;X&nbsp;&nbsp;".$lang[744]."\" onclick=\"javascript:js".$jsmd."()\">
 </form>";
+}}
 }}
 
 $hiddir=0;
-if ((substr($fileopen,0,5)=="users")||(substr($fileopen,0,11)=="attachments")||(substr($fileopen,0,7)=="avatars")) {
+if ((substr($fileopen,0,5)=="users")||(substr($fileopen,0,11)=="attachments")||(substr($fileopen,0,strlen($hashdir))=="/".$hashdir)||(substr($fileopen,0,7)=="avatars")) {
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 $hiddir=0;
 } else {
@@ -505,7 +516,7 @@ $form1="</a><form class=form-inline action=\"$htpath/index.php\" method=GET>
 <input type='hidden' name=\"start\" value=\"$start\">
 <input type='hidden' name=\"ext\" value=\"$typ\">
 <input type=text name=\"newname\" size=\"".$lenn."\" value=\"";
-$form2="\"><input type=submit value=\"&gt;&gt;\" title=\"".$lang[390]."\"></form></a><br>";
+$form2="\"><input class=btn type=submit value=\"&gt;&gt;\" title=\"".$lang[390]."\"></form></a><br>";
 $ddel="<small><b>CHMOD:</b> ".perms(fileperms(str_replace("//","/",str_replace("//","/", "./archive$i/$fileopen"))))."</small><br><br><form class=form-inline action=\"$htpath/index.php\" method=GET id=\"fform".$jsmd."\">
 <div style=\"display:none; visibility:hidden;\" id='ftab".$jsmd."'><script language=javascript><!--
 function fjs".$jsmd."() {
@@ -522,14 +533,14 @@ document.getElementById('ftab".$jsmd."').style.visibility = \"hidden\";
 }
 --></script>
 <font color=#b94a48><b>$lang[746]</b></font><br><br>
-<input type=submit value=\"".$lang['yes']."\">&nbsp;&nbsp;&nbsp;<input type=button value=\"".$lang['no']."\" onclick=\"javascript:fdel".$jsmd."()\"></div>
+<input class=btn type=submit value=\"".$lang['yes']."\">&nbsp;&nbsp;&nbsp;<input class=btn type=button value=\"".$lang['no']."\" onclick=\"javascript:fdel".$jsmd."()\"></div>
 <input type=hidden name=\"i\" value=\"".str_replace("//","/",str_replace("//","/",$i))."\">
 <input type=hidden name=\"del\" value=\"".$fileopen."\">
 <input type=hidden name=\"action\" value=\"arch\">
 <input type='hidden' name=\"isort\" value=\"$isort\">
 <input type='hidden' name=\"perpage\" value=\"$perpage\">
 <input type='hidden' name=\"start\" value=\"$start\">
-<input style=\"display:inline; visibility:visible;\" id='fbut".$jsmd."' type=button value=\"&nbsp;&nbsp;X&nbsp;&nbsp;".$lang[744]."\" onclick=\"javascript:fjs".$jsmd."()\">
+<input class=btn style=\"display:inline; visibility:visible;\" id='fbut".$jsmd."' type=button value=\"&nbsp;&nbsp;X&nbsp;&nbsp;".$lang[744]."\" onclick=\"javascript:fjs".$jsmd."()\">
 </form><form class=form-inline action=\"$htpath/index.php\" method=POST id=\"ifform".$jsmd."\">
 <div style=\"display:none; visibility:hidden;\" id='iftab".$jsmd."'><script language=javascript><!--
 function ifjs".$jsmd."() {
@@ -545,16 +556,16 @@ document.getElementById('iftab".$jsmd."').style.display = 'none';
 document.getElementById('iftab".$jsmd."').style.visibility = \"hidden\";
 }
 --></script>
-<input type=button value=\"$lang[8]\" onclick=\"javascript:ifdel".$jsmd."()\"><br><br>
+<input class=btn type=button value=\"$lang[8]\" onclick=\"javascript:ifdel".$jsmd."()\"><br><br>
 <textarea cols=38 rows=5 name=icoll style=\"width:100%\">".strip_tags($idxf)."</textarea><br>
-<input type=submit value=\"OK\"><br><br></div>
+<input class=btn type=submit value=\"OK\"><br><br></div>
 <input type=hidden name=\"i\" value=\"".str_replace("//","/",str_replace("//","/",$i))."\">
 <input type=hidden name=\"ifile\" value=\"".$fileopen."\">
 <input type=hidden name=\"action\" value=\"arch\">
 <input type='hidden' name=\"isort\" value=\"$isort\">
 <input type='hidden' name=\"perpage\" value=\"$perpage\">
 <input type='hidden' name=\"start\" value=\"$start\">
-<input style=\"display:inline; visibility:visible;\" id='ifbut".$jsmd."' type=button value=\"&nbsp;&nbsp;X&nbsp;&nbsp;".$lang[8]."\" onclick=\"javascript:ifjs".$jsmd."()\">
+<input class=btn style=\"display:inline; visibility:visible;\" id='ifbut".$jsmd."' type=button value=\"&nbsp;&nbsp;X&nbsp;&nbsp;".$lang[8]."\" onclick=\"javascript:ifjs".$jsmd."()\">
 </form>
 ";
 }}
@@ -663,7 +674,7 @@ $form1="<form class=form-inline action=\"$htpath/index.php\" method=GET>
 <input type='hidden' name=\"start\" value=\"$start\">
 <input type='hidden' name=\"ext\" value=\"$typ\">
 <input type=text name=\"newname\" size=\"$lenn\" value=\"".$ftyname;
-$form2="\"><input type=submit value=\"&gt;&gt;\" title=\"".$lang[390]."\"></form><br>";
+$form2="\"><input class=btn type=submit value=\"&gt;&gt;\" title=\"".$lang[390]."\"></form><br>";
 $ddel="<small><b>CHMOD:</b> ".perms(fileperms(str_replace("//","/",str_replace("//","/", "./archive$i/$fileopen"))))."</small><br><br><form class=form-inline action=\"$htpath/index.php\" method=GET id=\"fform".$jsmd."\">
 <div style=\"display:none; visibility:hidden;\" id='ftab".$jsmd."'><script language=javascript><!--
 function fjs".$jsmd."() {
@@ -680,14 +691,14 @@ document.getElementById('ftab".$jsmd."').style.visibility = \"hidden\";
 }
 --></script>
 <font color=#b94a48><b>$lang[746]</b></font><br><br>
-<input type=submit value=\"".$lang['yes']."\">&nbsp;&nbsp;&nbsp;<input type=button value=\"".$lang['no']."\" onclick=\"javascript:fdel".$jsmd."()\"></div>
+<input class=btn type=submit value=\"".$lang['yes']."\">&nbsp;&nbsp;&nbsp;<input class=btn type=button value=\"".$lang['no']."\" onclick=\"javascript:fdel".$jsmd."()\"></div>
 <input type=hidden name=\"i\" value=\"".str_replace("//","/",str_replace("//","/",$i))."\">
 <input type=hidden name=\"del\" value=\"".$fileopen."\">
 <input type=hidden name=\"action\" value=\"arch\">
 <input type='hidden' name=\"isort\" value=\"$isort\">
 <input type='hidden' name=\"perpage\" value=\"$perpage\">
 <input type='hidden' name=\"start\" value=\"$start\">
-<input style=\"display:inline; visibility:visible;\" id='fbut".$jsmd."' type=button value=\"&nbsp;&nbsp;X&nbsp;&nbsp;".$lang[744]."\" onclick=\"javascript:fjs".$jsmd."()\">
+<input class=btn style=\"display:inline; visibility:visible;\" id='fbut".$jsmd."' type=button value=\"&nbsp;&nbsp;X&nbsp;&nbsp;".$lang[744]."\" onclick=\"javascript:fjs".$jsmd."()\">
 </form><form class=form-inline action=\"$htpath/index.php\" method=POST id=\"ifform".$jsmd."\">
 <div style=\"display:none; visibility:hidden;\" id='iftab".$jsmd."'><script language=javascript><!--
 function ifjs".$jsmd."() {
@@ -703,16 +714,16 @@ document.getElementById('iftab".$jsmd."').style.display = 'none';
 document.getElementById('iftab".$jsmd."').style.visibility = \"hidden\";
 }
 --></script>
-<input type=button value=\"$lang[8]\" onclick=\"javascript:ifdel".$jsmd."()\"><br><br>
+<input class=btn type=button value=\"$lang[8]\" onclick=\"javascript:ifdel".$jsmd."()\"><br><br>
 <textarea cols=38 rows=5 name=icoll style=\"width:100%\">".strip_tags($idxf)."</textarea><br>
-<input type=submit value=\"OK\">
+<input class=btn type=submit value=\"OK\">
 <input type='hidden' name=\"isort\" value=\"$isort\"><br><br></div>
 <input type=hidden name=\"i\" value=\"".str_replace("//","/",str_replace("//","/",$i))."\">
 <input type=hidden name=\"ifile\" value=\"".$fileopen."\">
 <input type=hidden name=\"action\" value=\"arch\">
 <input type='hidden' name=\"perpage\" value=\"$perpage\">
 <input type='hidden' name=\"start\" value=\"$start\">
-<input style=\"display:inline; visibility:visible;\" id='ifbut".$jsmd."' type=button value=\"".$lang[8]."\" onclick=\"javascript:ifjs".$jsmd."()\">
+<input class=btn style=\"display:inline; visibility:visible;\" id='ifbut".$jsmd."' type=button value=\"".$lang[8]."\" onclick=\"javascript:ifjs".$jsmd."()\">
 </form>";
 }}
 $onkl=" onclick=\"javascript:window.open('$htpath/archive".str_replace("%2F", "/",rawurlencode(str_replace("//","/",str_replace("//","/", "$i/$fileopen"))))."','fr$st','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no, width=".($fwidth+20).",height=".($fheight+20)."')\"";
@@ -852,10 +863,10 @@ $end=$startnew + $perpage - 1 + $gt;
 if ($end > $total): $end=$total-1 + $gt; endif;
 $stat= "<center><small><br>".$lang[203]." <b>$numberpages</b> <img src=\"$image_path/a.gif\"> ".$lang[206]." <b>$total</b> ".$lang[207]." <img src=\"$image_path/a.gif\"> ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"$htpath/index.php?action=arch&isort=$isort&amp;start=" . ($start+$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"$htpath/index.php?action=arch&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=\"><!--homee--></a>";
+$nextpage="<a href=\"$htpath/index.php?action=arch&isort=$isort&start=" . ($start+$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"$htpath/index.php?action=arch&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"$htpath/index.php?action=arch&isort=$isort&amp;start=" . ($start-$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"$htpath/index.php?action=arch&isort=$isort&start=" . ($start-$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>=$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -878,16 +889,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"$htpath/index.php?action=arch&isort=$isort&amp;start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"$htpath/index.php?action=arch&isort=$isort&start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"$htpath/index.php?action=arch&isort=$isort&amp;start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"$htpath/index.php?action=arch&isort=$isort&start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=arch&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=arch&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=arch&isort=$isort&amp;start=" . ($perpage*($numberpages-1)) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=arch&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=arch&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=arch&isort=$isort&start=" . ($perpage*($numberpages-1)) . "&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 
@@ -900,7 +911,7 @@ if ($fancybox_enable==1) {
 $garch.="</div>";
 }
 $jarch="";
-$arch="$garch<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=arch&isort=name&amp;start=$start&i=".rawurlencode($i)."&amp;perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=arch&isort=date&amp;start=$start&i=".rawurlencode($i)."&amp;perpage=$perpage\">".$lang['by_date']."</a></small></div><br>$hear<br></center><table border=0 cellspacing=0 cellpadding=2 width=100%>
+$arch="$garch<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=arch&isort=name&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=arch&isort=date&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_date']."</a></small></div><br>$hear<br></center><table border=0 cellspacing=0 cellpadding=2 width=100%>
 <tr>
 $arch
 </tr>
@@ -912,4 +923,8 @@ if ($fsizep>1024000) {$fsizem="<b>".(0.01*floor($fsizep*100/1024000)). "</b> Mb"
 if ($fsizep>1024000000) {$fsizem="<b>". (0.01*floor($fsizep*100/1024000000)). "</b> Tb";}
 $arch.="<center><br>$ppages<br><hr size=1 noshade color=$nc10><div align=right><b>$lang[206]</b> ".$fsizem."</div><br></center>\n";
 if ($notf==1) {$arch="ERROR!";}
+unset ($hashdir);
+} else {
+$arch=$lang[894];
+}
 ?>

@@ -130,7 +130,7 @@ $banip="<form class=form-inline action=\"$htpath/admin/tempban.php\" method=GET>
 <option value=8>$lang[1523]</option>
 <option value=9>$lang[1524]</option>
 </select></td></tr>
-<tr><td>&nbsp;</td><td><table border=0 cellpadding=0 cellspacing=0><tr><td valign=top><input type=submit type=submit value=\"$lang[186]\"></form></td><td>&nbsp;&nbsp;</td>$razban</tr></table></td></table>
+<tr><td>&nbsp;</td><td><table border=0 cellpadding=0 cellspacing=0><tr><td valign=top><input type=submit type=submit value=\"$lang[186]\"></form></td><td>&nbsp;&nbsp;</td>$razban</tr></table></td><tr></table>
 
 </td>
 </tr>

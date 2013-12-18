@@ -190,6 +190,10 @@ $jpm="";
 $jsdload="";
 $jpmload="";
 $carttotal=$cart->total;
+$ccarttotal=ssale($carttotal , $currencies_sign[$_SESSION["user_currency"]]);
+$oldcarttotal=$carttotal;
+$carttotal=$ccarttotal;
+
 if (isset($reg_as)) {
 while (list ($srrnum, $srrline) = each ($reg_as)) {
 if (($srrline!="")&&($srrline!="\n")) {
@@ -678,6 +682,9 @@ unset ($user_arr);
 $tovout = $cart->itemcount;
 $stuks = $cart->itemstuks;
 $summaout = $cart->total;
+$ssummaout=ssale($summaout , $currencies_sign[$_SESSION["user_currency"]]);
+$oldsummaout=$summaout;
+$summaout=$ssummaout;
 if (($minimal_order_not_available==1)&&($summaout<$currencies_minimal_order[$_SESSION["user_currency"]])) { $errs.= "<div>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>";}
 
 if ($errs!="") {
@@ -843,15 +850,15 @@ $out_c[9]="<img src=\"".$image_path."/no_photo.gif\" border=0 width=".$style['ww
 $out_c[9]=str_replace("width= height= ", "", $out_c[9]);
     $llink="unifid=".md5($item['info']);
     if ($friendly_url==1) { $llink="item_id=".translit(@$out_c[3])."-".translit(@$out_c[6]);}
-    $basout .="<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\"><tr><td valign=top align=center><a href=\"$htpath/index.php?".$llink."&amp;flag=".$item['flag']."\">".@$out_c[9]."</a></td><td valign=top align=left width=100%>";
+    $basout .="<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\"><tr><td valign=top align=center><a href=\"$htpath/index.php?".$llink."&flag=".$item['flag']."\">".@$out_c[9]."</a></td><td valign=top align=left width=100%>";
     //$basout .= "<small><b>".$lang['id'].":</b> ".$item['id']."<br>";
     if ($hidart==0) {
-    $basout .= "<b>".$lang['info'].":</b> <a href=\"$htpath/index.php?".$llink."&amp;flag=".$item['flag']."\">".$item['info']."</a> ".$item['options']."<br>";
+    $basout .= "<b>".$lang['info'].":</b> <a href=\"$htpath/index.php?".$llink."&flag=".$item['flag']."\">".$item['info']."</a> ".$item['options']."<br>";
     $wishn=$item['info'];
 
     } else {
     $itid=strtoupper(substr(md5( str_replace(" ID:", "", str_replace(strtoken ($item['info'], " ID:") , "" , $item['info'])).$artrnd), -7));
-    $basout .= "<a href=\"$htpath/index.php?".$llink."&amp;flag=".$item['flag']."\">".strtoken($item['info'],"*")." ".$itid."</a> ".$item['options']."<br>";
+    $basout .= "<a href=\"$htpath/index.php?".$llink."&flag=".$item['flag']."\">".strtoken($item['info'],"*")." ".$itid."</a> ".$item['options']."<br>";
     $wishn=strtoken($item['info'],"*");
      }
     if (!isset($wishm[$wishn])){$wishm[$wishn]="";}
@@ -1007,9 +1014,11 @@ $zakbody .=$lang[350].": <b>$stuks</b><br>".$lang[32].": <b>$tovout</b> <br><br>
 
 if ($use_weight==1) {$zakbody.="<b>".$lang['totalweight'].":</b> ".$totalweight."$kg<br>";}
 if ($use_volume==1) {$zakbody.="<b>".$lang['totalvolume'].":</b> ".$totalvolume."$vol<br>";}
+$skidk=""; $oldsosk="";
+if ($ssummaout<$oldsummaout) { $oldsosk="<strike><font color=$nc3>$oldsummaout</font></strike> "; $skidk="<br><font color=$nc3><b>$lang[1637]</b></font>";  }
 
 if ($summaout>0) {
-$zakbody.="<b>".$lang[33].":</b> ".$summaout." ".$currencies_sign[$_SESSION["user_currency"]]."$ddost<br>$zdost";
+$zakbody.="<b>".$lang[33].":</b> $oldsosk".$summaout." ".$currencies_sign[$_SESSION["user_currency"]]." <span id=skidk>$skidk</span> $ddost<br>$zdost";
 }
 $zakbody.="<div class=\"noprint\"><br>$x0004<br></div>
 <hr style=\"border-style: dashed; border-width: 1px\" size=\"1\" color=\"$nc2\"><br>
@@ -1047,7 +1056,10 @@ $verifylist.="<br>";
 $zakbody .="<br><br>";
 if ($use_weight==1) {$verifylist.="<b>".$lang['totalweight'].":</b> ".$totalweight."$kg<br>"; }
 if ($use_volume==1) {$verifylist.="<b>".$lang['totalvolume'].":</b> ".$totalvolume."$vol<br>"; }
-if ($summaout>0) {$verifylist.="<b>".$lang[33].":</b> ".$summaout." ".$currencies_sign[$_SESSION["user_currency"]]." $ddost<br>$zdost"; }
+$skidk=""; $oldsosk="";
+if ($ssummaout<$oldsummaout) { $oldsosk="<strike><font color=$nc3>$oldsummaout</font></strike> "; $skidk="<br><font color=$nc3><b>$lang[1637]</b></font>";  }
+
+if ($summaout>0) {$verifylist.="<b>".$lang[33].":</b> $oldsosk".$summaout." ".$currencies_sign[$_SESSION["user_currency"]]." <span id=skidk>$skidk</span> $ddost<br>$zdost"; }
 $verifylist.="<br><br><small>".$lang[352]."</small>";
 $verify_title=$lang[43];
 
@@ -1420,7 +1432,7 @@ $pm_content = fread($pmm, filesize("$base_loc/content/".$tmptmp[3].".txt"));
 if (preg_match("/==(.*)==/i", $pm_content, $outputdd)) {
 $pm_title=$outputdd[1];
 } else {
-$pm_title = $lang[347];
+$pm_title = $lang[1620];
 }
 fclose ($pmm);
 
@@ -1478,7 +1490,7 @@ $checkfile="./userdir/$f2savename".".htm";
 $fp=fopen($checkfile,"w");
 fputs($fp,$pm_content);
 fclose ($fp);
-$pm_link="<br><br><b><font size=3>".$lang[106].": <a href=\"$htpath/userdir/$f2savename".".htm\">$pm_title $nomer</a></font></b><br><br>";
+$pm_link="<br><br><b><font size=3><a href=\"$htpath/userdir/$f2savename".".htm\">$pm_title (#".$nomer.")</a></font></b><br><br>";
 $verifylist.="$pm_link";
 $ppps=1;
 } else {
@@ -1489,8 +1501,11 @@ $verifylist="<h4>".$lang[244]." $nomer ". date("d.m.Y (D) H:i") . "</h4>
 ";
 if ($use_weight==1) {$verifylist.="<b>".$lang['totalweight'].":</b> ".$totalweight."$kg<br>";}
 if ($use_volume==1) {$verifylist.="<b>".$lang['totalvolume'].":</b> ".$totalvolume."$vol<br>";}
+$skidk=""; $oldsosk="";
+if ($ssummaout<$oldsummaout) { $oldsosk="<strike><font color=$nc3>$oldsummaout</font></strike> "; $skidk="<br><font color=$nc3><b>$lang[1637]</b></font>";  }
+
 if ($summaout>0) {
-$verifylist.="<b>".$lang[33].":</b> ".$summaout." ".$currencies_sign[$_SESSION["user_currency"]]."$ddost<br>$zdost<br>";
+$verifylist.="<b>".$lang[33].":</b> $oldsosk".$summaout." ".$currencies_sign[$_SESSION["user_currency"]]." <span id=skidk>$skidk</span> $ddost<br>$zdost<br>";
 }
 
 require "./payment_modules/".$tmptmp[3];

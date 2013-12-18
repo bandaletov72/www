@@ -151,7 +151,7 @@ if ($hidart==1) {
 @$full_descr=@$outc[15];
 $gdf="./gooddesc/".$outc[6].".txt";
 if (file_exists($gdf)==TRUE) {
- if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $full_descr.="<div class=round align=right><b>HTML ". $mpz['file'].":</b> ".$gdf." <input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$gdf."','gdf','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div>";}}
+ if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){ $full_descr.="<div class=round align=right><b>HTML ". $mpz['file'].":</b> ".$gdf." <input type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$gdf."','gdf','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div>";}}
 $fgd=@fopen($gdf,"r");
 $full_descr.=str_replace("<br><br>", "<br>",str_replace("<br><br>", "<br>",str_replace("\n", "<br>",str_replace("\r", "", @fread($fgd, @filesize($gdf))))));
 fclose($fgd);
@@ -622,7 +622,7 @@ $views=1;
 $counlen=strlen(@$_SESSION["interest"]);
 if ($counlen<5000) {
 if ($hidart==1) {$hidnazv=strtoken($nazv,"*")." $brand_name ".strtoupper(substr(md5(@$outc[6].$artrnd),-7)); } else {$hidnazv=$nazv;}
-$addinter="<li><small><a href=\"index.php?unifid=" . md5("$nazv"." ID:".@$outc[6]) . "&amp;flag=$speek\"><font color=\"$nc2\">$hidnazv</font></a>";
+$addinter="<li><small><a href=\"index.php?unifid=" . md5("$nazv"." ID:".@$outc[6]) . "&flag=$speek\"><font color=\"$nc2\">$hidnazv</font></a>";
 if ($view_goodsprice==1){
 if ($zero_price_incart==0) {
 $addinter.="$prem1 - <b>$price</b>".$currencies_sign[$_SESSION["user_currency"]]."$sqr $prem2";
@@ -693,7 +693,7 @@ $ef=fopen("./admin/comments/$fname.txt" , "r");
 $commread=fread($ef, filesize("./admin/comments/$fname.txt"));
 fclose($ef);
 $comm_book=str_replace("[adm]","<font color=$nc2>",str_replace("[/adm]","</font>", str_replace("[vote]","<img src=\"$image_path/vote",str_replace("[/vote]",".png\">",str_replace("[hr]", "<div class=clear><br></div>", str_replace("[i]", "<i class=muted>", str_replace("[/i]", "</i>", str_replace("[b]", "<b>", str_replace ("[/b]", "</b>", str_replace ("[br]", "<br>", str_replace("[amp]", "&", $commread)))))))))));
-if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){$comm_book= str_replace("[ip]", "<a href=\"$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&amp;start=0&amp;perpage=10&ipsort=\">".$lang[186]."</a>", $comm_book));} else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));} } else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));}
+if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")){$comm_book= str_replace("[ip]", "<a href=\"$htpath/index.php?action=userip&ban=ip_", str_replace("[/ip]", "&start=0&perpage=10&ipsort=\">".$lang[186]."</a>", $comm_book));} else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));} } else {$comm_book=str_replace("[ip]", "<!-- ", str_replace("[/ip]", " -->", $comm_book));}
 
 //Simple Comments editor    added 16.11.2005
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")) {
@@ -1194,7 +1194,7 @@ if (($valid=="1")&&($details[7]=="VIP")): @$cdescription="<br><small>(".$lang[14
 }
 if (doubleval($cstrto)==0) {$csales=""; $cvipold="";}
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){if (($valid=="1")): @$cdescription="<br><small>(".$lang[148].": <b>".@$copt."</b>) <font color=\"#a0a0a0\">[ ".$ueopt." ]</font> ART: ".$out[6]."</small>"; endif;}
-if ($cprice>=$currencies_zakaz_menee[$valut]) { if ($view_freedeliveryicon==1) {$freedelivery="<div align=center><small><font color=$nc2><b><img src=\"$image_path/free.png\" border=0 align=absmiddle> ".$lang[563]." ".$lang[166]."</b></font></small><br><br></div>";} else {$freedelivery="";}} else {$freedelivery="";}
+if ($cprice>=$currencies_zakaz_menee[$valut]) { if ($view_freedeliveryicon==1) {$freedelivery="<div align=center><small><b><i class=icon-ok></i> ".$lang[563]." ".$lang[166]."</b></small><br><br></div>";} else {$freedelivery="";}} else {$freedelivery="";}
 @$ckwords=@$cout[8];
 @$cfoto1=@$cout[9];
 if ($cfoto1=="") {$cfoto1="<img src=\"".$image_path."/no_photo.gif\" border=0>";}
@@ -1231,7 +1231,7 @@ $cfoto1=str_replace("width= height= ", "", $cfoto1);
 $csqr="/$cvitrin";
 if (($cvitrin=="")||("$cvitrin"=="0")) {$cvitrin=$lang['pcs']; $csqr="";}
 
-$bbut="<img id=\"p_$ms\" src=\"pix.gif\" width=78 height=12 border=0><br><font color=$nc3><b id=\"kup_$ms\"></b><b id=\"pcs_$ms\"></b><b id=\"st_$ms\"></b></font><br>".jbuybutton("<a href=#buy onclick=\"javascript:document.getElementById('p_$ms').src='images/wait.gif';document.getElementById('pcs_$ms').innerHTML=Math.round(document.getElementById('pcs_$ms').innerHTML) + 1;document.getElementById('scart').innerHTML=parseFloat(document.getElementById('scart').innerHTML) + $cprice;document.getElementById('kup_$ms').innerHTML='".$lang['buyes']." ';document.getElementById('st_$ms').innerHTML=' $cvitrin ';document.getElementById('p_$ms').src='".$scriptprefix."ok.php?unifid=".md5(@$cout[3]." ID:".@$cout[6])."&t=".time()."&amp;speek=".$speek."&amp;qty='+document.getElementById('pcs_$ms').innerHTML;\"><b><font color=#ffffff>".str_replace(" ", "&nbsp;", $lang['buy'])."</font></b></a>", $nc2,60,$nc0);
+$bbut="<img id=\"p_$ms\" src=\"pix.gif\" width=78 height=12 border=0><br><font color=$nc3><b id=\"kup_$ms\"></b><b id=\"pcs_$ms\"></b><b id=\"st_$ms\"></b></font><br>".jbuybutton("<a href=#buy onclick=\"javascript:document.getElementById('p_$ms').src='images/wait.gif';document.getElementById('pcs_$ms').innerHTML=Math.round(document.getElementById('pcs_$ms').innerHTML) + 1;document.getElementById('scart').innerHTML=parseFloat(document.getElementById('scart').innerHTML) + $cprice;document.getElementById('kup_$ms').innerHTML='".$lang['buyes']." ';document.getElementById('st_$ms').innerHTML=' $cvitrin ';document.getElementById('p_$ms').src='".$scriptprefix."ok.php?unifid=".md5(@$cout[3]." ID:".@$cout[6])."&t=".time()."&speek=".$speek."&qty='+document.getElementById('pcs_$ms').innerHTML;\"><b><font color=#ffffff>".str_replace(" ", "&nbsp;", $lang['buy'])."</font></b></a>", $nc2,60,$nc0);
 if ($cvipold!="") {$cspprice="newprice";} else {$cspprice="price";}
 $accsst="<td width=".ceil(100/$acqty)."% valign=top><table border=0 width=100%><tr><td style=\"border: 1px dotted $nwc10;\" valign=bottom align=center><a href=\"$htpath/index.php?unifid=" . md5($cout[3]." ID:".@$cout[6]) . "\">$cfoto1</a><br><small><b><a href=\"$htpath/index.php?catid=".translit(@$cdir."_".@$csubdir."_")."\">$csubdir</b></a><br><a href=\"$htpath/index.php?unifid=" . md5($cout[3]." ID:".@$cout[6]) . "\">$cnazv</a></small><br>$cprbuy$cprem1<br>".$cpricetax.$vsygn.$cvipold."&nbsp;<span class=$cspprice>".str_replace(" ","&nbsp;",str_replace(".00",".-", number_format($cprice,2,".","")))."</span>
 <br>$bbut$cprem2<br><br></td></tr></table></td>\n\n";
@@ -1253,7 +1253,7 @@ if (@file_exists(".$fik")){$imagesz = @getimagesize(".$fik"); $wh=" width=".ceil
 $cfoto1=str_replace("<img ", "<img". $wh ." vspace=3 hspace=10 title=\"".str_replace("\"", "", str_replace("\'", "",$cnazv))."\" ",stripslashes(@$cfoto1));
 @$cfoto1=str_replace("border=0", "style=\"border: 0px solid ".lighter($nc6,-10).";\" ", @$cfoto1);
 $cfoto1=str_replace("width= height= ", "", $cfoto1);
-$bbut="<img id=\"p_$ms\" src=\"pix.gif\" width=78 height=12 border=0><br><font color=$nc3><b id=\"kup_$ms\"></b><b id=\"pcs_$ms\"></b><b id=\"st_$ms\"></b></font><br>".jbuybutton("<a href=#buy onclick=\"javascript:document.getElementById('p_$ms').src='images/wait.gif';document.getElementById('pcs_$ms').innerHTML=Math.round(document.getElementById('pcs_$ms').innerHTML) + 1;document.getElementById('scart').innerHTML=parseFloat(document.getElementById('scart').innerHTML) + $cprice;document.getElementById('kup_$ms').innerHTML='".$lang['buyes']." ';document.getElementById('st_$ms').innerHTML=' $cvitrin ';document.getElementById('p_$ms').src='".$scriptprefix."ok.php?unifid=".md5(@$cout[3]." ID:".@$cout[6])."&t=".time()."&amp;speek=".$speek."&amp;qty='+document.getElementById('pcs_$ms').innerHTML;\"><b><font color=#ffffff>".str_replace(" ", "&nbsp;", $lang['buy'])."</font></b></a>", $nc2,60,$nc0);
+$bbut="<img id=\"p_$ms\" src=\"pix.gif\" width=78 height=12 border=0><br><font color=$nc3><b id=\"kup_$ms\"></b><b id=\"pcs_$ms\"></b><b id=\"st_$ms\"></b></font><br>".jbuybutton("<a href=#buy onclick=\"javascript:document.getElementById('p_$ms').src='images/wait.gif';document.getElementById('pcs_$ms').innerHTML=Math.round(document.getElementById('pcs_$ms').innerHTML) + 1;document.getElementById('scart').innerHTML=parseFloat(document.getElementById('scart').innerHTML) + $cprice;document.getElementById('kup_$ms').innerHTML='".$lang['buyes']." ';document.getElementById('st_$ms').innerHTML=' $cvitrin ';document.getElementById('p_$ms').src='".$scriptprefix."ok.php?unifid=".md5(@$cout[3]." ID:".@$cout[6])."&t=".time()."&speek=".$speek."&qty='+document.getElementById('pcs_$ms').innerHTML;\"><b><font color=#ffffff>".str_replace(" ", "&nbsp;", $lang['buy'])."</font></b></a>", $nc2,60,$nc0);
 if ($cvipold!="") {$cspprice="newprice";} else {$cspprice="price";}
 $accsst="<td width=".ceil(100/$acqty)."% valign=top align=center style=\"border: 1px dotted $nwc10;\"><a href=\"$htpath/index.php?unifid=" . md5($cout[3]." ID:".@$cout[6]) . "\">$cfoto1</a><br><small><b><a href=\"$htpath/index.php?catid=".translit(@$cdir."_".@$csubdir."_")."\">$csubdir</b></a><br><a href=\"$htpath/index.php?unifid=" . md5($cout[3]." ID:".@$cout[6]) . "\">$cnazv</a></small><br>$cprbuy$cprem1<br>".$cpricetax.$vsygn.$cvipold."&nbsp;<span class=$cspprice>".str_replace(" ","&nbsp;",str_replace(".00",".-", number_format($cprice,2,".","")))."</span>
 <br>$bbut$cprem2<br><br></td>\n\n";
@@ -1444,7 +1444,7 @@ $comment_form="<div style=\"-moz-border-radius: 10px; background: $nc6; border: 
 
 
 if ((!isset($use_bigfoto))||($use_bigfoto==0)){ } else { $dff=@$foto1; @$foto1=@$fotos; $fotos="";}
-if ($price>=$currencies_zakaz_menee[$valut]) { if ($view_freedeliveryicon==1) {$freedelivery="<div align=center><small><font color=$nc2><b><img src=\"$image_path/free.png\" border=0 align=absmiddle> ".$lang[563]." ".$lang[166]."</b></font></small><br><br></div>";} else {$freedelivery="";}} else {$freedelivery="";}
+if ($price>=$currencies_zakaz_menee[$valut]) { if ($view_freedeliveryicon==1) {$freedelivery="<div align=center><small><b><i class=icon-ok></i> ".$lang[563]." ".$lang[166]."</b></small><br><br></div>";} else {$freedelivery="";}} else {$freedelivery="";}
 $cartlist .= "<!-- ".strtoken($nazv,"*")." --><script language=javascript>
 <!--
 function fotv() {
@@ -1574,7 +1574,7 @@ if ($additional_photos_poz==2) {if (trim($dopos)!="") {$cartlist.="<div class=ro
 
 
 $lid=md5(@$outc[3]." ID:".@$outc[6]);
-if ($kupil!="") {if ($view_basketalert==1) {$kupil.="<a id=minibasket_"."$unifid href=$htpath/".$scriptprefix."minibasket.php?unifid=$lid&amp;qty=$qty&amp;speek=$speek></a><script type=\"text/javascript\">
+if ($kupil!="") {if ($view_basketalert==1) {$kupil.="<a id=minibasket_"."$unifid href=$htpath/".$scriptprefix."minibasket.php?unifid=$lid&qty=$qty&speek=$speek></a><script type=\"text/javascript\">
         $(document).ready(function() {
            $(\"#minibasket_$lid\").fancybox({
                    'onComplete'	:	function() {\$(\"#fancybox-wrap\").unbind('mousewheel.fb');} ,
@@ -1777,10 +1777,10 @@ jQuery(document).ready(function() {
 }
 
 */
-$jslist="<br><br><div class=\"mousewheel_example\" id=\"mousewheel_example_1\"><b id=\"jsp".$jscatid."\"><font size=3><b>".$lang[733].":</b></font></b><br><br><b id=\"jsphp".$jscatid."\"><br><img src=$image_path/ind.gif border=0><br>".$_SESSION["$indcur"]."-".(doubleval($_SESSION["$indcur"])+$js_max)."</b>
+$jslist="<br><br><div class=\"mousewheel_example\" id=\"mousewheel_example_1\"><div id=\"jsp".$jscatid."\"><h4 class=mu>".$lang[733].":</h4><hr></div><b id=\"jsphp".$jscatid."\"><br><img src=$image_path/ind.gif border=0><br>".$_SESSION["$indcur"]."-".(doubleval($_SESSION["$indcur"])+$js_max)."</b>
 <script>
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta=".$curjs."&catid=".$jscatid."&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta=".$curjs."&catid=".$jscatid."&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 </script>
@@ -1792,7 +1792,7 @@ var j=document.getElementById('jsmax".$jscatid."');
 var s=document.getElementById('jscatid".$jscatid."');
 j.value=(1+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -1803,7 +1803,7 @@ if (Math.round(j.value)>=1) {
 j.value=(Math.round(j.value)-1);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -1820,7 +1820,7 @@ if (Math.round(j.value)>=1) {
 j.value=(Math.round(j.value)-1);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -1833,7 +1833,7 @@ var s=document.getElementById('jscatid".$jscatid."');
 if ((document.getElementById('nextb').src!='".$htpath."/".$image_path."/nonextc.png')&&(document.getElementById('nextb').src!='".$htpath."/".$image_path."/nonextcv.png')) {
 j.value=(1+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -1849,7 +1849,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptNode);
 $jslistv="<div class=\"mousewheel_example\" id=\"mousewheel_example_1\"><b id=\"jsp".$jscatid."\"></b><b id=\"jsphp".$jscatid."\"><img src=$image_path/ind.gif border=0><br>".$_SESSION["$indcur"]."-".(doubleval($_SESSION["$indcur"])+$js_max)."</b>
 <script>
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta=".$curjs."&catid=".$jscatid."&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta=".$curjs."&catid=".$jscatid."&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 </script>
@@ -1861,7 +1861,7 @@ var j=document.getElementById('jsmax".$jscatid."');
 var s=document.getElementById('jscatid".$jscatid."');
 j.value=(1+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -1872,7 +1872,7 @@ if (Math.round(j.value)>=1) {
 j.value=(Math.round(j.value)-1);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -1889,7 +1889,7 @@ if (Math.round(j.value)>=1) {
 j.value=(Math.round(j.value)-1);
 
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -1902,7 +1902,7 @@ var s=document.getElementById('jscatid".$jscatid."');
 if ((document.getElementById('nextb').src!='".$htpath."/".$image_path."/nonextc.png')&&(document.getElementById('nextb').src!='".$htpath."/".$image_path."/nonextcv.png')) {
 j.value=(1+Math.round(j.value));
 scriptNode = document.createElement('script');
-scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&amp;speek=$speek';
+scriptNode.src = '$htpath/".$scriptprefix."js.php?session=$sid&type=v&sta='+j.value+'&catid='+s.value+'&unifid=$unifid&speek=$speek';
 scriptNode.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(scriptNode);
 }
@@ -1949,7 +1949,7 @@ $cartlist.="<td valign=top>$jslistv</td>";
 
 //$cartlist.="";
 $cartlist.="</tr></table>";
-if ($mod_rw_enable==1){ $cart_title=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "<small>".$lang[201]."</small> <img src=\"$image_path/a.gif\"> <small><a href=\"$htpath/index.php?catid=".translit("$dir")."\">$dir</a></small> <img src=\"$image_path/a.gif\"> <small><a href=\"$htpath/index.php?catid=".translit("$dir"."_"."$subdir"."_")."\">$subdir</a></small><b>"));
+if ($mod_rw_enable==1){ $cart_title=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "<small>".$lang[201]."</small> <img src=\"$image_path/a.gif\"> <small><a href=\"$htpath/index.php?catid=".translit("$dir")."\">$dir</a></small> <img src=\"$image_path/a.gif\"> <small><a href=\"$htpath/index.php?catid=".translit("$dir"."_"."$subdir"."_")."\">$subdir</a></small><b>"));
 } else {
 $cart_title="<small>".$lang[201]."</small> <img src=\"$image_path/a.gif\"> <small><a href=\"$htpath/index.php?catid=".translit("$dir")."\">$dir</a></small> <img src=\"$image_path/a.gif\"> <small><a href=\"$htpath/index.php?catid=".translit("$dir"."_"."$subdir"."_")."\">$subdir</a></small><b>";
 }

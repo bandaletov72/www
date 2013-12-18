@@ -226,8 +226,8 @@ require ("./modules/functions.php");
 include ("./templates/$template/meta.inc");
 require ("./templates/$template/title.inc");
 $fold=".";
-echo "</head>
-$css<body>";
+echo "
+$css</head><body>";
 $deftax=100*@$taxes[@$_SESSION["user_currency"]];
 $cartlist="";
 $cart_title="";

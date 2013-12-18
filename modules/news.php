@@ -30,7 +30,7 @@ continue;
 } else {
 $name ="$title";
 $adminurl="";
-if (($valid=="1")&&($details[7]=="ADMIN")): $adminurl="<div align=right><a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/$file','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['edits']."\"><i class=\"icon-edit icon-large\"></i></a>&nbsp;<a clss=btn hrref=#del onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=".str_replace(".txt","",$file)."&amp;del=".str_replace(".txt","",$file)."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10') title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a></div>"; endif;
+if (($valid=="1")&&($details[7]=="ADMIN")): $adminurl="<div align=right><a class=\"btn\" href=#edit onClick=\"javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/$file','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')\" title=\"".$lang['edits']."\"><i class=\"icon-edit icon-large\"></i></a>&nbsp;<a clss=btn hrref=#del onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=".str_replace(".txt","",$file)."&del=".str_replace(".txt","",$file)."','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10') title=\"".$lang['del']."\"><i class=\"icon-remove icon-large\"></i></a></div>"; endif;
 
 $filesnn[$file] = "<tr><td><H1>$title</H1><img align=left vspace=4 border=0 src=\"$image_path/znak1.png\">$news</small>$adminurl<hr color=\"$nc6\" size=\"1\" width=100% noshade></td></tr>\n";
 $noutn=explode(".",$file);
@@ -82,7 +82,7 @@ $modonoff.="
 }
 $latestnews.="<div align=center><img src=\"$image_path/handup.png\"></div><div class=round align=center><b>$lang[56]:</b>&nbsp;
 <input type=button onclick=javascript:location.href='"."$htpath/admin/editor/index.php?speek=$speek"."' value=\"".$lang['adm3']."\">&nbsp;
-<input type=button onclick=javascript:location.href='"."$htpath/admin/editor/edit.php?speek=$speek&amp;c=c&klon=1"."' value=\"&gt;&gt;&nbsp;&nbsp;".$lang[901]."\">&nbsp;
+<input type=button onclick=javascript:location.href='"."$htpath/admin/editor/edit.php?speek=$speek&c=c&klon=1"."' value=\"&gt;&gt;&nbsp;&nbsp;".$lang[901]."\">&nbsp;
 $modonoff<br><br>".$lang[888]."</div>"; endif;
 }
 ?>

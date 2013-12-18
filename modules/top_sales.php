@@ -110,13 +110,13 @@ unset($strtoma);
 
 $vipold="<span class=oldprice>".($okr*round(@$price/$okr))."</span>";
 if ((preg_match("/\%/", @$out[8])==TRUE)&&(doubleval($strto)>0)) {
-$sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle\"><font color=#000000>SALE<BR><b>-".round($strto)."%</b></font></td></tr></table>";
+$sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle;  text-align: center;  align: center; white-space:nowrap\"><font color=white style=\"font-size:7pt;line-height: 8pt;\">SALE<br><b>&nbsp;".$strto."%</b></font></td></tr></table>";
 $ueprice=@$ueprice-@$ueprice*(doubleval($strto))/100;
 $price=$okr*(round((@$price-@$price*(doubleval($strto))/100)/$okr));
 
 } else {
 $strto=doubleval($podstavas["$dir|$subdir|"]);
-$sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" style=\"vertical-align: middle\" align=center>SALE<BR><b>-".$podstavas["$dir|$subdir|"]."%</b></td></tr></table>";
+$sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle;  text-align: center;  align: center; white-space:nowrap\"><font color=white style=\"font-size:7pt;line-height: 8pt;\">SALE<br><b>&nbsp;".$podstavas["$dir|$subdir|"]."%</b></font></td></tr></table>";
 @$ueprice=@$ueprice-@$ueprice*((double)$podstavas["$dir|$subdir|"])/100;
 $price=$okr*(round((@$price-@$price*((double)$podstavas["$dir|$subdir|"])/100)/$okr));
 }
@@ -145,7 +145,11 @@ $optionselect="";
 
 @$foto1=@$out[9];
 if ($foto1=="") {$foto1="<img src=\"$image_path/no_photo.gif\" border=0>";}
-$foto1=str_replace("<img ","<img class=img ", $foto1);
+if ($hidart==1) {
+$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span13\" title=\"".str_replace("\"", "", str_replace("\'", "",strtoken($out[3],"*")))."\" ",  stripslashes(@$foto1));
+} else {
+$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span13\" title=\"".str_replace("\"", "", str_replace("\'", "",$out[3]))."\" ",  stripslashes(@$foto1));
+}
 @$foto2=@$out[10];
 @$vitrin=@$out[11];
 reset($cartl);
@@ -215,9 +219,10 @@ $back=$nc0;
 $back=$nc6;
 }
 $strtoma=Array();
+
 $strtoma=explode("|",$sps[($start+$st)]);
 $sklname=$strtoma[1];
-
+/*
 $strtoma[2]=str_replace("http://www.", "http://", str_replace("\"","'", $strtoma[2]));
 if ($strtoma[2]!="") {
 $htpat=str_replace("http://www.", "http://",$htpath);
@@ -239,6 +244,7 @@ if ($wh==" width=0 height=0") {$wh="";}
 $strtoma[2]=str_replace("<img ", "<img ". $wh ." ",stripslashes(@$strtoma[2]));
 
 }
+*/
 //}
 $sps[($start+$st)]=str_replace("[foto1]",$strtoma[2], $strtoma[0]);
 $stoks="";
@@ -285,7 +291,7 @@ if ($files_found==0): $top_sales_spisok =""; $error = ""; endif;
 if ($s==0): $top_sales_spisok=""; endif;
 $s=0;
 if ($top_sales_spisok!="") {
-top("", "<div class=ocat1 align=center><b><font size=3>".toFirst($lang[233])."</font></b></div>$top_sales_spisok", $style ['center_width'], $nc0, $nc0, 5,0,"[top_sales]");
+top("", "<div align=left><h4 class=mu>".toFirst($lang[233])."</h4><hr></div>$top_sales_spisok", $style ['center_width'], $nc0, $nc0, 5,0,"[top_sales]");
 }
 }
 if ($interface==1) {

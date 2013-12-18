@@ -127,8 +127,15 @@ if ((!@$start) || (@$start=="")): $start=0; endif;
 if (!preg_match("/^[0-9_]+$/",$start)) { $start=0;}
 if ($start>99999) {$start=0;}
 
-if ((substr($i,0,6)=="/users")||(substr($i,0,12)=="/attachments")||(substr($i,0,8)=="/avatars")) {
+
+if ((substr($i,0,6)=="/users")||(substr($i,0,12)=="/attachments")||(substr($i,0,12)=="/backgrounds")||(substr($i,0,8)=="/avatars")||(substr($i,0,9)=="/carousel")) {
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
+if (substr($i,0,9)=="/carousel") {
+if(!is_dir("./gallery/carousel")) { mkdir("./gallery/carousel",0755); }
+if(!is_dir("./gallery"."$i")) { mkdir("./gallery"."$i",0755); }
+
+
+}
 if (($valid=="1")) { } else { $i=""; $bdi="/";}
 } else {  $i=""; $bdi="/";}
 }
@@ -496,7 +503,7 @@ document.getElementById('iftab".$jsmd."').style.visibility = \"hidden\";
 ";
 }}
 $hiddir=0;
-if ((substr($fileopen,0,5)=="users")||(substr($fileopen,0,11)=="attachments")||(substr($fileopen,0,7)=="avatars")) {
+if ((substr($fileopen,0,5)=="users")||(substr($fileopen,0,11)=="attachments")||(substr($fileopen,0,11)=="backgrounds")||(substr($fileopen,0,7)=="avatars")||(substr($fileopen,0,8)=="carousel")) {
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if ("$valid"=="1") {
 $hiddir=0;
@@ -908,10 +915,10 @@ $end=$startnew + $perpage - 1 + $gt;
 if ($end > $total): $end=$total-1 + $gt; endif;
 $stat= "<center><small><br>".$lang[203]." <b>$numberpages</b> <img src=\"$image_path/a.gif\"> ".$lang[206]." <b>$total</b> ".$lang[207]." <img src=\"$image_path/a.gif\"> ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"$htpath/index.php?action=gal&isort=$isort&amp;start=" . ($start+$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"$htpath/index.php?action=gal&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=\"><!--homee--></a>";
+$nextpage="<a href=\"$htpath/index.php?action=gal&isort=$isort&start=" . ($start+$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"$htpath/index.php?action=gal&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"$htpath/index.php?action=gal&isort=$isort&amp;start=" . ($start-$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"$htpath/index.php?action=gal&isort=$isort&start=" . ($start-$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>=$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -934,16 +941,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"$htpath/index.php?action=gal&isort=$isort&amp;start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"$htpath/index.php?action=gal&isort=$isort&start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"$htpath/index.php?action=gal&isort=$isort&amp;start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"$htpath/index.php?action=gal&isort=$isort&start=" . ($s*$perpage) . "&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=gal&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=gal&isort=$isort&amp;start=0&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=gal&isort=$isort&amp;start=" . ($perpage*($numberpages-1)) . "&i=".rawurlencode($i)."&amp;perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?action=gal&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?action=gal&isort=$isort&start=0&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?action=gal&isort=$isort&start=" . ($perpage*($numberpages-1)) . "&i=".rawurlencode($i)."&perpage=$perpage\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 
@@ -993,7 +1000,7 @@ if ($fancybox_enable==1) {
 $ggal.="</div>";
 }
 if ($view_gal_slide!=1) {$jgal="";}
-$gal="$ggal<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=gal&isort=&amp;start=$start&i=".rawurlencode($i)."&amp;perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=gal&isort=date&amp;start=$start&i=".rawurlencode($i)."&amp;perpage=$perpage\">".$lang['by_date']."</a></small></div>$hear</center><table border=0 cellspacing=10 cellpadding=0 width=100% clas==table>
+$gal="$ggal<center>$ppages<br><div align=right><small>".$lang['sort_by'].": <a href=\"$htpath/index.php?action=gal&isort=&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_name']."</a> | <a href=\"$htpath/index.php?action=gal&isort=date&start=$start&i=".rawurlencode($i)."&perpage=$perpage\">".$lang['by_date']."</a></small></div>$hear</center><table border=0 cellspacing=10 cellpadding=0 width=100% clas==table>
 <tr>
 $gal
 </tr>

@@ -142,8 +142,8 @@ echo "<form enctype='multipart/form-data' action='$htpath/admin/photogallery.php
 
 $st=0;
 echo "<br><br><font face='Verdana, Arial, Helvetica, sans-serif' size='2' color='#000000'><b>$lang[738]:</b>
-<br>Per page: <B><a href = '$htpath/admin/photogallery.php?start=0&amp;perpage=20'>20</a></B> | <B><a href = '$htpath/admin/photogallery.php?start=0&amp;perpage=40'>40</a></B> | <B><a href = '$htpath/admin/photogallery.php?start=0&amp;perpage=80'>80</a></B>
-&lt;&lt; <B><a href = '$htpath/admin/photogallery.php?start=0&amp;perpage=$perpage'>home</a></B> | <B><a href = '$htpath/admin/photogallery.php?start=$next&amp;perpage=$perpage'next $perpage</a></B> &gt;&gt;</small>
+<br>Per page: <B><a href = '$htpath/admin/photogallery.php?start=0&perpage=20'>20</a></B> | <B><a href = '$htpath/admin/photogallery.php?start=0&perpage=40'>40</a></B> | <B><a href = '$htpath/admin/photogallery.php?start=0&perpage=80'>80</a></B>
+&lt;&lt; <B><a href = '$htpath/admin/photogallery.php?start=0&perpage=$perpage'>home</a></B> | <B><a href = '$htpath/admin/photogallery.php?start=$next&perpage=$perpage'next $perpage</a></B> &gt;&gt;</small>
 <br><br>";
 $val="<table width='100%'>";
 $handle=opendir("../gallery/");
@@ -159,7 +159,7 @@ $imagesz = getimagesize("../gallery/$fileopen");
 $fileopens[$st] = "<!--$fileopen-->
 <td align='center' valign='top'><small><br><b>file:</b> $fileopen<br><b>pix:</b> $fwidth x $fheight | <b>size:</b> $size Kb<br><a href='#22' onClick=\"javascript:rc('$fileopen')\"><img src='../gallery/$fileopen' border=1 width=150 height=150></a>
 <br>
-<a href='$htpath/admin/photogallery.php?del=$fileopen&amp;start=$start&amp;perpage=$perpage'>".$lang[383]."</a><br></small><hr></td>";
+<a href='$htpath/admin/photogallery.php?del=$fileopen&start=$start&perpage=$perpage'>".$lang[383]."</a><br></small><hr></td>";
 $st += 1;
 }
 }
@@ -180,7 +180,7 @@ if (($start/$perpage)==$st) {
 $pp.= "<b>" . ($st+1) . "</b> | ";
 } else {
 if ($total>=($st*$perpage)){
-$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?start=" . ($st*$perpage) . "&amp;perpage=$perpage\">" . ($st+1) . "</a> | ";
+$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?start=" . ($st*$perpage) . "&perpage=$perpage\">" . ($st+1) . "</a> | ";
 }
 }
 
@@ -195,7 +195,7 @@ $st += 1;
 
 $val.="</tr></table>";
 
-echo"<center>$pp<br>$val$pp<br>".$lang[203]." <b>$numberpages</b><br>".$lang[206]." <b>$total</b> ".$lang[207]." | ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b> | <a href = '$htpath/admin/photogallery.php?start=$next&amp;perpage=$perpage'>Next $perpage &gt;&gt;</a></small><br>
+echo"<center>$pp<br>$val$pp<br>".$lang[203]." <b>$numberpages</b><br>".$lang[206]." <b>$total</b> ".$lang[207]." | ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b> | <a href = '$htpath/admin/photogallery.php?start=$next&perpage=$perpage'>Next $perpage &gt;&gt;</a></small><br>
 ";
 
 

@@ -275,6 +275,21 @@ $themecontent=str_replace("[/firstpage]","",$themecontent); //miniature shop bas
 $themecontent=str_replace("[widgets]","",$themecontent); //miniature shop basket
 
 $themecontent=str_replace("[map]","",$themecontent);
+$themecontent=str_replace("[carousel]","",$themecontent);
+if ($action!="template") {
+reset($translate_it);
+while (list ($keyti, $stti) = each ($translate_it)) {
+$themecontent=preg_replace("/$keyti/i","$stti",$themecontent);
+}
+}
+reset($langs);
+while (list ($keyla, $stla) = each ($langs)) {
+if ($speek==$stla){
+$themecontent=str_replace("[".$stla."]","", str_replace("[/".$stla."]","", $themecontent));
+}else{
+$themecontent=str_replace("[".$stla."]","<!--", str_replace("[/".$stla."]","-->", $themecontent));
+}
+}
 echo $themecontent;
 
 }

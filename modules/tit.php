@@ -3,7 +3,7 @@
 if (($action=="cat")||($action=="cat_search")) {$tit=$lang[1090]." - ";}
 if (($action=="cl")||($action=="cl_add")) {$tit=$lang[941]." - ";}
 if ($action=="basket") {$tit=$lang[31]." - ";}
-if ($action=="zakaz") {$tit=$lang[59]." - ";}
+if ($action=="zakaz") {$tit=$lang[1649]." - ";}
 if ($action=="sendmail") {$tit=$lang[54]." - ";}
 if ($action=="forum") {$tit=$lang[9]." - ";}
 if ($action=="send") {$tit=$lang['sendform']." - ";}

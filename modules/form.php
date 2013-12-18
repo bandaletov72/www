@@ -14,10 +14,10 @@ $agree_title = $lang[347];
 fclose ($agreement);
 
 $x0004= str_replace("==$agree_title==", "" , $agree_content);
-if (($valid=="1")&&($details[7]=="ADMIN")): $aagreem= "<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0004</span><br><input class=btn type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/x0004.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div>"; endif;
+if (($valid=="1")&&($details[7]=="ADMIN")): $aagreem= "<div align=right><span class=\"label\" title=\"".$mpz['file']."\" style=\"height:19px; margin-bottom:10px;\">x0004</span><br><input class=btn type=button value=\"V&nbsp;&nbsp;&nbsp;".$lang['ch']."\" onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/x0004.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=800,height=580,left=10,top=10')></div>"; endif;
 
 
-$agreem="<a name=\"agreement\"></a><div class=round3 style=\"width:100%; height: 200px; overflow: auto;\"><table border=0><tr><td valign=top><h4>$agree_title</h4>";
+$agreem="<a name=\"agreement\"></a><div class=round3 style=\"width:100%; height: 200px; overflow: auto;\"><table border=0 class=table2><tr><td valign=top><h4>$agree_title</h4>";
 $agreem.="$aagreem$x0004</td><td>&nbsp;</td><td valign=top><img src=\"$image_path/prevcv.png\" border=0><br><br><br><br><br><br><br><br><br><br><br><br><img src=\"$image_path/nextcv.png\" border=0></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td><img src=\"$image_path/prevcv.png\" border=0></td></tr></table></div>";  unset ($agree_content, $agree_title, $agreement);
 }
 }
@@ -50,47 +50,53 @@ $exitform="<form method=GET action=$htpath/index.php>
 </form>";
 $inname="";
 require "./modules/social_auth.php";
-$formlist.="$social_auth<div><table class=table border=0 width=100% cellspacing=10 cellpadding=0><tr>
-<td valign=top>
-<b>".$lang[464]."</b><br><br>
-".$lang[465]."<br><br>
+$formlist.="$social_auth<div class=clearfix>
+<div class=\"panel pull-right\" style=\"width:40%; padding:20px;\">
+<b>".$lang[467]."</b><br><br>
+<small>".$lang['regtext']."</small>
+<form name=\"ok2\" action=\"".$_SERVER['PHP_SELF']."\" method=\"POST\">
+<input type=hidden name=\"register\" value=1><div align=center>
+<br><input class=\"btn btn-success btn-large\" type=submit value=\"".str_replace(" ", "&nbsp;", $lang[39])."\">
+</div>
+</form>
+</div>
 
+<div class=\"pull-left\" style=\"width:40%; padding: 20px;\">
+<b>".$lang[464]."</b><br><br>
+<script type=\"text/javascript\">
+function submit_auth(e)
+{
+	if (e.keyCode == 13)
+	{
+		document.ok1.submit();
+		return false;
+	}
+}
+
+</script>
 <form name=\"ok1\" action=\"".$_SERVER['PHP_SELF']."\" method=\"POST\">
-<table class=table border=0 cellpadding=3>
+<table class=table2 border=0 style=\"margin:0; padding:0;\">
 <tr>
-<td>
-<small>".$lang['login']."<font color=$nc3>*</font></small></td>
+<td><small>".$lang['login']."<font color=$nc3>*</font></small></td>
 <td>
 <input type=hidden name=\"action\" value=\"zakaz\"><input type=hidden name=\"noregs\" value=\"yes\"><input type=hidden name=\"logout\" value=\"1\">
-<input type=text name=\"login\" value=\"$login\" style=\"width:100px;\">
+<input type=text name=\"login\" value=\"$login\" style=\"width:100px;\" onkeyup=\"submit_auth(event);\">
 </td>
 <td><input class=\"btn btn-primary\" type=submit id=\"subm\" value=\"".$lang[940]."\"></td>
 </tr>
 <tr>
-<td>
-<small>".$lang['pass']."<font color=$nc3>*</font></small></td>
-<td>
-<input type=password name=\"password\" value=\"$password\" style=\"width:100px;\"></td>
-<td><small><i><a href=\"$htpath/index.php?action=restore\" style=\"border-bottom: 2px dotted $nc3;\">".str_replace(" ", "&nbsp;", $lang[86])."</a></i></small></td>
+<td><small>".$lang['pass']."<font color=$nc3>*</font></small></td>
+<td><input type=password name=\"password\" value=\"$password\" style=\"width:100px;\" onkeyup=\"submit_auth(event);\"></td>
+<td><small><a href=\"$htpath/index.php?action=restore\" style=\"border-bottom: 2px dotted $nc3;\">".str_replace(" ", "&nbsp;", $lang[86])."</a></small></td>
 </tr>
-</table></form>
-<small>".$lang[468]."</small><br><br>
-<form id=\"ok2\" action=\"".$_SERVER['PHP_SELF']."\" method=\"POST\">
-<input type=hidden name=\"action\" value=\"zakaz\">
-<input type=hidden name=\"noregs\" value=\"yes\">
-<input type=submit class=btn value=\"".$lang[469]."\">
+</table>
 </form>
-</td>
-<td width=1><img src=\"$image_path/pix.gif\" border=0 width=1 height=1></td>
-<td valign=top>
-<b>".$lang[467]."</b><br><br>
-<small>".$lang['regtext']."<br>
-<form name=\"ok2\" action=\"".$_SERVER['PHP_SELF']."\" method=\"POST\">
-<input type=hidden name=\"register\" value=1><br>
-<input class=\"btn btn-success\" type=submit value=\"".str_replace(" ", "&nbsp;", $lang[39])."\">
-</form></small>
-</td>
-</tr></table></div>";
+</div>
+<div class=clearfix></div>
+</div>
+<div style=\"padding:10px;\"><small>".$lang[468]." <a href=\"index.php?action=zakaz&noregs=yes\" style=\"border-bottom: 2px dotted $nc3;\">".$lang[469]."</a></small>
+</div>
+";
 } else {
 $step=2;
 $choosesd="";
@@ -99,8 +105,16 @@ $jsd="";
 $jpm="";
 $jsdload="";
 $jpmload="";
+if ($smod=="shop") {
 $carttotal=$cart->total;
+$ccarttotal=ssale($carttotal , $currencies_sign[$_SESSION["user_currency"]]);
+} else {
+$carttotal=0;
+$ccarttotal=0;
 
+}
+$oldcarttotal=$carttotal;
+$carttotal=$ccarttotal;
 if (isset($reg_as)) {
 while (list ($srrnum, $srrline) = each ($reg_as)) {
 if (($srrline!="")&&($srrline!="\n")) {
@@ -362,7 +376,7 @@ document.getElementById('sosk').innerHTML=document.getElementById('totals').valu
 
 <tr>
     <td align=\"right\" valign=\"top\" style=\"white-space:nowrap;\" width=30%><b>".$lang[160].":<font color=\"$nc3\" size=4>*</font></b></td>
-    <td valign=\"top\" colspan=\"2\" width=70%><div>".$selectpm."\n".$choosepm."</div><input type=hidden id=\"totcart\" value=\"$carttotal\"><input name=\"discont1\" type=\"hidden\" id=\"discont1\" value=\"$discont1\"></font></td>
+    <td valign=\"top\" colspan=\"2\" width=70%><div>".$selectpm."\n".$choosepm."</div><input type=hidden id=\"totcart\" value=\"$carttotal\"><input name=\"discont1\" type=\"hidden\" id=\"discont1\" value=\"$discont1\"></td>
   </tr>";
 } else {
 $formpayment="<input type=hidden name=\"pm\" value=\"0\"><input type=hidden id=\"totcart\" value=\"$carttotal\"><input name=\"discont1\" type=\"hidden\" id=\"discont1\" value=\"$discont1\">";
@@ -394,7 +408,7 @@ document.getElementById('sosk').innerHTML=document.getElementById('totals').valu
   </tr>";
 
   $form_totals=" <tr>
-    <td width=\"100%\" align=\"right\" valign=\"top\" colspan=\"3\"><div align=center>".$lang[165].": <b><font size=3 id=\"sosk\">$carttotal+$discont1+$discont2=".($carttotal+($okr*round($discont1/$okr))+($okr*round($discont2/$okr)))."</font></b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>
+    <td width=\"100%\" align=\"center\" valign=\"top\" colspan=\"3\"><br><div align=center style=\"border-top: $nc3 solid 4px;\"><br><font size=4>".$lang[165].": <b><span id=\"sosk\">$carttotal+$discont1+$discont2=".($carttotal+($okr*round($discont1/$okr))+($okr*round($discont2/$okr)))."</span></b> ".$currencies_sign[$_SESSION["user_currency"]]."</font></div>
       </td>
   </tr>";
 } else {
@@ -716,7 +730,7 @@ $formout= "<br><div align=center><form method=\"POST\" action=\"".$_SERVER['PHP_
 $form_title="Оформление совместного заказа пока невозможно";
 $formout= "<br><br><form method=\"POST\" action=\"".$_SERVER['PHP_SELF']."\">
 <input type=\"hidden\" name=\"action\" value=\"zakaz\"><input type=\"hidden\" name=\"fio\" value=\"$fio\"><input type=\"hidden\" name=\"wishlist\" value=\"$wishlist\">
-<font color=\"$nc2\"><b>".$lang[242]."</b></font>
+<font color=\"$nc3\"><b>".$lang[242]."</b></font>
 <br><br><p align=center>
 <input class=btn type=submit value=\"Попробовать снова\"></p></form>";
 }
@@ -832,8 +846,8 @@ if (/msie/i.test (navigator.userAgent)) //only override IE
 ";
 $tmp=explode("\n", $selectas);
 if ( count($reg_as)>1) {
-$reg_forms1.="   <table class=table border=\"0\" width=\"100%\" cellspacing=\"10\" cellpadding=\"3\">
-  <tr><td align=\"right\" width=30%><b>".$lang[288]."</b></td><td colspan=\"2\" width=70%>
+$reg_forms1.="<table class=table border=\"0\" width=\"100%\" style=\"margin-bottom:0px;\">
+<tr><td align=\"right\" width=30%><b>".$lang[288]."</b></td><td colspan=\"2\" width=70%>
 $chooseregids
 </td></tr></table>";
 }
@@ -847,10 +861,10 @@ $reg_forms1.="<form method=\"POST\" action=\"$htpath/index.php\">
 <input type=\"hidden\" name=\"step\" value=\"2\">
 ";
 if ("$valid"!="1") {
-$reg_forms1.="<div class=\"comnts\"><i><a href=$htpath/index.php?action=restore style=\"border-bottom: 2px dotted $nc3;\">".$lang[110]."</a></i> ".$lang[111]."</div>";
+$reg_forms1.="<table class=table border=\"0\" width=\"100%\"><tr><td colspan=2><i><a href=$htpath/index.php?action=restore style=\"border-bottom: 2px dotted $nc3;\">".$lang[110]."</a></i> ".$lang[111]."</td></tr>";
 }
-$reg_forms1.="<table class=table border=\"0\" width=\"100%\" cellspacing=\"10\" cellpadding=\"3\">
-<tr>";
+$reg_forms1.="<table class=table border=\"0\" width=\"100%\">
+";
 
 $reg_forms2="";
 $reg_formsb="";
@@ -1032,9 +1046,8 @@ if ($smod=="site") { $reg_forms3= "
 <input type=\"hidden\" name=\"flat\" value=\"\">
 <input type=\"hidden\" name=\"street\" value=\"-\">
 "; } else {
-$reg_forms3= "</table>
-      <div class=round3 align=left><font size=3 color=\"$nc5\"><i class=icon-map-marker></i> ".$lang[156]."</font></div>
-<table class=table border=\"0\" width=\"100%\" cellspacing=\"10\" cellpadding=\"3\">
+$reg_forms3= "<div><div class=round3><font size=3 color=\"$nc5\"><i class=icon-map-marker></i> ".$lang[156]."</font></div>
+<table class=table border=\"0\" width=\"100%\">
   <tr>
     <td align=\"right\" valign=\"top\" style=\"white-space:nowrap;\" width=30%><b>".$lang[167].":<font color=\"$nc3\" size=4>*</font></b></td>
     <td valign=\"top\" colspan=\"2\" width=70% style=\"white-space:nowrap;\">".$choosecountry."<input type=\"text\" id=\"country\" name=\"country\" value=\"$country\" size=\"30\" class=hidden><span id=e4>$e4</span>".$chooseme2."</td>
@@ -1244,24 +1257,23 @@ $reg_forms81="<tr>
 
 if (!isset($view_agreement)) {} else {if ($view_agreement==0) {$reg_forms8=$reg_forms81;}}
 
-$reg_forms82= "<table border=0 cellspacing=5><tr><td><b>".$lang[83].":<font color=\"$nc3\" size=4>*</font></b><td><td>";
+$reg_forms82= "<table border=0 cellspacing=5><tr><td><b>".$lang[83].":<font color=\"$nc3\" size=4>*</font></b></td>";
 
 
 if (($_SERVER['SERVER_NAME']=="localhost")||($_SERVER['SERVER_NAME']=="127.0.0.1")) {$reg_forms82.="<br>".substr(intval($rand_num*23-4),0,4);  } else {$reg_forms82.="<img src=\"textimg.php?textwww=$rand_num\" border=0>"; }
 
-$reg_forms82.="</td><td> &gt;&gt; </td><td><input type=\"text\" name=\"antispam\" size=4></td><td>(".$lang[84].")<input name=\"md5num\" type=\"hidden\" value=\"$md5_num\"></td></tr></table>";
+$reg_forms82.="<td> &gt;&gt; </td><td><input type=\"text\" name=\"antispam\" size=4></td><td>(".$lang[84].")<input name=\"md5num\" type=\"hidden\" value=\"$md5_num\"></td></tr></table>";
 $reg_forms83="<input type=\"hidden\" name=\"antispam\" size=4 value=\"".substr(intval($rand_num*23-4),0,4)."\"><input name=\"md5num\" type=\"hidden\" value=\"$md5_num\">";
 
 if (!isset($view_checkout_antispam)) {$reg_forms8.=$reg_forms83; } else {if ($view_checkout_antispam==0) {$reg_forms8.=$reg_forms83;} else {$reg_forms8.=$reg_forms82;}}
 
-if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSION["user_currency"]])) { $reg_forms8.= "<div class=round3>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>";} else { $reg_forms8.="<br><input type=\"submit\" class=\"btn btn-primary btn-large\" value=\"".$lang[145]."\"><br><br>".$lang[82]."</form><br>"; }
+if (($minimal_order_not_available==1)&&($summa<$currencies_minimal_order[$_SESSION["user_currency"]])) { $reg_forms8.= "<div class=round3>$lang[1009] <b>".$currencies_minimal_order[$_SESSION["user_currency"]]."</b> ".$currencies_sign[$_SESSION["user_currency"]]."</div>";} else { $reg_forms8.="<div align=center><input type=\"submit\" class=\"btn btn-primary btn-large\" value=\"".$lang[145]."\"></div><br>".$lang[82]."</form><br>"; }
 if (($allow_complex==1)&&($details[$user_pass_complex]!="")) {
 $reg_forms8.="<br><br><form class=form-inline action=index.php method=GET><input type=hidden name=\"zak\" value=\"wishlist\"><input class=btn type=\"submit\" class=\"btn btn-primary\" value=\"Вернуть заказ на стадию редактирования\"></form><br><br>";
 }
 $reg_forms8.="</td>
   </tr>
 </table>
-</form>
 <script language=javascript>
 <!--
 var curcountry=document.getElementById('country').value;
@@ -1338,9 +1350,9 @@ document.forms['regform'].submit();
 <input type=\"hidden\" id=\"actions\" name=\"action\" value=\"zakaz\">
 <input type=\"hidden\" name=\"step\" value=\"2\"><input type=\"hidden\" id=\"regist\" name=\"register\" value=\"\">
 <div class=round3 align=center><b><font size=2 color=\"$nc5\">".$lang[462]."</font></b></div>
-<table class=table border=\"0\" width=\"100%\" cellspacing=\"10\" cellpadding=\"3\">
+<table class=table border=\"0\" width=\"100%\">
   <tr>
-    <td valign=\"top\" align=center width=100%><table border=0><tr><td>".$chooseregid."</td></tr></table>
+    <td valign=\"top\" align=center width=100%><table class=table border=0><tr><td>".$chooseregid."</td></tr></table>
 </td>
   </tr><tr>
     <td colspan=\"2\" valign=\"top\" align=center>";
@@ -1362,7 +1374,41 @@ $reg_form=$reg_forms1.$reg_forms4.$reg_forms6.$reg_formsb.$reg_forms2.$formpayme
 $reg_form=$reg_forms1.$reg_forms7.$reg_forms6.$reg_formsb.$reg_forms2.$formpayment.$formdelivery.$submit_forms.$form_totals.$reg_forms8;
 }
 } else {
-$reg_form=$reg_forms1.$reg_forms5.$reg_forms2.$reg_formsb.$reg_forms3.$formpayment.$formdelivery.$submit_forms.$form_totals.$reg_forms8;
+$reg_form="<script>
+function Gostep(id) {
+document.getElementById('steps'+id).className='active';
+document.getElementById('step'+id).className='pull-left stepsa mr';
+if (id!=1) {document.getElementById('steps'+1).className='hidden'; document.getElementById('step'+1).className='pull-left steps mr'; }
+if (id!=2) {document.getElementById('steps'+2).className='hidden'; document.getElementById('step'+2).className='pull-left steps mr'; }
+if (id!=3) {document.getElementById('steps'+3).className='hidden'; document.getElementById('step'+3).className='pull-left steps mr'; }
+if (id!=4) {document.getElementById('steps'+4).className='hidden'; document.getElementById('step'+4).className='pull-left steps mr'; }
+if (id!=5) {document.getElementById('steps'+5).className='hidden'; document.getElementById('step'+5).className='pull-left steps mr'; }
+}
+</script>
+<div style=\"border-bottom: $nc3 solid 4px; margin-bottom: 20px; margin-top:20px;\">
+<div id=step1 class=\"pull-left stepsa mr\" onclick=Gostep(1);>".$lang[1644]."1<br><small>".$lang[1645]."</small></div>
+<div id=step2 class=\"pull-left steps mr\" onclick=Gostep(2);>".$lang[1644]."2<br><small>".$lang[1646]."</small></div>
+<div id=step3 class=\"pull-left steps mr\" onclick=Gostep(3);>".$lang[1644]."3<br><small>".$lang[1647]."</small></div>
+<div id=step4 class=\"pull-left steps mr\" onclick=Gostep(4);>".$lang[1644]."4<br><small>".$lang[1648]."</small></div>
+<div id=step5 class=\"pull-left steps mr\" onclick=Gostep(5);>".$lang[1644]."5<br><small>".$lang[1650]."</small></div>
+<div class=clearfix></div></div>
+<div class=\"\" id=steps1>".$reg_forms1.$reg_forms5.$reg_forms2.$reg_formsb."</table>
+<div align=center><a href=#top class=btn onclick=Gostep(2);>$lang[1646] <i class=icon-chevron-right></i></a></div>
+</div>
+<div class=\"hidden\" id=steps2><table class=table2 width=100%>".$reg_forms3."</table>
+<div align=center><a href=#top class=btn onclick=Gostep(1);><i class=icon-chevron-left></i> $lang[1645]</a> &nbsp; <a href=#top class=btn onclick=Gostep(3);>$lang[1647] <i class=icon-chevron-right></i></a></div>
+</div>
+<div class=\"hidden\" id=steps3><table class=table width=100%>".$formpayment."</table>
+<div align=center><a href=#top class=btn onclick=Gostep(2);><i class=icon-chevron-left></i> $lang[1646]</a> &nbsp; <a href=#top class=btn onclick=Gostep(4);>$lang[1648] <i class=icon-chevron-right></i></a></div>
+</div>
+<div class=\"hidden\" id=steps4><table class=table width=100%>".$formdelivery."</table>
+<div align=center><a href=#top class=btn onclick=Gostep(3);><i class=icon-chevron-left></i> $lang[1647]</a> &nbsp; <a href=#top class=btn onclick=Gostep(5);>$lang[1650] <i class=icon-chevron-right></i></a></div>
+</div>
+<div class=\"hidden\" id=steps5><table class=table width=100%>".$submit_forms.$reg_forms8."
+<div align=center><a href=#top class=btn onclick=Gostep(4);><i class=icon-chevron-left></i> $lang[1648]</a></div>
+</div>
+<table class=table2 width=100%>".$form_totals."</table>
+";
 }
 }
 } else {

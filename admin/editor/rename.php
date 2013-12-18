@@ -13,6 +13,12 @@ extract($_GET, EXTR_SKIP);
 extract($_POST, EXTR_SKIP);
 extract($_COOKIE, EXTR_SKIP);
 }
+
+echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
+<html xmlns=\"http://www.w3.org/1999/xhtml\">
+<head>
+";
+
 $fold="../.."; require ("../../templates/lang.inc");
 if (!isset($speek)) {
 $speek=$language;
@@ -29,21 +35,17 @@ $speek=$language;
 }
 
 require ("../../templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nls);  require ("../../templates/$template/$speek/config.inc");
-echo "
-<html>
-<head>
-<meta http-equiv=\"Content-Type\" content=\"text/html; charset=$codepage\"><title>Rename</title>
-<style fprolloverstyle>A:hover {color: #FF0000}
-</style>
-</head>
-<BODY background='new/a1.gif' text='#000000' link='#000000' vlink=\"#333333\" alink=\"#FF0000\">
+$fold="../..";
+require ("../../templates/$template/css.inc");
+require ("../../templates/$template/title.inc");
 
-";
+echo $css;
+echo "<div class=pcont>";
 
 $left="";
 $right="";
 $print= "";
-$print2= "Nothing to rename";
+$print2= $lang[209];
 echo "<center><small>";
 while (list ($key, $val) = each ($old)) {
 if ($val!==$new[$key]) {
@@ -66,13 +68,21 @@ $print .="$val." . $type[$key] ." -&gt; ".$new[$key]. "." . $type[$key] . "<br>\
 }
 }
 }
-
-echo "$print2<br>$print</small>";
+$tosave="<?php\n";
+while (list ($key, $val) = each ($raz)) {
+$tosave.= "\$raz[".stripslashes($key)."]='".$val."';\n";
+}
+$tosave.="\n?>";
+$file="../.$base_loc/raz.inc";
+$fp=fopen($file, "w");
+fputs($fp, $tosave);
+fclose ($fp);
+echo "<h3>$print2</h3>$print</small>";
 
 
 echo "<p><div align='center'>
-<a href=\"./index.php?speek=$speek\">Back</a>
-<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=./index.php?speek=$speek\">";
+<a href=\"./index.php?speek=$speek\">".$lang['back']."</a>
+<meta HTTP-EQUIV=\"Refresh\" CONTENT=\"1;URL=./index.php?speek=$speek\">";
 ?>
 </p>
 </body>

@@ -47,13 +47,13 @@ sort($fcontentsa);
 reset ($fcontentsa);
 if ($r!==""){
 $sr=" / <a href=\"$htpath/index.php?catid=" .@$podstava["$r||"]. "\">$r</a>";
-if (@$mod_rw_enable==1): $sr=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$sr"));  endif;
+if (@$mod_rw_enable==1): $sr=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$sr"));  endif;
 while (list ($cnum, $cline) = each ($fcontentsa)) {
 $ctemp=explode("|", $cline);
 if (($ctemp[2]=="")&&($ctemp[0]==@$podstava["$r||"])){
-$catm.="<table cellspacing=0 cellpadding=7 border=0><tr><td valign=top>".@$ctemp[3]."</td><td valign=top><b><a href=\"$htpath/index.php?catid=" .@$podstava["$r||"]. "\"><FONT  color=\"".$style['nav_col1']."\">".str_replace(" ", "&nbsp;" , $r)."</font></a></b><br>";
+$catm.="<table cellspacing=0 cellpadding=7 border=0><tr><td valign=top>".@$ctemp[3]."</td><td valign=top class=lnk><b><a href=\"$htpath/index.php?catid=" .@$podstava["$r||"]. "\">".str_replace(" ", "&nbsp;" , $r).":</a></b><br>";
 }
-if (@$mod_rw_enable==1): $catm=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$catm"));  endif;
+if (@$mod_rw_enable==1): $catm=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$catm"));  endif;
 
 }
 }
@@ -72,16 +72,16 @@ $cg=0;
 $fcm=0;
 while (list ($cnumm, $clinem) = @each ($catmm)) {
 
-if ($cg==$kolvostr):$cg=0; $catm.="</td>\n<td valign=top><br>"; endif;
+if ($cg==$kolvostr):$cg=0; $catm.="</td>\n<td valign=top class=lnk><br>"; endif;
 $catm.=$clinem;
 $cg+=1;
 $fcm+=1;
 }
-if (@$mod_rw_enable==1): $catm=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$catm"));  endif;
+if (@$mod_rw_enable==1): $catm=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$catm"));  endif;
 
 if ($sub!==""){
 $ssub=" / <b><a href=\"$htpath/index.php?catid=" .$podstava["$r|$sub|"]. "\">$sub</a></b>";
-if (@$mod_rw_enable==1): $ssub=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$ssub"));  endif;
+if (@$mod_rw_enable==1): $ssub=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$ssub"));  endif;
 }
 $catm.="</td></tr></table>";
 
@@ -91,7 +91,7 @@ $allsp="<table width=100% border=0 cellpadding=0 cellspacing=0><tr><td valign=to
 if ($fcm<=1) { $allsp="";}
 if ($view_catm==0) {$allsp="";}
 
-if (@$mod_rw_enable==1): $allsp=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$allsp"));  endif;
+if (@$mod_rw_enable==1): $allsp=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$allsp"));  endif;
 if ($usetheme==0) {
 echo $warn;
 } else {

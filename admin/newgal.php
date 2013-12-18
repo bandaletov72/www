@@ -54,16 +54,18 @@ echo "
 <style fprolloverstyle>A:hover {color: #FF0000}
 .di {
 text-align: center;
-width: ".($maxw+10)."px;
-height: ".($maxw+60)."px;
+width: ".($micro_foto_width+12)."px;
+height: ".($micro_foto_height+40)."px;
 overflow: hidden;
 background: $nc0;
-padding: 0px 0px 0px 0px;
+padding: 4px 4px 4px 4px;
+margin-right:10px;
+margin-bottom:10px;
 }
 .dim {
 text-align: center;
-width: ".($maxw-8)."px;
-height: ".($maxw+16)."px;
+height: ".($micro_foto_height+16)."px;
+width: ".($micro_foto_width+10)."px;
 overflow: hidden;
 cursor:pointer;
 cursor: hand;
@@ -72,8 +74,11 @@ padding: 0px 0px 0px 0px;
 .dit {
 text-align: center;
 font-size:11px;
-width: ".($maxw).";
+width: ".($micro_foto_width-20)."px;
 padding: 0px 0px 0px 0px;
+}
+.dele {
+background: rgba(255,0,0,0.35)
 }
 </style>
 $css
@@ -91,6 +96,34 @@ echo "<!-- $gtype-$dest --><SCRIPT language=\"JavaScript1.1\">
 <!--
 var ww='0';
 var hh='0';
+var cc=0;
+function submitform() {
+if (cc>0) {
+document.getElementById('submitdiv').className='round3 dele';
+}
+}
+function closediv() {
+
+document.getElementById('submitdiv').className='hidden';
+
+}
+function chk(id) {
+if(document.getElementById('box'+id).checked==true) {
+document.getElementById('di'+id).className='pull-left di img thumbnail dele muted';
+document.getElementById('submitb').className='btn btn-danger';
+;
+cc++;
+document.getElementById('ss').innerHTML=cc
+} else {
+document.getElementById('di'+id).className='pull-left di img thumbnail';
+cc--;
+document.getElementById('ss').innerHTML=cc;
+if (cc==0) {
+document.getElementById('submitb').className='hidden';
+document.getElementById('submitdiv').className='hidden';
+}
+}
+}
 function rc(image,x,y) {
 	";
 if   ($gtype==1) {$fbase=$fotobasesmall; if ($dest=="") {
@@ -105,8 +138,12 @@ if   ($gtype==2) {$fbase=$fotobasebig; if ($dest=="") { echo "opener.document.fo
 if   ($gtype==4) {$fbase="uploads"; if ($dest=="textar") {echo "opener.document.getElementById('textarea').value+=\"[img]".$htpath."/$fbase/".$sdir."\" + image + \"[/img]\\n\";
 ";} else { echo "opener.document.getElementById('".$dest."').value+=\"<img src='".$htpath."/$fbase/".$sdir."\" + image + \"'>\";
 "; }}
-if   ($gtype==3) {$fbase="catimg"; echo "opener.document.getElementById('el_".$dest."').value=\"<img src=".$htpath."/catimg/".$sdir."\" + image + \" border=0>\";
-opener.document.getElementById('img_".$dest."').src=\"".$htpath."/catimg/\" + image;
+if   ($gtype==3) {$fbase=""; echo "opener.document.getElementById('el_".$dest."').value=\"<img src=".$htpath."/$fbase/".$sdir."\" + image + \" border=0>\";
+opener.document.getElementById('img_".$dest."').src=\"".$htpath."/$fbase/".$sdir."\" + image;
+  ";}
+  if   ($gtype==99) {$fbase="gallery/backgrounds"; echo "opener.document.getElementById('el_".$dest."').value=\"".$htpath."/$fbase/".$sdir."\" + image;
+opener.document.getElementById('main_background').style.backgroundImage=\"url(\"+\"".$htpath."/$fbase/".$sdir."\" + image+\")\";
+opener.document.getElementById('main_background').style.backgroundRepeat='repeat repeat';
   ";}
   if   ($gtype==5) {$fbase=""; echo "
 top.tinymce.activeEditor.windowManager.getParams().oninsert(\"".$htpath."/".$sdir."\" + image, 'image', x+'x'+y, x, y);
@@ -149,14 +186,21 @@ if ((!@$del) || (@$del=="")): $del=""; endif;
 
 if ($del!="") {
 
-echo "<b>".$lang[257]."</b> $del<br>
-".$lang[438]."";
+echo "<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>".$lang[257]."</strong>";
 
+if (isset($_POST['box'])) {
+if (is_array($_POST['box'])) {
+while(list($key,$v)=each($_POST['box'])) {
 
-
-if (!unlink  ("../$fbase/$sdir" . $del)) {
-print ("$del not found!<br>\n");
+if (!unlink  ("../$fbase/$sdir" . stripslashes(trim($v)))) {
+echo "<div class=small>../$fbase/$sdir"."$v - ".$lang[447]."</div>";
+} else {
+echo "<div class=small>../$fbase/$sdir"."$v - ".$lang[437]."</div>";
 }
+}
+}
+}
+echo "</div>";
 }
 $del="";
 $make_col=$lastgoods_cols;
@@ -227,7 +271,8 @@ require("fileupload-class.php");
          }
 
 
-echo "<form class=form-inline id=sform enctype='multipart/form-data' action='$htpath/admin/newgal.php' method='POST'>
+echo "
+        <div class=\"pull-right mr\"><button id=submitb class=\"hidden\" onclick=submitform();><i class=\"icon-remove icon-white\"></i> $lang[744] <span id=ss>0</span> ".$lang['pcs']."</button></div><form class=form-inline id=sform enctype='multipart/form-data' action='$htpath/admin/newgal.php' method='POST'>
         <input type='hidden' name='submitted' value=\"true\">
         <input type='hidden' name='perpage' value=\"$perpage\">
         <input type='hidden' name='dir' value=\"$dir\">
@@ -237,8 +282,7 @@ echo "<form class=form-inline id=sform enctype='multipart/form-data' action='$ht
         <input type='hidden' name='dest' value=\"$dest\">
         <input type='hidden' name='speek' value=\"$speek\">
         <input type='hidden' name='language' value=\"$speek\">
-        <input type='hidden' name='gtype' value=\"$gtype\">
-        <div class=\"container\">
+        <input type='hidden' name='gtype' value=\"$gtype\"><div class=\"container\">
             <div class=\"row-fluid\">
                 <div class=\"control-group\">
                     <div class=\"controls clearfix\">
@@ -250,7 +294,7 @@ echo "<form class=form-inline id=sform enctype='multipart/form-data' action='$ht
                 </div>
             </div>
         </div>
-        </form>";
+        </form><div class=hidden id=submitdiv align=center><h4>$lang[746]</h4><button class=\"btn btn-danger btn-large\" onclick=\"document.getElementById('subform').submit();\">".$lang['yes']."</button> &nbsp;&nbsp;&nbsp; <button class=\"btn btn-large\" onclick=\"closediv();\">".$lang['no']."</button></div>";
 
         if (isset($acceptable_file_types) && trim($acceptable_file_types)) {
                 print("".$lang[740].": <b>" . str_replace("|", "</b>, <b>", $acceptable_file_types) . "</b>\n");
@@ -258,16 +302,26 @@ echo "<form class=form-inline id=sform enctype='multipart/form-data' action='$ht
 
 //Выведем все картинки
 
-
+echo "<form class=form-inline action='$htpath/admin/newgal.php' method='POST' id=subform>
+        <input type='hidden' name='perpage' value=\"$perpage\">
+        <input type='hidden' name='dir' value=\"$dir\">
+        <input type='hidden' name='start' value=\"$start\">
+        <input type='hidden' name='fsort' value=\"$fsort\">
+        <input type='hidden' name='fway' value=\"$fway\">
+        <input type='hidden' name='dest' value=\"$dest\">
+        <input type='hidden' name='speek' value=\"$speek\">
+        <input type='hidden' name='language' value=\"$speek\">
+        <input type='hidden' name='del' value=\"YES\">
+        <input type='hidden' name='gtype' value=\"$gtype\">";
 
 $s=0;
 $bn1="";  $bn2="";
 $bn3=""; $bn4="";
 $bn5=""; $bn6="";
 $bn7=""; $bn8="";
-if ($fsort=="name") { $bn1="<b class=label>";  $bn2="</b>"; $bn3="<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=date&fway=$fway'>";  $bn4="</a>"; } else {  $bn3="<b class=label>";  $bn4="</b>"; $bn1="<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=name&fway=$fway'>";  $bn2="</a>";   }
-if ($fway=="up") { $bn5="<b class=label>";  $bn6="</b>"; $bn7="<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=down'>";  $bn8="</a>"; } else {  $bn7="<b class=label>";  $bn8="</b>"; $bn5="<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=up'>";  $bn6="</a>";   }
-echo "<br><font size='2'><b>".$lang['sort_by'].":</b> $bn1".$lang['by_name']."$bn2 | $bn3".$lang['by_date']."$bn4 &nbsp;&nbsp;&nbsp; $bn5".$lang['down']."$bn6 | $bn7".$lang['up']."$bn8<br><b>".$lang[786].":</b> <B><a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=9&dir=$dir&fsort=$fsort&fway=$fway'>9</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=18&dir=$dir&fsort=$fsort&fway=$fway'>18</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=30&dir=$dir&fsort=$fsort&fway=$fway'>30</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=60&dir=$dir&fsort=$fsort&fway=$fway'>60</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=90&dir=$dir&fsort=$fsort&fway=$fway'>90</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=900&dir=$dir&fsort=$fsort&fway=$fway'>900</a></B>
+if ($fsort=="name") { $bn1="<b class=label>";  $bn2="</b>"; $bn3="<a href='$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir&fsort=date&fway=$fway'>";  $bn4="</a>"; } else {  $bn3="<b class=label>";  $bn4="</b>"; $bn1="<a href='$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir&fsort=name&fway=$fway'>";  $bn2="</a>";   }
+if ($fway=="up") { $bn5="<b class=label>";  $bn6="</b>"; $bn7="<a href='$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir&fsort=$fsort&fway=down'>";  $bn8="</a>"; } else {  $bn7="<b class=label>";  $bn8="</b>"; $bn5="<a href='$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir&fsort=$fsort&fway=up'>";  $bn6="</a>";   }
+echo "<br><font size='2'><b>".$lang['sort_by'].":</b> $bn1".$lang['by_name']."$bn2 | $bn3".$lang['by_date']."$bn4 &nbsp;&nbsp;&nbsp; $bn5".$lang['down']."$bn6 | $bn7".$lang['up']."$bn8<br><b>".$lang[786].":</b> <B><a href='$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=9&dir=$dir&fsort=$fsort&fway=$fway'>9</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=18&dir=$dir&fsort=$fsort&fway=$fway'>18</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=30&dir=$dir&fsort=$fsort&fway=$fway'>30</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=60&dir=$dir&fsort=$fsort&fway=$fway'>60</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=90&dir=$dir&fsort=$fsort&fway=$fway'>90</a></B> <img src=\"$image_path/a.gif\"> <B><a href = '$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=900&dir=$dir&fsort=$fsort&fway=$fway'>900</a></B>
 </small>
 ";
 
@@ -281,8 +335,8 @@ if ((is_dir("../$fbase/$sdir".$fileopen)==true)&&($fileopen!=".")&&($fileopen!="
 //if ($dir=="") {
 if ($fsort=="name") {$sortby=strtolower($fileopen); } else { $sortby=filemtime("../$fbase/$sdir".$fileopen); }
 $dires[$s] = "<!--$sortby-->
-<div class=\"pull-left di\"><a href=\"$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&fsort=$fsort&fway=$fway&dir=$sdir"."$fileopen\">
-<div class=\"img dim\" ><img src='../images/of_mini.png"."' border=0><div class=dit>$fileopen</div></div></a></div>";
+<div class=\"pull-left di img thumbnail\"><a href=\"$htpath/admin/newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&fsort=$fsort&fway=$fway&dir=$sdir"."$fileopen\">
+<div class=\"dim\" ><img src='../images/of_mini.png"."' border=0><div class=dit style=\"width:$micro_foto_width"."px\">$fileopen</div></div></a></div>";
 $files_found += 1;
 $s+=1;
 //}
@@ -291,39 +345,23 @@ continue;
 } else {
 $fff=str_replace("//","/", str_replace("//","/", "../$fbase/$sdir"."$fileopen"));
 $size = intval((filesize ($fff))/1024);
-$imagesz = getimagesize($fff);
-$fwidth  = $imagesz[0];
-$fheight = $imagesz[1];
-$widt=($maxw-8);
-$hei=($maxw-8);
-//echo $fwidth."x".$fheight."<br>";
-$case=0;
-$sty="";
-if ($fwidth>=$fheight) {
-if ($fheight>$maxw){$widt=($maxw-8); $hei=(round($fheight/($fwidth/$maxw))-8);  $case=1; }
-if ($fheight<=$maxw){$widt=($maxw-8); $hei=(round($fheight/($fwidth/$maxw))-8); $case=2;}
-} else {
-if ($fheight>$maxw){$hei=($maxw-8); $widt=(round($maxw/($fheight/$fwidth))-8);  $case=3; }
-if ($fheight<=$maxw){$hei=($maxw-8); $widt=(round($maxw/($fheight/$fwidth))-8);  $case=4; }
 
-}
+//echo $fwidth."x".$fheight."<br>";
+$sty="";
 $zoom="<img src=\"$image_path/zoom.gif\" border=0 title=\"".$lang[140]."\" style=\"vertical-align: middle\">";
 
-$wh="width=".$widt." height=".$hei;
+$wh="";
 $ftyname=substr("$fileopen",0,(strlen("$fileopen")-strlen($typ)));
 if ($fsort=="name") {$sortby=strtolower($fileopen); $ssortby=""; } else {
 $sortby=filemtime("../$fbase/$sdir".$fileopen);
 $dateformat=str_replace("y", "Y", str_replace("dd", "d",str_replace("mm", "m",str_replace("yy", "y", str_replace("yy", "y", $ewc_dateformat)))));
 $ssortby=date($dateformat." H:i:s",$sortby); }
 $fileopens[$s] = "<!--$sortby-->
-<div class=\"pull-left di\">
-<div class=\"img dim\" style=\"margin-bottom: 0px;\" onClick=\"javascript:rc('$fileopen','".$fwidth."' ,'".$fheight."')\" title='$ssortby\n$fwidth x $fheight / $size Kb\n".$lang[784]." $fileopen'>
-<a href='#".$lang[784]."'><img src='$fff'".$sty." border=0 $wh>
-<div class=dit>".$fileopen."</div>
-</a>
-</div>
-<div class=\"dit lnk\" style=\"margin-top: 8px;\">
-<a href='$htpath/admin/newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;del=$fileopen&amp;start=$start&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway'><i class=icon-remove></i> ".$lang[744]."</a>
+<div class=\"pull-left di img thumbnail\" id=di$s>
+<div style=\"margin-bottom: 0px; text-align: center;\" >
+<a href='#".$lang[784]."' onClick=\"javascript:rc('$fileopen','' ,'')\"><div class=dim><img src='$fff' class=\"span14\" border=0 title='$size Kb\n".$lang[784]." $fileopen\n$ssortby'></div></a>
+<div class=clearfix></div>
+<span class=\"dit nowrap\"><input autocomplete=\"off\" type=checkbox name=box[$s] id=box$s value='$fileopen' onclick=chk($s);> ".$fileopen."</span>
 </div>
 </div>";
 $files_found += 1;
@@ -393,16 +431,16 @@ $prevdir="";
 $tmps=@explode("/",$dir);
 @array_pop($tmps);
 $prevdir=@implode("/",@$tmps);
-$gal="<div class=\"pull-left di\"><a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=$start&amp;perpage=$perpage&dir=$prevdir&fsort=$fsort&fway=$fway\">
+$gal="<div class=\"pull-left di\"><a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=$start&perpage=$perpage&dir=$prevdir&fsort=$fsort&fway=$fway\">
 <div class=\"img dim\"><div align=center><br><br><img src=\"../images/ofb.png\" border=0><br>".$lang['back']."</div></div></a></div>$gal";
 }
 $gal.="<div class=clearfix></div>";
 $stat= "<center><small><br>".$lang[203]." <b>$numberpages</b> <img src=\"$image_path/a.gif\"> ".$lang[206]." <b>$total</b> ".$lang[207]." <img src=\"$image_path/a.gif\"> ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></small></center><br>";
 
-$nextpage="<a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($start+$perpage) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=&dir=$dir&fsort=$fsort&fway=$fway\"><!--homee--></a>";
+$nextpage="<a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($start+$perpage) . "&perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=&dir=$dir&fsort=$fsort&fway=$fway\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($start-$perpage) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($start-$perpage) . "&perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>=$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -425,16 +463,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($s*$perpage) . "&perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($s*$perpage) . "&perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=0&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"newgal.php?dest=$dest&amp;speek=$speek&gtype=$gtype&amp;start=" . ($perpage*($numberpages-1)) . "&amp;perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=0&perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"newgal.php?dest=$dest&speek=$speek&gtype=$gtype&start=" . ($perpage*($numberpages-1)) . "&perpage=$perpage&dir=$dir&fsort=$fsort&fway=$fway\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 
@@ -443,9 +481,8 @@ if ($numberpages<=1) { $ppages=""; }
 $gal="<div align=center>$ppages<br><small><b>".$lang[783]."</b><br>".$lang[785]."</small><br></div>
 $gal";
 
-$gal.="<div align=center><br>$ppages<br><b>".$lang[783]."</b><br>".$lang[785]."<br></div>\n";
+$gal.="</form><div align=center><br>$ppages<br><b>".$lang[783]."</b><br>".$lang[785]."<br></div>\n";
 echo $gal;
-
 ?></small></font>
 <!--end-->
 </div>

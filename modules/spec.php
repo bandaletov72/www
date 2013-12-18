@@ -151,6 +151,13 @@ $optionselect="";
 
 @$foto1=@$out[9];
 if ($foto1=="") {$foto1="<img src=\"$image_path/no_photo.gif\" border=0>";}
+if ($foto1=="") {$foto1="<img src=\"$image_path/no_photo.gif\" border=0>";}
+@$foto1=str_replace(">", " id=smz_".$s.">", @$foto1);
+if ($hidart==1) {
+$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span13\" title=\"".str_replace("\"", "", str_replace("\'", "",strtoken($out[3],"*")))."\" ",  stripslashes(@$foto1));
+} else {
+$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span13\" title=\"".str_replace("\"", "", str_replace("\'", "",$out[3]))."\" ",  stripslashes(@$foto1));
+}
 @$foto2=@$out[10];
 @$vitrin=@$out[11];
 @reset($cartl);
@@ -223,6 +230,7 @@ $strtoma=Array();
 $strtoma=explode("|",$sps[($start+$st)]);
 $sklname=$strtoma[1];
 //if(($details[7]!="ADMIN")&&($details[7]!="MODER")){
+/*
 $strtoma[2]=str_replace("http://www.", "http://", str_replace("\"","'", $strtoma[2]));
 if ($strtoma[2]!="") {
 $htpat=str_replace("http://www.", "http://",$htpath);
@@ -244,6 +252,7 @@ if ($wh==" width=0 height=0") {$wh="";}
 $strtoma[2]=str_replace("<img ", "<img ". $wh ." ",stripslashes(@$strtoma[2]));
 
 }
+*/
 //}
 $sps[($start+$st)]=str_replace("[foto1]",$strtoma[2], $strtoma[0]);
 $stoks="";

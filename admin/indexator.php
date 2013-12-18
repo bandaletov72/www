@@ -1,6 +1,7 @@
 <?php
 $nn=0;
-
+$www=0;
+$wkr=Array();
 function ExtractString($str, $start, $end) {
  $str_low = strtolower($str);
  if (strpos($str_low, $start) !== false && strpos($str_low, $end) !== false) {
@@ -63,6 +64,9 @@ $speek=$language;
 require ("../templates/$template/$speek/vars.txt"); @setlocale(LC_CTYPE, $site_nls);   require ("../templates/$template/$speek/config.inc");
 
 require ("../modules/translit.php");
+if (file_exists(".$base_loc/raz.inc")){
+require (".$base_loc/raz.inc");
+}
 
 echo "
 <html>
@@ -133,8 +137,8 @@ if ($carat=="") { $carat="›"; }
 $fold="..";
 require "../modules/functions.php";
 require "../templates/$template/css.inc";
-$fp = fopen ("../style.css" , "w"); flock ($fp, LOCK_EX);
-fputs($fp, str_replace("{nc10}", "[nc10]", str_replace("{lnc10}", "[lnc10]", $cssflush)));flock ($fp, LOCK_UN);
+$fp = fopen ("../style_".$speek.".css" , "w"); flock ($fp, LOCK_EX);
+fputs($fp,  str_replace("[nc10]", "$nc10", str_replace("[lnc10]", lighter($nc10,10), str_replace("{nc10}", "[nc10]", str_replace("{lnc10}", "[lnc10]", $cssflush)))));flock ($fp, LOCK_UN);
 fclose($fp);
 echo $css;
 
@@ -267,6 +271,7 @@ if ($noveltys_qty<=0) {break;}
 }
 }
 unset ($novelmass);
+//$noveltys_tosave2=array_reverse($noveltys_tosave2);
 $noveltys_tosave=implode("",$noveltys_tosave2);
 //Теперь получиv список разделов и подразделов
 $allrazdels=$fcontents;
@@ -440,9 +445,9 @@ if (!isset($brandname[$indexbr])) {$brandname[$indexbr]=trim($out[13]);}
 //if ($view_brands==1){
 
 if ($out[13]!=""){
-@$tmpbrands[$st] = $out[2]."|<div style=\"margin-left:10px;\" class=brand onclick=\"location.href='index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=".rawurlencode($out[13])."';\"><!--".$out[13]." $sym --><a href=\"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=".rawurlencode($out[13])."\">".str_replace(chr(0xA0), " " , $out[13])."</a></div>|".$out[1]."|".$out[13]."|";
+@$tmpbrands[$st] = $out[2]."|<div style=\"margin-left:10px;\" class=brand onclick=\"location.href='index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&brand=".rawurlencode($out[13])."';\"><!--".$out[13]." $sym --><a href=\"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&brand=".rawurlencode($out[13])."\">".str_replace(chr(0xA0), " " , $out[13])."</a></div>|".$out[1]."|".$out[13]."|";
 } else {
-$tmpbrands[$st] = $out[2]."|<div style=\"margin-left:10px;\" class=brand onclick=\"location.href='index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=nobrand';\"><!--zzzzz $sym --><a href=\"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&amp;brand=nobrand\">".$lang[417]."</a></div>|".$out[1]."|".$lang[417]."|";
+$tmpbrands[$st] = $out[2]."|<div style=\"margin-left:10px;\" class=brand onclick=\"location.href='index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&brand=nobrand';\"><!--zzzzz $sym --><a href=\"index.php?catid=".$tablenum[$out[1]."|".$out[2]. "|"]."&brand=nobrand\">".$lang[417]."</a></div>|".$out[1]."|".$lang[417]."|";
 
 }
 //}
@@ -540,7 +545,7 @@ $subrcount[$ra] = $line;
 $count_sub=@substr_count($subbr[$ra."|".$out[1]], "$sym");
 //echo $subbr[$ra."|".$out[1]]. " $count_sub " . $subrcount[$ra]. " " .@$subbrcount[$ra."|".$out[1]]."<br>";
 if (($count_sub==1)&&($java_brands==0)){ $subbr[$ra."|".$out[1]]=""; }
-//if ((@$subbrcount[$ra."|".$out[1]]!="")&&($subrcount[$ra]!=@$subbrcount[$ra."|".$out[1]])): $subbr[$ra."|".$out[1]]=@$subbr[$ra."|".$out[1]]."<br>&nbsp;&nbsp;<font class=small>$sym</font>&nbsp;<a href = \"index.php?catid=".$tablenum[$ra."|".$out[1]. "|"]."&amp;brand=nobrand\"><font color=\"".lighter($nc5,0)."\">".$lang[417]."</font></a> <font color=\"".lighter($nc5,0)."\"><sup>".(@$subbrcount[$ra."|".$out[1]]-$subrcount[$ra])."</sup></font>"; endif;
+//if ((@$subbrcount[$ra."|".$out[1]]!="")&&($subrcount[$ra]!=@$subbrcount[$ra."|".$out[1]])): $subbr[$ra."|".$out[1]]=@$subbr[$ra."|".$out[1]]."<br>&nbsp;&nbsp;<font class=small>$sym</font>&nbsp;<a href = \"index.php?catid=".$tablenum[$ra."|".$out[1]. "|"]."&brand=nobrand\"><font color=\"".lighter($nc5,0)."\">".$lang[417]."</font></a> <font color=\"".lighter($nc5,0)."\"><sup>".(@$subbrcount[$ra."|".$out[1]]-$subrcount[$ra])."</sup></font>"; endif;
 $tmy=$tablenum[$ra."|".$out[1]. "|"];
 $sk="";
 if (@$catidys[$tmy]!="") {
@@ -609,7 +614,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/dirs.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 if ($view_brands==1) { $jbran="<script language=javascript>
 <!--
 function expl(arg) {
@@ -668,7 +673,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/dirs_h.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 
 fputs ($file, "$razdel");
 fclose ($file);
@@ -721,7 +726,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/dirs_j.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 if ($view_brands==1) { $jbran="<script language=javascript>
 <!--
 function expl(arg) {
@@ -779,7 +784,7 @@ echo "\n";
 $out=explode("|",$line_num);
 $ra=$out[0];
 if ((!@$subr[$ra]) || (@$subr[$ra]=="")): $subr[$ra]=""; endif;
-$subr[$ra] .= "<br><font color=\"".lighter($nc5,0)."\">$carat</font> <a href = \"index.php?action=links&amp;linksub=".($ll+1)."\ style=\"color:".$nc3."\" onmouseover=\"this.style.background='$nc3';this.style.color='$nc0';\" onmouseout=\"this.style.background='';this.style.color='$nc3';\">".str_replace (" NEW" , "</a> <a><font color=\"".$nc2."\"><sup><b>NEW</b></sup></font>", $out[1])."</a> (<b>$line</b>)";
+$subr[$ra] .= "<br><font color=\"".lighter($nc5,0)."\">$carat</font> <a href = \"index.php?action=links&linksub=".($ll+1)."\ style=\"color:".$nc3."\" onmouseover=\"this.style.background='$nc3';this.style.color='$nc0';\" onmouseout=\"this.style.background='';this.style.color='$nc3';\">".str_replace (" NEW" , "</a> <a><font color=\"".$nc2."\"><sup><b>NEW</b></sup></font>", $out[1])."</a> (<b>$line</b>)";
 $razdeli.=($ll+1)."|".$out[1]."|\n";
 $ll+=1;
 }
@@ -791,7 +796,7 @@ reset ($subr);
 //unset($subr);
 //$subr=$tmparrs;
 //unset($tmarrs);
-$razdel="<b><font color=\"".lighter($nc5,0)."\">$carat</font> <a href='index.php?action=links&amp;linksub=index'>Все ссылки</a></b> (<b>$tot_tov</b>)<br>";
+$razdel="<b><font color=\"".lighter($nc5,0)."\">$carat</font> <a href='index.php?action=links&linksub=index'>Все ссылки</a></b> (<b>$tot_tov</b>)<br>";
 while (list ($line_num, $line) = each ($subr)) {
 echo "\n";
 $razdel .= "$line<br>\n";
@@ -803,7 +808,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/link_index.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 
 fputs ($file, "$razdel");
 fclose ($file);
@@ -813,7 +818,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/link_razdels.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 
 fputs ($file, "$razdeli");
 fclose ($file);
@@ -874,7 +879,7 @@ if (!$file) {
 echo "<p> Error opening file <b>.$base_loc/cmenu_index.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&amp;brand=", "/", "$razdel"));  endif;
+if (@$mod_rw_enable==1): $razdel=str_replace("index.php?catid=", "", str_replace("&brand=", "/", "$razdel"));  endif;
 
 fputs ($file, "<script language=javascript>
 function dv(arg) {
@@ -1039,7 +1044,9 @@ $purl="";
 $ppimg="";
 $pimg="";
 
-$line=str_replace("\s", "",str_replace("\t", "",str_replace("\r", "",str_replace("\n", "", strtoken(trim(strtoken(strip_tags(trim($out1[1])),"[")),"|")))));
+$line=str_replace("\s", "",str_replace("\t", "",str_replace("\r", "",str_replace("\n", "", trim(strtoken(strip_tags(trim($out1[1])),"["))))));
+$wline=$line;
+$line=strtoken($line,"|");
 $ppimg=ExtractString($out1[1],"<img ",">");
 if ($ppimg!="") {
 $plinks[translit($line)]="<div align=pull-left><img ". ExtractString($out1[1],"<img ",">")."></div>";
@@ -1079,15 +1086,23 @@ $subline=toLower(strip_tags(substr($line,0,1)));
 $razdelo=substr($file,0,1);
 $tmprindex=strip_tags("$razdelo~$subline");
 if ($razdelo==$wiki_rubric) {
-$tmpz=explode("|",$line);
+$tmpz=explode("|",$wline);
 if ($purl!="") {$ppurl=$purl;} else {$ppurl="$htpath/index.php?page=".$c; }
 while (list($lk,$lv)=each($tmpz)) {
 if (trim($lv)!="") {
-$wikireplace.=$lv."~".$ppurl."~\n";
+$s_by=strlen($lv);
+if ($s_by<10) {$sort_by="000000".$s_by; }
+if ($s_by<100) {$sort_by="00000".$s_by; }
+if ($s_by<1000) {$sort_by="0000".$s_by; }
+if ($s_by<10000) {$sort_by="000".$s_by; }
+if ($s_by<100000) {$sort_by="00".$s_by; }
+if ($s_by<1000000) {$sort_by="0".$s_by; }
+$wkr[$www]=$sort_by."~".$lv."~".$ppurl."~\n";
+$www++;
 }
 }
 unset ($tmpz);
-$wikisearch=" &nbsp;&nbsp;&nbsp;<small><i><a href=\"index.php?query=".rawurlencode(str_replace("|"," ", strtoken($line,"[")))."&usl=OR\"><font color=$nc5>".$lang['search']."...</font></a></i></small>";
+$wikisearch=" &nbsp;&nbsp;&nbsp;<i><a href=\"index.php?query=".rawurlencode(str_replace("|"," ", strtoken($line,"[")))."&usl=OR\"><font color=$nc5>".$lang['search']."...</font></a></i>";
 
 
 } else {$wikisearch="";}
@@ -1102,25 +1117,25 @@ $voting="<img src=images/pix.gif height=1 width=10 border=0><img src=\"$image_pa
 unset($tmpvotef);
 }
 }
-if ($friendly_url==1) { $flafsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flafsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
 if (preg_match("/\:/",$coord)) { $citymap.="$line|$manc|".str_replace(":","|",$coord)."|".str_replace("\n", "", str_replace("\r", "", $comm))."|"."\n"; }
 if (@$mod_rw_enable==1){ $llink="$manc.html"; $llinks="$manc.html";}  else {$llink="index.php?page=$manc&z=".rawurlencode($subline)."[jstart]"; $llinks="index.php?page=$manc";}
 if ($purl!="") {$llink="$purl"; $llinks="$purl";}
 if (preg_match("/<img/i", $linet)) {
 
-@$tmprazdelo[$tmprindex].="<!-- $line --><div onMouseOver=\"this.style.backgroundColor='$nc6';\" onMouseOut=\"this.style.backgroundColor='$nc0';\" style=\"-moz-border-radius: 10px; background: $nc0; border: 1px solid $nc6; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;\" onclick=\"location.href='".$llink."';\"><a href=$llink>". strtoken(str_replace("<img ","<img border=0 hspace=10 align=left ", strtoken(strip_tags($linet,"<img>"),"|")),">")."></a>$carat<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\">".strtoken(strip_tags($line),"|")."</a>$voting<br>$wikisearch<br><i>$comm</i><div style=\"clear: both\"></div></div><br><!--end-->\n^";
+@$tmprazdelo[$tmprindex].="<!-- $line --><div onMouseOver=\"this.style.backgroundColor='$nc6';\" onMouseOut=\"this.style.backgroundColor='$nc0';\" style=\"-moz-border-radius: 10px; background: $nc0; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;\" onclick=\"location.href='".$llink."';\"><a href=\"".$llink."\">". strtoken(str_replace("<img ","<img border=0 hspace=10 align=left ", strtoken(strip_tags($linet,"<img>"),"|")),">")."></a>$carat<a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\">".strtoken(strip_tags($line),"|")."</a>$voting<br>$wikisearch<br><i>$comm</i><div style=\"clear: both\"></div></div><br><!--end-->\n^";
 } else {
-@$tmprazdelo[$tmprindex].="<!-- $line --><div onMouseOver=\"this.style.backgroundColor='$nc6';\" onMouseOut=\"this.style.backgroundColor='$nc0';\" style=\"-moz-border-radius: 10px; background: $nc0; border: 1px solid $nc6; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;\" onclick=\"location.href='".$llink."';\"><a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\">".strtoken(strip_tags($line),"|")."</a>$wikisearch$voting<br><i>$comm</i></div><br><!--end-->\n^";
+@$tmprazdelo[$tmprindex].="<!-- $line --><div onMouseOver=\"this.style.backgroundColor='$nc6';\" onMouseOut=\"this.style.backgroundColor='$nc0';\" style=\"-moz-border-radius: 10px; background: $nc0; width:86%; padding: 10px 10px 10px 10px; cursor:pointer; cursor:hand; text-decoration:none;moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;\" onclick=\"location.href='".$llink."';\"><a href=\"".$llink."\" style=\"border-bottom: #b94a48 1px dashed; text-decoration:none;\">".strtoken(strip_tags($line),"|")."</a>$wikisearch$voting<br><i>$comm</i></div><br><!--end-->\n^";
 
 }
-
+//echo $line."<br>";
 }
 
 if (substr($c,0,1)!=$wiki_rubric) {
 echo ".";
 if (strlen($c)==1) {
 $flagsy="";
-if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
 if (@$mod_rw_enable==1){ $llink="$manc.html";}  else {$llink="index.php?page=$manc".$flagsy."";}
 if ($purl!="") {$llink="$purl";}
 if (substr($c,0,1)==$wiki_content){
@@ -1161,7 +1176,7 @@ $st += 1;
 echo ".";
 if (strlen($c)==1) {
 $flagsy="";
-if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&amp;flag=".$speek; $manc=$c; }
+if ($friendly_url==1) { $flagsy=""; $manc=translit(strtoken($line,"|")); } else { $flagsy="&flag=".$speek; $manc=$c; }
 if (@$mod_rw_enable==1){ $llink="$manc.html";}  else {$llink="index.php?page=$manc".$flagsy."";}
 if ($purl!="") {$llink="$purl";}
 
@@ -1174,6 +1189,7 @@ $st += 1;
 }
 
 }
+//echo $c."<br>";
 }
 }
 
@@ -1181,6 +1197,7 @@ closedir ($handle);
 
 
 
+//sort order
 
 
 
@@ -1205,8 +1222,8 @@ while (list ($key, $val) = each ($tmprazdelos)) {
 $tmpkey=explode("~",$key);
 $tmpsindex=$tmpkey[0];
 if (!isset($tmpsygnfound[$tmpsindex])) {$tmpsygnfound[$tmpsindex]=$wiki_articles;}
-$wikilen=floor(100/(strlen(str_replace("|","",strtoken($wiki_articles,"-")))));
-@$tmpsygnfound[$tmpsindex]=str_replace("".toUpper($tmpkey[1])."|", "<td style=\"background: ".lighter($nc6,-10)."; border: 1px solid $nc6; padding: 3px 3px; cursor: pointer; cursor: hand;\" align=center id=\"divd_".md5($tmpkey[1])."\" onclick=\"javascript:js_".md5($tmpkey[1])."()\" width=$wikilen"."%><b><font color=$nc5>".toUpper($tmpkey[1])."</font></b></td>|", @$tmpsygnfound[$tmpsindex]);
+$wikilen=floor(100/(strlen(str_replace("|","",$wiki_articles))));
+@$tmpsygnfound[$tmpsindex]=str_replace("".toUpper($tmpkey[1])."|", "<div class=\"wikiactive label label-info\" align=center id=\"divd_".md5($tmpkey[1])."\" onclick=\"javascript:js_".md5($tmpkey[1])."()\"><b>".toUpper($tmpkey[1])."</b></div>|", @$tmpsygnfound[$tmpsindex]);
 if (!isset($first[$tmpsindex])) { $first[$tmpsindex]="<script language=javascript>
 //start
 //document.getElementById('div_".md5($tmpkey[1])."').style.visibility = 'visible';
@@ -1219,21 +1236,21 @@ if (!isset($first[$tmpsindex])) { $first[$tmpsindex]="<script language=javascrip
 document.getElementById('div_".md5($tmpkey[1])."').style.display = 'inline';
 //document.getElementById('divd_".md5($tmpkey[1])."').style.backgroundColor = '$nc3';
 ";
-@$jsallcl[$tmpsindex].="document.getElementById('divd_".md5($tmpkey[1])."').style.backgroundColor = '".lighter($nc6,-10)."';
+@$jsallcl[$tmpsindex].="document.getElementById('divd_".md5($tmpkey[1])."').className = 'wikiactive label label-info';
 document.getElementById('div_".md5($tmpkey[1])."').style.display = 'none';
 document.getElementById('div_".md5($tmpkey[1])."').style.visibility = 'hidden';
 ";
 @$tmpsygn[$tmpsindex].="<script language=javascript>
 function js_".md5($tmpkey[1])."() {
 jsallcl()
-document.getElementById('divd_".md5($tmpkey[1])."').style.backgroundColor = '$nc3';
+document.getElementById('divd_".md5($tmpkey[1])."').className = 'wikiactive label label-inverse';
 document.getElementById('div_".md5($tmpkey[1])."').style.visibility = 'visible';
 document.getElementById('div_".md5($tmpkey[1])."').style.display = 'inline';
 
 document.getElementById('viewjsall').innerHTML='".$lang[422]."';
 }
 </script>
-<div id=\"div_".md5($tmpkey[1])."\"><a name=\"".md5(toUpper($tmpkey[1]))."\"></a><br><font size=3>".toUpper($tmpkey[1])."</font><br><br>$val<br></div>\n";
+<div id=\"div_".md5($tmpkey[1])."\"><a name=\"".md5(toUpper($tmpkey[1]))."\"></a><br><span class=\"label label-inverse\" style=\"padding:5px;\"><font size=5>".toUpper($tmpkey[1])."</font></span><br><br>$val<br></div>\n";
 @$tmpallwiki[$tmpsindex].="$val";
 $nn+=1;
 @$tmp_slide[$tmpsindex].=str_replace("padding: 10px 10px 10px 10px;", "width:86%; height:".($jh-28)."px; padding: 10px 10px 10px 10px; overflow:hidden;",$val);
@@ -1251,7 +1268,7 @@ reset($tmpsl);
 $ksl=1;
 while (list ($keysl, $valsl) = @each ($tmpsl)) {
 if (trim($valsl)!="") {
-$wikisl.="<li>".str_replace("</a><img border=\"0\"","</a><br><img border=\"0\"" , str_replace("hspace=10 align=left","", str_replace("<br><br><i>", "<i><small><br><br>", str_replace("</i>", "</small></i>",  str_replace("[jstart]", "&jstart=$ksl",$valsl)))))."</li>\n";
+$wikisl.="<li>".str_replace("</a><img border=\"0\"","</a><br><img border=\"0\"" , str_replace("hspace=10 align=left","", str_replace("<br><br><i>", "<i><br><br>", str_replace("</i>", "</i>",  str_replace("[jstart]", "&jstart=$ksl",$valsl)))))."</li>\n";
 $ksl+=1;
 }
 }
@@ -1320,9 +1337,11 @@ exit;
 }
 if ((@$tmpsygnfound[$key]!="$wiki_articles")&&(@$tmpsygnfound[$key]!="")) {
 
-$wikilen=floor(100/(strlen(str_replace("|","",strtoken($wiki_articles,"-")))));
-$tosav=str_replace("[jstart]", "", str_replace("<td align=center width=$wikilen"."%><font color=".$nc3."><td ","<td width=$wikilen"."% ","<table width=100% border=0 cellpadding=0 cellspacing=0 style=\"-moz-border-radius: 10px; background: $nc6; border: 1px solid $nc6; width:100%; padding: 5px 5px;\"><tr><td align=center width=$wikilen"."% ><font color=$nc3>".str_replace("|","</font></td><td align=center width=$wikilen"."%><font color=$nc3>",str_replace("-", "</td></tr><tr><td>", @$tmpsygnfound[$key]))."</font></td></tr></table><table width=100% border=0><tr><td align=left><a href=\"$htpath/index.php?page=$wiki_rubric\">".$lang[1040]."</a></td><td align=right><small><a href=#all_articles onclick=\"javascript:jsall()\"><nobr><span id=viewjsall>".$lang[386]."</span></nobr></a></small></td></tr></table>")."
-<script language=javascript>
+$wikilen=floor(100/(strlen(str_replace("|","",$wiki_articles))));
+$tosav=str_replace("[jstart]", "", str_replace("<div class=wikiitem></div>", "",
+"<div class=dotted2><div class=\"table2\" style=\"padding:10px;\"><div class=wikiitem>".str_replace("|","</div><div class=wikiitem>", @$tmpsygnfound[$key]) ."</div>" )
+."<div class=clearfix></div><hr><table width=100% border=0><tr><td align=left><a href=\"$htpath/index.php?page=$wiki_rubric\">".$lang[1040]."</a></td><td align=right><a href=\"#all_articles\" onclick=\"javascript:jsall()\"><nobr><span id=viewjsall>".$lang[386]."</span></nobr></a></td></tr></table></div></div>"
+."<script language=javascript>
 function jsall () {
 if (document.getElementById('viewjsall').innerHTML=='".$lang[422]."'){
 ".$jsall[$key]."
@@ -1348,21 +1367,71 @@ unset ($key,$val,$file);
 
 
 //сортировка по алфавиту//
+//var_dump($files);
 sort ($files);
 $files[0]=str_replace("<br>$carat2","$carat2", $files[0]);
 reset ($files);
+$e=0;
+$ee=0;
+while (list ($key, $val) = each ($files)) {
+$rr=ExtractString($val, "<!--", "-->");
+
+if (strlen($rr)==1) {
+$zzz=doubleval(@$raz[$rr]);
+if ($zzz==0) {$k=100000000; } else { $k=0; }
+$e++;
+}
+$ee++;
+
+$ind=(($zzz+1)*100000+$e*100+$ee+$k);
+$nfiles["".$ind]=$val;
+}
+unset ($files);
+$files=$nfiles;
+unset ($nfiles);
+
+ksort($files);
+//if ($sort_reverse==1) { $files=array_reverse($files);  }
+reset ($files);
+
 $links="";
 while (list ($key, $val) = each ($files)) {
 echo "\n";
 $links .= "$val<br>\n";
 }
+
+
+
+$e=0;
+$ee=0;
+while (list ($key, $val) = each ($bfiles)) {
+//echo $val."\n";
+$rr=ExtractString($val, "<!--", "-->");
+
+if (strlen($rr)==1) {
+$zzz=doubleval(@$raz[$rr]);
+if ($zzz==0) {$k=100000000; } else { $k=0; }
+$e++;
+}
+$ee++;
+
+$ind=(($zzz+1)*100000+$e*100+$ee+$k);
+$nfiles["".$ind]=$val;
+//echo "$ind $val\n";
+}
+unset ($bfiles);
+$bfiles=$nfiles;
+unset ($nfiles);
 $blinks="";
-sort ($bfiles);
+ksort ($bfiles);
 reset ($bfiles);
 while (list ($key, $val) = each ($bfiles)) {
-echo "\n";
+//echo "$key $val\n";
 $blinks .= "$val<br>\n";
 }
+
+
+
 @sort ($wrfiles);
 @reset ($wrfiles);
 $wrlinks="";
@@ -1381,7 +1450,7 @@ fclose ($file);
 */
 
 
-
+//echo $links;
 
 
 
@@ -1409,7 +1478,7 @@ if (strip_tags($titlink)!="") {
 //echo $linkey." ".$linval."<br>";
 $linkcontent=str_replace($titlink."</font><br>","",$linval);
 $tmp=explode("\n", $linkcontent);
-$raz=substr($titlink,4,1);
+$razz=substr($titlink,4,1);
 $linkcontent="";
 $nlinkcontent="";
 $linkcontent3="";
@@ -1417,16 +1486,17 @@ natcasesort ($tmp);
 $tmp2=Array();
 while (list($key,$val)=each($tmp)) {
 if (trim(strip_tags($val))!="") {
+$rzz=ExtractString ($val,"<!--", "-->");
 if ($sort_sub=="name") {
 $indx=ExtractString ($val,"'>", "</a>");
-$tmp2[$key]="<!--$indx-->".$val;
+$tmp2[$key]="<!--".@$raz[$rzz]."$indx-->".$val;
 }
 if ($sort_sub=="order") {
-$tmp2[$key]=$val;
+$tmp2[$key]="<!--".@$raz[$rzz]."".$rzz."-->".$val;
 }
 if ($sort_sub=="date") {
-$indx=@filemtime("$base_loc/content/".ExtractString ($val,"<!--", "-->").".txt");
-$tmp2[$key]="<!--$indx-->".$val;
+$indx=@filemtime("$base_loc/content/".$rzz.".txt");
+$tmp2[$key]="<!--".@$raz[$rzz]."$indx-->".$val;
 }
 }
 }
@@ -1456,7 +1526,7 @@ $t=explode("a href=", $val);
 $link=strtoken(str_replace("'","", str_replace("\"","",$t[1])), ">");
 $linkcontent.="$val";
 if (preg_match("/\?/i",$link)) {
-$nlinkcontent.="<div class=brand onclick=\"location.href='".$link."&amp;speek=$speek&bb=".$linkey."';\">".str_replace("$link","$link&amp;speek=$speek&bb=".$linkey,$val)."</div>";
+$nlinkcontent.="<div class=brand onclick=\"location.href='".$link."&speek=$speek&bb=".$linkey."';\">".str_replace("$link","$link&speek=$speek&bb=".$linkey,$val)."</div>";
 } else {
 $nlinkcontent.="<div class=brand onclick=\"location.href='".$link."';\">".$val."</div>";
 
@@ -1466,7 +1536,7 @@ $linkcontent3.="$val";
 $zz++;
 }
 if (count($tmp)>($mmax_subs+1)) {
-$linkcontent1="<div class=pull-right><br><span class=lnk><a href=index.php?page=".$raz.">".$lang[1546]." ".(count($tmp)-$mmax_subs-2)."</a></span><i class='icon-chevron-right'></i></div><div class=clearfix></div>\n";
+$linkcontent1="<div class=pull-right><br><span class=lnk><a href=\"index.php?page=".$razz."\">".$lang[1546]." ".(count($tmp)-$mmax_subs-2)."</a></span><i class='icon-chevron-right'></i></div><div class=clearfix></div>\n";
  }
 unset ($tmp,$tmp2);
 $rtit=ExtractString ($titlink,"'>", "</a>");
@@ -1479,7 +1549,7 @@ $link=strtoken(str_replace("'","", str_replace("\"","",$t[1])), ">");
 if ($nlinkcontent!="") {
 //titul
 if (preg_match("/\?/i",$link)) {
-$titlink=str_replace("$link","$link&amp;speek=$speek&bb=".$linkey, $titlink);
+$titlink=str_replace("$link","$link&speek=$speek&bb=".$linkey, $titlink);
 }
 $normalinks.="<div class=\"lcat1\" style=\"border-bottom: 1px $nc6 dotted; padding-top:10px; padding-bottom:10px;\" onclick=\"nl('".$linkey."');\" id=bb_".$linkey."><div class=pull-left>".str_replace("<br>","","".str_replace("</font><br>","", $titlink)."")."</div><div class=\"pull-right\"><i id=\"i_".$linkey."\" class=\"icon-chevron-right icon-white\"></i></div><div class=clearfix></div></div>";
 //content
@@ -1550,26 +1620,28 @@ if (strip_tags($titlink)!="") {
 //echo $linkey." ".$linval."<br>";
 $linkcontent=str_replace($titlink."</font><br>","",$linval);
 $tmp=explode("\n", $linkcontent);
-$raz=substr($titlink,4,1);
+$razz=substr($titlink,4,1);
 $linkcontent="";
 $linkcontent3="";
 natcasesort ($tmp);
 $tmp2=Array();
 while (list($key,$val)=each($tmp)) {
 if (trim(strip_tags($val))!="") {
+$rzz=ExtractString ($val,"<!--", "-->");
 if ($sort_sub=="name") {
 $indx=ExtractString ($val,"'>", "</a>");
-$tmp2[$key]="<!--$indx-->".$val;
+$tmp2[$key]="<!--".@$raz[$rzz]."$indx-->".$val;
 }
 if ($sort_sub=="order") {
-$tmp2[$key]=$val;
+$tmp2[$key]="<!--".@$raz[$rzz].$rzz."-->".$val;
 }
 if ($sort_sub=="date") {
-$indx=@filemtime("$base_loc/content/".ExtractString ($val,"<!--", "-->").".txt");
-$tmp2[$key]="<!--$indx-->".$val;
+$indx=@filemtime("$base_loc/content/".$rzz.".txt");
+$tmp2[$key]="<!--".@$raz[$rzz]."$indx-->".$val;
 }
 }
 }
+
 natcasesort ($tmp2);
 if ($sort_reverse==1) { $tmp2=array_reverse($tmp2);  }
 unset ($key,$val);
@@ -1597,7 +1669,7 @@ $linkcontent3.="$val";
 $zz++;
 }
 if (count($tmp)>($max_subs+1)) {
-$linkcontent1="<a class=pull-right href=index.php?page=".$raz.">".$lang[1546]." ".(count($tmp)-$max_subs-2)." <i class='icon-chevron-right'></i></a>\n";
+$linkcontent1="<a class=pull-right href=\"index.php?page=".$razz."\">".$lang[1546]." ".(count($tmp)-$max_subs-2)." <i class='icon-chevron-right'></i></a>\n";
  }
 unset ($tmp,$tmp2);
 $rtit=ExtractString ($titlink,"'>", "</a>");
@@ -1608,22 +1680,22 @@ $rlinks[translit($rtit)]= str_replace("<i class='icon-chevron-right'></i>&nbsp;"
 if ($linkcontent1!="") { $rlinks[translit($rtit)].= "<li tabindex=\"-1\" class=\"nowrap\">$linkcontent1</li>"; }
 //titul item
 if ($zz>$max_subs) {
-$rlinks[translit($rtit)]= "<!--$raz-->\n<ul class=\"dropdown-menu\" style=\"text-align:left;\">
-    <li class=\"nowrap lnk\">".str_replace("'>","'><i class=\"icon-chevron-down icon-white pull-right\"></i>",str_replace("<b>","",str_replace("</b>","",str_replace("<br>","",str_replace("</font>","",  $titlink)))))."</li>\n"."<li>
+$rlinks[translit($rtit)]= "<!--$razz-->\n<ul class=\"dropdown-menu\" style=\"text-align:left;\">
+    <li class=\"nowrap\" style=\"border-bottom: 1px dotted $nc3;\">".str_replace("<b>","",str_replace("</b>","",str_replace("<br>","",str_replace("</font>","",  $titlink))))."</li>\n"."<li>
          	<ul class=\"dropdown-menu scroll-menu\" style=\"text-align:left;\">".str_replace("<i class='icon-chevron-right'></i>&nbsp;", "<li tabindex=\"-1\" class=\"nowrap\">", str_replace("</a><br>", "</a></li>\n", $linkcontent3))."</ul>
         </li>
         <li class=\"disabled\" style=\"text-align:center;\"><a href=\"#\"><i class=\"icon-chevron-down\"></i></a></li>
    </ul>";
    } else {
-$rlinks[translit($rtit)]= "<!--$raz-->\n<ul class=\"dropdown-menu\" style=\"text-align:left;\">
-    <li class=\"nowrap lnk\">".str_replace("'>","'><i class=\"icon-chevron-down icon-white pull-right\"></i>",str_replace("<b>","",str_replace("</b>","",str_replace("<br>","",str_replace("</font>","",  $titlink)))))."</li>\n"."
+$rlinks[translit($rtit)]= "<!--$razz-->\n<ul class=\"dropdown-menu\" style=\"text-align:left;\">
+    <li class=\"nowrap\" style=\"border-bottom: 1px dotted $nc3;\">".str_replace("<b>","",str_replace("</b>","",str_replace("<br>","",str_replace("</font>","",  $titlink))))."</li>\n"."
      ".$rlinks[translit($rtit)]."
    </ul>";
    }
 //end titul item
 
 } else {
-$rlinks[translit($rtit)]= "<!--$raz-->";
+$rlinks[translit($rtit)]= "<!--$razz-->";
 }
 if ($linkey<$bottom_links_subs_qty) {
 $bottom_links.="<div class='pull-left mr hvr' align=left style=\"text-align: left; margin-bottom:20px; width:".$bottom_links_subs_size.";\">".str_replace("<br>","","<font style=\"font-size: ".$titsiz."px\">".str_replace("</font><br>","", $titlink)."</font>")." $linkcontent1<div class=hr2></div>". $linkcontent."</div>";
@@ -1634,7 +1706,7 @@ $bottom_links.="<div class='pull-left mr hvr' align=left style=\"text-align: lef
 $bottom_links.="<div class='pull-left mr' style=\"margin-bottom:20px; width:".$bottom_links_subs_size.";\">"."</div>";
 }
 
-$bottom_links.="<div class='pull-left mr hvr' align=left style=\"text-align: left; margin-bottom:20px; width:".$bottom_links_subs_size.";\"><font style=\"font-size: ".($main_font_size+1)."pt;\"><b><a href=\"index.php?action=sendmail\">$lang[54]</a></b></font><div class=hr2></div></div><div class=\"pull-left mr\"><font size=5 color=$nc9>$telef</font><br><font color=$nc9>$zak_po</font><br><br><div class=nohvr><a href=\"index.php?action=sendmail\" class='btn btn-warning'><i class=icon-envelope></i> $lang[1567]</a></div></div>";
+$bottom_links.="<div class='pull-left mr hvr' align=left style=\"text-align: left; margin-bottom:20px; width:".$bottom_links_subs_size.";\"><font style=\"font-size: ".($main_font_size+1)."pt;\"><b><a href=\"index.php?action=sendmail\">$lang[54]</a></b></font><div class=hr2></div></div><div class=\"pull-left mr\" align=left><font size=5>$telef</font><br>$zak_po<br><br><div class=nohvr><a href=\"index.php?action=sendmail\" class='btn btn-warning'><i class=icon-envelope></i> $lang[1567]</a></div></div>";
 //echo "$linkcontent<br><br>$linkcontent3"; exit;
 
 //exit;
@@ -1658,7 +1730,7 @@ fclose ($file);
 */
 $file = fopen (".$base_loc/bottomlinks.txt", "w");
 if (!$file) {
-echo "<p> Error opening file <b>.$base_loc/blinks.txt</b>, or file write protected. Please check CHMOD.\n";
+echo "<p> Error opening file <b>.$base_loc/bottomlinks.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
 fputs ($file, "$bottom_links");
@@ -1680,23 +1752,24 @@ if ($titlink!="") {
 //echo $linkey." ".$linval."<br>";
 $linkcontent=str_replace($titlink,"",$linval);
 $tmp=explode("\n", $linkcontent);
-$raz=substr($linkcontent,4,1);
+$razz=substr($linkcontent,4,1);
 $blinkcontent="";
 //natcasesort ($tmp);
 $tmp2=Array();
 while (list($key,$val)=each($tmp)) {
 //echo "$titlink $key $val<br>";
 if (trim(strip_tags($val))!="") {
+$rzz=ExtractString ($val,"<!--", "-->");
 if ($sort_sub=="name") {
 $indx=ExtractString ($val,"'>", "</a>");
-$tmp2[$key]="<!--$indx-->".$val;
+$tmp2[$key]="<!--".@$raz[$rzz]."$indx-->".$val;
 }
 if ($sort_sub=="order") {
-$tmp2[$key]=$val;
+$tmp2[$key]="<!--".@$raz[$rzz]."$rzz-->".$val;
 }
 if ($sort_sub=="date") {
 $indx=@filemtime("$base_loc/content/".ExtractString ($val,"<!--", "-->").".txt");
-$tmp2[$key]="<!--$indx-->".$val;
+$tmp2[$key]="<!--".@$raz[$rzz]."$indx-->".$val;
 }
 }
 }
@@ -1716,17 +1789,18 @@ $blinkcontent1="";
 unset ($tmp,$tmp2);
 $rtit=ExtractString ($titlink,"'>", "</a>");
 if (strlen($rtit)>25) { $titsiz=(intval($title_font_size)-2); } else { $titsiz=intval($title_font_size); }
-$blinks.="<br><br><div class='basketfont' align=left style=\"text-align: left; margin-bottom:20px;\">".str_replace("<br>","","<font style=\"font-size: ".$titsiz."px\"><b>".str_replace("</font><br>","", str_replace("<a ", "<a style=\"margin-top:20px;\" ", $titlink))."</b></font>")." $blinkcontent1<hr>". $blinkcontent."</div>";
+//$blinks.="<br><br><div class='basketfont' align=left style=\"text-align: left; margin-bottom:20px;\">".str_replace("<br>","","<font style=\"font-size: ".$titsiz."px\"><b>".str_replace("</font><br>","", str_replace("<a ", "<a style=\"margin-top:20px;\" ", $titlink))."</b></font>")." $blinkcontent1<hr>". $blinkcontent."</div>";
 
 }
 }
 
 } else {
-$blinks.="<br><br><div class='basketfont' style=\"margin-bottom:20px; width:".$bottom_links_subs_size.";\">"."</div>";
+//$blinks.="<br><br><div class='basketfont' style=\"margin-bottom:20px; width:".$bottom_links_subs_size.";\">"."</div>";
 }
 
 //Формируем навигацию верхнего меню
 unset ($tmplink, $tmp, $tmp2);
+//echo $blinks;
 $tmplink=explode($carat2,$blinks);
 $blinks="";
 $navigate2="";
@@ -1741,23 +1815,24 @@ if ($titlink!="") {
 //echo $linkey." ".$linval."<br>";
 $linkcontent=str_replace($titlink,"",$linval);
 $tmp=explode("\n", $linkcontent);
-$raz=substr($linkcontent,4,1);
+$razz=substr($linkcontent,4,1);
 $blinkcontent="";
 //natcasesort ($tmp);
 $tmp2=Array();
 while (list($key,$val)=each($tmp)) {
 //echo "$titlink $key $val<br>";
 if (trim(strip_tags($val))!="") {
+$rzz=ExtractString ($val,"<!--", "-->");
 if ($sort_sub=="name") {
 $indx=ExtractString ($val,"'>", "</a>");
-$tmp2[$key]="<!--$indx-->".$val;
+$tmp2[$key]="<!--".@$raz[$rzz]."$indx-->".$val;
 }
 if ($sort_sub=="order") {
-$tmp2[$key]=$val;
+$tmp2[$key]="<!--".@$raz[$rzz]."$rzz-->".$val;
 }
 if ($sort_sub=="date") {
 $indx=@filemtime("$base_loc/content/".ExtractString ($val,"<!--", "-->").".txt");
-$tmp2[$key]="<!--$indx-->".$val;
+$tmp2[$key]="<!--".@$raz[$rzz]."$indx-->".$val;
 }
 }
 }
@@ -1765,7 +1840,7 @@ natcasesort ($tmp2);
 if ($sort_reverse==1) { $tmp2=array_reverse($tmp2);  }
 unset ($key,$val);
 while (list($key,$val)=each($tmp2)) {
-
+//echo $val."\n\n\n\n\n\n";
 $blinkcontent.=str_replace("&nbsp;<b>", "<b>",
 str_replace("$carat","<i class='icon-chevron-right'></i>",
 str_replace("--><br>","-->",$val)));
@@ -1776,6 +1851,7 @@ $blinkcontent1="";
 
 unset ($tmp,$tmp2);
 $rtit=ExtractString ($titlink,"'>", "</a>");
+//echo $titlink.$rtit."<br>";
 if (strlen($rtit)>25) { $titsiz=(intval($title_font_size)-2); } else { $titsiz=intval($title_font_size); }
 $blinks.="<div class='basketfont' align=left style=\"text-align: left; margin-bottom:20px;\">".str_replace("<br>","","<font style=\"font-size: ".$titsiz."px\"><b>".str_replace("</font><br>","", str_replace("<a ", "<a style=\"margin-top:20px;\" ", $titlink))."</b></font>")." $blinkcontent1<hr>". $blinkcontent."</div>";
 $idx=@$rlinks[translit($rtit)];
@@ -1821,7 +1897,11 @@ exit;
 $navigate=implode("\n", $navi);
 fputs ($file, "$navigate");
 fclose ($file);
-if ($wikireplace!="") {
+natcasesort($wkr);
+while(list($wk,$wv)=each($wkr)) {
+$tmp=explode("~", $wv);
+$wikireplace=$tmp[1]."~".$tmp[2]."~\n".$wikireplace;
+}
 $file = fopen (".$base_loc/wikireplace.txt", "w");
 if (!$file) {
 echo "<p> Error writing file <b>.$base_loc/wikireplace.txt</b>, or file write protected. Please check CHMOD.\n";
@@ -1829,7 +1909,7 @@ exit;
 }
 fputs ($file, strip_tags(@$wikireplace));
 fclose ($file);
-}
+unset ($wv, $wkr, $wikireplace);
 echo ". . .";
 
 
@@ -1920,7 +2000,7 @@ if (!$file) {
 echo "<p> Error opening file <b>./search/$numo.txt</b>, or file write protected. Please check CHMOD.\n";
 exit;
 }
-fputs ($file, " <form name=\"sopto\" action=\"index.php\" method=\"GET\"><small>".$namez["".$numo]."</small> <input type=\"hidden\" name=\"catid\" value=\"$numo\"> <select name=\"query\" onchange=\"document.forms['sopto'].submit()\"> <option value=\"\"> </option>$lineo</select>&nbsp;&nbsp;</form> ");
+fputs ($file, " <form name=\"sopto\" action=\"index.php\" method=\"GET\">".$namez["".$numo]." <input type=\"hidden\" name=\"catid\" value=\"$numo\"> <select name=\"query\" onchange=\"document.forms['sopto'].submit()\"> <option value=\"\"> </option>$lineo</select>&nbsp;&nbsp;</form> ");
 fclose ($file);
 }
 

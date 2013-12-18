@@ -271,6 +271,6 @@ echo "<div style=\"width:450px; height:150px; padding: 20px;\" align=center>Hack
 }
 } else {
 //net sessii
-echo "<div style=\"width:450px; padding: 20px;\" align=center>Hack attempt? ERR-1</div<";
+echo "<div style=\"width:450px; padding: 20px;\" align=center>Hack attempt? ERR-1</div>";
 }
 ?>

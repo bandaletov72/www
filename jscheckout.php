@@ -287,7 +287,7 @@ if (("$out_c[11]"=="0")||($out_c[11]=="")) {$out_c[11]=$lang['pcs'];$sqrp="";}
 if (@$out_c[9]==""): $out_c[9]=""; endif;
 
 $lid=md5(@$out_c[3]." ID:".@$out_c[6]);
-$llid="<a href=~~~$htpath/index.php?unifid=".$lid."&amp;flag=$speek~~~>";
+$llid="<a href=~~~$htpath/index.php?unifid=".$lid."&flag=$speek~~~>";
 if ($friendly_url==1) {
 if($hidart!=1) {
 $man=translit(@$out_c[3])."-".translit(@$out_c[6]);
@@ -302,7 +302,7 @@ $llid="<a href=~~~$htpath/index.php?item_id=".$man."~~~>";
     $bdelb="<a class=ml href=#del onclick=baskodel(~~~". md5($item['id']) ."~~~)><i class=icon-remove></i></a>";
     if ($hidart==1) {
     $itid=strtoupper(substr(md5( str_replace(" ID:", "", str_replace(strtoken ($item['info'], " ID:") , "" , $item['info'])).$artrnd), -7));
-    $full_baskets[$ss] .= "<div style=~~~display: block; position: relative;~~~><span id=sp". md5($item['id']) ." style=~~~position: absolute; top: 0px;~~~></span></div<$llid".strtoken(strtoken(str_replace(" ID:","^", $item['info']), "^" ),"*")." $itid</a>".$item['options']."";
+    $full_baskets[$ss] .= "<div style=~~~display: block; position: relative;~~~><span id=sp". md5($item['id']) ." style=~~~position: absolute; top: 0px;~~~></span></div>$llid".strtoken(strtoken(str_replace(" ID:","^", $item['info']), "^" ),"*")." $itid</a>".$item['options']."";
     } else {
     $full_baskets[$ss] .= "<div style=~~~display: block; position: relative;~~~><span id=sp". md5($item['id']) ." style=~~~position: absolute; top: 0px;~~~></span></div>$llid".strtoken(str_replace(" ID:","^", $item['info']), "^" )."</a>".$item['options']."";
     }
@@ -368,6 +368,11 @@ if ($tovarov>0) { $js_spisok .="jscheckouts.innerHTML=\"<img src=$image_path/pix
 //} else {
 //if ($tovarov>0) { $js_spisok .="jscheckouts.innerHTML=\"<img src=$image_path/pix.gif height=10 width=20><div align=center>".$butonoff."</div>\";";}
 //}
+require "./modules/mod_sales.php";
+$ssumma=ssale($summa , $currencies_sign[$_SESSION["user_currency"]]);
+$oldsumma=$summa;
+$summa=$ssumma;
+
 if (($del!="")||($minus!="")||($plus!="")) {
 
 $js_spisok .="document.getElementById('scart').innerHTML=\"$summa\";\n";
@@ -378,6 +383,10 @@ if ($use_volume==1) {$js_spisok .="document.getElementById('jsvolume').innerHTML
 
 $js_spisok .="document.getElementById('jscheck').innerHTML=\"$summa\";";
 }
+if ($oldsumma>$summa) { $js_spisok .="document.getElementById('oldsosk').innerHTML=\"<strike><font color=$nc3>$oldsumma</font></strike> \";\ndocument.getElementById('skidk').innerHTML=\"<br><font color=$nc3>$lang[1637]</font>\";\n";} else {
+$js_spisok .="document.getElementById('oldsosk').innerHTML=\"\";\ndocument.getElementById('skidk').innerHTML=\"\";\n";}
+
+
 if ($tovarov==0) { $js_spisok .="jscheckouts.innerHTML=\"\";\ndocument.location.href=\"$htpath\""; }
 /*
 if ($files_found==0): $js_spisok =""; $error = ""; endif;

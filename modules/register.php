@@ -854,7 +854,7 @@ if (($setregid[$regid]>2)&&($step==1)) {
 $reg_form="<form method=\"POST\" action=\"$htpath/index.php\" class=\"form-inline\">
 <input type=\"hidden\" name=\"register\" value=\"1\">
 <input type=\"hidden\" name=\"step\" value=\"2\">
-<div class=shadow><div class=ocat1 style=\"background: url('"."$htpath/grad.php?h=150&w=20&s=".str_replace("#","",$nc6)."&e=".str_replace("#","",$nc6)."&d=vertical') repeat-x scroll 0% 0% $nc6;\" align=center><b><font size=2 color=\"$nc5\">".$lang[288]."</font></b></div></div>
+<div class=shadow><div align=left><h4 class=mu>".$lang[288]."</h4><hr></div></div>
 <table class=table border=\"0\" width=\"100%\">
   <tr>
     <td width=100% align=\"center\" valign=\"top\">".$chooseregid."
@@ -885,7 +885,7 @@ $reg_form.=" <table class=table border=0 width=100%>".$reg_formsb."</table>
 <div id=\"delivery_form\">";
    $reg_form.="<div";
    if ($easyreg==1) {$reg_form.=" style=\"display:none; visibility:hidden;\"";  }
-   $reg_form.="><div class=shadow><div class=ocat1 style=\"background: url('"."$htpath/grad.php?h=150&w=20&s=".str_replace("#","",$nc6)."&e=".str_replace("#","",$nc6)."&d=vertical') repeat-x scroll 0% 0% $nc6;\" align=center><b><font size=2 color=\"$nc5\">".$lang[156]."</font></b></div></div></div>
+   $reg_form.="><div class=shadow><div align=left><h4>".$lang[156]."</h4><hr></div></div></div>
  <div";
    if ($easyreg==1) { if ($portal!=1) {$reg_form.=" style=\"display:none; visibility:hidden;\""; } }
    $reg_form.="><table class=table border=0 width=100%>".$reg_forms2."</table>

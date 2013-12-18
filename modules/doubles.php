@@ -310,7 +310,7 @@ $ff+=1;
 if ((@$$qw1==@$$qqw1) && (@$$qw2==@$$qqw2)) {
 $qty=doubleval($qty);
 if($qty!=0){ $shtuk=$lang['pcs'];
-if (($s==$buy_row)&&($sss=="")){ $kupleno=1; $kupil="<div align=center><font color=$nc3><b>".$lang['buyes']." $qty $shtuk</b></font></div>"; if ($view_basketalert==1) { $kupil.="<script language=\"javascript\">window.open('$htpath/minibasket.php?unifid=$unifid&amp;qty=$qty&amp;speek=$speek','buy','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=540,height=180,left=220,top=200')</script>";} } else { $kupil=""; }}
+if (($s==$buy_row)&&($sss=="")){ $kupleno=1; $kupil="<div align=center><font color=$nc3><b>".$lang['buyes']." $qty $shtuk</b></font></div>"; if ($view_basketalert==1) { $kupil.="<script language=\"javascript\">window.open('$htpath/minibasket.php?unifid=$unifid&qty=$qty&speek=$speek','buy','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=540,height=180,left=220,top=200')</script>";} } else { $kupil=""; }}
 $link="<a href=\"" . $htpath . "/index.php?view=$file&fid=$ff\">" . $nazv . "</a>";
 
 $sortby="$nazv";

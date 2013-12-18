@@ -3,10 +3,10 @@
 if ($usetheme==0) {
 if ($css_style==1) {
 if ($affix==1) {
-if ($_SESSION["mclosed"]=="1") { $stwi="93%"; } else { $stwi=(doubleval($style['center_width'])-doubleval($style['affix_width']))."%"; }
-echo "</div></div><div id=\"main\" class=\"pr\" style=\"width:".$stwi."; left:0px;\">";
+if ($_SESSION["mclosed"]=="1") { $stwi="93%"; } else { $stwi=(doubleval($style['center_width'])-doubleval($style['affix_width'])-2)."%"; }
+echo "</div></div></div><div id=\"main\" class=\"pr\" style=\"width:".$stwi."; left:0px;\">";
 } else {
-echo "</td><td valign=top>";
+echo "</td><td valign=top style=\"padding: 20px 20px 20px 20px;\">";
 }
 } else {
 echo "</td><td valign=top align=left background=\"grad.php?h=1&w=10&e=".str_replace("#","",$nc6)."&s=".str_replace("#","",$nc0)."&d=horizontal\">
@@ -48,16 +48,16 @@ if ($title_type_table==1) {
 
 if (($r!="")&&($sub!="")) {
 $metat="$brand$metat";
-$tit="<div style=\"display:inline; font-size: $title_font_size"."px;\">"; if ($r!="All") { $tit.="<b class=lnk><a href=\"$htpath/index.php?catid=".translit($r)."\"><a href=\"index.php\">".$lang['mainsite']."</a></b> <img src=$image_path/cat1.png hspace=5 border=0> <b class=lnk><a href=\"$htpath/index.php?catid=".translit($r)."\">".$r."</a></b> <img src=$image_path/cat1.png hspace=5 border=0 title=\"".htmlspecialchars($r)."\" align=absmiddle> "; } $tit.="<b class=lnk><a href=\"$htpath/index.php?catid=".translit($r."_".$sub."_")."\">$sub</a></b> <img src=$image_path/cat1.png hspace=5 border=0 title=\"".htmlspecialchars($sub)."\" align=absmiddle> <b class=lnk><h1 style=\"display:inline; font-size: $title_font_size"."px;\">$metat</h1></b></div>  ";
+$tit="<div style=\"display:inline; font-size: $title_font_size"."px;\">"; if ($r!="All") { $tit.="<span class=lnk><a href=\"index.php\">".$lang['mainsite']."</a></span> <i class=icon-chevron-right></i> <span class=lnk><a href=\"$htpath/index.php?catid=".translit($r)."\">".$r."</a></span> <i class=icon-chevron-right title=\"".htmlspecialchars($r)."\"></i> "; } $tit.="<span class=lnk><a href=\"$htpath/index.php?catid=".translit($r."_".$sub."_")."\">$sub</a></span> <i class=icon-chevron-right title=\"".htmlspecialchars($sub)."\"></i> <span class=lnk><h1 style=\"display:inline; font-size: $title_font_size"."px;\">$metat</h1></span></div>  ";
 if (($title_use_item_name==0)&&($brand=="")) {
-$tit="<div style=\"display:inline; font-size: $title_font_size"."px;\">"; if ($r!="All") { $tit.="<b class=lnk><a href=\"$htpath/index.php?catid=".translit($r)."\"><a href=\"index.php\">".$lang['mainsite']."</a></b> <img src=$image_path/cat1.png hspace=5 border=0> <b class=lnk><a href=\"$htpath/index.php?catid=".translit($r)."\">".$r."</a></b> <img src=$image_path/cat1.png hspace=5 border=0 title=\"".htmlspecialchars($r)."\" align=absmiddle> "; } $tit.="<b class=lnk><a href=\"$htpath/index.php?catid=".translit($r."_".$sub."_")."\">$sub</a></b> <img src=$image_path/cat1.png hspace=5 border=0 title=\"".htmlspecialchars($sub)."\" align=absmiddle></div>  ";
+$tit="<div style=\"display:inline; font-size: $title_font_size"."px;\">"; if ($r!="All") { $tit.="<span class=lnk><a href=\"index.php\">".$lang['mainsite']."</a></span> <i class=icon-chevron-right></i> <span class=lnk><a href=\"$htpath/index.php?catid=".translit($r)."\">".$r."</a></span> <i class=icon-chevron-right title=\"".htmlspecialchars($r)."\"></i> "; } $tit.="<span class=lnk><a href=\"$htpath/index.php?catid=".translit($r."_".$sub."_")."\">$sub</a></span> <i class=icon-chevron-right title=\"".htmlspecialchars($sub)."\"></i></div>  ";
 
 }
 }
 
 if (($r!="")&&($sub=="")) {
 $metat="";
-$tit="<div style=\"display:inline; font-size: $title_font_size"."px;\"><b class=lnk><a href=\"$htpath/index.php?catid=".translit($r)."\"><a href=\"index.php\">".$lang['mainsite']."</a></b> <img src=$image_path/cat1.png hspace=5 border=0> <b class=lnk><a href=\"$htpath/index.php?catid=".translit($r)."\"><h1 style=\"display:inline; font-size: $title_font_size"."px;\">$r</h1></a></b> <img src=$image_path/cat1.png hspace=5 border=0 title=\"".htmlspecialchars($r)."\" align=absmiddle></div>  ";
+$tit="<div style=\"display:inline; font-size: $title_font_size"."px;\"><span class=lnk><a href=\"index.php\">".$lang['mainsite']."</a></span> <i class=icon-chevron-right></i> <span class=lnk><a href=\"$htpath/index.php?catid=".translit($r)."\"><h1 style=\"display:inline; font-size: $title_font_size"."px;\">$r</h1></a></span> <i class=icon-chevron-right title=\"".htmlspecialchars($r)."\"></i></div>  ";
 
 }
 

@@ -88,7 +88,7 @@ $admin_functions="";
 $vipold="";
 
 $sales="";
-if (($price==0)||($price=="")){$prem1="<!-- "; $prem2=" -->"; $prbuy="<br><br><font color=\"".$nc5."\"><small><b>".$lang['prebuy']."</b></small></font>";} else {$prem1="";$prem2="";$prbuy=""; }
+if (($price==0)||($price=="")){$prem1="<!-- "; $prem2=" -->"; $prbuy="<font color=\"".$nc5."\"><small><b>".$lang['prebuy']."</b></small></font>";} else {$prem1="";$prem2="";$prbuy=""; }
 if (($podstavas["$dir|$subdir|"]!="")||(preg_match("/\%/", @$out[8])==TRUE)) { $strto=strtoken(@$out[8],"%"); $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike></font>"; if ((preg_match("/\%/", @$out[8])==TRUE)&&(doubleval($strto)>0)) { $sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle\">SALE<BR><b>-$strto%</b></td></tr></table>"; $ueprice=@$ueprice-(@$ueprice*(doubleval($strto))/100); $price=$okr*(round((@$price-(@$price*(doubleval($strto))/100))/$okr));} else { $strto=doubleval($podstavas["$dir|$subdir|"]); $sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" style=\"vertical-align: middle\" align=center>SALE<BR><b>-".$podstavas["$dir|$subdir|"]."%</b></td></tr></table>";  @$ueprice=@$ueprice-(@$ueprice*((double)$podstavas["$dir|$subdir|"])/100); $price=$okr*(round((@$price-(@$price*((double)$podstavas["$dir|$subdir|"])/100))/$okr));} } else {
 if (($valid=="1")&&($details[7]=="VIP")): @$description=@$description . "<br><small>(".$lang[149].": <b>".@$price."</b>$valut) <font color=\"#a0a0a0\">[&#36;$ueprice]</font></small>"; $vipold="<font color=#b94a48><strike>".($okr*round(@$price/$okr))."</strike></font>"; @$price=$okr*round((@$price-@$price*$vipprocent)/$okr); @$ueprice=@$ueprice-@$ueprice*$vipprocent;  endif;
 }
@@ -111,6 +111,13 @@ if ($fo==1) {$optionselect="<br><table border=0>$optionselect</table>";}
 
 @$foto1=@$out[9];
 if ($foto1=="") {$foto1="<img src=\"$image_path/no_photo.gif\" border=0>";}
+@$foto1=str_replace(">", " id=smz_".$s.">", @$foto1);
+if ($hidart==1) {
+$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span13\" title=\"".str_replace("\"", "", str_replace("\'", "",strtoken($out[3],"*")))."\" ",  stripslashes(@$foto1));
+} else {
+$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span13\" title=\"".str_replace("\"", "", str_replace("\'", "",$out[3]))."\" ",  stripslashes(@$foto1));
+}
+
 @$foto2=@$out[10];
 @$vitrin=@$out[11];
 
@@ -176,7 +183,7 @@ $back=$nc6;
 $strtoma=Array();
 $strtoma=explode("|",$sps[($start+$st)]);
 $sklname=$strtoma[1];
-
+/*
 $strtoma[2]=str_replace("http://www.", "http://", str_replace("\"","'", $strtoma[2]));
 if ($strtoma[2]!="") {
 $htpat=str_replace("http://www.", "http://",$htpath);
@@ -198,6 +205,7 @@ if ($wh==" width=0 height=0") {$wh="";}
 $strtoma[2]=str_replace("<img ", "<img ". $wh ." ",stripslashes(@$strtoma[2]));
 
 }
+*/
 //}
 $sps[($start+$st)]=str_replace("[foto1]",$strtoma[2], $strtoma[0]);
 $stoks="";

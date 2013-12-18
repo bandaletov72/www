@@ -11,7 +11,7 @@ $modonoff="<input type=button onclick=javascript:location.href='"."index.php?act
 }
 
 $admined.="<div class=round align=center>
-<b>".$lang[817].": </b><br><br><input type=button onclick=javascript:location.href='"."$htpath/index.php?action=template&nt=templates/$template&amp;speek=$speek&t=work_time"."' value=\"".$lang['ch']."\"><br><br>
+<b>".$lang[817].": </b><br><br><input type=button onclick=javascript:location.href='"."$htpath/index.php?action=template&nt=templates/$template&speek=$speek&t=work_time"."' value=\"".$lang['ch']."\"><br><br>
 $modonoff
 <br><br>".$lang[888]."</div>";
 $admined.="<div align=center><img src=\"$image_path/handdown.png\"></div>";
@@ -57,8 +57,8 @@ $vremya="<table border=\"0\" cellspacing=\"0\" cellpadding=\"1\">
 <tr><td><small>".$d5[0]."</small></td><td width=\"100%\" align=\"center\"><small><b>".$dd5."</b></small></td><td align=\"right\"><img src=\"".$image_path."/work".$d5[1].".png\" align=\"absmiddle\" border=\"0\"></td></tr>
 <tr><td><small>".$d6[0]."</small></td><td width=\"100%\" align=\"center\"><small><b>".$dd6."</b></small></td><td align=\"right\"><img src=\"".$image_path."/work".$d6[1].".png\" align=\"absmiddle\" border=\"0\"></td></tr>
 <tr><td><small>".$d7[0]."</small></td><td width=\"100%\" align=\"center\"><small><b>".$dd7."</b></small></td><td align=\"right\"><img src=\"".$image_path."/work".$d7[1].".png\" align=\"absmiddle\" border=\"0\"></td></tr>
-<tr><td colspan=\"2\">
-<small> ".$wt['warning']."<br><br> ".$wt['other']."</small>
+<tr><td colspan=\"2\" align=left>
+<small>".$wt['warning']."<br><br> ".$wt['other']."</small>
 </td>
 </tr>
 </table>";
@@ -70,8 +70,8 @@ top("<font color=$nc0>$wt_name</font>", "$vremya", "100%", $nc10, $nc0, 4,0,"[wo
 
 }
 } else {
-$time_to_work="<div class='pull-left mr hvr'><small><br>".$lang['819']."<br>".$lang['820']."</small></div>";
-$bottom_worktime="<div class='pull-right' style=\"margin-right:20px;\"><table style=\"width: 200px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"1\">
+$time_to_work="<small><br>".$lang[819]."<br>".$lang[820]."</small>";
+$bottom_worktime="<div class='pull-right' style=\"width:$bottom_links_subs_size;\"><table border=\"0\" cellspacing=\"0\" cellpadding=\"1\">
 <tr>
 <td><small>".$d1[0]."</small></td><td width=\"100%\" align=\"center\"><small><b>".$dd1."</b></small></td>
 <td align=\"right\"><img src=\"".$image_path."/work".$d1[1].".png\" align=\"absmiddle\" border=\"0\"></td>
@@ -82,7 +82,7 @@ $bottom_worktime="<div class='pull-right' style=\"margin-right:20px;\"><table st
 <tr><td><small>".$d5[0]."</small></td><td width=\"100%\" align=\"center\"><small><b>".$dd5."</b></small></td><td align=\"right\"><img src=\"".$image_path."/work".$d5[1].".png\" align=\"absmiddle\" border=\"0\"></td></tr>
 <tr><td><small>".$d6[0]."</small></td><td width=\"100%\" align=\"center\"><small><b>".$dd6."</b></small></td><td align=\"right\"><img src=\"".$image_path."/work".$d6[1].".png\" align=\"absmiddle\" border=\"0\"></td></tr>
 <tr><td><small>".$d7[0]."</small></td><td width=\"100%\" align=\"center\"><small><b>".$dd7."</b></small></td><td align=\"right\"><img src=\"".$image_path."/work".$d7[1].".png\" align=\"absmiddle\" border=\"0\"></td></tr>
-</table></div>".$bottom_worktime;
+<td><tr><td colspan=3>$time_to_work</td></tr></table></div>".$bottom_worktime;
 }
 unset($d1, $d2, $d3, $d4, $d5, $d6, $d7, $wt);
 }

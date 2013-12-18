@@ -92,7 +92,7 @@ if ($clone=="no") {
   echo "window.opener.location.reload();";
   }
 
-if ($clone=="yes") {echo "window.opener.location.href='index.php?r=".rawurlencode(@$r)."&amp;speek=$speek&sub=".rawurlencode(@$sub)."';";
+if ($clone=="yes") {echo "window.opener.location.href='index.php?r=".rawurlencode(@$r)."&speek=$speek&sub=".rawurlencode(@$sub)."';";
 }
   echo "
   self.close();

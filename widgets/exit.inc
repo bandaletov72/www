@@ -38,7 +38,7 @@ $poll_exp="</div>"; require "./modules/mod_poll.php"; $x0008=$con;
 unset ($con);
 if(($details[7]=="ADMIN")||($details[7]=="MODER")){
 if (($valid=="1")){
-$x0008="<div class=pull-right><a href=\"#edit\" class=btn onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&amp;working_file=../.".$base_loc."/content/x0008.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=580,left=10,top=10')><i class=icon-edit></i> ".$lang['ch']."</a>&nbsp;<a href=\"#delete\" class=btn onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&amp;c=x0008&amp;del=x0008','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=580,left=10,top=10')><i class=icon-remove></i> ".$lang['del']."</a></div>".$x0008;
+$x0008="<div class=pull-right><a href=\"#edit\" class=btn onClick=javascript:window.open('$htpath/admin/edit/index.php?speek=$speek&working_file=../.".$base_loc."/content/x0008.txt','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=580,left=10,top=10')><i class=icon-edit></i> ".$lang['ch']."</a>&nbsp;<a href=\"#delete\" class=btn onClick=javascript:window.open('admin/editor/edit.php?speek=".$speek."&c=x0008&del=x0008','fr','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=580,left=10,top=10')><i class=icon-remove></i> ".$lang['del']."</a></div>".$x0008;
 }
 }
 unset ($viewpage_content, $x0008_title, $pageopen);

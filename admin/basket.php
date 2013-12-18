@@ -168,7 +168,7 @@ if (!copy($file, "./admin/baskets/list.txt")) {
 echo "".$lang[601].""; exit;
 }
 
-top("", "<br><br>".$lang[604]."<br><br>» <a href=\"".$_SERVER['PHP_SELF']. "?action=view_baskets&sort=".@$sort."&amp;start=".@$start."&listing=".@$listing."&filter=".@$filter."\"><b>".$lang['back']."</b></a><META HTTP-EQUIV=\"Refresh\" CONTENT=\"3;URL=".$_SERVER['PHP_SELF']. "?action=view_baskets&sort=".@$sort."&amp;start=".@$start."&listing=".@$listing."&filter=".@$filter."\">", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0, "[content]");
+top("", "<br><br>".$lang[604]."<br><br>» <a href=\"".$_SERVER['PHP_SELF']. "?action=view_baskets&sort=".@$sort."&start=".@$start."&listing=".@$listing."&filter=".@$filter."\"><b>".$lang['back']."</b></a><META HTTP-EQUIV=\"Refresh\" CONTENT=\"3;URL=".$_SERVER['PHP_SELF']. "?action=view_baskets&sort=".@$sort."&start=".@$start."&listing=".@$listing."&filter=".@$filter."\">", $style ['center_width'], strtolower($style ['bg_content']), strtolower($style ['bg_view']), "noshadow",0, "[content]");
 unset($listmas3,$listmas4);
 }
 
@@ -859,8 +859,8 @@ $listmas=file($file);
 
 while(list ($keysm,$st) =each ($listmas)) {
 $outd=explode("|",$st);
-$stamptd=explode(".",$outd[6]);
-$mktimer=mktime(0,0,1,doubleval($stamptd[1]),doubleval($stamptd[0]),doubleval($stamptd[2]))-$g;
+$stamptd=explode(".",@$outd[6]);
+$mktimer=mktime(0,0,1,doubleval(@$stamptd[1]),doubleval(@$stamptd[0]),doubleval(@$stamptd[2]))-$g;
 $g+=1;
 $listmas3[$mktimer]=$st;
 }
@@ -1282,13 +1282,13 @@ while ($s < $numberpages) {
 if (($start/$perpage)==$s) {
 $pp.= "<b>" . ($s+1) . "</b> | ";
 } else {
-$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=view_baskets&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&sort=$sort&listing=".@$listing."&filter=$filter\">" . ($s+1) . "</a> | ";
+$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=view_baskets&start=" . ($s*$perpage) . "&perpage=$perpage&sort=$sort&listing=".@$listing."&filter=$filter\">" . ($s+1) . "</a> | ";
 }
 $s+=1;
 }
 
 if(($details[7]=="ADMIN")) {$optpricen="<small><b>".$lang[578]."</b></small>";} else {$optpricen="";}
-$basket_list="<noindex>$stat<center><form class=form-inline action=\"index.php?action=view_baskets&amp;start=$start&amp;perpage=$perpage&sort=dels\" method=GET>".$lang[574].":<input name=filter type=text class=input-small size=20 value=\"".@$filter."\"><input class=\"btn btn-primary\" type=submit value=\"OK\"><input type=hidden name=\"action\" value=\"$action\"><input type=\"hidden\" name=\"listing\" value=\"$listing\"><input type=hidden name=\"start\" value=\"$start\"><input type=hidden name=\"perpage\" value=\"$perpage\"><input type=hidden name=\"sort\" value=\"".@$sort."\"></form><br><br><small>$pp</small></center><table border=0 cellspacing=0 cellpadding=0 width=100%><tr><td valign=top colspan=\"18\"><br><table width=100% border=0 cellspacing=3 cellpadding=0><tr><td valign=top width=20% align=left></td><td align=right valign=top width=80%><small>
+$basket_list="<noindex>$stat<center><form class=form-inline action=\"index.php?action=view_baskets&start=$start&perpage=$perpage&sort=dels\" method=GET>".$lang[574].":<input name=filter type=text class=input-small size=20 value=\"".@$filter."\"><input class=\"btn btn-primary\" type=submit value=\"OK\"><input type=hidden name=\"action\" value=\"$action\"><input type=\"hidden\" name=\"listing\" value=\"$listing\"><input type=hidden name=\"start\" value=\"$start\"><input type=hidden name=\"perpage\" value=\"$perpage\"><input type=hidden name=\"sort\" value=\"".@$sort."\"></form><br><br><small>$pp</small></center><table border=0 cellspacing=0 cellpadding=0 width=100%><tr><td valign=top colspan=\"18\"><br><table width=100% border=0 cellspacing=3 cellpadding=0><tr><td valign=top width=20% align=left></td><td align=right valign=top width=80%><small>
 <a href=\"index.php?action=view_baskets&sort=&listing=1&filter=$filter\">".$lang['adm4']."</a> / <a href=\"index.php?action=view_baskets&sort=&filter=$filter&listing=2\">".$lang[536]."</a> / <a href=\"index.php?action=view_baskets&sort=status&listing=".@$listing."&filter=$filter\">".$lang[618]."</a> / <a href=\"index.php?action=view_baskets&sort=dels&listing=".@$listing."&filter=$filter\">".$lang[493]."</a> / <a href=\"index.php?action=view_baskets&sort=zakupka&listing=".@$listing."&filter=$filter\">".$lang[501]."</a></small></td></tr></table></td></tr><tr bgcolor=$nc6>
 <td colspan=3 align=center valign=top style=\"border:1px solid $nc0\"><small><b>#</b></small></td>
 <td align=center colspan=6 valign=top style=\"border:1px solid $nc0\"><small><b>".$lang[75].", ".$lang[73].",".$lang[72]."</b></small></td>

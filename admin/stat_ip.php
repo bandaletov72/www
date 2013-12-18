@@ -213,8 +213,8 @@ if ($ip=="") {}else{
 reset($blist);
 @reset($fcban);
 $banned="";
-$knip="<br>»&nbsp;<a href=\"$htpath/index.php?action=userip&ban=".@$tmpip[0]."_".@$tmpip[1]."&amp;start=$start&amp;perpage=$perpage&ipsort=$ipsort\">Забанить IP</a>";
-$kdip="<br>»&nbsp;<a href=\"$htpath/index.php?action=userip&ban=d".@$tmpip[0]."_".@$tmpip[1]."&amp;start=$start&amp;perpage=$perpage&ipsort=$ipsort\">Бан диапазона IP</a>";
+$knip="<br>»&nbsp;<a href=\"$htpath/index.php?action=userip&ban=".@$tmpip[0]."_".@$tmpip[1]."&start=$start&perpage=$perpage&ipsort=$ipsort\">Забанить IP</a>";
+$kdip="<br>»&nbsp;<a href=\"$htpath/index.php?action=userip&ban=d".@$tmpip[0]."_".@$tmpip[1]."&start=$start&perpage=$perpage&ipsort=$ipsort\">Бан диапазона IP</a>";
 
 while (list ($keybl, $stbl) = each ($blist)) {
 $stbl=str_replace("ip_","", str_replace("\n","",$stbl));
@@ -227,7 +227,7 @@ $iip['stop'] = toint($ip2);
 $iip['actual'] = toint(@$tmpip[1]);
 if ($iip['actual'] >= $iip['start'] && $iip['actual'] <= $iip['stop']){
    $banned="<b><font color=$nc2>В диапазоне</font></b>";
-   $kdip="<br>»&nbsp;<a href=\"$htpath/index.php?action=userip&razban=d".@$tmpip[0]."_".@$tmpip[1]."&amp;start=$start&amp;perpage=$perpage&ipsort=$ipsort\"><b>Разбанить диапазон IP</b></a>";
+   $kdip="<br>»&nbsp;<a href=\"$htpath/index.php?action=userip&razban=d".@$tmpip[0]."_".@$tmpip[1]."&start=$start&perpage=$perpage&ipsort=$ipsort\"><b>Разбанить диапазон IP</b></a>";
 }
 
 }
@@ -239,8 +239,8 @@ if ($iip['actual'] >= $iip['start'] && $iip['actual'] <= $iip['stop']){
 while (list ($keyip, $valip) = @each ($fcban)) {
 if (str_replace("\n","",$valip)=="".@$tmpip[0]."_".@$tmpip[1].""){
 $banned="<b><font color=$nc2>Banned!</font></b>";
-$knip="<br>»&nbsp;<b><a href=\"$htpath/index.php?action=userip&razban=".@$tmpip[0]."_".@$tmpip[1]."&amp;start=$start&amp;perpage=$perpage&ipsort=$ipsort\">Разбанить IP</a></b>";
-$kdip="<br>»&nbsp;<a href=\"$htpath/index.php?action=userip&razban=d".@$tmpip[0]."_".@$tmpip[1]."&amp;start=$start&amp;perpage=$perpage&ipsort=$ipsort\"><b>Разбанить диапазон IP</b></a>";
+$knip="<br>»&nbsp;<b><a href=\"$htpath/index.php?action=userip&razban=".@$tmpip[0]."_".@$tmpip[1]."&start=$start&perpage=$perpage&ipsort=$ipsort\">Разбанить IP</a></b>";
+$kdip="<br>»&nbsp;<a href=\"$htpath/index.php?action=userip&razban=d".@$tmpip[0]."_".@$tmpip[1]."&start=$start&perpage=$perpage&ipsort=$ipsort\"><b>Разбанить диапазон IP</b></a>";
 }
 }
 $dipfile=filemtime("./admin/stat_ip/$file");
@@ -314,15 +314,15 @@ while ($s < $numberpages) {
 if (($start/$perpage)==$s) {
 $pp.= "<b>" . ($s+1) . "</b> | ";
 } else {
-$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=userip&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&ipsort=$ipsort\">" . ($s+1) . "</a> | ";
+$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?action=userip&start=" . ($s*$perpage) . "&perpage=$perpage&ipsort=$ipsort\">" . ($s+1) . "</a> | ";
 }
 $s+=1;
 }
 if ($s==0): $sooip.="<b>".$lang[42]."!</b> Пользователи не определены."; endif;
-$ip_list = @$userinfo."$statistip<center>$sooip<small>$pp</small></center><table border=0 width=100%><tr><td valign=top colspan=\"4\"><table width=100% border=0 cellspacing=3 cellpadding=0><tr><td valign=top width=20% align=left><small><a href = \"".$_SERVER['PHP_SELF']."?action=userip&amp;start=0&amp;perpage=$perpage&ipsort=ip\"><b>IP</b></a> / WHOIS</small></td><td align=right valign=top width=80%><small><a href = \"".$_SERVER['PHP_SELF']."?action=userip&amp;start=0&amp;perpage=$perpage&ipsort=date\"><b>Дата</b></a> / <a href = \"".$_SERVER['PHP_SELF']."?action=userip&amp;start=0&amp;perpage=$perpage&ipsort=\"><b>Счетчик</b></a></small></td></tr></table></td></tr>$ip_list</table><center><small>$pp</small></center>
+$ip_list = @$userinfo."$statistip<center>$sooip<small>$pp</small></center><table border=0 width=100%><tr><td valign=top colspan=\"4\"><table width=100% border=0 cellspacing=3 cellpadding=0><tr><td valign=top width=20% align=left><small><a href = \"".$_SERVER['PHP_SELF']."?action=userip&start=0&perpage=$perpage&ipsort=ip\"><b>IP</b></a> / WHOIS</small></td><td align=right valign=top width=80%><small><a href = \"".$_SERVER['PHP_SELF']."?action=userip&start=0&perpage=$perpage&ipsort=date\"><b>Дата</b></a> / <a href = \"".$_SERVER['PHP_SELF']."?action=userip&start=0&perpage=$perpage&ipsort=\"><b>Счетчик</b></a></small></td></tr></table></td></tr>$ip_list</table><center><small>$pp</small></center>
 <br>$statistip\n
 <br><br>Список забаненных адресов: <b><a href=\"$htpath/index.php?action=template&nt=$base_loc&t=banlist\">открыть</a></b><br>
-<br><br>»&nbsp;<b><a href=\"$htpath/index.php?action=userip&delip=1&amp;start=0&amp;perpage=$perpage&ipsort=$ipsort\">Очистить IP-статистику</a></b> (баны не снимаются!)<br>
+<br><br>»&nbsp;<b><a href=\"$htpath/index.php?action=userip&delip=1&start=0&perpage=$perpage&ipsort=$ipsort\">Очистить IP-статистику</a></b> (баны не снимаются!)<br>
 <br><b>Подсказка:</b><br><br>
 <b>IP</b> - пользователи, имеющие собственные IP<br>
 <b>PROXY</b> - пользователи, которые заходили через PROXY<br>

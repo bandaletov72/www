@@ -8,6 +8,8 @@ if (isset($_GET['item_id'])) { $item_id=$_GET['item_id']; } elseif(isset($_POST[
 if (!preg_match('/^[0-9a-zA-Z_-]+$/i',$item_id)) { $item_id="";}
 if (
 ($action=="template")||
+($action=="setsales")||
+($action=="insales")||
 ($action=="allbrands")||
 ($action=="view_cmenu")||
 ($action=="replacer")||
@@ -101,4 +103,7 @@ if ($theme_file!="") {
 $leftmenu=1;
 $incart_menu=1;
 }
+
+if (($view_left_menu_page==0) && ($view_itemsmenu_page==0) &&($page!="")) {$leftmenu=0; $links_to_bottom=1; }
+if (("$item_id"!=="")||("$unifid"!="")||("$catid"."0"!="0")) {  if ($view_left_menu_page==0)  {  $links_to_bottom=1; } }
 ?>

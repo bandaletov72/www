@@ -185,7 +185,7 @@ if (($start/$perpage)==$st) {
 $pp.= "<b>" . ($st+1) . "</b> | ";
 } else {
 if ($total>=($st*$perpage)){
-$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?start=" . ($st*$perpage) . "&amp;perpage=$perpage\">" . ($st+1) . "</a> | ";
+$pp.= "<a href = \"".$_SERVER['PHP_SELF']."?start=" . ($st*$perpage) . "&perpage=$perpage\">" . ($st+1) . "</a> | ";
 }
 }
 

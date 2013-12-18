@@ -24,7 +24,7 @@ $currentdate.="
 \$.ajax({
   type: \"POST\",
   url: \"chat.php\",
-  data: \"ch=main&amp;speek=rus&privat=".$details[1]."&read=2&session=$sid\",
+  data: \"ch=main&speek=rus&privat=".$details[1]."&read=2&session=$sid\",
   success: function(msg){
     $(document).ready(function() {
     document.getElementById('onlinewindow').innerHTML=msg;
@@ -117,6 +117,7 @@ $topmenu="<li class=divider-vertical></li><li$active>$korz</li>";
 $topmenu="";
 }
 $active="";
+if ($smod=="shop") {
 if ("$valid"=="1") {
 if ($details[1]!="") {
 if ($user_wallet_enable==1) {
@@ -127,10 +128,13 @@ $active="";
 }
 }
 }
+}
 $active="";
 if ($action=="zakaz") { $active=" class=active"; }
 if ($action=="send") { $active=" class=active"; }
-$topmenu.="<li class=divider-vertical></li><li$active><a href=\"index.php?action=zakaz&amp;flag=".$cart->basket_speek."\"><i class=icon-ok></i> ".$lang[59]."</a></li>";}
+if ($tovarov>0) {
+$topmenu.="<li class=divider-vertical></li><li$active><a href=\"index.php?action=zakaz&flag=".$cart->basket_speek."\"><i class=icon-ok></i> ".$lang[59]."</a></li>";}
+}
 $active="";
 $navmenu = "<li>$currentdate</li><li class=divider-vertical></li>";
 $navmenup="";
@@ -207,15 +211,28 @@ $active="";
  $active="";
  }
 if ($smod=="shop") {
-if ($rss_button==1) {$navmenup.= "<li><a href=\"$htpath/rss/index.php\">RSS</font></a></li>";}
+if ($rss_button==1) {$navmenup.= "<li><a href=\"$htpath/rss/index.php\">RSS</a></li>";}
+if ($show_sales_table==1) { if ($action=="insales") { $active=" class=active"; }  $navmenup.= "<li$active><a href=\"$htpath/index.php?speek=$speek&action=insales\"><span class=\"label label-important\">".$lang[1640]."!</span></a></li>"; $active="";}
 }
 if ($cat_button==1) {
 if ($action=="cat") { $active=" class=active"; }
 
-$navmenup.= "<li$active><a href=\"$htpath/index.php?action=cat\">$lang[1105]</font></a></li>";
+$navmenup.= "<li$active><a href=\"$htpath/index.php?action=cat\">$lang[1105]</a></li>";
 $active="";
 }
+$active="";
+if ($smod=="site") {
+if ("$valid"=="1") {
+if ($details[1]!="") {
+if ($user_wallet_enable==1) {
 
+if ($action=="cabinet") { $active=" class=active"; }
+$navmenup.="<li class=divider-vertical></li><li$active><a href=\"index.php?action=cabinet&sub=transaction\" title=\"$lang[1122]\"><small>$lang[1121]: <b>".get_walet_total(md5($details[1]).md5(strrev($details[1])))."</b> $init_currency</small></a></li>";
+$active="";
+}
+}
+}
+}
  }
 if ($view_catbut==1) {
 if ($replace_navbut==1) {
@@ -268,10 +285,10 @@ $searchmenu.="<br><img src=\"$image_path/pix.gif\" width=\"100\" height=1 border
 if ((!isset($lang[988]))||($lang[988]=="")) {$lang[988]="OR";}
 if ((!isset($lang[989]))||($lang[989]=="")) {$lang[989]="AND";}
 if ($query=="") { $lquery=""; } else { $lquery=$query; }
-$searchmenu.="</td><td style=\"vertical-align: middle\"><script type=\"text/javascript\"><!--
+$searchmenu.="</td><td style=\"vertical-align: middle\"><form class=\"navbar-search\" method=\"get\" id=\"header_searcH_form\" name=\"header_searcH_form\" action=\"$htpath/index.php\"><script type=\"text/javascript\"><!--
 function setWidth () {
-document.getElementById('search_tips_cont').style.width=(0+document.getElementById('search_input').clientWidth-16)+'px';
-document.getElementById('search_tips').style.width=(0+document.getElementById('search_input').clientWidth-10)+'px';
+document.getElementById('search_tips_cont').style.width=(0+document.getElementById('search_input').clientWidth*4)+'px';
+document.getElementById('search_tips').style.width=(0+document.getElementById('search_input').clientWidth*4+3)+'px';
 }
 function submit_search1(e)
 {
@@ -283,20 +300,18 @@ function submit_search1(e)
 }
 -->
 </script>
-<div id=\"search_tips\" class=\"search_tips\" style=\"display: none;\" onmouseout=\"hide_search_tips();setWidth();\" onmouseover=\"show_search_tips();setWidth();\">
-<div style=\"height: 138px; padding: 3px 3px 10px 3px; overflow: auto;\" id=\"search_tips_cont\"></div>
-</div></td><td style=\"vertical-align: middle\" title=\"".$lang[1008]."\"><input value=\"".$lquery."\" style=\"border-radius: 4px; margin:0px; padding:1px 1px 5px 6px; font-size: 10pt; width: 100%; color:".lighter($nc5,0)."; background-color:".lighter($nc6,0)."; border: 1px solid ".lighter($nc6,-10).";
-background-image: -webkit-gradient(linear, center top, center bottom, from($nc0), to($nc6), color-stop(23%, #000), color-stop(89%, rgba()));
-background-image: -webkit-linear-gradient(top, $nc0, #000 23%, rgba() 89%, $nc6);
-background-image: -moz-linear-gradient(top, $nc0, #000 23%, rgba() 89%, $nc6);
-background-image: -o-linear-gradient(top, $nc0, #000 23%, rgba() 89%, $nc6);
-background-image: -ms-linear-gradient(top, $nc0, #000 23%, rgba() 89%, $nc6);
-background-image: linear-gradient(to bottom, $nc0, #000 23%, rgba() 89%, $nc6);\" name=\"query\" id=\"search_input\" onkeyup=\"submit_search1(event); get_search_tips(this, '".$speek."');setWidth();\" onfocus=\"this.style.background='$nc0'; searchFieldFocus(this);setWidth();\" onblur=\"searchFieldBlur(this);setWidth();\" onchange=\"searchFieldOnChange(this);setWidth();\" type=\"text\" autocomplete=\"off\" placeholder=\"".$lang['search']."...\"><br><img src=\"$image_path/pix.gif\" width=\"100\" height=1 border=0><br></td><td style=\"vertical-align: middle\" align=left><div id=searhbutton  style=\"cursor: pointer; cursor: hand; margin: 4px;\" onclick=\"document.getElementById('header_searcH_form').submit();\" title=\"".$lang['search']."\" align=center><img src=$image_path/searchbutton.png></div>";
-
+<input class=\"ml\" value=\"".$lquery."\" name=\"query\" id=\"search_input\" onkeyup=\"submit_search1(event); get_search_tips(this, '".$speek."');setWidth();\" onfocus=\"setWidth();\" onblur=\"setWidth();\" onchange=\"setWidth();\" type=\"search\" autocomplete=\"off\" placeholder=\"".$lang['search']."...\" style=\"margin-right: 10px;\">
+";
 if ($advanced_search==1) {
-$searchmenu.="</td><td><input type=hidden id=search_usl value=AND><input type=radio name=usl value=OR onclick=\"document.getElementById('search_usl').value=='OR';\"></td><td><font class=small>$lang[988]</font></td><td><input type=radio name=usl checked value=AND onclick=\"document.getElementById('search_usl').value=='OR';\"></td><td><font class=small>$lang[989]</font></td></tr></table></form>";
+$searchmenu.="</td><td><input type=hidden id=search_usl value=AND><input type=radio name=usl value=OR onclick=\"document.getElementById('search_usl').value=='OR';\"></td><td><font class=small>$lang[988]</font></td><td><input type=radio name=usl checked value=AND onclick=\"document.getElementById('search_usl').value=='OR';\"></td><td><font class=small>$lang[989]</font>
+<div id=\"search_tips\" class=\"search_tips\" style=\"display: none; margin-top:0px; right: 0px;\" onmouseout=\"hide_search_tips();setWidth();\" onmouseover=\"show_search_tips();setWidth();\">
+<div style=\"height: 138px; padding: 3px 3px 10px 3px; overflow: auto;\" id=\"search_tips_cont\"></div>
+</div></form></td></tr></table></form>";
  } else {
-$searchmenu.="<input type=hidden id=search_usl value=AND><input type=hidden name=usl value=$usl></td></tr></table></form>";
+$searchmenu.="<input type=hidden id=search_usl value=AND><input type=hidden name=usl value=$usl>
+<div id=\"search_tips\" class=\"search_tips\" style=\"display: none; margin-top:0px; right: 0px;\" onmouseout=\"hide_search_tips();setWidth();\" onmouseover=\"show_search_tips();setWidth();\">
+<div style=\"height: 138px; padding: 3px 3px 10px 3px; overflow: auto;\" id=\"search_tips_cont\"></div>
+</div></form></td></tr></table>";
 }
 }
 }else {

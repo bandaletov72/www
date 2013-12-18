@@ -1290,8 +1290,8 @@ if (file_exists($ipfile)) { $fcolor="red"; $ftitle=" title=\"$lang[1525]\"";}
 
 $adm_ip="<td width=90 valign=top align=right title=\"".$lang['addition']."\"><img src=$image_path/pix.gif width=90 height=1><br><a href=\"#Whois\" onclick=\"javascript:window.open('$htpath/whois.php?t=".md5("$ip"."$htpath"."$secret_salt")."&t2=".md5("$ip"."$htpath"."$secret_salt".$tmpex[5])."&ip=".rawurlencode($ip)."&n=".rawurlencode($tmpex[5])."','".md5("$ip"."$htpath"."$secret_salt")."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=560,left=10,top=10')\"><font color=$fcolor size=1"."$ftitle>".$ip."</font></a></td><td>&nbsp;&nbsp;</td>";
 }
-$adm_del="<td width=30 valign=top align=right title=\"".$lang[744]."\"><img src=$image_path/pix.gif width=30 height=1><br><a class=btn href=\"$htpath/index.php?action=cl&amp;start=$start&level=".rawurlencode($level)."&del_post=".$cl_post."\"><font color=#b94a48>X</font></a></td>";
-$adm_edit="<td width=30 valign=top align=center title=\"".$lang[744]."\"><img src=$image_path/pix.gif width=30 height=1><br><a class=btn href=\"$htpath/index.php?action=cl&amp;start=$start&level=".rawurlencode($level)."&ed_post=".$cl_post."&cl_post=".$cl_post."\"><font color=#468847>".$lang['edits']."</font></a></td><td>&nbsp;&nbsp;</td>";
+$adm_del="<td width=30 valign=top align=right title=\"".$lang[744]."\"><img src=$image_path/pix.gif width=30 height=1><br><a class=btn href=\"$htpath/index.php?action=cl&start=$start&level=".rawurlencode($level)."&del_post=".$cl_post."\"><font color=#b94a48>X</font></a></td>";
+$adm_edit="<td width=30 valign=top align=center title=\"".$lang[744]."\"><img src=$image_path/pix.gif width=30 height=1><br><a class=btn href=\"$htpath/index.php?action=cl&start=$start&level=".rawurlencode($level)."&ed_post=".$cl_post."&cl_post=".$cl_post."\"><font color=#468847>".$lang['edits']."</font></a></td><td>&nbsp;&nbsp;</td>";
 
 }
 }
@@ -1674,7 +1674,7 @@ function upd_".md5($level.$clfile)."() {
 $.ajax({
   type: \"POST\",
   url: \"clrefresh.php\",
-  data: \"level=".rawurlencode($level)."&clfile=".rawurlencode($clfile)."&amp;speek=$speek&session=$sid\",
+  data: \"level=".rawurlencode($level)."&clfile=".rawurlencode($clfile)."&speek=$speek&session=$sid\",
   success: function(msg){
     $(document).ready(function() {
 	$('#fd_".$fdirs."').animate({
@@ -1748,7 +1748,7 @@ if ((seconds2 ==".(3*$fdirs).")||(seconds2 ==".((3*$fdirs)+20).")||(seconds2 =="
 $.ajax({
   type: \"POST\",
   url: \"clrefresh.php\",
-  data: \"level=".rawurlencode($level)."&clfile=".rawurlencode($clfile)."&amp;speek=$speek&session=$sid\",
+  data: \"level=".rawurlencode($level)."&clfile=".rawurlencode($clfile)."&speek=$speek&session=$sid\",
   success: function(msg){
     $(document).ready(function() {
     document.getElementById('fd_".$fdirs."').innerHTML=msg;
@@ -1917,8 +1917,8 @@ $ipfile="./admin/bannedip/".implode("/",$tmp3)."/banned.txt";
 if (file_exists($ipfile)) { $fcolor="red"; $ftitle=" title=\"$lang[1525]\"";}
 $adm_ip="<td width=90 valign=top align=right title=\"".$lang['addition']."\"><img src=$image_path/pix.gif width=90 height=9><br><a href=\"#Whois\" onclick=\"javascript:window.open('$htpath/whois.php?t=".md5("$ip"."$htpath"."$secret_salt")."&ip=".rawurlencode($ip)."&t2=".md5("$ip"."$htpath"."$secret_salt".$cl_cont[13])."&n=".rawurlencode($cl_cont[13])."','".md5("$ip"."$htpath"."$secret_salt")."','status=no,scrollbars=yes,menubar=no,resizable=yes,location=no,width=700,height=560,left=10,top=10')\"><font color=$fcolor size=1".$ftitle.">".$ip."</font></a></td><td>&nbsp;&nbsp;</td>";
 }
-$adm_del="<td width=20 valign=top align=right title=\"".$lang[744]."\"><img src=$image_path/pix.gif width=20 height=9><br><a class=btn href=\"$htpath/index.php?action=cl&amp;start=$start&level=".rawurlencode($level)."&del_post=".$cl_cont[4]."\"><font color=#b94a48>X</font></a></td>";
-$adm_edit="<td width=30 valign=top align=center title=\"".$lang[744]."\"><img src=$image_path/pix.gif width=20 height=9><br><a class=btn href=\"$htpath/index.php?action=cl&amp;start=$start&level=".rawurlencode($level)."&ed_post=".$cl_cont[4]."&cl_post=".$cl_cont[4]."\"><font color=#468847>".$lang['edits']."</font></a></td><td>&nbsp;&nbsp;</td>";
+$adm_del="<td width=20 valign=top align=right title=\"".$lang[744]."\"><img src=$image_path/pix.gif width=20 height=9><br><a class=btn href=\"$htpath/index.php?action=cl&start=$start&level=".rawurlencode($level)."&del_post=".$cl_cont[4]."\"><font color=#b94a48>X</font></a></td>";
+$adm_edit="<td width=30 valign=top align=center title=\"".$lang[744]."\"><img src=$image_path/pix.gif width=20 height=9><br><a class=btn href=\"$htpath/index.php?action=cl&start=$start&level=".rawurlencode($level)."&ed_post=".$cl_cont[4]."&cl_post=".$cl_cont[4]."\"><font color=#468847>".$lang['edits']."</font></a></td><td>&nbsp;&nbsp;</td>";
 
 }
 }
@@ -2082,8 +2082,8 @@ $form.="<a href=\"#null\"><img src=smileys/".$skey." hspace=2 border=0 onClick=\
 
 }
 }
-$cl_prev="<a class=btn href=\"$htpath/index.php?action=cl&level=".rawurlencode($level)."&amp;start=".($start-$cl_perpage)."\">&lt;&lt; $lang[923] $cl_perpage</a>";
-$cl_next="<a class=btn href=\"$htpath/index.php?action=cl&level=".rawurlencode($level)."&amp;start=".($start+$cl_perpage)."\">$lang[924] $cl_perpage &gt;&gt;</a>";
+$cl_prev="<a class=btn href=\"$htpath/index.php?action=cl&level=".rawurlencode($level)."&start=".($start-$cl_perpage)."\">&lt;&lt; $lang[923] $cl_perpage</a>";
+$cl_next="<a class=btn href=\"$htpath/index.php?action=cl&level=".rawurlencode($level)."&start=".($start+$cl_perpage)."\">$lang[924] $cl_perpage &gt;&gt;</a>";
 if (($start-$cl_perpage)<0) {$cl_prev=""; }
 if (($start+$cl_perpage)>=$cl_key) {$cl_next=""; }
 $cl_list.="<br><br><div align=center>$cl_prev $cl_next</div>$form";

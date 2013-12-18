@@ -99,7 +99,7 @@ exit;
 echo "<font face=verdana><small><center>".$lang[442]." <b>$r/$sub</b></small><br><br><font color=#b94a48><b>".$lang[443]."</b></font><br><br>
 <table border='0' width='100%' cellpadding='3'>
   <tr>
-    <td width='50%' align=right valign=top><form method='POST' target='_self' action='del_subdir.php?speek=".$speek."&amp;del=yes&r=".rawurlencode($r)."&sub=".rawurlencode($sub)."'><input type='hidden' value=\"$speek\" name=\"speek\"> <input type='submit' value='".$lang['yes']."' name='yes'></td>
+    <td width='50%' align=right valign=top><form method='POST' target='_self' action='del_subdir.php?speek=".$speek."&del=yes&r=".rawurlencode($r)."&sub=".rawurlencode($sub)."'><input type='hidden' value=\"$speek\" name=\"speek\"> <input type='submit' value='".$lang['yes']."' name='yes'></td>
     <td width='50%' valign=top><input type='button' value='".$lang['no']."' name='no' onclick='javascript:self.close()'></form></td></tr>
 </table>
 </font>";

@@ -77,7 +77,7 @@ echo "<TITLE>Export to MYSQL</TITLE>
 $totsteps=count($langs)+4;
 $cursteps=($step+$sp);
 if ($cursteps==$totsteps) {$proc="Done";} else {$proc="Processing ...";}
-echo "<b>$proc</b><table border=0 width=100% cellspacing=0 cellpadding=3><tr><td bgcolor=$nc6><table border=0 width=".(round(100*$cursteps/$totsteps)+1)."%><tr><td bgcolor=$nc3 width=100%>&nbsp;</td><td><b>".round(100*$cursteps/$totsteps)."%</b></td></table></td></tr></table>";
+echo "<b>$proc</b><table border=0 width=100% cellspacing=0 cellpadding=3><tr><td bgcolor=$nc6><table border=0 width=".(round(100*$cursteps/$totsteps)+1)."%><tr><td bgcolor=$nc3 width=100%>&nbsp;</td><td><b>".round(100*$cursteps/$totsteps)."%</b></td><tr></table></td></tr></table>";
 # Соединяемся, выбираем базу данных
 $mysql_link = mysql_connect($mysql_server, $mysql_user, $mysql_pass) or die("Could not connect : " . mysql_error());
 //print "MySQL Connected successfully...<br>\n";

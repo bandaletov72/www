@@ -1,2 +1,2 @@
-==Контакты[url]index.php?action=sendmail[/url]==<div></div>
+<div>==Контакты==</div>
 <div>Наш телефон: (XXX) XXX-XX-XX&nbsp;</div>

@@ -19,6 +19,12 @@ Allow: /index.php?action=vacancy
 Allow: /index.php?action=blog
 Allow: /index.php?action=classifieds
 Allow: /index.php?action=forum
+Allow: /index.php?action=cl
+Allow: /index.php?action=allbrands
+Allow: /index.php?action=sendmail
+Allow: /index.php?action=price
+Allow: /index.php?action=arch
+Allow: /sitemap.php
 
 # you may allow or disallow search results
 Allow: /index.php?query=

@@ -284,7 +284,7 @@ unset($out,$tmpft1,$tmpft2,$key,$val);
 $start+=1;
 }
 } else {
-$refr="<META HTTP-EQUIV=\"REFRESH\" CONTENT=\"2;URL=$htpath/admin/photo_thumb.php?pix=$pix&amp;start=$max&end=$zf\">";
+$refr="<META HTTP-EQUIV=\"REFRESH\" CONTENT=\"2;URL=$htpath/admin/photo_thumb.php?pix=$pix&start=$max&end=$zf\">";
 }
 }
 $base.=$stun;

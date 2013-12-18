@@ -1,3 +1,14 @@
-Яблоко~index.php?unifid=dd3e175885fdb25fe0f4b9b593887a6b~
-тесто~http://localhost/index.php?page=r0002~
 Lorem ipsum~http://www.dpz.ru~
+Loremipsum~http://www.dpz.ru~
+яблоком~index.php?unifid=dd3e175885fdb25fe0f4b9b593887a6b~
+Яблоко~index.php?unifid=dd3e175885fdb25fe0f4b9b593887a6b~
+яблоки~index.php?unifid=dd3e175885fdb25fe0f4b9b593887a6b~
+яблоке~index.php?unifid=dd3e175885fdb25fe0f4b9b593887a6b~
+яблока~index.php?unifid=dd3e175885fdb25fe0f4b9b593887a6b~
+ яблок~index.php?unifid=dd3e175885fdb25fe0f4b9b593887a6b~
+ lorem~http://www.dpz.ru~
+ ipsum~http://www.dpz.ru~
+ apple~index.php?unifid=dd3e175885fdb25fe0f4b9b593887a6b~
+тесто~http://localhost/index.php?page=r0002~
+тесто~http://localhost/index.php?page=r0002~
+dolor~http://www.dpz.ru~

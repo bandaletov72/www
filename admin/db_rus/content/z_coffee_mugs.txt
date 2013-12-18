@@ -1,1 +1,1 @@
-==z_coffee_mugs|tert|ertert|errte|ert==<img width="820" height="250" src="images/drinkware22.png" alt="" title=""><br>
+==z_coffee_mugs==<img width="820" height="250" src="images/drinkware22.png" alt="" title=""><br>

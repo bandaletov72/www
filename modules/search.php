@@ -419,7 +419,7 @@ unset ($kit_content);
 
 } else {
 if(($cartl3[$cac_num]=="location")||($cartl3[$cac_num]=="hidden")) { } else {
-$ddescription.="<div class=customdiv><div class=pull-left><b>$cac_line: </b></div><div class=pull-right>". @$out[$cac_num] ." ". $cartl2[$cac_num]."</div><div class=clear></div></div>\n";
+$ddescription.="<div class=customdiv><div class=pull-left><b>$cac_line: </b></div><div class=\"pull-left ml\">". @$out[$cac_num] ." ". $cartl2[$cac_num]."</div><div class=clear></div></div>\n";
 }
 }
 }
@@ -445,13 +445,13 @@ unset($strtoma);
 
 $vipold="<span class=\"oldprice\">".($okr*round(@$price/$okr))."</span>";
 if ((preg_match("/\%/", @$out[8])==TRUE)&&(doubleval($strto)>0)) {
-$sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle; align: center; white-space:nowrap\"><font color=white style=\"font-size:7pt;line-height: 8pt;\">&nbsp;SALE<br><b>&nbsp;-".round($strto)."%</b></font></td></tr></table>";
+$sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle;  text-align: center;  align: center; white-space:nowrap\"><font color=white style=\"font-size:7pt;line-height: 8pt;\">SALE<br><b>&nbsp;".$strto."%</b></font></td></tr></table>";
 $ueprice=@$ueprice-@$ueprice*(doubleval($strto))/100;
 $price=$okr*(round((@$price-@$price*(doubleval($strto))/100)/$okr));
 
 } else {
 $strto=doubleval($podstavas["$dir|$subdir|"]);
-$sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle; align: center; white-space:nowrap\"><font color=white style=\"font-size:7pt;line-height: 8pt;\">&nbsp;SALE<br><b>&nbsp;-".$podstavas["$dir|$subdir|"]."%</b></font></td></tr></table>";
+$sales="<table border=0 cellpadding=0 cellspacing=0 width=53 height=53><tr><td background=\"$image_path/sale.png\" align=center style=\"vertical-align: middle;  text-align: center;  align: center; white-space:nowrap\"><font color=white style=\"font-size:7pt;line-height: 8pt;\">SALE<br><b>&nbsp;".$podstavas["$dir|$subdir|"]."%</b></font></td></tr></table>";
 @$ueprice=@$ueprice-@$ueprice*((double)$podstavas["$dir|$subdir|"])/100;
 $price=$okr*(round((@$price-@$price*((double)$podstavas["$dir|$subdir|"])/100)/$okr));
 }
@@ -478,16 +478,13 @@ if(@$podstavas["$dir|$subdir|"]<0){$sales=""; $vipold="";}
 @$kwords=@$out[8];
 @$foto1=@$out[9];
 $kolvos[md5(@$out[3]." ID:".@$out[6])]=@$out[16];
-if (($varcart>=100)||($varcart==15)) {
-$foto1=str_replace("<img ", "<img vspace=3 hspace=10 ",  stripslashes(@$foto1));
-} else {
+@$foto1=str_replace(">", " id=smz_".$s.">", @$foto1);
 if ($hidart==1) {
-$foto1=str_replace("<img ", "<img vspace=3 title='".str_replace("\"", "", str_replace("\'", "",strtoken($out[3],"*")))."' ",  stripslashes(@$foto1));
+$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span13\" title=\"".str_replace("\"", "", str_replace("\'", "",strtoken($out[3],"*")))."\" ",  stripslashes(@$foto1));
 } else {
-$foto1=str_replace("<img ", "<img vspace=3 title='".str_replace("\"", "", str_replace("\'", "",$out[3]))."' ",  stripslashes(@$foto1));
+$foto1=str_replace("<img ", "<img align=left class=\"img thumbnail span13\" title=\"".str_replace("\"", "", str_replace("\'", "",$out[3]))."\" ",  stripslashes(@$foto1));
 }
-}
-@$foto1=str_replace("border=0", "border=0 align=left style=\"margin-right: 20px; margin-bottom: 5px;\"", @$foto1);
+
 @$foto2=@$out[10];
 @$vitrin=@$out[11];
 $sqrp="/$vitrin";
@@ -530,13 +527,13 @@ $wh="";
 
 $foto1=str_replace("<img ", "<img vspace=3 hspace=10 title=\"$nazv\"",  stripslashes(@$foto1));
 
-@$foto1=str_replace("border=0", "border=0 align=left", @$foto1);
+@$foto1=str_replace("border=0", "id=smz_".$s." border=0 align=left", @$foto1);
 
 @$kolvo=@$out[16];
 $lid=md5(@$out[3]." ID:".@$out[6]);
 $qty=doubleval($qty);
 if($qty!=0){ $shtuk=$vitrin;
-if (($s==$buy_row)&&($sss=="")){ $kupleno=1; $kupil="<div align=center><font color=$nc3><b>".$lang['buyes']." $qty $shtuk</b></font></div>";  if ($view_basketalert==1) { $kupil.="<a id=minibasket_"."$unifid href=$htpath/minibasket.php?unifid=$lid&amp;qty=$qty&amp;speek=$speek></a><script type=\"text/javascript\">
+if (($s==$buy_row)&&($sss=="")){ $kupleno=1; $kupil="<div align=center><font color=$nc3><b>".$lang['buyes']." $qty $shtuk</b></font></div>";  if ($view_basketalert==1) { $kupil.="<a id=minibasket_"."$unifid href=$htpath/minibasket.php?unifid=$lid&qty=$qty&speek=$speek></a><script type=\"text/javascript\">
         $(document).ready(function() {
            $(\"#minibasket_$lid\").fancybox({
                    'onComplete'	:	function() {\$(\"#fancybox-wrap\").unbind('mousewheel.fb');} ,
@@ -790,6 +787,7 @@ $strtoma=Array();
 $strtoma=explode("|",$sps[($start+$sst)]);
 $sklname=$strtoma[1];
 //if(($details[7]!="ADMIN")&&($details[7]!="MODER")){
+/*
 $strtoma[2]=str_replace("http://www.", "http://", str_replace("\"","'", $strtoma[2]));
 if ($strtoma[2]!="") {
 $htpat=str_replace("http://www.", "http://",$htpath);
@@ -811,6 +809,7 @@ if ($wh==" width=0 height=0") {$wh="";}
 $strtoma[2]=str_replace("<img ", "<img ". $wh ." ",stripslashes(@$strtoma[2]));
 
 }
+*/
 //}
 $sps[($start+$sst)]=str_replace("[foto1]",$strtoma[2], $strtoma[0]);
 $stoks="";
@@ -827,21 +826,21 @@ $filef=@fopen ($fnamef, "r");
 if ($filef) { $stoks="".str_replace(">", "><br>", fread ($filef, filesize ($fnamef)))."";}
 fclose ($filef);
 }else {
-$stoks="<img src=$image_path/stockno.gif><br>".$lang[175]."";
+$stoks="<img src=$image_path/stockno.png style=\"cursor:help;\" title=\"".$lang[175]."\">";
 }
 $val=str_replace("[sklad]",$stoks,$val);
 }
 if ($stinfo=="int") {
-if ($kolvos[$sklname]==1) {$stoks= "<img src=$image_path/stock1.gif title=\"".$lang[622]."\">";}
-if ($kolvos[$sklname]>$stock4) {$stoks= "<img src=$image_path/stock1.gif title=\"".$lang[623]."\">";}
-if ($kolvos[$sklname]>=$stock3) {$stoks= "<img src=$image_path/stock3.gif title=\"".$lang[624]."\">";}
-if ($kolvos[$sklname]>=$stock2) {$stoks= "<img src=$image_path/stock3.gif title=\"".$lang[624]."\">";}
-if ($kolvos[$sklname]>=$stock1) {$stoks= "<img src=$image_path/stock5.gif title=\"".$lang[625]."\">";}
-if ($kolvos[$sklname]>=$stock0) {$stoks= "<img src=$image_path/stock5.gif><img src=$image_path/stock5.gif title=\"".$lang[626]."\">";}
-if ($kolvos[$sklname]<=$stock5) {$stoks= "<img src=$image_path/stockno.gif title=\"".$lang[621]."\">";}
+if ($kolvos[$sklname]==1) {$stoks= "<img src=$image_path/stock1.png style=\"cursor:help;\" title=\"".$lang[622]."\">";}
+if ($kolvos[$sklname]>$stock4) {$stoks= "<img src=$image_path/stock1.png style=\"cursor:help;\" title=\"".$lang[623]."\">";}
+if ($kolvos[$sklname]>=$stock3) {$stoks= "<img src=$image_path/stock3.png style=\"cursor:help;\" title=\"".$lang[624]."\">";}
+if ($kolvos[$sklname]>=$stock2) {$stoks= "<img src=$image_path/stock3.png style=\"cursor:help;\" title=\"".$lang[624]."\">";}
+if ($kolvos[$sklname]>=$stock1) {$stoks= "<img src=$image_path/stock5.png style=\"cursor:help;\" title=\"".$lang[625]."\">";}
+if ($kolvos[$sklname]>=$stock0) {$stoks= "<img src=$image_path/stock5.png style=\"cursor:help;\" title=\"".$lang[626]."\">";}
+if ($kolvos[$sklname]<=$stock5) {$stoks= "<img src=$image_path/stockno.png style=\"cursor:help;\" title=\"".$lang[621]."\">";}
 
 
-if ($kolvos[$sklname]<=$stock5) {$stoks= "<img src=$image_path/stockno.gif title=\"".$lang[621]."\">";}
+if ($kolvos[$sklname]<=$stock5) {$stoks= "<img src=$image_path/stockno.png style=\"cursor:help;\" title=\"".$lang[621]."\">";}
 
 $val=str_replace("[sklad]",$stoks,$val);
 
@@ -865,10 +864,10 @@ if ($end > $total) { $end=$total-1 + $gt; }
 if (($catid!="") &&($catid!="_")){$queryed="&catid=".rawurlencode($catid);} else {$queryed="";}
 $stat= "<center><br>".$lang[203]." <b>$numberpages</b> ".$lang[206]." <b>$total</b> ".$lang[207]." ".$lang[204]." <b>$startnew</b> ".$lang[205]." <b>$end</b></font></center><br>";
 
-$nextpage="<a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($start+$perpage) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
-$homee="<a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=0&amp;perpage=&brand=$brand\"><!--homee--></a>";
+$nextpage="<a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($start+$perpage) . "&perpage=$perpage&usl=$usl&brand=$brand\"><img src=\"$image_path/next.gif\" title=\"".$lang[162]."\" border=0></a>";
+$homee="<a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=0&perpage=&brand=$brand\"><!--homee--></a>";
 if ($start==0) {$homee="";}
-$prevpage=" <a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($start-$perpage) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
+$prevpage=" <a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($start-$perpage) . "&perpage=$perpage&usl=$usl&brand=$brand\"><img src=\"$image_path/prev.gif\" border=0 title=\"".$lang[163]."\"></a>";
 if ($start<=0) { $prevpage="<img src=\"$image_path/noprev.gif\" border=0 title=\"".$lang[163]."\">";}
 if (($start+$perpage)>=$s){ $nextpage="<img src=\"$image_path/nonext.gif\" border=0 title=\"".$lang[163]."\">";}
 
@@ -896,16 +895,16 @@ $pp.= "<b><font size=2>" . ($s+1) . "</font></b> <img src=\"$image_path/a.gif\">
 }
 } else {
 if (($s+1)==$numberpages) {
-$pp.= "<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
+$pp.= "<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($s*$perpage) . "&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc3 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a>";
 } else {
-$pp.= "<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($s*$perpage) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
+$pp.= "<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($s*$perpage) . "&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc3 style=\"border-bottom: 1px dotted;\">" . ($s+1) . "</font></a> <img src=\"$image_path/a.gif\"> ";
 }
 }
 }
 $s+=1;
 }
-if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=0&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=0&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
-if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&amp;start=" . ($perpage*($numberpages-1)) . "&amp;perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc2 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
+if ($td>0) { if ($td>1) { $pp="<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=0&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc3 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> ... <img src=\"$image_path/a.gif\"> $pp"; } else { $pp="<a href = \"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=0&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc3 style=\"border-bottom: 1px dotted;\">1</font></a> <img src=\"$image_path/a.gif\"> $pp"; } }
+if ($ts>0) { if ($ts>1) {$pp.="... <img src=\"$image_path/a.gif\">";} $pp.=" <a href=\"$htpath/index.php?catid=".$podstava["$r|$sub|"]."$queryed&query=".rawurlencode($query)."&start=" . ($perpage*($numberpages-1)) . "&perpage=$perpage&usl=$usl&brand=$brand\"><font size=2 color=$nc3 style=\"border-bottom: 1px dotted;\">" . $numberpages . "</font></a>";}
 $ppages="<div align=center><table border=0 cellspacing=4 cellpadding=4><tr><td style=\"vertical-align: middle\">$prevpage</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$pp</td><td style=\"vertical-align: middle\"><img src=\"$image_path/hr.gif\"></td><td valign=middle align=center>$nextpage</td></tr></table></div>";
 if ($numberpages<=1) { $ppages=""; }
 if (!isset($view_compact)){} else { if($view_compact==1) { $poisks="";} else {$poisks="$ppages";}}
@@ -920,7 +919,7 @@ if ($view_goodsprice==1){ if ($view_sort!=0) { if ($files_found>1)  { $themecont
 
 $gb_g=$gb;
 $gb="<table class=table2 border=0 width=100% cellpadding=0 cellspacing=0>
-<tr><td valign=top>$sortecho<div><i class=icon-search></i>&nbsp;<font size=2 color=\"".$style['nav_col1']."\">".$lang[141]." \"<b>". $query. "</b>\"</font></div><br>$ppages";
+<tr><td valign=top>$sortecho<div><i class=icon-search></i>&nbsp;".$lang[141]." \"<b>". $query. "</b>\"</div><br>$ppages";
 
 if ($varcart>=100) {
 $gb.="<form class=form-inline action=\"index.php\" method=\"POST\">";
@@ -943,7 +942,14 @@ $gb.="</td></tr>
 <script language=javascript>
 function smf (imgsrc) {
 document.getElementById('ItemModalLabel').innerHTML='".$lang[138]."';
-document.getElementById('ItemModalBody').innerHTML=document.getElementById(imgsrc).innerHTML;
+var smz=document.getElementById('sm'+imgsrc).src;
+var dp='';
+if (smz!='') { dp='<img src='+smz+' class=thumbnail>'; }
+var z=document.getElementById(imgsrc).innerHTML;
+var re = /\\=\\\"span15\\\"/gi;
+var nz=z.replace( re, '\\=\\\"\\\"' );
+nz=nz.replace( /<\\/ul>/gi , '<li>'+dp+'</li>' );
+document.getElementById('ItemModalBody').innerHTML=nz;
 \$('#ItemModal').modal('show');
 }
 </script>
@@ -1007,19 +1013,22 @@ if ($usl=="AND") {
 while (list ($keyq, $lineq) = each ($queries)) {
 if (preg_match("/$lineq/i",toLower($stun))) {
 $fc[5]=str_replace("$lineq", "<b>$lineq</b>", $fc[5]);
-$scount+=1; }
-//echo "$scount=$count $fc[2]<br>\n";
+$scount+=1;
+}
+
 
 if ($scount==$count) {
+//echo "$scount=$count $fc[2]<br>\n";
 $ff+=1;
-if ($ff<=100) {
 //echo "<div onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$fc[1]."\">$ff.&nbsp;".strtoken($fc[2],"/")."</a></div>";
-$search_results0[$s]="<!--".$fc[3]."--><div onclick=\"document.location.href='$htpath/index.php?page=".$fc[1]."&amp;speek=$speek';\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">".str_replace("<img ","<img align=left border=0 class=img style=\"margin-top:5px;\" ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a><div>".$fc[5] ." ...</div><div><span style=\"color: $nc2; font-style: oblique;\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">$htpath/index.php?page=".$fc[1]."&amp;speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></div><div class=clearfix></div></div></div>";
+$search_results0[$s]="<!--".$fc[3]."--><div onclick=\"document.location.href='$htpath/index.php?page=".$fc[1]."&speek=$speek';\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">".str_replace("<img ","<img align=left border=0 class=img style=\"margin-top:5px;\" ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a><div>".$fc[5] ." ...</div><div><span style=\"color: $nc3; font-style: oblique;\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">$htpath/index.php?page=".$fc[1]."&speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></div><div class=clearfix></div></div></div>";
+//echo $search_results0[$s];
+
 $tfind=1;
 
 $s+=1;
 
-}
+
 }
 }
 }
@@ -1029,12 +1038,11 @@ while (list ($keyq, $lineq) = each ($queries)) {
 if (@preg_match("/$lineq/i",toLower($stun))) {
 $scount+=1; $ff+=1;
 if ($scount==1) {
-if ($ff<=100) {
 //echo "<div onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$fc[1]."\">$ff.&nbsp;".strtoken($fc[2],"/")."</a></div>";
-$search_results0[$s]="<!--".$fc[3]."--><div onclick=\"document.location.href='$htpath/index.php?page=".$fc[1]."&amp;speek=$speek';\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">".str_replace("<img ","<img align=left border=0 class=img style=\"margin-top:5px;\" ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a><div>".$fc[5] ." ...</div><div><span style=\"color: $nc2; font-style: oblique;\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">$htpath/index.php?page=".$fc[1]."&amp;speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></div><div class=clearfix></div></div></div>";
+$search_results0[$s]="<!--".$fc[3]."--><div onclick=\"document.location.href='$htpath/index.php?page=".$fc[1]."&speek=$speek';\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">".str_replace("<img ","<img align=left border=0 class=img style=\"margin-top:5px;\" ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a><div>".$fc[5] ." ...</div><div><span style=\"color: $nc3; font-style: oblique;\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">$htpath/index.php?page=".$fc[1]."&speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></div><div class=clearfix></div></div></div>";
 $tfind=1;
 $s+=1;
-}
+
 }
 }
 //echo "$scount=$count $fc[2]<br>\n";
@@ -1058,14 +1066,13 @@ $scount+=1;
 
 if ($scount==$count) {
 $ff+=1;
-if ($ff<=100) {
 //echo "<div onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$fc[1]."\">$ff.&nbsp;".strtoken($fc[2],"/")."</a></div>";
-$search_results1[$s1]="<!--".$fc[3]."--><div onclick=\"document.location.href='$htpath/index.php?page=".$fc[1]."&amp;speek=$speek';\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">".str_replace("<img ","<img align=left border=0 class=img style=\"margin-top:5px;\" ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a><div>".$fc[5] ." ...</div><div><span style=\"color: $nc2; font-style: oblique;\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">$htpath/index.php?page=".$fc[1]."&amp;speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></div><div class=clearfix></div></div></div>";
+$search_results1[$s1]="<!--".$fc[3]."--><div onclick=\"document.location.href='$htpath/index.php?page=".$fc[1]."&speek=$speek';\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">".str_replace("<img ","<img align=left border=0 class=img style=\"margin-top:5px;\" ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a><div>".$fc[5] ." ...</div><div><span style=\"color: $nc3; font-style: oblique;\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">$htpath/index.php?page=".$fc[1]."&speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></div><div class=clearfix></div></div></div>";
 $tfind=1;
 $s+=1;
 $s1+=1;
 
-}
+
 }
 }
 reset($queries);
@@ -1073,14 +1080,14 @@ while (list ($keyq, $lineq) = each ($queries)) {
 if (preg_match("/$lineq/i",toLower($stun))) {
 $scount+=1; $ff+=1;
 if ($scount>=1) {
-if ($ff<=100) {
+
 //echo "<div onmouseout=\"this.style.backgroundColor='transparent';\" onmouseover=\"this.style.backgroundColor='$nc6';\" style=\"cursor: pointer; background-color: transparent;\"><a href=\"index.php?page=".$fc[1]."\">$ff.&nbsp;".strtoken($fc[2],"/")."</a></div>";
-$search_results2[$s2]="<!--".$fc[3]."--><div onclick=\"document.location.href='$htpath/index.php?page=".$fc[1]."&amp;speek=$speek';\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">".str_replace("<img ","<img align=left border=0 class=img style=\"margin-top:5px;\" ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a><div>".$fc[5] ." ...</div><div><span style=\"color: $nc2; font-style: oblique;\"><a href=\"$htpath/index.php?page=".$fc[1]."&amp;speek=$speek\">$htpath/index.php?page=".$fc[1]."&amp;speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></div><div class=clearfix></div></div></div>";
+$search_results2[$s2]="<!--".$fc[3]."--><div onclick=\"document.location.href='$htpath/index.php?page=".$fc[1]."&speek=$speek';\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">".str_replace("<img ","<img align=left border=0 class=img style=\"margin-top:5px;\" ", strtoken(strip_tags($fc[2],"<img>"),"|"))."</a><div>".$fc[5] ." ...</div><div><span style=\"color: $nc3; font-style: oblique;\"><a href=\"$htpath/index.php?page=".$fc[1]."&speek=$speek\">$htpath/index.php?page=".$fc[1]."&speek=$speek</a> (".$fc[4].") ".$fc[3]." </span></div><div class=clearfix></div></div></div>";
 $tfind=1;
 //echo $s2." ".$scount." ".$search_results2[$s2];
 $s+=1;
 $s2+=1;
-}
+
 }
 }
 //echo "$scount=$count $fc[2]<br>\n";
@@ -1137,7 +1144,7 @@ $sst+=1;
 $fw2=array_unique($fw1);
 $fw=implode(" , " , $fw2);
 if ($sort==1){ $sortby=$fc[2];} else {$sortby=$ss;}
-$search_results4[$s3]="<!--$sortby--><a href=\"".$fc[0]."\">".substr(strip_tags($fc[1]),0, 100)."...</a><div>... ".$fc[4]." ...</div><div><span style=\"color: #006600;\" title=\"".$fc[0].".html (".$fc[3].") ".$fc[2]." </span> &#151; <font color=\"$nc2\">$fw ".$lang[308]." <b>" . $ss . "</b></font></div></div>";
+$search_results4[$s3]="<!--$sortby--><a href=\"".$fc[0]."\">".substr(strip_tags($fc[1]),0, 100)."...</a><div>... ".$fc[4]." ...</div><div><span style=\"color: #006600;\" title=\"".$fc[0].".html (".$fc[3].") ".$fc[2]." </span> &#151; <font color=\"$nc3\">$fw ".$lang[308]." <b>" . $ss . "</b></font></div></div>";
 $tfind=1;
 unset ($fc, $fw1, $fw2, $fw, $val, $key, $matches, $strt);
 $s+=1;
@@ -1202,7 +1209,7 @@ $sst+=1;
 $fw2=array_unique($fw1);
 $fw=implode(" , " , $fw2);
 if ($sort==1){ $sortby=$fc[2];} else {$sortby=$ss;}
-$search_results3[$s3]="<!--$sortby--><a href=\"$htpath/".$fc[0]."\">".$fc[1]."</a><div>... ".$fc[4]." ...</div><div><span style=\"color: #006600;\" title=\"".$fc[0].".html (".$fc[3].") ".$fc[2]." </span> &#151; <font color=\"$nc2\">$fw ".$lang[308]." <b>" . $ss . "</b></font></div></div>";
+$search_results3[$s3]="<!--$sortby--><a href=\"$htpath/".$fc[0]."\">".$fc[1]."</a><div>... ".$fc[4]." ...</div><div><span style=\"color: #006600;\" title=\"".$fc[0].".html (".$fc[3].") ".$fc[2]." </span> &#151; <font color=\"$nc3\">$fw ".$lang[308]." <b>" . $ss . "</b></font></div></div>";
 $tfind=1;
 unset ($fc, $fw1, $fw2, $fw, $val, $key, $matches, $strt);
 $s+=1;
@@ -1237,7 +1244,7 @@ $fw2=array_unique($fw1);
 $fw=implode(" , " , $fw2);
 if ($sort==1){ $sortby=@$fc[2];} else {$sortby=$ss;}
 if (@$ufc[2]==$f_user) {
-$search_results3[$s3]="<!--$sortby--><a href=\"$htpath/".$fc[0]."\">".$fc[1]."</a><div>... ".$fc[4]." ...</div><div><span style=\"color: #006600;\" title=\"".$fc[0].".html (".$fc[3].") ".$fc[2]." </span> &#151; <font color=\"$nc2\">$fw ".$lang[308]." <b>" . $ss . "</b></font></div></div>";
+$search_results3[$s3]="<!--$sortby--><a href=\"$htpath/".$fc[0]."\">".$fc[1]."</a><div>... ".$fc[4]." ...</div><div><span style=\"color: #006600;\" title=\"".$fc[0].".html (".$fc[3].") ".$fc[2]." </span> &#151; <font color=\"$nc3\">$fw ".$lang[308]." <b>" . $ss . "</b></font></div></div>";
 $tfind=1;
 
 }
@@ -1311,7 +1318,7 @@ $sst+=1;
 $fw2=array_unique($fw1);
 $fw=implode(" , " , $fw2);
 if ($sort==1){ $sortby=$fc[2];} else {$sortby=$ss;}
-$search_results3[$s3]="<!--$sortby--><a href=\"$htpath/admin/baskets/".$fc[0].".html\">".$fc[1]."</a><div>... ".$fc[4]." ...</div><div><span style=\"color: #006600;\" title=\"".$fc[0].".html (".$fc[3].") ".$fc[2]." </span> &#151; <font color=\"$nc2\">$fw ".$lang[308]." <b>" . $ss . "</b></font></div></div>";
+$search_results3[$s3]="<!--$sortby--><a href=\"$htpath/admin/baskets/".$fc[0].".html\">".$fc[1]."</a><div>... ".$fc[4]." ...</div><div><span style=\"color: #006600;\" title=\"".$fc[0].".html (".$fc[3].") ".$fc[2]." </span> &#151; <font color=\"$nc3\">$fw ".$lang[308]." <b>" . $ss . "</b></font></div></div>";
 $tfind=1;
 unset ($fc, $fw1, $fw2, $fw, $val, $key, $matches, $strt);
 $s+=1;
